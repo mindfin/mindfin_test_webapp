@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+
+    <div class="row">
+
+        <!-- <div class="col-sm-6 col-lg-3">
+            <a href="#/telcaller/teledatalist">
+                <div class="card text-white bg-box1">
+                    <div class="card-body pb-0">
+                        <div style="font-size: 22px;">Enquirye Count</div>
+                    </div>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="/assets/images/phone.png " class="Status " height="40px " width="40px " />
+                            </div>
+                            <div class="col-md-6">
+                                <h1>{{fetchData}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div> -->
+        <div class="col-sm-6 col-lg-3">
+            <a href="#/telcaller/teledatalist">
+                <div class="card text-white bg-info">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/phone.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData}}</div>
+                        <div><b>Enquiry Count</b></div>
+                    </div>
+                    <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                        <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels" [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend" [chartType]="lineChart2Type"></canvas>
+                    </div> -->
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a href="#/telcaller/teleapprovedatalist">
+                <div class="card text-white bg-warning">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/approved.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData1}}</div>
+                        <div><b>Approved Count</b></div>
+                    </div>
+                    <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                        <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels" [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend" [chartType]="lineChart2Type"></canvas>
+                    </div> -->
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a href="#/telcaller/teledisbursdatalist">
+                <div class="card text-white bg-success">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/disbursed.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData2}}</div>
+                        <div><b>Disbursed Count</b></div>
+                    </div>
+                    <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                        <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels" [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend" [chartType]="lineChart2Type"></canvas>
+                    </div> -->
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a href="#/telcaller/telerejectdatalist">
+                <div class="card text-white bg-danger">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/rejected.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData3}}</div>
+                        <div><b>Reject Count</b></div>
+                    </div>
+                    <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                        <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels" [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend" [chartType]="lineChart2Type"></canvas>
+                    </div> -->
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

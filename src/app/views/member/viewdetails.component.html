@@ -1,0 +1,193 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form (ngSubmit)="f.form.valid && onSubmit(model);" #f="ngForm" novalidate>
+                <div class="card-header">
+                    <strong>TRACK STATUS</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="bankname">ENTER CUSTOMER'S REGISTER ID</label>
+                            <input type="text" class="form-control" name="bankname" [(ngModel)]="model.bankname" #bankname="ngModel" />
+                        </div>
+                        <div class="col-md-4">
+                            <label></label><br />
+                            <button type="submit" class="btn btn-primary " [disabled]="!f.form.valid "><i
+                                    class="fa fa-dot-circle-o"></i> Click</button>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>CUSTOMER DETAILS</strong>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>MEMBER NAME</th>
+                            <td> {{fetchData.name}}</td>
+                            <th> CONTACT NUMBER</th>
+                            <td> {{fetchData.mobile}}</td>
+                        </tr>
+                        <tr>
+                            <th>MEMBER EMAIL</th>
+                            <td> {{fetchData.email}}</td>
+                            <th>COMPANY EMAIL</th>
+                            <td> {{fetchData.cemail}}</td>
+                        </tr>
+                        <tr>
+                            <th>DOB</th>
+                            <td> {{fetchData.dob| date:'dd/MM/yyyy'}}</td>
+                            <th>EXECUTIVE</th>
+                            <td>{{fetchData.ename}}</td>
+                        </tr>
+                        <tr>
+                            <th>DOCUMENTS</th>
+                            <td> {{fetchData.documents}}</td>
+                            <th>DOCUMENT ID</th>
+                            <td> {{fetchData.idno}}</td>
+                        </tr>
+                        <tr>
+                            <th>ADDRESS</th>
+                            <td> {{fetchData.address}}</td>
+                            <th> ALTERNATE NUMBER</th>
+                            <td> {{fetchData.altmobile}}</td>
+                        </tr>
+                        <tr>
+                            <th>COMPANY NAME</th>
+                            <td> {{fetchData.cname}}</td>
+                            <th>DESIGNATION</th>
+                            <td> {{fetchData.designation}}</td>
+                        </tr>
+                        <tr>
+                            <th>COMPANY ADDRESS</th>
+                            <td> {{fetchData.caddress}}</td>
+                            <th>SALARY</th>
+                            <td> {{fetchData.salary}}</td>
+                        </tr>
+                        <tr>
+                            <th>LOAN STATUS</th>
+                            <td> {{fetchData.displaystatus}}</td>
+                            <th>CUSTOMER ID</th>
+                            <td> {{fetchData.autoid}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-header">
+                <strong>PREVIOUS BANK DETAILS</strong>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>BANK</th>
+                            <th>LOANTYPE</th>
+                            <th>AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData1;let i=index'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{pro.bankname}}
+                            </td>
+                            <td>
+                                {{pro.loantype}}
+                            </td>
+                            <td>
+                                {{pro.amount}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-header">
+                <strong>APPROVED BANK DETAILS</strong>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>BANK</th>
+                            <th>LOANTYPE</th>
+                            <th>AMOUNT</th>
+                            <th>PAYOUT</th>
+                            <th>BANK VENDOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData2;let i=index'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{pro.bankname}}
+                            </td>
+                            <td>
+                                {{pro.loantype}}
+                            </td>
+                            <td>
+                                {{pro.amount}}
+                            </td>
+                            <td>
+                                {{pro.payout}}
+                            </td>
+                            <td>
+                                {{pro.vendor}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-header">
+                <strong>ACCOUNT DETAILS</strong>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>BANK</th>
+                            <th>CASE TYPE</th>
+                            <th>ACCOUNT NO</th>
+                            <th>DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData3;let i=index'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{pro.bankname}}
+                            </td>
+                            <td>
+                                {{pro.casename}}
+                            </td>
+                            <td>
+                                {{pro.accountno}}
+                            </td>
+                            <td>
+                                {{pro.createddate}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

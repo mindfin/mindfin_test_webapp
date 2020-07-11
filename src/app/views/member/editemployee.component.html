@@ -1,0 +1,197 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <b> EMPLOYEE'S UPDATE FORM </b>
+            </div>
+            <div class="card-body">
+                <form #form="ngForm" (ngSubmit)="submitForm(model)">
+                    <!-- <div class="card-header">Member Details</div> -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>EMPLOYEE NAME</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.name" type="text" class="form-control" name="name" required #first="ngModel">
+                                <div class="alert" *ngIf="first.errors && (first.dirty || first.touched)">
+                                    <div [hidden]="!first.errors.required">
+                                        Employee Nameis required...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>EMPLOYEE EMAIL ID</b><code>(*)</code></label>
+                                <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="model.email" type="text" (keyup)="checkcurrent(model.email)" class="form-control" name="email" required #emailref="ngModel">
+                                <div *ngIf="model.status===false" style="color:rgb(245, 43, 43);">Email Already Exists
+                                </div>
+                                <!-- <div *ngIf="model.status===true" style="color:green;"> </div> -->
+                                <div *ngIf="emailref.errors &&(emailref.dirty || emailref.touched)">
+                                    <div class="alert" [hidden]="!emailref.errors?.pattern">
+                                        Please Enter Valid Email ID.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label><b>DOB</b>
+                                </label><br>
+                                <!-- <input class="form-group" [(ngModel)]="model.dob" name="dob" type="text" placeholder="MM/DD/YYYY" class="form-control" bsDatepicker> -->
+
+                                <mat-form-field>
+                                    <input matInput #ref [matDatepicker]="picker" [(ngModel)]="model.dob" name="dob">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>EMPLOYEE MOBILE</b><code>(*)</code></label>
+                                <input minlength="10" maxlength="10" [(ngModel)]="model.mobile" type="text" class="form-control" name="mobile" required #mobile="ngModel">
+                                <div *ngIf="mobile.errors &&(mobile.dirty || mobile.touched)">
+                                    <div class="alert" [hidden]="!mobile.errors?.pattern">
+                                        Invalid Mobile No.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b> ALTERNATE MOBILE</b></label>
+                                <input minlength="10" maxlength="10" [(ngModel)]="model.altmobile" type="text" class="form-control" name="altmobile" #altmobile="ngModel">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label><b> GENDER</b></label><br>
+                                <input type="radio" value="male" name="gender" [(ngModel)]="model.gender" #gender="ngModel"> MALE
+                                <input type="radio" value="female" name="gender" [(ngModel)]="model.gender" #gender="ngModel"> FEMALE
+                                <div *ngIf="gender.errors &&(gender.dirty || gender.touched)">
+                                    <div class="alert" [hidden]="!gender.errors?.pattern">
+                                        Gender is Required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>ADDRESS</b></label>
+                                <textarea class="form-control" [(ngModel)]="model.address" class="form-control" name="address" #address="ngModel"></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>PINCODE</b></label>
+                                <input [(ngModel)]="model.pincode" type="text" class="form-control" name="pincode" #pincode="ngModel">
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>QUALIFICATION</b></label>
+                                <input [(ngModel)]="model.qualification" type="text" class="form-control" name="qualification" #qualification="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header"><b> USER TYPE
+                        </b>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label><b>EMPLOYEE TYPE</b><code>(*)</code></label>
+                                <select class="form-control" name="idusertype" [(ngModel)]="model.idusertype" required #idusertype="ngModel">
+                                    <option *ngFor="let item of fetchData" [value]="item.idusertype">{{item.user}}
+                                    </option>
+                                </select>
+                                <div class="alert" *ngIf="idusertype.errors && (idusertype.dirty || idusertype.touched)">
+                                    <div [hidden]="!idusertype.errors.required">
+                                        Employee Type is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>DESIGNATION</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.designation" type="text" class="form-control" name="designation" required #bdesignation="ngModel">
+                                <div class="alert" *ngIf="bdesignation.errors && (bdesignation.dirty || bdesignation.touched)">
+                                    <div [hidden]="!bdesignation.errors.required">
+                                        Employee Type is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>JOINING DATE</b><code>(*)</code>
+                                </label>
+                                <mat-form-field>
+                                    <input matInput #ref [matDatepicker]="picker4" [(ngModel)]="model.joiningdate" name="joiningdate" placeholder="mm/dd/yyyy">
+                                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker4></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>BRANCH</b></label>
+                                <input [(ngModel)]="model.branch" type="text" class="form-control" name="branch" #branch="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header"><b>ACCOUNT DETAILS</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label><b>EMPLOYEE NUMBER</b></label>
+                                <input [(ngModel)]="model.empno" type="text" class="form-control" name="empno" #empno="ngModel">
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>ACCOUNT NUMBER</b></label>
+                                <input [(ngModel)]="model.accno" type="text" class="form-control" name="accno" #cname="ngModel">
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>IFSC NUMBER</b></label>
+                                <input [(ngModel)]="model.ifsc" type="text" class="form-control" name="ifsc" #designation="ngModel">
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>BASIC PAY</b></label>
+                                <input [(ngModel)]="model.basicPay" type="text" class="form-control" name="basicPay" #branch="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header"><b>DOCUMENTS UPLOAD</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label><b>EMPLOYEE IMAGE</b></label>
+                                <input [(ngModel)]="model.cimage" type="file" class="form-control-file" name="cimage" (change)="onFileSelect($event)" #cimage="ngModel">
+                                <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{model.cimage}}" class="myimg" alt="emp" width="50%" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>PANCARD IMAGE</b></label>
+                                <input [(ngModel)]="model.pimage" type="file" class="form-control-file" name="pimage" (change)="onFileSelect1($event)" #pimage="ngModel">
+                                <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{model.pimage}}" class="myimg" alt="emp" width="50%" />
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label><b>AADHAR IMAGE</b></label>
+                                <input [(ngModel)]="model.aimage" type="file" class="form-control-file" name="aimage" (change)="onFileSelect2($event)" #aimage="ngModel">
+                                <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{model.aimage}}" class="myimg" alt="emp" width="50%" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label><b>APPOINTMENT LETTER</b></label>
+                                <input [(ngModel)]="model.appointmentLetter1" type="file" class="form-control-file" name="appointmentLetter1" (change)="onFileSelect3($event)" #appointmentLetter1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.appointmentLetter" name="appointmentLetter" class="form-control" #appointmentLetter="ngModel">
+                                <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{model.appointmentLetter}}" class="myimg" alt="emp" width="50%" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="btn btn-primary" [disabled]="!form.valid || model.status===false ">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+<style>
+    .alert {
+        color: red;
+        padding: 0;
+    }
+</style>

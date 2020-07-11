@@ -1,0 +1,68 @@
+
+   <div class="row">
+        <div class="col-md-6">
+           <div class="card">
+    
+              <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
+              <div class="card-header">
+                 <strong> ADD EMPLOYEE TYPE</strong>
+              </div>
+    
+              <div class="card-body">
+    
+                 <div class="row">
+                    <div class="col-md-8">
+                       <label for="bankname">EMPLOYEE TYPE</label>
+                       <input type="text" class="form-control" name="emp_type" [(ngModel)]="model.emp_type"
+                       #emp_type="ngModel"    required/>
+                       <div *ngIf="f.submitted && emp_type.invalid"  class="invalid-feedback">
+                          <div *ngIf="emp_type.errors.required">Employee Type is required</div>
+                       </div>
+                       <br>
+                    </div>
+                 </div>
+    
+                 <div class="card-footer">
+                    <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
+                 </div>
+    
+                </div>
+    
+                 </form>
+              </div>
+            </div>
+              <div class="col-lg-6">
+                 <div class="card">
+                    <div class="card-header">
+                       <strong>EMPLOYEE TYPE LIST</strong> 
+                    </div>
+                    <div class="card-body">
+                       <div class="table-responsive">
+                          <table class="table">
+                             <thead>
+                                <tr>
+                                   <th>EMPLOYEE TYPE</th>
+                                   <th>EDIT</th>
+                                </tr>
+                             </thead>
+                             <tbody>
+                                <tr *ngFor='let pro of fetchData'>
+                                   <td>
+                                
+                                      {{pro.emp_type}}
+                                   </td>
+                             
+                                   <td>
+                                      <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
+                                   </td>
+                                </tr>
+                             </tbody>
+                          </table>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <!--/.col-->
+        <!-- </div> -->
+        <!--/.row-->

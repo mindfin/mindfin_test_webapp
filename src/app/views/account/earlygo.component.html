@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+
+            <form (ngSubmit)="f.form.valid && onSubmit(model); f.form.reset()" #f="ngForm" novalidate>
+                <div class="card-header">
+                    <strong>Reason</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="radiobtn col-md-2" *ngIf="model.status1===false">
+                            <input type="radio" id="huey" name="drone" value="Late In" [(ngModel)]="model.type" #type="ngModel" required />
+                            <label for="huey"><img src="/assets/images/in.png " height="25px " width="25px "> Late
+                                In</label>
+                        </div>
+
+                        <div class="radiobtn col-md-2" *ngIf="model.status===false">
+                            <input type="radio" id="dewey" name="drone" value="Early Go" [(ngModel)]="model.type" #type="ngModel" required />
+                            <label for="dewey">Early Go <img src="/assets/images/out.png " height="25px "
+                                    width="25px "></label>
+                        </div>
+                        <div class="col-md-4" *ngIf="model.status===false || model.status1===false">
+                            <textarea class="form-control" required [(ngModel)]="model.reason" class="form-control" name="reason" required></textarea>
+                        </div>
+                        <div class="col-md-4" *ngIf="model.status===false || model.status1===false">
+                            <button type="submit" [hidden]="!f.form.valid" class="btn btn-success">Submit</button>
+
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </form>
+
+            <div class="card-header">
+                <strong>Reasons list</strong>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>APPLIED DATE</th>
+                            <th>APPLIED TYPE</th>
+                            <th>REASON</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData1;let i=index'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{pro.appliedDate | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td>
+                                <div *ngIf="pro.type==='Late In' ; else Opened; ">
+                                    <img src="/assets/images/in.png " height="40px " width="40px "> Late In
+                                </div>
+                                <ng-template #Opened>
+                                    <div *ngIf="pro.type==='Early Go' ; else Approved; ">
+                                        <img src="/assets/images/out.png " height="40px " width="40px "> Early Go
+                                    </div>
+                                </ng-template>
+                                <ng-template #Approved>
+                                    -----
+                                </ng-template>
+                            </td>
+                            <td>
+                                {{pro.reason}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="list-group-item text-center list-group-item-divider ">
+                    <a class="btn badge-info " [routerLink]="[ '/account/viewEmpEarlygo'] "><i class="fa fa-eye "></i>
+                        &nbsp;View All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .radiobtn {
+        position: relative;
+        display: block;
+    }
+    
+    .radiobtn label {
+        display: block;
+        background: #2bbcf5;
+        color: rgb(252, 252, 252);
+        border-radius: 5px;
+        padding: 10px 20px;
+        border: 2px solid #75adf7;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+    
+    .radiobtn label:after,
+    .radiobtn label:before {
+        content: "";
+        position: absolute;
+        right: 11px;
+        top: 11px;
+        width: 20px;
+        height: 20px;
+        border-radius: 3px;
+        background: #77a1fd;
+    }
+    
+    .radiobtn label:before {
+        background: transparent;
+        -webkit-transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
+        transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
+        z-index: 2;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-size: 13px;
+        background-position: center;
+        width: 0;
+        height: 0;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS4zIDEzLjIiPiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE0LjcuOGwtLjQtLjRhMS43IDEuNyAwIDAgMC0yLjMuMUw1LjIgOC4yIDMgNi40YTEuNyAxLjcgMCAwIDAtMi4zLjFMLjQgN2ExLjcgMS43IDAgMCAwIC4xIDIuM2wzLjggMy41YTEuNyAxLjcgMCAwIDAgMi40LS4xTDE1IDMuMWExLjcgMS43IDAgMCAwLS4yLTIuM3oiIGRhdGEtbmFtZT0iUGZhZCA0Ii8+PC9zdmc+);
+    }
+    
+    .radiobtn input[type="radio"] {
+        display: none;
+        position: absolute;
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    
+    .radiobtn input[type="radio"]:checked+label {
+        background: #3430fa;
+        border-color: #4b2cfc;
+    }
+    
+    .radiobtn input[type="radio"]:checked+label:after {
+        background: #2c64fc;
+    }
+    
+    .radiobtn input[type="radio"]:checked+label:before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

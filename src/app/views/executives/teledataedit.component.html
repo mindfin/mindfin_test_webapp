@@ -1,0 +1,256 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <b> ENQUIRY DATA EDIT FORM </b>
+            </div>
+            <div class="card-body">
+                <form #form="ngForm" (ngSubmit)="submitForm(model)">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><b>ENQUIRY NAME</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.name" type="text" class="form-control" name="name" required #first="ngModel">
+                                <div class="alert" *ngIf="first.errors && (first.dirty || first.touched)">
+                                    <div [hidden]="!first.errors.required">
+                                        Name is required...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>EMAIL ID</b></label>
+                                <input [(ngModel)]="model.email" type="email" class="form-control" name="email" #emailref="ngModel">
+                                <div class="alert" *ngIf="emailref.errors &&(emailref.dirty || emailref.touched)">
+                                    <div [hidden]="!emailref.errors?.pattern">
+                                        Please Enter Valid Email ID.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><b>MOBILE NUMBER</b><code>(*)</code></label>
+                                <input minlength="10" maxlength="10" [(ngModel)]="model.mobile" type="text" class="form-control" name="mobile" required #mobile="ngModel">
+                                <div *ngIf="mobile.errors &&(mobile.dirty || mobile.touched)">
+                                    <div class="alert" [hidden]="!mobile.errors?.pattern">
+                                        Invalid Mobile No.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b> ALTERNATE MOBILE</b></label>
+                                <input minlength="10" maxlength="10" [(ngModel)]="model.altmobile" type="text" class="form-control" name="altmobile" #altmobile="ngModel">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><b> GENDER</b><code>(*)</code></label><br>
+                                <input type="radio" value="male" name="gender" [(ngModel)]="model.gender" #gender="ngModel"> MALE
+                                <input type="radio" value="female" name="gender" [(ngModel)]="model.gender" #gender="ngModel"> FEMALE
+                                <div *ngIf="gender.errors &&(gender.dirty || gender.touched)">
+                                    <div class="alert" [hidden]="!gender.errors?.pattern">
+                                        Gender is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>ADDRESS</b></label>
+                                <textarea class="form-control" [(ngModel)]="model.address" class="form-control" name="address" #address="ngModel"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label><b>LOAN TYPE</b><code>(*)</code></label><br>
+                                <select class="form-control" name="applytype" [(ngModel)]="model.applytype" required #applytype="ngModel" (change)="onChange(model.applytype)">
+                                    <option value="0">Select</option>
+                                    <option *ngFor="let item of fetchDataa" [value]="item.idloantype">{{item.loantype}}</option>
+                                   
+                                </select>
+                                <div class="alert" *ngIf="applytype.errors && (applytype.dirty || applytype.touched)">
+                                    <div [hidden]="!applytype.errors.required">
+                                        Apply Type is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" *ngIf="loantype==''; else pl">
+                                <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" disabled>
+                                   
+                                </select>
+                            </div>
+                            <ng-template #pl>
+                                <div class="col-sm-6" *ngIf="loantype==='1'; else usl">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                    <option value="Salaried">Salaried</option>
+                                    <option value="Professional">Professional</option>
+                                    <option value="Director">Director</option>
+                                </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #usl>
+                                <div class="col-sm-6 " *ngIf="loantype==='2' ; else sl; ">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                        <option value="Professional">Professional</option>
+                                        <option value="Self Employed">Self Employed</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #sl>
+                                <div class="col-sm-6" *ngIf="loantype==='3' ; else al; ">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                        <option value="Home Loan">Home Loan</option>
+                                        <option value="LAP / Mortgage">LAP / Mortgage</option>
+                                        <option value="Loan Rent Discounting(LRD)">Loan Rent Discounting(LRD)</option>
+                                        <option value="Working Capital">Working Capital</option>
+                                        <option value="Over Draft">Over Draft</option>
+                                        <option value="Cash Credits">Cash Credits</option>
+                                        <option value="Purchased Loan">Purchased Loan</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #al>
+                                <div class="col-sm-6 " *ngIf="loantype==='4'">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                        <option value="Car Loan">Car Loan</option>
+                                        <option value="Two Wheeler Loan">Two Wheeler Loan</option>
+                                        <option value="Vehicle Refinance">Vehicle Refinance</option>
+                                        <option value="TopUp">TopUp</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <div class="col-sm-6" *ngIf="loancatg===''; else prul;">
+                                <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel" disabled>
+                                    <option value="Commercials">Commercials</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Machinary">Machinary</option>
+                                </select>
+                            </div>
+                            <ng-template #prul>
+                                <div class="col-sm-6" *ngIf="loancatg==='Purchased Loan'; else lml;">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Commercials">Commercials</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Machinary">Machinary</option>
+                                    <option value="Loan Against Project">Loan Against Project</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #lml>
+                                <div class="col-sm-6 " *ngIf="loancatg==='LAP / Mortgage'; else cusl;">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Commercials">Commercials</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Machinary">Machinary</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #cusl>
+                                <div class="col-sm-6 " *ngIf="loancatg==='Self Employed'; else pro;">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Private Limited">Private Limited</option>
+                                        <option value="Partnership Firm">Partnership Firm</option>
+                                        <option value="Proprietorship">Proprietorship</option>
+                                        <option value="Service Provider">Service Provider</option>
+                                        <option value="Retailer">Retailer</option>
+                                        <option value="School & College(Trust)">School & College(Trust)</option>
+                                        <option value="Hospital">Hospital</option>
+                                        <option value="Nurshing Home">Nurshing Home</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #pro>
+                                <div class="col-sm-6 " *ngIf="loancatg==='Professional'">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Private Limited">DOCTORS</option>
+                                        <option value="Partnership Firm">CA</option>
+                                        <!-- <option value="Proprietorship">Proprietorship</option> -->
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <div class="col-sm-6">
+                                <label><b>TURN OVER</b><code>(*)</code></label><br>
+                                <input class="form-control" [(ngModel)]="model.turnover" class="form-control" name="turnover" required #turnover="ngModel">
+                                <div class="alert" *ngIf="turnover.errors && (turnover.dirty || turnover.touched)">
+                                    <div [hidden]="!turnover.errors.required">
+                                        Turn Over is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>RESPECTIVE EXECUTIVE</b><code>(*)</code></label><br>
+                                <select class="form-control" name="executive" [(ngModel)]="model.executive" required #executive="ngModel">
+                                  <option *ngFor="let item of fetchData1" value="{{item.idemployee}}">
+                                      {{item.name}}</option>
+                              </select>
+                                <div class="alert" *ngIf="executive.errors && (executive.dirty || executive.touched)">
+                                    <div [hidden]="!executive.errors.required">
+                                        Executive is required!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label><b>APPROACHED BANK </b><code>(*)</code></label><br>
+                                <select style="padding-right: 95px;" class="form-control" name="approchedBank" [(ngModel)]="model.approchedBank" required #approchedBank="ngModel">
+                                  <option value="" selected>Select Bank</option>
+                                  <option *ngFor="let item of fetchData2" value="{{item.bankname}}">
+                                      {{item.bankname}}
+                                  </option>
+                              </select>
+                                <div class="alert" *ngIf="approchedBank.errors && (approchedBank.dirty || approchedBank.touched)">
+                                    <div [hidden]="!approchedBank.errors.required">
+                                        Approached Bank is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>STATUS</b><code>(*)</code></label><br>
+                                <select class="form-control" name="status" [(ngModel)]="model.status" required #status="ngModel">
+                                  <option value="REQUIRED">REQUIRED</option>
+                                  <option value="CONTACTED">CONTACTED</option>
+                                  <option value="FILE PICKED">FILE PICKED</option>
+                                  <option value="LOGIN">LOGIN</option>
+                                  <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
+                                  <option value="APPROVED">APPROVED</option>
+                                  <option value="DISBURSED">DISBURSED</option>
+                                  <option value="REJECTED">REJECTED</option>
+                              </select>
+                                <div class="alert" *ngIf="status.errors && (status.dirty || status.touched)">
+                                    <div [hidden]="!status.errors.required">
+                                        status is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>COMMENTS</b></label><br>
+                                <textarea class="form-control" [(ngModel)]="model.comment" class="form-control" name="comment" #comment="ngModel"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+<style>
+    .alert {
+        color: red;
+        padding: 0;
+    }
+</style>

@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>CUSTOMERS DETAILS</h1>
+<div mat-dialog-content class="mat-typography">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>MEMBER NAME</th>
+                <td> {{data.element.name}}</td>
+                <th> CONTACT NUMBER</th>
+                <td> {{data.element.mobile}}</td>
+            </tr>
+            <tr>
+                <th>MEMBER EMAIL</th>
+                <td> {{data.element.email}}</td>
+                <th>DOB</th>
+                <td> {{data.element.dob| date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <th>ADDRESS</th>
+                <td> {{data.element.address}}</td>
+                <th> ALTERNATE NUMBER</th>
+                <td> {{data.element.altmobile}}</td>
+            </tr>
+            <tr>
+                <th>COMPANY NAME</th>
+                <td> {{data.element.cname}}</td>
+
+                <th>DESIGNATION</th>
+                <td> {{data.element.designation}}</td>
+            </tr>
+            <tr>
+                <th>COMPANY ADDRESS</th>
+                <td> {{data.element.caddress}}</td>
+                <th>SALARY</th>
+                <td> {{data.element.salary}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<style>
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

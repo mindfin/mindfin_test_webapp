@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <strong>CHANGE PASSWORD</strong>
+                </div><br>
+
+
+                <form (ngSubmit)="onSubmit(model);">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <b></b>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label><b>CURRENT PASSWORD</b><code>(*)</code></label>
+                                    <input type="password" class="form-control" [(ngModel)]="model.currentpassword" (keyup)="checkcurrent(model.currentpassword)" name="currentpassword" />
+
+                                    <div *ngIf="model.status===false" style="color:red;">Please Enter Current Password</div>
+                                    <div *ngIf="model.status===true" style="color:green;"> Current Password is Correct</div>
+                                </div>
+                            </div>
+                            <!-- </div>
+                <div class="row"> -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label><b>CHANGE PASSWORD</b><code>(*)</code></label>
+                                    <input type="password" class="form-control" [(ngModel)]="model.changepassword" name="changepassword">
+
+                                </div>
+                            </div>
+                            <!-- </div>
+                <div class="row"> -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label><b>CONFIRM PASSWORD</b><code>(*)</code></label>
+                                    <input type="password" class="form-control" [(ngModel)]="model.confirmpassword" name="confirmpassword">
+                                    <div *ngIf="model.confirmpassword!==model.changepassword" style="color:red;">Password Didn't Match !!!</div>
+                                    `
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button class="btn btn-success" [disabled]="model.status===false || model.status===undefined  ||
+                  model.changepassword !== model.confirmpassword || 
+                  model.changepassword ==undefined ">Submit</button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>
+<!--/.row-->

@@ -1,0 +1,107 @@
+<h3>
+    <div class="row">
+        <div class="col-md-7">
+            Add events
+        </div>
+
+        <div class="col-md-5 ">
+            <div class="btn-group pull-right">
+                <div class="btn btn-warning">
+                    New Events
+                </div>
+                <div class="btn btn-danger">
+                    Holiday
+                </div>
+                <div class="btn btn-primary">
+                    Special Events
+                </div>
+            </div>
+
+        </div>
+    </div>
+</h3>
+<div class="row">
+    <div class="col-md-12">
+        <form (ngSubmit)="addEvent(model); f.form.reset()" #f="ngForm" novalidate>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label><b>Event Type</b></label><br>
+                    <input type="text" class="form-control" #title="ngModel" autocomplete="off" placeholder="Event Title" name="title" [(ngModel)]="model.title">
+                </div>
+                <div class="col-md-2">
+                    <label><b>Event Type</b></label><br>
+                    <select class="form-control" name="color" [(ngModel)]="model.color" #color="ngModel">
+                        <option value="" selected>Select option</option>
+                        <option value="#fe2823,#FAE3E3,colors.red">Holiday</option>
+                        <option value="#1e90ff,#D1E8FF,colors.blue">Special Event</option>
+                        <option value="#e3bc08,#FDF1BA,colors.yellow">Events</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label><b>Start At</b></label><br>
+                    <input class="form-control" [(ngModel)]="model.start" type="text" name="start" #start="ngModel" autocomplete="off" placeholder="From (MM/DD/YYYY)" bsDatepicker [bsConfig]="{ isAnimated: true }">
+                </div>
+                <div class="col-md-3">
+                    <label><b>Ends At</b></label><br>
+                    <input class="form-control" [(ngModel)]="model.end" type="text" name="start" autocomplete="off" #start="ngModel" placeholder="From (MM/DD/YYYY)" bsDatepicker [bsConfig]="{ isAnimated: true }">
+                </div>
+                <div class="col-md-1">
+                    <label><b>ADD</b></label><br>
+                    <button type="submit" class="form-control btn btn-success">
+                        <i class="fa fa-plus"></i> </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Events List</strong>
+            </div>
+            <div class="card-body responsive">
+                <table mat-table #table class="table table-striped responsive" matSort>
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">Title</th>
+                            <th style="text-align:center;">Primary Color</th>
+                            <th style="text-align:center;">Secondary Color</th>
+                            <th style="text-align:center;">Start At</th>
+                            <th style="text-align:center;">End At</th>
+                            <th style="text-align:center;">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of fetchData">
+                            <td style="text-align:center;">
+                                {{event.title}}
+                            </td>
+                            <td style="text-align:center;">
+                                <input type="color" disabled [(ngModel)]="event.primary" />
+                            </td>
+                            <td style="text-align:center;">
+                                <input type="color" disabled [(ngModel)]="event.secondary" />
+                            </td>
+
+                            <td style="text-align:center;">
+                                {{event.start | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td style="text-align:center;">
+                                {{event.end | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td style="text-align:center;">
+                                <button class="btn btn-danger" (click)="deleteEvent(event)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

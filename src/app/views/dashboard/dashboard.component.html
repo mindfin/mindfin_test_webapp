@@ -1,0 +1,82 @@
+<style>
+    @media(max-width:600px) {
+        .extra-height.chart-wrapper {
+            height: 90px !important;
+        }
+    }
+    
+    @media(min-width:601px) {
+        .extra-height.chart-wrapper {
+            height: 60px !important;
+        }
+    }
+</style>
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-6 col-lg-3">
+            <a href="#/member/employeelist">
+                <div class="card text-white bg-info">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/emp.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData3}}</div>
+                        <div><b>Employee's</b></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a>
+                <div class="card text-white bg-warning">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/approved.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData2}}</div>
+                        <div><b>Login Count</b></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a>
+                <div class="card text-white bg-danger">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/rejected.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData1}}</div>
+                        <div><b>Reject Count</b></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a>
+                <div class="card text-white bg-success">
+                    <div class="card-body pb-0">
+                        <button type="button" class="btn btn-transparent p-0 float-right">
+                            <img src="/assets/images/disbursed.png " class="Status " height="40px " width="40px " />
+                        </button>
+                        <div class="text-value">{{fetchData5}}</div>
+                        <div><b>Disbursed Count</b></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--/.col-->
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <h4 class="card-title">Employee Data</h4>
+            <div id="users-medium-pie-chart"></div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <h4 class="card-title">Data Entry </h4>
+            <div id="users-category-pie-chart"></div>
+        </div>
+    </div>
+</div>
+<!--/.row-->

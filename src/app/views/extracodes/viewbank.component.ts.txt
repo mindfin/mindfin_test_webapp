@@ -1,0 +1,156 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../../common.service';
+import {MatDialog,MAT_DIALOG_DATA,MatDialogConfig} from '@angular/material';
+import { RejectDialogContent } from './membersapp.component';
+
+@Component({
+  selector: 'app-addadmin',
+  templateUrl: './viewbank.component.html',
+//   styleUrls: ['./loantype.component.scss']
+})
+export class ViewbankComponent implements OnInit {
+
+  constructor( private route: ActivatedRoute, private router:Router,private service: CommonService, public dialog: MatDialog) { }
+
+  
+obj:any;
+fetchData:any;
+fetchData1:any;
+fetchData2:any;
+model: any = {};
+idvalue:any;
+
+
+
+  getamt(amount){
+
+console.log(amount);
+
+
+    // this.service.businesslistinsert(this.model);
+   }
+   onchange(obj){
+console.log(obj);
+this.service.onChange(obj).subscribe(res=>{
+  console.log(res);
+  // this.fetchData = res;
+});
+   }
+
+
+  ngOnInit() {
+    this.route.params.subscribe(params=>{
+        console.log(params['id']);
+        this.idvalue = params['id'];
+     this.service.getviewbanklist(this.idvalue).subscribe(res=>{
+    console.log(res);
+    this.fetchData = res;
+  });
+
+  // this.service.getViewPrevBankList(this.idvalue).subscribe(res=>{
+  //   console.log(res);
+  //   this.fetchData1 = res;
+  // });
+
+  this.service.getApprovedBankListt(this.idvalue).subscribe(res=>{
+    console.log(res);
+    this.fetchData1 = res;
+  });
+  this.service.getRejectBankListt(this.idvalue).subscribe(res=>{
+    console.log(res);
+    this.fetchData2 = res;
+  });
+
+})
+  
+  }
+
+  getdata(obj){
+console.log(obj);
+  };
+  refresh(): void {
+    window.location.reload();
+  }
+  editproject(pro){
+    console.log(pro);
+    this.model = pro;
+  }
+  openRejectBankDialog(element) {
+    this.model = element;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { element };
+    this.dialog.open(RejectBankDialogContent, dialogConfig
+    );
+    console.log(dialogConfig);
+    } 
+    openApprovalDialog(element) {
+      this.model = element;
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = { element };
+      this.dialog.open(ApprovalDialogContent, dialogConfig
+      );
+      console.log(dialogConfig);
+      }
+    
+}
+
+// @Component({
+//   selector: 'dialog-content-example-dialog',
+//   templateUrl: 'dialog_rejectbankreason.html',
+// })
+
+// export class DialogContent{ 
+
+
+//   constructor(@Inject(MAT_DIALOG_DATA) public data:any) {}
+
+// //   constructor(
+// //     @Inject(MAT_DIALOG_DATA) public data: any
+// //  ) { }
+ 
+
+// }
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: './dialog_rejectbankreason.html',
+})
+
+export class RejectBankDialogContent {
+element:any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+  private commonservice: CommonService ,private route: ActivatedRoute, private router: Router,) { }
+
+  
+  rejectbank(element,obj) {
+
+    this.commonservice.rejectbank(element,obj);
+
+  }
+  refresh(): void {
+    window.location.reload();
+  }
+}
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: './dialog_approvalreason.html',
+})
+
+export class ApprovalDialogContent {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+  private commonservice: CommonService ,private route: ActivatedRoute, private router: Router,) { }
+
+  //   constructor(
+  //     @Inject(MAT_DIALOG_DATA) public data: any
+  //  ) { }
+  element:any;
+  approvalmember(element,obj) {
+
+    this.commonservice.approvalmember(element,obj);
+
+  }
+  refresh(): void {
+    window.location.reload();
+  }
+}

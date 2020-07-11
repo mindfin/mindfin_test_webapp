@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Reject Reason</h1>
+<div mat-dialog-content class="mat-typography">
+
+    <table class="table">
+        <!-- <thead>"
+        </thead> -->
+        <tbody>
+
+            <tr>
+                <th>CUSTOMER NAME</th>
+                <th> LOAN TYPE</th>
+                <th>LOAN AMOUNT</th>
+                <th>REJECT REASON</th>
+                <th>ACTION</th>
+            </tr>
+            <tr>
+                <td> {{data.element.name}}</td>
+                <td> {{data.element.loantype}}</td>
+                <td> {{data.element.amount}}</td>
+                <td><textarea class="form-control"[(ngModel)]="element" 
+                        name="Reason" required></textarea></td>
+                <td> <button mat-raised-button color="warn"
+                    matBadgeColor="red" (click)="rejectmember(element,data.element.idcustomer);refresh();" >
+                        Reject</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+<style>
+    /* element.style {
+text-align: -webkit-center;
+} */
+
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

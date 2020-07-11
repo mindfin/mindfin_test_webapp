@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Suggestions / concern / complaints Box</h1>
+<div mat-dialog-content class="mat-typography">
+    <div class="card">
+        <form (ngSubmit)="f.form.valid && onSubmit(data)" #f="ngForm" novalidate>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <label>Suggestion / concern / complaint <code>(*)</code></label>
+                    <textarea class="form-control" [(ngModel)]="data.reason" class="form-control" name="reason" required></textarea>
+                    <br>
+                </div>
+                <div center>
+                    <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,190 @@
+<!-- 
+   <div class="row">
+      
+      
+
+        <div class="col-lg-12">
+              <div class="card">
+                 <div class="card-header">
+                    <strong>SUCCESS TOPUP LIST</strong> 
+                 </div>
+                 <div class="card-body">
+                    <div class="table-responsive">
+                       
+                       <table class="table">
+                          <thead>
+                             <tr>
+                                 <th>CUSTOMER ID</th>
+                                <th>CUSTOMERNAME</th>
+                                <th>MOBILE</th> 
+                                <th>DISBURSE DATE</th>
+                                <th></th>
+                            
+    
+                             </tr>
+                          </thead>
+                          <tbody>
+                           
+                             <tr *ngFor='let pro of fetchData'>
+                                
+                                     <td>
+                                     {{pro.autoid}}
+                                     </td>
+                                    <td>
+                                    {{pro.name}}
+                                    </td>
+                                    <td>
+                                    {{pro.mobile}}
+                                    </td>
+                                    <td>
+                                    {{pro.disbursedate | date:'dd/MM/yyyy'}}
+                                    </td>
+                                    <td>
+                                    <button class="btn btn-primary"
+                                    style="color:rgb(240, 240, 247)" (click)="applyLoan(pro.idcustomer)">APPLY LOAN
+                                    </button>  
+                                    </td>
+                                   
+                                  </tr>
+                            
+                          </tbody>
+                       </table>
+                    </div>
+                 </div>
+              </div>
+           </div>
+       
+    
+    
+    </div>
+     -->
+
+
+
+     
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div class="animated fadeIn" [hidden]="isLoading">
+     <div class="row">
+     
+       <div class="col-lg-12">
+         <div class="card">
+           <div class="card-header">
+             <i class="fa fa-align-justify"></i> TOPUP SUCESS LIST
+             <button style="float:right" (click)="exportAsXLSX()">
+               <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+           </button>
+           </div>
+           <div class="card-body">
+               <div class="table-responsive">
+                      <div class="row">
+                      <div class="col-md-2">
+                       <mat-form-field>
+                       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                      </mat-form-field>
+                      </div>
+                     
+                    
+                    </div>
+             <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive"  matSort> 
+              <ng-container matColumnDef="date">
+                <th   *matHeaderCellDef mat-sort-header>APPLIED DATE</th>
+                <td   *matCellDef="let element" style="text-align:center;">{{element.applieddate | date:'dd/MM/yyyy'}}
+                <br/>
+             
+                       </td>
+              </ng-container>                  
+                 
+            
+              <ng-container matColumnDef="source">
+                <th   *matHeaderCellDef mat-sort-header>SOURCE</th>
+                <td   *matCellDef="let element" style="text-align:center;"> {{element.source}}<br/>
+             
+                       </td>
+              </ng-container> 
+                <ng-container matColumnDef="name">
+                 <th   *matHeaderCellDef mat-sort-header>CUSTOMER NAME</th>
+                 <td   *matCellDef="let element" style="text-align:center;"> {{element.name}}<br/>
+              
+                        </td>
+               </ng-container> 
+            
+               <ng-container matColumnDef="addbank">
+                  <th  *matHeaderCellDef mat-sort-header>APPLY BANK</th>
+                  <td  *matCellDef="let element">
+                          <button mat-raised-button color="primary"
+                        (click)="addbank(element.idcustomer)">
+                   ADD BANK
+                     </button> 
+  
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="viewBank">
+                  <th  *matHeaderCellDef mat-sort-header>APPROVE BANK</th>
+                  <td  *matCellDef="let element" >
+                          <button mat-raised-button color="accent"
+                        (click)="viewbank(element.idcustomer)">
+                        APPROVE BANK
+                      </button> 
+                      </td>
+                </ng-container> 
+              
+                 <ng-container matColumnDef="View">
+                  <th  *matHeaderCellDef mat-sort-header>VIEW</th>
+                  <td  *matCellDef="let element">
+                          <button mat-raised-button color="warn"
+                        (click)="openDialog(element)">
+                      VIEW
+                     </button> 
+                    </td>
+                </ng-container> 
+
+
+                 <ng-container matColumnDef="applyloan">
+                   <th  *matHeaderCellDef mat-sort-header>APPLY LOAN</th>
+                   <td  *matCellDef="let element" >
+                           <button mat-raised-button color="primary"
+                            matBadgeColor="red" (click)="applyLoan(element.idcustomer)">
+                         APPLY LOAN
+                       </button> 
+                       </td>
+                 </ng-container> 
+                 <ng-container matColumnDef="mobile">
+                    <th  *matHeaderCellDef mat-sort-header>MOBILE</th>
+                    <td  *matCellDef="let element"> {{element.mobile}} </td>
+                  </ng-container> 
+    
+                <ng-container matColumnDef="email">
+                    <th  *matHeaderCellDef mat-sort-header>EMAIL</th>
+                    <td  *matCellDef="let element"> {{element.email}} </td>
+                  </ng-container>  
+               <ng-container matColumnDef="loantype">
+                  <th *matHeaderCellDef mat-sort-header>LOAN TYPE</th>
+                  <td  *matCellDef="let element"> {{element.loantype}} </td>
+                </ng-container> 
+                      
+                 <ng-container matColumnDef="ID">
+                   <th  *matHeaderCellDef mat-sort-header>COMPANY NAME</th>
+                   <td  *matCellDef="let element" >{{element.cname}}
+                         
+                     </td>
+                 </ng-container> 
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+           </table>
+         </div>
+           <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <style>
+     table,th,td{
+       border:1px solid black;
+     }
+     mat-spinner{
+       margin: auto;
+     }
+   </style>
+   
+  

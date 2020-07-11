@@ -1,0 +1,68 @@
+<h1 mat-dialog-title>
+    CUSTOMERS DOCUMENT DETAILS</h1>
+<div mat-dialog-content class="mat-typography">
+    <div class="card">
+
+        <form (ngSubmit)="f.form.valid && onSubmit(data.element,data.element.idapplybank)" name="myform" #f="ngForm" novalidate>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+
+                        <tbody>
+                            <tr>
+                                <th>BANK name</th>
+                                <th>BANK VENDOR</th>
+                                <th>ENTER STATUS</th>
+                                <th>COMMENT</th>
+                                <th>EDIT</th>
+                            </tr>
+                            <tr>
+                                <td>{{data.element.bankname}}</td>
+                                <td>{{data.element.bankvendor}}</td>
+                                <td>
+                                    <select class="form-control" name="sstatus" [(ngModel)]="data.element.sstatus" #sstatus="ngModel">
+                        <option value="" selected>Select option</option>
+                        <option value="LOGIN">LOGIN</option>
+                        <option value="LOGIN HOLD">LOGIN HOLD</option>
+                        <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
+                        <option value="PD">PD</option>
+                        <option value="PD PENDING">PD PENDING</option>
+                        <option value="POST PD PENDING">POST PD PENDING</option>
+                        <option value="APPROVED">APPROVED</option>
+                        <option value="REJECT">REJECT</option>
+                        <option value="DISBURSED">DISBURSED</option>
+                    </select>
+                                </td>
+                                <td>
+                                    <textarea [(ngModel)]="data.element.comment" type="text" class="form-control" name="comment" #comment="ngModel"></textarea>
+
+                                </td>
+                                <td> <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">SAVE</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+<style>
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

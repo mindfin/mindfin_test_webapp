@@ -1,0 +1,70 @@
+
+   <div class="row">
+      
+      
+
+        <div class="col-lg-12">
+              <div class="card">
+                 <div class="card-header">
+                    <strong>SUB VENDOR LIST</strong> 
+                 </div>
+                 <div class="card-body">
+                    <div class="table-responsive">
+                       
+                       <table class="table">
+                          <thead>
+                             <tr>
+                                 <!-- <th>CUSTOMER ID</th> -->
+                                <th>SUB VENDOR</th>
+                                <th>MOBILE</th> 
+                                <th>EMAIL</th>
+                                <th>LIST</th>
+                                <!-- <th>TOPUP SUCCESS</th> -->
+    
+                             </tr>
+                          </thead>
+                          <tbody>
+                           
+                             <tr *ngFor='let pro of fetchData'>
+                                                                
+                                    <td>
+                                    {{pro.name}}
+                                    </td>
+                                    <td>
+                                    {{pro.mobile}}
+                                    </td>
+                                    <td>
+                                    {{pro.email}}
+                                    </td>
+                                    <td>
+                                    <button class="btn btn-success" 
+                                    style="color:rgb(240, 240, 247)" (click)="customerList(pro.idemployee)">
+                                     CUSTOMER LIST  
+                                    </button></td>
+                                    <!-- <td>
+                                    {{pro.disbursedate | date:'dd/MM/yyyy'}}
+                                    </td> -->
+                                    <!-- <td>
+                                    <button class="btn btn-primary"
+                                     style="color:rgb(240, 240, 247)">{{pro.q}}
+                                    </button> 
+                                    </td> -->
+                                    <!-- <td>
+                                    <button class="btn btn-success"
+                                    style="color:rgb(240, 240, 247)" (click)="topUpSucess(pro)">TOPUP SUCCESS
+                                    </button> 
+                                    </td>  -->
+                                  </tr>
+                            
+                          </tbody>
+                       </table>
+                      <!-- </form> -->
+                    </div>
+                 </div>
+              </div>
+           </div>
+       
+    
+    
+    </div>
+    

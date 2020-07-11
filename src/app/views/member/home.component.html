@@ -1,0 +1,71 @@
+<!-- <div class="aa_htmlTable">
+  <h2 class="aa_h2" style=" text-align: center;">Information</h2>
+ 
+</div> -->
+
+<div class="col-lg-12">
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> Personal Information
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>MEMBER NAME : </th>
+                <td> {{fetchdata.name}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>MOBILE : </th>
+                <td> {{fetchdata.mobile}}</td>
+              </tr>
+              <tr>
+                <th> EMAIL: </th>
+                <td> {{fetchdata.email}} </td>
+              </tr>
+              <tr>
+                <th> DATE OF BIRTH : </th>
+                <td> {{fetchdata.dob | date:'dd/MM/yyyy'}}</td>
+              </tr>
+              <tr>
+                <th>ROLE: </th>
+                <td>  {{fetchdata.user}}</td>
+              </tr>
+              <tr>
+                <th>DESIGNATION: </th>
+                <td>  {{fetchdata.designation}}</td>
+              </tr>
+              <tr>
+                  <th>DOJ: </th>
+                  <td>  {{fetchdata.joiningdate | date:'dd/MM/yyyy'}}</td>
+                </tr>
+<!--              
+              <tr>
+                <th> Project Amount Paid : </th>
+                <td>  ({{fetchdata.totalamount}} + {{fetchdata.calc}})={{fetchdata.totalpaid}}</td>
+              </tr> -->
+            </tbody> 
+          
+          </table>
+     
+    </div>
+  </div>
+</div>
+
+<style>
+
+/* element.style {
+  text-align: -webkit-center;
+} */
+
+.card-body {
+  flex: 4 1 auto;
+  /* padding: 5.25rem !important; */
+  font-size: medium !important;
+}
+table,th,td{
+border:1px solid black;
+}
+  </style>

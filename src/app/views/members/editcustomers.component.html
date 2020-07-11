@@ -1,0 +1,656 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header text-center"><b>CUSTOMERS EDIT FORM</b></div>
+
+            <div class="card-body">
+                <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm(form.value); redirect()">
+                    <div class="card-header"><b>Loan Details</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>APPLIED DATE</b><code>(*)</code></label>
+                                <input class="form-group" [(ngModel)]="model.applieddate" name="applieddate" type="text" placeholder="MM/DD/YYYY" class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD' }" bsDatepicker [bsConfig]="{ isAnimated: true }" required #applieddate="ngModel">
+                                <div class="alert" *ngIf="applieddate.errors && (applieddate.dirty || applieddate.touched)">
+                                    <div [hidden]="!applieddate.errors.required">
+                                        Apply Date is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>LOAN TYPE</b><code>(*)</code></label><br>
+                                <select class="form-control" name="applytype" [(ngModel)]="model.applytype" required #applytype="ngModel" (change)="onChange(model.applytype)">
+                                    <option value="0">Select</option>
+                                    <option *ngFor="let item of fetchData" [value]="item.idloantype">{{item.loantype}}</option>
+                                   
+                                </select>
+                                <div class="alert" *ngIf="applytype.errors && (applytype.dirty || applytype.touched)">
+                                    <div [hidden]="!applytype.errors.required">
+                                        Apply Type is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" *ngIf="loantype==''; else pl">
+                                <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" disabled>
+                                   
+                                </select>
+                            </div>
+                            <ng-template #pl>
+                                <div class="col-sm-4" *ngIf="loantype==='1'; else usl">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                    <option value="Salaried">Salaried</option>
+                                    <option value="Professional">Professional</option>
+                                    <option value="Director">Director</option>
+                                </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #usl>
+                                <div class="col-sm-4 " *ngIf="loantype==='2' ; else sl; ">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                        <option value="Professional">Professional</option>
+                                        <option value="Self Employed">Self Employed</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #sl>
+                                <div class="col-sm-4 " *ngIf="loantype==='3' ; else al; ">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                        <option value="Home Loan">Home Loan</option>
+                                        <option value="LAP / Mortgage">LAP / Mortgage</option>
+                                        <option value="Loan Rent Discounting(LRD)">Loan Rent Discounting(LRD)</option>
+                                        <option value="Working Capital">Working Capital</option>
+                                        <option value="Over Draft">Over Draft</option>
+                                        <option value="Cash Credits">Cash Credits</option>
+                                        <option value="Purchased Loan">Purchased Loan</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #al>
+                                <div class="col-sm-4 " *ngIf="loantype==='4'">
+                                    <label for="loanCategory"><b>LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="loanCategory" [(ngModel)]="model.loanCategory" #loanCategory="ngModel" (change)="onChange1(model.loanCategory)">
+                                        <option value="Car Loan">Car Loan</option>
+                                        <option value="Two Wheeler Loan">Two Wheeler Loan</option>
+                                        <option value="Vehicle Refinance">Vehicle Refinance</option>
+                                        <option value="TopUp">TopUp</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <div class="col-sm-4" *ngIf="loancatg===''; else prul;">
+                                <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel" disabled>
+                                    <option value="Commercials">Commercials</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Machinary">Machinary</option>
+                                </select>
+                            </div>
+                            <ng-template #prul>
+                                <div class="col-sm-4 " *ngIf="loancatg==='Purchased Loan'; else lml;">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Commercials">Commercials</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Machinary">Machinary</option>
+                                    <option value="Loan Against Project">Loan Against Project</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #lml>
+                                <div class="col-sm-4 " *ngIf="loancatg==='LAP / Mortgage'; else cusl;">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Commercials">Commercials</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Machinary">Machinary</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #cusl>
+                                <div class="col-sm-4 " *ngIf="loancatg==='Self Employed'; else pro;">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Private Limited">Private Limited</option>
+                                        <option value="Partnership Firm">Partnership Firm</option>
+                                        <option value="Proprietorship">Proprietorship</option>
+                                        <option value="Service Provider">Service Provider</option>
+                                        <option value="Retailer">Retailer</option>
+                                        <option value="School & College(Trust)">School & College(Trust)</option>
+                                        <option value="Hospital">Hospital</option>
+                                        <option value="Nurshing Home">Nurshing Home</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                            <ng-template #pro>
+                                <div class="col-sm-4 " *ngIf="loancatg==='Professional'">
+                                    <label for="subLoanCategory"><b>SUB LOAN CATEGORY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="subLoanCategory" [(ngModel)]="model.subLoanCategory" #subLoanCategory="ngModel">
+                                        <option value="Private Limited">DOCTORS</option>
+                                        <option value="Partnership Firm">CA</option>
+                                        <!-- <option value="Proprietorship">Proprietorship</option> -->
+                                    </select>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="card-header"><b>PERSONAL DETAILS</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>CUSTOMER NAME</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.name" type="text" class="form-control" name="name" required #first="ngModel">
+                                <div class="alert" *ngIf="first.errors && (first.dirty || first.touched)">
+                                    <div [hidden]="!first.errors.required">
+                                        Customer Name is Required...
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label><b>DOB</b><code>(*)</code></label>
+                                <input class="form-group" [(ngModel)]="model.dob" name="dob" type="text" placeholder="MM/DD/YYYY" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD' }" [bsConfig]="{ isAnimated: true }" required #dob="ngModel">
+                                <div class="alert" *ngIf="dob.errors && (dob.dirty || dob.touched)">
+                                    <div [hidden]="!dob.errors.required">
+                                        Date Of Birth is Required...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b> GENDER</b><code>(*)</code></label><br>
+
+                                <input type="radio" value="male" name="gender" [(ngModel)]="model.gender" required #gender="ngModel"> MALE
+                                <input type="radio" value="female" name="gender" [(ngModel)]="model.gender" required #gender="ngModel"> FEMALE
+
+                                <div class="alert" *ngIf="gender.errors && (gender.dirty || gender.touched)">
+                                    <div [hidden]="!gender.errors.required">
+                                        Gender is Required...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>ADDRESS</b><code>(*)</code></label>
+                                <textarea class="form-control" [(ngModel)]="model.address" class="form-control" name="address" required #address="ngModel"></textarea>
+                                <div class="alert" *ngIf="address.errors && (address.dirty || address.touched)">
+                                    <div [hidden]="!address.errors.required">
+                                        Address is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>PINCODE</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.pincode" type="text" pattern="[0-9]{6}" minlength="6" class="form-control" name="pincode" required #pincode="ngModel">
+                                <div class="alert" *ngIf="pincode.errors && (pincode.dirty || pincode.touched)">
+                                    <div [hidden]="!pincode.errors.required">
+                                        Pincode is required!
+                                    </div>
+                                </div>
+                                <div class="alert" *ngIf="pincode.errors && (pincode.dirty || pincode.touched)">
+                                    <div [hidden]="!pincode.errors.pattern">
+                                        Pincode is Invalid
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>MOBILE</b><code>(*)</code></label>
+                                <input pattern="[0-9]{10}" minlength="10" [(ngModel)]="model.mobile" type="text" class="form-control" name="mobile" required #mobile="ngModel">
+                                <div class="alert" *ngIf="mobile.errors &&(mobile.dirty || mobile.touched)">
+                                    <div [hidden]="!mobile.errors?.pattern">
+                                        Invalid Mobile No.
+                                    </div>
+                                </div>
+                                <div class="alert" *ngIf="mobile.errors &&(mobile.dirty || mobile.touched)">
+                                    <div [hidden]="!mobile.errors?.required">
+                                        Mobile No Required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b> TELEPHONE NUMBER</b></label>
+                                <input pattern="[0-9]{8,13}" minlength="8" maxlength="13" [(ngModel)]="model.altmobile" type="text" class="form-control" name="altmobile" #altmobile="ngModel">
+                                <div class="alert" *ngIf="altmobile.errors &&(altmobile.dirty || altmobile.touched)">
+                                    <div [hidden]="!altmobile.errors?.pattern">
+                                        Invalid No.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label><b>CUSTOMER EMAIL</b><code>(*)</code></label>
+                                <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="model.email" type="text" class="form-control" name="email" required #email="ngModel">
+                                <div class="alert" *ngIf="email.errors &&(email.dirty || email.touched)">
+                                    <div [hidden]="!email.errors?.pattern">
+                                        Invalid Email ID.
+                                    </div>
+                                </div>
+                                <div class="alert" *ngIf="email.errors &&(email.dirty || email.touched)">
+                                    <div [hidden]="!email.errors?.required">
+                                        Email id is Required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                    <div class="card-header">CO-APPLICANT DETAILS</div>
+                    <form (ngSubmit)="addvalues1();clearFilters();" #f="ngForm" novalidate>
+                        <h4 style="float:right;"></h4>
+                        <div class="table-responsive">
+
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <label><b>CO-APPLICANT NAME</b><code>(*)</code></label>
+                                        <input [(ngModel)]="model.coname" type="text" class="form-control" name="coname" #coname="ngModel" required>
+                                        <div class="alert" *ngIf="coname.errors &&(coname.dirty || coname.touched)">
+                                            <div [hidden]="!coname.errors?.required">
+                                                Co Applicant Name is Required.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label><b>PERMANENT ADDRESS</b><code>(*)</code></label>
+                                        <textarea [(ngModel)]="model.copaddress" class="form-control" name="copaddress" #copaddress="ngModel" required></textarea>
+                                        <div class="alert" *ngIf="copaddress.errors &&(copaddress.dirty || copaddress.touched)">
+                                            <div [hidden]="!copaddress.errors?.required">
+                                                Co Applicant Permanent Address is Required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label><b>RESIDENTIAL ADDRESS</b><code>(*)</code></label>
+                                        <textarea [(ngModel)]="model.coraddress" class="form-control" name="coraddress" #coraddress="ngModel" required></textarea>
+                                        <div class="alert" *ngIf="coraddress.errors &&(coraddress.dirty || coraddress.touched)">
+                                            <div [hidden]="!coraddress.errors?.required">
+                                                Co Applicant Residential Address is Required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label><b>ADD</b></label><br>
+
+                                        <button type="submit" [disabled]="coname.errors?.required || copaddress.errors?.required || coraddress.errors?.required " class="form-control btn btn-primary">
+                                        <!-- <button type="submit" class="form-control btn btn-primary"> -->
+                                 <i class="fa fa-plus"></i> </button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>SL.NO</th>
+                                    <th>
+                                        CO-APPLICANT NAME
+                                    </th>
+                                    <th>
+                                        PERMANENT ADDRESS
+                                    </th>
+                                    <th>
+                                        RESIDENTIAL ADDRESS
+                                    </th>
+                                    <th>
+                                        REMOVE
+                                    </th>
+                                </thead>
+                                <tr *ngFor='let pro of tempval1;let i=index'>
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        {{pro.coname}}
+                                    </td>
+                                    <td>
+                                        {{pro.copaddress}}
+                                    </td>
+                                    <td>
+                                        {{pro.coraddress}}
+                                    </td>
+                                    <td>
+                                        <button (click)="removevalue(pro,i)"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                <tr *ngFor='let pro of tempval2;let i=index'>
+                                    <td>{{i+1}}</td>
+
+                                    <input type="hidden" [(ngModel)]="pro.cocustomerid" name="cocustomerid">
+
+                                    <td>
+                                        <input type="text" [(ngModel)]="pro.coappname" class="form-control" name="coappname">
+                                    </td>
+                                    <td>
+                                        <input type="text" [(ngModel)]="pro.coappresaddress" class="form-control" name="coappresaddress">
+                                    </td>
+                                    <td>
+                                        <input type="text" [(ngModel)]="pro.coappperaddress" class="form-control" name="coappperaddress">
+                                    </td>
+
+                                    <input type="hidden" [(ngModel)]="pro.idcustomer" name="idcustomer">
+
+                                    <td>
+                                        <button class="btn btn-primary" (click)="editcocust(pro)">EDIT</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-header"><b>PROFESSIONAL DETAILS</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label><b>COMPANY NAME</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.cname" type="text" class="form-control" name="cname" #cname="ngModel" required>
+                                <div class="alert" *ngIf="cname.errors &&(cname.dirty || cname.touched)">
+                                    <div [hidden]="!cname.errors?.required">
+                                        Company is Required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>COMPANY ADDRESS</b><code>(*)</code></label>
+                                <textarea [(ngModel)]="model.caddress" type="text" class="form-control" name="caddress" #caddress="ngModel" required></textarea>
+                                <div class="alert" *ngIf="caddress.errors &&(caddress.dirty || caddress.touched)">
+                                    <div [hidden]="!caddress.errors?.required">Company Address is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>COMPANY EMAIL</b><code>(*)</code></label>
+                                <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="model.cemail" type="text" class="form-control" name="cemail" #cemail="ngModel" required>
+                                <div class="alert" *ngIf="cemail.errors &&(cemail.dirty || cemail.touched)">
+                                    <div [hidden]="!cemail.errors?.required">Company Email is Required.</div>
+                                </div>
+                                <div class="alert" *ngIf="cemail.errors &&(cemail.dirty || cemail.touched)">
+                                    <div [hidden]="!cemail.errors?.pattern">Company Email is Invalid.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>EMPLOYEE TYPE</b><code>(*)</code></label>
+                                <select class="form-control" name="emptype" [(ngModel)]="model.emptype" #emptype="ngModel" required>
+                                    <option value="" selected>Select option</option>
+                                    <option *ngFor="let item of fetchData6" value={{item.idemployeetype}}> {{item.emp_type}}</option>
+                                </select>
+                                <div class="alert" *ngIf="emptype.errors &&(emptype.dirty || emptype.touched)">
+                                    <div [hidden]="!emptype.errors?.required">Employee Type is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>DESIGNATION / NATURE OF BUSINESS</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.designation" type="text" class="form-control" name="designation" #designation="ngModel" required>
+                                <div class="alert" *ngIf="designation.errors &&(designation.dirty || designation.touched)">
+                                    <div [hidden]="!designation.errors?.required">Designation is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>SALARY (CTC)</b></label>
+                                <input [(ngModel)]="model.salary" type="text" class="form-control" name="salary" #salary="ngModel">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header"><b>DOCUMENTS</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label><b>AADHAAR NUMBER</b><code>(*)</code></label><br>
+                                <input pattern="^\d{4}\s\d{4}\s\d{4}$" minlength="15" maxlength="15" class="form-control" name="aadharno" [(ngModel)]="model.aadharno" required #aadharno="ngModel" placeholder="1234 5678 9123">
+                                <div class="alert" *ngIf="aadharno.errors && (aadharno.dirty || aadharno.touched)">
+                                    <div [hidden]="!aadharno.errors.required">
+                                        Please Enter Aadhaar Details
+                                    </div>
+                                </div>
+                                <div class="alert" *ngIf="aadharno.errors && (aadharno.dirty || aadharno.touched)">
+                                    <div [hidden]="!aadharno.errors.pattern">
+                                        Invalid Aadhaar
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>PAN NUMBER</b><code>(*)</code></label><br>
+                                <input pattern="[A-Z]{3}[PCHFATBLJG]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$" minlength="10" maxlength="10" class="form-control" name="panno" [(ngModel)]="model.panno" required #panno="ngModel" placeholder="ABCPK1234f">
+                                <div class="alert" *ngIf="panno.errors && (panno.dirty || panno.touched)">
+                                    <div [hidden]="!panno.errors.pattern">
+                                        Pan Number Not Valid.!!!!
+                                    </div>
+                                </div>
+                                <!-- <div *ngIf="model.pancheck==='false'" style="color:red;"> PAN Number Not Valid.!!!!
+                                </div> -->
+                                <div class="alert" *ngIf="panno.errors && (panno.dirty || panno.touched)">
+                                    <div [hidden]="!panno.errors.required">
+                                        Pan Details Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>DRIVING LICENSE NUMBER</b></label><br>
+                                <input class="form-control" name="dlno" [(ngModel)]="model.dlno" #dlno="ngModel" placeholder="Ka12 20191234567">
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>VOTER ID NUMBER</b></label><br>
+                                <input class="form-control" name="voterno" [(ngModel)]="model.voterno" #voterno="ngModel" placeholder="abc123456789">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header"><b>SOURCE DETAILS</b></div>
+                    <div class="col-sm-4">
+                        <div class="card-body">
+                            <label for="source"><b>Select Source</b><code>(*)</code></label><br>
+                            <select class="form-control" name="source" [(ngModel)]="model.source" required #source="ngModel" (change)="onChange2(model.source)">
+                                <option value="IN SOURCING">IN SOURCING</option>
+                                <option value="OUT SOURCING">OUT SOURCING</option>
+                            </select>
+                            <div class="alert" *ngIf="source.errors && (source.dirty || source.touched)">
+                                <div [hidden]="!source.errors.required">
+                                    Source Details is Required
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-body" *ngIf="sourcetype==='IN SOURCING'; else outsource">
+                        <div class="card-header"><b>IN SOURCING DETAILS</b></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>WHOSE CASE</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.whosecase" type="text" class="form-control" name="whosecase" required #whosecase="ngModel" disabled>
+                                <div class="alert" *ngIf="whosecase.errors && (whosecase.dirty || whosecase.touched)">
+                                    <div [hidden]="!whosecase.errors.required">
+                                        Whose Case is required...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>EXECUTIVE NAME</b><code>(*)</code></label><br>
+                                <select class="form-control" name="idexecutive" [(ngModel)]="model.idexecutive" required #idexecutive="ngModel" disabled>
+                                     <option [value]="">Select Executive</option>
+                                     <option *ngFor="let item of fetchData1" value="{{item.idemployee}}">{{item.name}}</option>
+                                </select>
+                                <div class="alert" *ngIf="idexecutive.errors && (idexecutive.dirty || idexecutive.touched)">
+                                    <div [hidden]="!idexecutive.errors.required">
+                                        Executive is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>LOAN AMOUNT</b><code>(*)</code></label><br>
+                                <input [(ngModel)]="model.amount" type="text" class="form-control" name="amount" #amount="ngModel">
+                                <div class="alert" *ngIf="amount.errors && (amount.dirty || amount.touched)">
+                                    <div [hidden]="!amount.errors.required">
+                                        Amount is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <label><b>SUB VENDOR</b></label>
+                                <input [(ngModel)]="model.subvendor" type="text" class="form-control" name="subvendor" #subvendor="ngModel">
+                            </div> -->
+                            <div class="col-md-4">
+                                <label><b>SOURCE TYPE</b></label>
+                                <select class="form-control" name="sourcetype" [(ngModel)]="model.sourcetype" #sourcetype="ngModel" disabled>
+                                    <option value="" selected>Select Type</option>
+                                    <option value="TELECALLING">TELE CALLING</option>
+                                    <option value="OUTSOUCING">OUT SOUCING</option>
+                                    <option value="OWNSOURCING">OWN SOURCING</option>
+                                    <option value="WEBSITE">WEBSITE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #outsource>
+                        <div class="card-body" *ngIf="sourcetype==='OUT SOURCING'">
+                            <div class="card-header"><b>OUT SOURCING DETAILS</b></div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label><b>WHOSE CASE</b><code>(*)</code></label>
+                                    <input [(ngModel)]="model.whosecase" type="text" class="form-control" name="whosecase" required #whosecase="ngModel" disabled>
+                                    <div class="alert" *ngIf="whosecase.errors && (whosecase.dirty || whosecase.touched)">
+                                        <div [hidden]="!whosecase.errors.required">
+                                            Whose Case is required...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label><b>HANDLED BY</b><code>(*)</code></label><br>
+                                    <select class="form-control" name="idexecutive" [(ngModel)]="model.idexecutive" required #idexecutive="ngModel" disabled>
+                                     <option [value]="">Select Executive</option>
+                                     <option *ngFor="let item of fetchData1" value="{{item.idemployee}}">{{item.name}}</option>
+                                </select>
+                                    <div class="alert" *ngIf="idexecutive.errors && (idexecutive.dirty || idexecutive.touched)">
+                                        <div [hidden]="!idexecutive.errors.required">
+                                            Executive is required!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label><b>LOAN AMOUNT</b><code>(*)</code></label><br>
+                                    <input [(ngModel)]="model.amount" type="text" class="form-control" name="amount" #amount="ngModel">
+                                    <div class="alert" *ngIf="amount.errors && (amount.dirty || amount.touched)">
+                                        <div [hidden]="!amount.errors.required">
+                                            Amount is required!
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                <label><b>SUB VENDOR</b></label>
+                                <input [(ngModel)]="model.subvendor" type="text" class="form-control" name="subvendor" #subvendor="ngModel">
+                            </div> -->
+                                <div class="col-md-4">
+                                    <label><b>SOURCE TYPE</b></label>
+                                    <select class="form-control" name="sourcetype" [(ngModel)]="model.sourcetype" #sourcetype="ngModel" disabled>
+                                    <option value="" selected>Select Type</option>
+                                    <option value="TELLECALLING">TELLE CALLING</option>
+                                    <option value="OUTSOUCING">OUT SOUCING</option>
+                                    <option value="OWNSOURCING">OWN SOURCING</option>
+                                    <option value="WEBSITE">WEBSITE</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="card-header"><b>DOCUMENTS UPLOAD</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label><b>COMPANY KYC </b><span class="badge  badge-danger"> (Everthing In One File)</span></label>
+                                <input [(ngModel)]="model.Companykyc1" type="file" class="form-control-file" name="Companykyc1" (change)="onFileSelect($event)" #Companykyc1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.companykyc" name="companykyc" class="form-control" #companykyc="ngModel">
+                                <label>{{model.companykyc_orgname}}</label>
+                                <br>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>CUSTOMER KYC </b><span class="badge  badge-danger"> (Everthing In One File)</span></label>
+                                <input [(ngModel)]="model.customerkyc1" type="file" class="form-control-file" name="customerkyc1" (change)="onFileSelect1($event)" #customerkyc1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.customerkyc" name="customerkyc" class="form-control" #customerkyc="ngModel">
+                                <label>{{model.customerkyc_orgname}}</label>
+                                <br>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <label><b>ITR </b><span class="badge  badge-danger"> (2 Yeas ITR In One File)</span></label>
+                                <input [(ngModel)]="model.itr1" type="file" class="form-control-file" name="itr1" (change)="onFileSelect2($event)" #itr1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.itr" name="itr" class="form-control" #itr="ngModel">
+                                <label>{{model.itr_orgname}}</label>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label><b>BANK STATEMENT </b><span class="badge  badge-danger"> (Last 12 Months)</span></label>
+                                <input [(ngModel)]="model.bankstatement1" type="file" class="form-control-file" name="bankstatement1" (change)="onFileSelect3($event)" #bankstatement1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.bankstatement" name="bankstatement" class="form-control" #bankstatement="ngModel">
+                                <label>{{model.bankstatement_orgname}}</label>
+                                <br>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>LOAN SANCTION LETTER </b><span class="badge  badge-danger"> (Everthing In One File)</span></label>
+                                <input [(ngModel)]="model.loanstatement1" type="file" class="form-control-file" name="loanstatement1" (change)="onFileSelect4($event)" #loanstatement1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.loanstatement" name="loanstatement" class="form-control" #loanstatement="ngModel">
+                                <label>{{model.loanstatement_orgname}}</label>
+                                <br>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><b>GST RETURNS </b><span class="badge  badge-danger"> (last 6
+                                        month)</span></label>
+                                <input [(ngModel)]="model.gstandreturns1" type="file" class="form-control-file" name="gstandreturns1" (change)="onFileSelect5($event)" #gstandreturns1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.gstandreturns" name="gstandreturns" class="form-control" #gstandreturns="ngModel">
+                                <label>{{model.gstandreturns_orgname}}</label><br>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label><b>APPLICATION DETAILS </b></label>
+
+                                <input [(ngModel)]="model.applicationDetails1" type="file" class="form-control-file" name="applicationDetails1" (change)="onFileSelect6($event)" #applicationDetails1="ngModel">
+                                <input type="hidden" [(ngModel)]="model.applicationDetails" name="applicationDetails" class="form-control" #applicationDetails="ngModel">
+                                <label>{{model.applicationDetails_orgname}}</label>
+                                <br>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>STATUS</b><code>(*)</code></label>
+                                <select class="form-control" name="displaystatus" [(ngModel)]="model.displaystatus" #displaystatus="ngModel" required>
+                                    <option value="" selected>Select option</option>
+                                    <option value="PENDING">PENDING</option>
+                                    <option value="APPROVED">APPROVED</option>
+                                </select>
+                                <div class="alert" *ngIf="displaystatus.errors && (displaystatus.dirty || displaystatus.touched)">
+                                    <div [hidden]="!displaystatus.errors.required">
+                                        Status is required...
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-4">
+                                <label><b>COMMENTS</b><code>(*)</code></label>
+                                <textarea [(ngModel)]="model.comment" type="text" class="form-control" name="comment" #comment="ngModel" required></textarea>
+                                <div class="alert" *ngIf="comment.errors && (comment.dirty || comment.touched)">
+                                    <div [hidden]="!comment.errors.required">
+                                        Comments are required...
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+<style>
+    .alert {
+        color: red;
+        padding: 0;
+    }
+</style>

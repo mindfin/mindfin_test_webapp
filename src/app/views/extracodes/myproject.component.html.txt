@@ -1,0 +1,66 @@
+
+
+      <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>MY PROJECT</strong> 
+             </div>
+            <div class="card-body" style="text-align: center;">
+
+              <h4>Project Name:{{fetchdata.project_name}}</h4>
+              <!-- <h4>PLOTSIZE:{{fetchdata.length}} X{{fetchdata}}</h4> -->
+              <h4>Seniority Id:{{fetchdata.sid}}</h4>
+              <h4>MemberShip Id:{{fetchdata.mid}}</h4>
+              <h5>Project Paid Amount:{{fetchdata.totalamount}} </h5>
+
+            </div>
+
+       
+          <div class="card-body">
+            <table class="table table-responsive"   >
+              <thead>
+                <tr>
+                  <th>Payment Type</th>
+                  <th>Payment For</th>
+                <th>Payment Mode</th>
+                <th>Bank</th>
+                <th>Cheque No/Transaction Id/DD No</th>
+                <th>Paid Amount(in Rs)</th>
+                <th>Paid Date</th>
+                </tr>
+              </thead>
+              <tbody>
+             
+                  <tr *ngFor='let pro of fetchdataa'>
+                      <td>
+                        <!-- {{i+1}} -->
+                        {{pro.dp}}
+                      </td>
+                      <td>
+                        {{fetchdata.length}} X   {{fetchdata.breadth}} Dimension
+                      </td>
+                      <td>
+                        {{pro.paymode}}
+                        </td>
+                        <td>
+                            {{pro.bankname}}
+                          </td>
+                          <td>
+                            {{pro.tid}}   {{pro.cno}}   {{pro.dd}}
+                          </td>
+                          <td>
+                            {{pro.payamount}}
+                          </td>
+                          <td>
+                            {{pro.paydate | date:'dd/MM/yyyy'}}
+                          </td>
+                      <!-- <td>
+                        <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
+                      </td> -->
+                  </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>

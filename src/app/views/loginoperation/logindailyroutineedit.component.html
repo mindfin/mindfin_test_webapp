@@ -1,0 +1,87 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card">
+
+         <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
+            <div class="card-header">
+               <strong> LOGIN DAILY ROUTINE</strong>
+            </div>
+
+            <div class="card-body">
+
+               <div class="row"> 
+                  <div class="col-md-6">
+                     <label for="companyname">COMPANY NAME</label>
+                     <input type="text" class="form-control" name="companyname" [(ngModel)]="model.companyname"
+                        #period="ngModel" required />
+                     <!-- <div *ngIf="f.submitted && companyname.invalid" class="invalid-feedback">
+                           <div *ngIf="companyname.errors.required">company Case is Required</div>
+                        </div> -->
+                     <br>
+                  </div>
+
+                  <div class="col-md-6">
+                     <label><b>BANK NAME</b></label><br>
+                     <select class="form-control" name="bankid" [(ngModel)]="model.bankid" #bankid="ngModel">
+                        <option *ngFor="let item of fetchData" [value]="item.idbank">{{item.bankname}}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <label for="whosecase">WHOSE CASE</label>
+                     <input type="text" class="form-control" name="whosecase" [(ngModel)]="model.whosecase"
+                        #period="ngModel" required />
+                     <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                           <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                        </div> -->
+                     <br>
+                  </div>
+
+                  <div class="col-md-6">
+                        <label for="handover">HANDOVER TO</label>
+                        <input type="text" class="form-control" name="handover" [(ngModel)]="model.handover"
+                           #period="ngModel" required />
+                        <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                              <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                           </div> -->
+                        <br>
+                     </div>
+               </div>
+               <div class="row">
+                     <div class="col-md-6">
+                        <label for="timings">TIMINGS</label>
+                        <input type="time" class="form-control" name="timings" [(ngModel)]="model.timings"
+                           #period="ngModel" required />
+                        <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                              <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                           </div> -->
+                        <br>
+                     </div> 
+   
+                     <div class="col-md-6">
+                           <label for="status">STATUS</label>
+                           <input type="text" class="form-control" name="status" [(ngModel)]="model.status"
+                              #period="ngModel" required />
+                           <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                                 <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                              </div> -->
+                           <br>
+                        </div>
+                  </div>
+            </div>
+
+
+            <div class="card-footer">
+               <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i
+                     class="fa fa-dot-circle-o"></i> Save</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+
+<!--/.col-->
+<!-- </div> -->
+<!--/.row-->

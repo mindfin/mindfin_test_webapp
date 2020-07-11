@@ -1,0 +1,35 @@
+<h1>Notification Info</h1>
+<br>
+<table class="table">
+    <tbody>
+
+        <tr>
+            <th colspan="2">Seen By</th>
+        </tr>
+        <tr *ngFor="let model of fetchData">
+            <td *ngIf="model.receiverStatus =='seen'">{{model.receiverName}}</td>
+            <td *ngIf="model.receiverStatus =='seen'"> {{model.openedDate| date:'dd/MM/yyyy'}} {{model.receiverStatus}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Delivered To</th>
+        </tr>
+        <tr *ngFor="let model of fetchData">
+            <td *ngIf="model.receiverStatus =='received'">{{model.receiverName}}</td>
+            <td *ngIf="model.receiverStatus =='received'">{{model.openedDate | date:'dd/MM/yyyy'}} {{model.receiverStatus}} </td>
+        </tr>
+    </tbody>
+</table>
+<style>
+    .table {
+        font-size: medium;
+        vertical-align: middle;
+        text-align: center;
+        background-color: white;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

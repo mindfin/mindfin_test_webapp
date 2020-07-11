@@ -1,0 +1,78 @@
+<div class="row">
+
+
+
+   <div class="col-lg-12">
+      <div class="card">
+         <div class="card-header">
+            <strong> TOPUP LIST</strong>
+         </div>
+         <div class="card-body">
+            <div class="table-responsive">
+
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th>DISBUSED DATE</th>
+                        <th>HANDLED BY</th>
+                        <th>BANK NAME</th>
+                        <th>AMOUNT</th>
+                        <th>RATE OF INTREST</th>
+                        <th>PROCESSING FEE</th>
+                        <th>PERIOD</th>
+                        <th>INSURANCE</th>
+                        <th> ELIGIBLE FOR TOPUP ON</th>
+                        <th>TOPUP SUCCESS</th>
+
+                     </tr>
+                  </thead>
+                  <tbody>
+
+                     <tr *ngFor='let pro of fetchData'>
+                        <td>
+                           {{pro.disbusdate | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td>
+                           {{pro.executivename}}
+                        </td>
+                        <td>
+                           {{pro.bankname}}
+                        </td>
+
+                        <td>
+                           {{pro.amount}}
+                        </td>
+                        <td>
+                           {{pro.roi}}
+                        </td>
+                        <td>
+                           {{pro.pf}}
+                        </td>
+                        <td>
+                           {{pro.p}}
+                        </td>
+                        <td>
+                           {{pro.insurance}}
+                        </td>
+                        <td>
+                           <button class="btn btn-primary" style="color:rgb(240, 240, 247)">{{pro.q}}</button>
+                        </td>
+                        <td>
+                           <button class="btn btn-success" style="color:rgb(240, 240, 247)"
+                              (click)="topUpSucess(pro)">TOPUP SUCCESS
+                           </button>
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+               </table>
+               <!-- </form> -->
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+</div>

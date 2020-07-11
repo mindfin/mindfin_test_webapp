@@ -1,0 +1,103 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonService } from'../../common.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MemberService } from '../../member.service';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+@Component({
+  selector: 'app-product',
+  templateUrl: './profile.component.html',
+//   styleUrls: ['./product.component.scss']
+})
+export class ProfileComponent {
+
+  constructor( private route: ActivatedRoute, private router:Router,private service: CommonService,private memberservice:MemberService) { }
+//   public myModal;
+
+// obj:any;
+// company:any;
+// country:any;
+// id:any;
+model:any;
+// registerForm: FormGroup;
+// categories:any;
+// category:any;
+// plot:any;
+
+// submitted = false;
+
+  ngOnInit()
+        {
+
+const id=localStorage.getItem('id');
+            this.memberservice.getsinglemember(id).subscribe(res=>{
+                // console.log(res);
+                
+                this.model = res[0];
+                // console.log(this.model);
+        //         this.model.pname=this.model.pname[0].project_name;
+        //         this.model.psize=this.model.psize.length;
+        // console.log( this.model.pname);
+
+            })  
+
+            
+             
+        }
+
+        // getplot(pname){
+        //   console.log(pname);
+        //   this.model.psize = '';
+        //   this.model.pprice='';
+        //   this.model.amount = '';
+        //   this.service.getplot(pname)
+        //   .subscribe(res=>{
+        //   this.plot=res;
+        //   console.log(res);
+        //   })
+        //   }
+
+        //   getprice(psize){
+        //     console.log(psize.pname);      
+        //     for(var i=0;i<this.plot.length;i++){
+        //       console.log(this.plot[i].idplotsize._id);
+        //       if(this.plot[i].idproject._id==psize.pname && this.plot[i].idplotsize._id==psize.psize){
+        //         this.model.pprice = this.plot[i].price;
+        //         this.model.amount = this.plot[i].discountamount;
+        //         this.model.idland=this.plot[i]._id;
+        //         this.model.pname1 = this.plot[i].idproject.project_name;
+        //         this.model.psize1 = this.plot[i].idplotsize.length+'X'+ this.plot[i].idplotsize.breadth;
+             
+        //       }
+        //       }        
+        //       }
+
+
+            //   onSubmit(model) {
+            //     console.log(model);
+            //       this.submitted = true;
+          
+                
+            //       if (this.registerForm.invalid) {
+            //         console.log("err");
+            //           return;
+            //       }
+             
+            //   }
+     
+// onSubmit1(){
+//   console.log(this.model);
+//   this.model.finalamt=this.model.payamount-(this.model.share + this.model.applicationfee + this.model.admissionfee + this.model.welfarefund +this.model.sharefee)
+//   this.model.dueamount=this.model.pprice-this.model.finalamt;
+//   console.log(this.model.dueamount);
+
+//    this.service.bookingedit(this.model);
+// }
+
+refresh(): void {
+  window.location.reload();
+}
+
+}

@@ -1,0 +1,90 @@
+<mat-spinner *ngIf="isLoading">
+</mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Convenience Status
+                    <button style="float:right" (click)="exportAsXLSX()">
+                        <i class="fa fa-file-excel-o" style="font-size:20px;color:rgb(7, 11, 255)"> Download Excel</i>
+                      </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                        </mat-form-field>
+
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+
+
+                            <ng-container matColumnDef="name">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Applied Date</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.appliedDate | date:'dd/MM/yyyy'}}<br/>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="mobile">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Categories</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.categories}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comment">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Comment</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.comment}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Employee Name</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.empName}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="bankname">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Response</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.response}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="view">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Document Preview</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{element.conImg}}" height="50" width="50" />
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Status</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.status}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="download">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Download </th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    <!-- <button mat-raised-button color="success" (click)="addbank(element.idcustomer)">
+                                       Download -->
+                                    <a class="nav-link text-muted badge-success" href="http://mindfin.oss-ap-south-1.aliyuncs.com/{{element.conImg}}" role="button" title="Download">Download </a>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="Edit">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Approve/Reject</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    <button mat-raised-button color="warn" (click)="openDialog(element)">
+                                        Approve / Reject
+                                      </button>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

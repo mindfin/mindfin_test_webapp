@@ -1,0 +1,47 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../../common.service';
+import { MemberService } from '../../member.service';
+
+@Component({
+  selector: 'app-myproject',
+  templateUrl: './myproject.component.html',
+  // styleUrls: ['./myproject.component.scss']
+})
+export class MyprojectComponent implements OnInit {
+
+
+  constructor(private route:ActivatedRoute, private router:Router,private service:CommonService,private memberservice:MemberService) { }
+  
+
+  
+  fetchdataa:any;
+  fetchdata:any;
+
+  ngOnInit() {
+    const memberid = localStorage.getItem("id");
+    // const memberid="5bdd5230999d730fbdf8d212";
+    // console.log(memberid);
+
+    this.memberservice.myprojectlist(memberid).subscribe(res=>{
+      // console.log(res);
+     this.fetchdataa=res;
+//      this.fetchdata.sqrt=this.fetchdata.psize.length *this.fetchdata.psize.breadth;  
+
+// this.fetchdata.calc = (this.fetchdata.share) + (this.fetchdata.applicationfee);
+
+  });
+
+
+  this.memberservice.homememberlist(memberid).subscribe(res=>{
+    // console.log(res);
+   this.fetchdata=res[0];
+   this.fetchdata.calc = (this.fetchdata.share) + (this.fetchdata.applicationfee) +
+   (this.fetchdata.admissionfee) + (this.fetchdata.sharefee)+(this.fetchdata.welfarefund);
+   this.fetchdata.totalpaid=(this.fetchdata.totalamount)+(this.fetchdata.calc);
+});
+
+
+}
+
+}

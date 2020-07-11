@@ -1,0 +1,78 @@
+
+   <div class="row">
+      
+      
+
+        <div class="col-lg-12">
+              <div class="card">
+                 <div class="card-header">
+                    <strong>CUSTOMER LIST</strong> 
+                 </div>
+                 <div class="card-body">
+                    <div class="table-responsive">
+                       
+                       <table class="table">
+                          <thead>
+                             <tr>
+                                <th>CUSTOMER</th>
+                                <th>MOBILE</th> 
+                                <th>EMAIL</th>
+                                <th>CUSTOMER ID</th>
+                                <th>ADD PAYOUT</th>
+                                <!-- <th>PAY OUT</th>
+                                <th>SAVE</th> -->
+                                <!-- <th>TOPUP SUCCESS</th> -->
+    
+                             </tr>
+                          </thead>
+                          <tbody>
+                           
+                             <tr *ngFor='let pro of fetchData'>
+                                                                
+                                    <td>
+                                    {{pro.name}}
+                                    </td>
+                                    <td>
+                                    {{pro.mobile}}
+                                    </td>
+                                    <td>
+                                    {{pro.email}}
+                                    </td>
+                                    <td>
+                                    {{pro.autoid}}
+                                    </td>
+                                    <td>
+                                    <button class="btn btn-primary" 
+                                    (click)="openDialog(element,pro.idcustomer)" >
+                                    BANK LIST 
+                                    </button>
+                                    </td>
+                                    <!-- <td> 
+                                    <div  *ngIf="pro.payout==0||pro.payout==undefined
+                                    ||pro.payout==''||pro.payout==null" >
+                                    <input type="number" class="form-control" 
+                                    [(ngModel)]="percentage" /></div>           
+                                      <div *ngIf="pro.payout!=0||pro.payout!=undefined
+                                      ||pro.payout!=''||pro.payout!=null">{{pro.payout}}</div>               
+                                   </td>
+                                    <td>
+                                    <button class="btn btn-success" 
+                                    style="color:rgb(240, 240, 247)" (click)="save(pro,percentage);refresh();" >
+                                     SAVE 
+                                    </button>
+                                    </td> -->
+                                
+                                  </tr>
+                            
+                          </tbody>
+                       </table>
+                      <!-- </form> -->
+                    </div>
+                 </div>
+              </div>
+           </div>
+       
+    
+    
+    </div>
+    

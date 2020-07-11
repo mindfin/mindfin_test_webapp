@@ -1,0 +1,362 @@
+<!-- <div class="row">
+    <div *ngFor="let item of fetchData" class="col-md-3 ">
+        <div class="card border-success text-center scrollbar" id="style-4">
+            <div class="card-body text-success">
+                <h5 class="card-title">{{item.notificationSubject}}</h5>
+                <p class="card-text">{{item.notification}}</p>
+                <img *ngIf="item.notificationImg != undefined" alt="notificationImg" class="zoom" src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{item.notificationImg}}" width="200px" />
+                <br>
+                <br>
+                <a class="btn" role="button " style="cursor: pointer; margin:auto;display:block" title="Received Date">
+                    <h6 class="card-text text-success"><i class="fa fa-clock-o"></i> {{item.createdDate | date:'dd/MM/yyyy'}}</h6>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .scrollbar {
+        max-height: 14rem;
+        background: #F5F5F5;
+        overflow-y: auto;
+    }
+    
+    #style-4::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    #style-4::-webkit-scrollbar-thumb {
+        background-color: #F90;
+        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent)
+    }
+    
+    .zoom {
+        transition: transform .5s;
+        width: 200px;
+    }
+    
+    .zoom:hover {
+        transform: scale(2);
+    }
+</style> -->
+<div class="container1 ">
+    <div class="row no-gutters">
+        <div class="col-md-3 border-right ">
+            <!-- <div class="settings-tray ">
+                <img class="profile-image " src="https://clarity-enhanced.net/wp-content/themes/clarity-enhanced/assets/img/bootstrap-chat-app-assets/filip.jpg " alt="Profile img ">
+            </div> -->
+            <div class="search-box ">
+                <div class="input-wrapper">
+                    <i class="fa fa-search"><input type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                            placeholder="search ">
+                    </i> </div>
+            </div>
+            <div class="scrollbar " id="style-4">
+                <div *ngFor="let item of fetchData | filter:searchText">
+                    <a (click)="getnotification(item.senderNotificationID) ">
+                        <div class="friend-drawer friend-drawer--onhover ">
+                            <img class="profile-image " src="http://mindfin.oss-ap-south-1.aliyuncs.com/admin.png  " alt=" ">
+                            <div class="text ">
+                                <h6>{{item.senderName}}</h6>
+                                <p class="text-muted ">{{item.notificationSubject}}</p>
+                            </div>
+                            <span class="time text-muted small "> {{item.createdDate | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <hr>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 " *ngIf="fetchData1 == undefined">
+            <div class="chat-panel1 scrollbar" id="style-4">
+                <div class="row no-gutters ">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 " *ngIf="fetchData1 != undefined">
+            <div class="settings-tray">
+                <div class="friend-drawer no-gutters friend-drawer--grey ">
+                    <img class="profile-image " src="http://mindfin.oss-ap-south-1.aliyuncs.com/admin.png  " alt=" ">
+                    <div class="text ">
+                        <h6>{{fetchData1[0].senderName}}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-panel scrollbar" id="style-4">
+                <!-- {{fetchData1[0].createdDate | date:'dd/MM/yyyy'}} -->
+                <div class="row no-gutters ">
+                    <div>
+                        <div class="chat-bubble chat-bubble--left text-center ">
+                            {{fetchData1[0].notification}}
+                            <br>
+                            <img *ngIf="fetchData1[0].notificationImg != undefined" alt="notificationImg" class="zoom" src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{fetchData1[0].notificationImg}}" width="200px" />
+                            <a *ngIf="fetchData1[0].notificationImg != undefined" class="nav-link badge-danger" href="http://mindfin.oss-ap-south-1.aliyuncs.com/{{fetchData1[0].notificationImg}}" role="button" title="Download">Download</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .container1 {
+        background: #fff;
+        padding: 1px;
+        border-radius: 7px;
+        height: 100%;
+    }
+    
+    .profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+    }
+    
+    .settings-tray {
+        background: rgb(98, 205, 238);
+        padding: 5px 7px;
+        border-top-right-radius: 7px;
+    }
+    
+    .settings-tray .no-gutters {
+        padding: 0;
+    }
+    
+    .settings-tray--right {
+        float: right;
+    }
+    
+    .settings-tray--right i {
+        margin-top: 10px;
+        font-size: 25px;
+        color: #74b9ff;
+        margin-left: 14px;
+        transition: .3s;
+    }
+    
+    .settings-tray--right i:hover {
+        color: #74b9ff;
+        cursor: pointer;
+    }
+    
+    .search-box {
+        background: rgb(98, 205, 238);
+        padding: 10px 10px;
+        border-top-left-radius: 7px;
+    }
+    
+    .search-box .input-wrapper {
+        background: #fff;
+        border-radius: 10px;
+    }
+    
+    .search-box .input-wrapper i {
+        color: grey;
+        margin-left: 15px;
+        vertical-align: middle;
+    }
+    
+    .container1 .chat-panel {
+        background-image: url("/assets/images/chatbackground.jpg ");
+        min-height: 25.5rem;
+        overflow: auto;
+    }
+    
+    .container1 .chat-panel1 {
+        background-image: url("/assets/images/busy-man.png ");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 28rem;
+        overflow: auto;
+    }
+    
+    @media (min-width: 1920px) {
+        .container1 .chat-panel {
+            background-image: url("/assets/images/chatbackground.jpg ");
+            min-height: 52rem;
+            overflow: auto;
+        }
+        .container1 .chat-panel1 {
+            background-image: url("/assets/images/busy-man.png ");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            min-height: 53rem;
+            overflow: auto;
+        }
+        .scrollbar {
+            min-height: 50rem;
+            /* background: #F5F5F5; */
+            overflow-y: auto;
+        }
+    }
+    
+    input {
+        border: none;
+        border-radius: 30px;
+        /* width: 80%; */
+    }
+    
+    input::placeholder {
+        color: #e3e3e3;
+        font-weight: 300;
+        margin-left: 20px;
+    }
+    
+    input:focus {
+        outline: none;
+    }
+    
+    .friend-drawer {
+        padding: 5px 7px;
+        display: flex;
+        vertical-align: baseline;
+        background: #fff;
+        transition: .3s ease;
+    }
+    
+    .friend-drawer--grey {
+        background: rgb(98, 205, 238);
+    }
+    
+    .friend-drawer .text {
+        margin-left: 12px;
+        width: 70%;
+    }
+    
+    .friend-drawer .text h6 {
+        margin-top: 6px;
+        margin-bottom: 0;
+    }
+    
+    .friend-drawer .text p {
+        margin: 0;
+    }
+    
+    .friend-drawer .time {
+        color: grey;
+    }
+    
+    .friend-drawer--onhover:hover {
+        background: rgb(168, 201, 235);
+        cursor: pointer;
+    }
+    
+    .friend-drawer--onhover:hover p,
+    .friend-drawer--onhover:hover h6,
+    .friend-drawer--onhover:hover .time {
+        color: #fff !important;
+    }
+    
+    hr {
+        margin: 5px auto;
+        width: 60%;
+    }
+    
+    .chat-bubble {
+        padding: 10px 14px;
+        background: #ffffff;
+        margin: 10px 30px;
+        border-radius: 9px;
+        position: relative;
+        animation: fadeIn 1s ease-in;
+    }
+    /* .chat-bubble:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 20px solid transparent;
+        border-top: 0;
+        margin-top: -10px;
+    }
+    
+    .chat-bubble--left:after {
+        left: 0;
+        border-right-color: #eee;
+        border-left: 0;
+        margin-left: -20px;
+    } */
+    /* .chat-bubble--right:after {
+        right: 0;
+        border-left-color: #74b9ff;
+        border-right: 0;
+        margin-right: -20px;
+    } */
+    
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    .offset-md-9 .chat-bubble {
+        background: #74b9ff;
+        color: #fff;
+    }
+    
+    .chat-box-tray {
+        background: #eee;
+        display: flex;
+        align-items: baseline;
+        padding: 10px 15px;
+        align-items: center;
+        margin-top: 19px;
+        bottom: 0;
+    }
+    
+    .chat-box-tray input {
+        margin: 0 10px;
+        padding: 6px 2px;
+    }
+    
+    .chat-box-tray i {
+        color: grey;
+        font-size: 30px;
+        vertical-align: middle;
+    }
+    
+    .chat-box-tray i:last-of-type {
+        margin-left: 25px;
+    }
+    
+    .scrollbar {
+        max-height: 25rem;
+        /* background: #F5F5F5; */
+        overflow-y: auto;
+    }
+    
+    #style-4::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    #style-4::-webkit-scrollbar-thumb {
+        background-color: #F90;
+        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent)
+    }
+    
+    .zoom {
+        transition: transform .5s;
+        width: 300px;
+    }
+    
+    .zoom:hover {
+        transform: scale(2);
+    }
+</style>
+<script>
+    $('.friend-drawer--onhover').on('click', function() {
+
+        $('.chat-bubble').hide('slow').show('slow');
+
+    });
+</script>

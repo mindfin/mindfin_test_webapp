@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Assign Executive</h1>
+<div mat-dialog-content class="mat-typography">
+
+
+    <table class="table">
+
+        <tbody>
+            <tr>
+                <th>Company Name</th>
+                <th>Mobile No</th>
+                <th>Address</th>
+                <th>Turn Over</th>
+                <th>Assign Executive</th>
+                <th>EDIT</th>
+            </tr>
+            <tr>
+                <td>{{data.element.name}}</td>
+                <td>{{data.element.mobile}}</td>
+                <td>{{data.element.address}}</td>
+                <td>{{data.element.turnover}}</td>
+
+                <td>
+                    <select class="form-control" name="executive" [(ngModel)]="data.element.executive" required #executive="ngModel">
+                        <option *ngFor="let item of fetchData1" value="{{item.idemployee}},{{item.name}}">{{item.name}}
+                        </option>
+                    </select>
+                </td>
+                <td><button mat-raised-button color="primary" (click)="assignexe(data.element)">Assign Executive</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+<style>
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

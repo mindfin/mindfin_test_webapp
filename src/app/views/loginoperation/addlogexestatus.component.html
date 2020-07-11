@@ -1,0 +1,47 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card">
+
+         <form (ngSubmit)="f.form.valid && onSubmit(model);" #f="ngForm" novalidate>
+            <div class="card-header">
+               <strong> SENT LOGIN EXECUTIVE </strong>
+            </div>
+
+            <div class="card-body">
+<input type="hidden" name="idapplybank" [(ngModel)]="model.idapplybank" #idapplybank="ngModel">
+               <div class="row">
+                  <div class="col-md-6">
+                     <label for="companyname">LOGIN EXECUTIVE</label>
+                     <select class="form-control" name="loginexeid" [(ngModel)]="model.loginexeid" #bankid="ngModel">
+                           <option *ngFor="let item of fetchData" value="{{item.idemployee}},{{item.name}}">{{item.name}}</option>
+                        </select>
+                     
+                     <!-- <div *ngIf="f.submitted && companyname.invalid" class="invalid-feedback">
+                           <div *ngIf="companyname.errors.required">company Case is Required</div>
+                        </div> -->
+                     <br>
+                  </div>
+
+                  <div class="col-md-6">
+                     <label><b>SENT TIME</b></label><br>
+                     <input type="time" class="form-control" name="timing" [(ngModel)]="model.timing"
+                        #timing="ngModel" required />
+                  </div>
+               </div>
+              
+            </div>
+
+
+            <div class="card-footer">
+               <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i
+                     class="fa fa-dot-circle-o"></i> Save</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+
+<!--/.col-->
+<!-- </div> -->
+<!--/.row-->

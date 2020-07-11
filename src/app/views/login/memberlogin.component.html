@@ -1,0 +1,94 @@
+<!-- <div class="form">
+  <form>
+    <h2>Login  In</h2>
+    <div class="input-box">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <input type="email" name="email" placeholder="Email"  [(ngModel)]="email"   required>
+ 
+    </div>
+    <div class="input-box">
+      <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+      <input type="password" name="password" placeholder="Password" [(ngModel)]="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+    </div>
+    <div class="input-box">
+      <input type="submit" (click)="signup(email,pwd)"  value="Login" >
+      
+    </div>
+    <a href="#">Forget Password</a>
+  </form>
+</div> -->
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/images/mindfincovershade2.jpg');">
+        <div class="wrap-login100 p-t-190 p-b-30">
+            <form class="login100-form validate-form" [formGroup]="registerForm" (ngSubmit)="login(registerForm.value)">
+                <div class="login100-form-avatar">
+                    <img src="/assets/images/logo1.png" >
+                </div>
+
+                <span class="login100-form-title p-t-20 p-b-45">
+                    CUSTOMER LOGIN
+                </span>
+
+                <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+                    <input class="input100" type="text"formControlName="mid" placeholder="MemberShip ID" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user"></i>
+                    </span>
+                </div>
+
+      <!-- <div class="wrap-input100">
+          <span class="label-input100">Email ID</span>
+          <input type="text" class="input100" formControlName="email" placeholder="Enter your Email ID" required>
+        </div> -->
+        <div class="alert" *ngIf="!registerForm.controls['mid'].valid && registerForm.controls['mid'].touched || !registerForm.controls['mid'].valid && submittedError">
+            Customer Email is required
+        </div>          
+
+                <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+                    <input class="input100" type="password" formControlName="password" placeholder="Password" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock"></i>
+                    </span>
+      </div>
+      <div class="alert" *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched || !registerForm.controls['password'].valid && submittedError">
+         Customer Password is required
+        </div>
+
+                <div class="container-login100-form-btn p-t-10">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+                <!-- <div class="text-center w-full p-t-25 p-b-230">
+                    <a href="#" class="txt1">
+                        Forgot Username / Password?
+                    </a>
+                </div> -->
+      
+                <!-- <div class="text-center w-full">
+                    <a class="txt1" href="#">
+                        Create new account
+                        <i class="fa fa-long-arrow-right"></i>						
+                    </a>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+.p-t-190{
+padding-top: 0px;
+}
+.p-b-230{
+padding-bottom: 0px;
+}
+.p-t-20{
+padding-top: 0px;
+}
+.alert{
+color:red;
+}
+</style>

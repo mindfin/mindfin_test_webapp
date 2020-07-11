@@ -1,0 +1,155 @@
+    <div class="row">
+    <div class="col-lg-12">
+
+
+         <!-- <div class="col-lg-6"> -->
+               <div class="card">
+                  <div class="card-header">
+                     <strong>APPLIED BANK LIST</strong> 
+                  </div>
+                  <div class="card-body">
+                     <div class="table-responsive">
+                        
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>BANK NAME</th>
+                                 <th>LOAN TYPE</th>
+                                 <th> AMOUNT</th> 
+                                 <th> VENDOR</th> 
+                                 <th>STATUS</th>
+                              
+                              </tr>
+                           </thead>
+                           <tbody>
+                            
+                              <tr *ngFor='let pro of fetchData1'>
+                                 
+                                      <td>
+                                      {{pro.bankname}}
+                                    </td>
+                                    <td>
+                                    {{pro.loantype}}
+                                    </td>
+                                    <td>
+                                    {{pro.amount}}
+                                    </td>
+                                    <!-- <td>
+                                    {{pro.status}}
+                                    </td> -->
+                                    <td>
+                                       {{pro.vendor}}
+                                       </td>
+                                       <td>
+                                          {{pro.status}}
+                                          </td>
+                                   </tr>
+                             
+                           </tbody>
+                        </table>
+                       <!-- </form> -->
+                     </div>
+                  </div>
+               </div>
+            <!-- </div> -->
+    <div class="card">
+   <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm();refresh();">
+
+    <div class="card-header"><b>APPLY BANKS</b> </div><br/>
+
+    <form    (ngSubmit)="addvalues();clearFilters();" #f="ngForm" novalidate>
+    <h4 style="float:right;"></h4>
+     <div class="table-responsive">  
+        
+      <table  class="table table-striped" id="dynamic_field">  
+      <tr>    
+
+      <th>
+      <label><b>LOAN TYPE</b></label><br>
+     <select style="padding-right: 95px;"  class="form-control" name="previousapplytype"
+     [(ngModel)]="model.previousapplytype"  #previousapplytype="ngModel">
+    <option value="" selected>Select your option</option>
+   <option *ngFor="let item of fetchData" value= {{item.idloantype}},{{item.loantype}}>
+   {{item.loantype}}
+   </option>
+   </select>
+   </th>
+
+
+      <th> 
+      <label><b>BANK TYPE</b></label><br>
+      <select style="padding-right: 95px;"  class="form-control" name="previousbankname"
+      [(ngModel)]="model.previousbankname"  #previousbankname="ngModel">
+     <option value="" selected>Select your option</option>
+    <option *ngFor="let item of fetchData2" value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
+    {{item.bankname}}
+    </option>
+   </select>
+   </th>
+ 
+ 
+ <th> 
+     <label><b>AMOUNT</b></label><br>
+     <input type="number"  class="form-control"  #previousamounttaken="ngModel"
+      placeholder="ENTER AMOUNT" name="previousamounttaken" [(ngModel)]="model.previousamounttaken"></th>
+            
+<th>
+      <label><b>ADD</b></label><br>            
+<button type="submit" class="form-control"  >
+<i class="fa fa-plus"></i> </button>
+                    
+</th>                   
+          </tr>  
+          </table>     
+         </div>  
+        </form> 
+
+    <div class="card-body">
+   <div class="table-responsive">
+<table class="table">
+   <thead class="text-primary">
+      <th>SL.NO</th>
+<th>
+      PREVIOUS APPLY TYPE
+   </th>
+   <th>
+         PREVIOUS BANK NAME
+         </th>
+         <th>
+               PREVIOUS BANK AMOUNT
+               </th>
+               <th>
+                  VENDOR
+                  </th>
+               <th>
+                     REMOVE
+                     </th>
+</thead>
+<tr *ngFor='let pro of tempval;let i=index'>
+   <td>{{i+1}}</td>
+   <td>
+     {{pro.previousapplytype}}
+      </td>
+      <td>
+      {{pro.previousbankname}}
+      </td>
+      <td>
+      {{pro.previousamounttaken}}
+      </td>
+      <td>
+         {{pro.vendor}}
+         </td>
+      <td>
+    <button  (click)="removevalue(pro,i)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </td>
+   </tr>
+   </table>
+</div>
+</div>
+<!-- </div></div></div> -->
+<div class="card-footer">
+      <button class="btn btn-success"
+       [disabled]="!form.valid"
+       >Submit</button>
+   </div>
+   </form></div></div></div>

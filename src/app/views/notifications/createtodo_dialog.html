@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Create To Do</h1>
+<div mat-dialog-content class="mat-typography">
+
+    <div class="card">
+
+        <form (ngSubmit)="onSubmit(data)" #f="ngForm" novalidate>
+
+            <div class="card-body">
+                <div class="col-sm-12">
+                    <label>Title<code>(*)</code></label>
+                    <br>
+                    <input class="form-group" [(ngModel)]="data.title" name="title" type="text" class="form-control" required>
+                </div>
+                <br>
+                <div class="col-sm-12">
+                    <label><b>Description</b><code>(*)</code></label>
+                    <textarea class="form-control" required [(ngModel)]="data.desc" class="form-control" name="desc"></textarea>
+                    <br>
+                </div>
+
+                <br>
+                <div center>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,94 @@
+
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div class="animated fadeIn" [hidden]="isLoading">
+     <div class="row">
+     
+       <div class="col-lg-12">
+         <div class="card">
+           <div class="card-header">
+             <i class="fa fa-align-justify"></i> EXECUTIVE LIST
+          
+           </div>
+           <div class="card-body">
+               <div class="table-responsive">
+                   <mat-form-field>
+                       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                     </mat-form-field>
+                     
+             <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive"  matSort> 
+                                           
+                 
+                <ng-container matColumnDef="name">
+                 <th   *matHeaderCellDef mat-sort-header>EXECUTIVE NAME</th>
+                 <td   *matCellDef="let element" style="text-align:center;"> {{element.name}}<br/>
+              
+                        </td>
+               </ng-container> 
+            
+   
+               <ng-container matColumnDef="mobile">
+                   <th  *matHeaderCellDef mat-sort-header>MOBILE</th>
+                   <td  *matCellDef="let element"> {{element.mobile}} </td>
+                 </ng-container> 
+   
+               <ng-container matColumnDef="email">
+                   <th  *matHeaderCellDef mat-sort-header>EMAIL</th>
+                   <td  *matCellDef="let element"> {{element.email}} </td>
+                 </ng-container> 
+               <!-- <ng-container matColumnDef="bankname">
+                 <th *matHeaderCellDef mat-sort-header>USER TYPE</th>
+                 <td  *matCellDef="let element"> {{element.iduser.user}} </td>
+               </ng-container>  -->
+                     
+       
+<!-- 
+                 <ng-container matColumnDef="Edit">
+                   <th  *matHeaderCellDef mat-sort-header>EDIT</th>
+                   <td  *matCellDef="let element">
+                           <button mat-raised-button color="primary"
+                           (click)="editmember(element._id)">
+                       EDIT
+                      </button> 
+   
+                     </td>
+                 </ng-container>  -->
+                 <!-- <ng-container matColumnDef="Approval">
+                   <th  *matHeaderCellDef mat-sort-header>APPROVAL</th>
+                   <td  *matCellDef="let element" >
+                           <button mat-raised-button color="primary"
+                            matBadgeColor="red" (click)="approvemember(element);refresh();">
+                         APPROVE
+                       </button> 
+                       </td>
+                 </ng-container>  -->
+                 <ng-container matColumnDef="Customer">
+                   <th  *matHeaderCellDef mat-sort-header>TELECALLER'S VIEW</th>
+                   <td  *matCellDef="let element" >
+                           <button mat-raised-button color="primary"
+                            matBadgeColor="red" 
+                            (click)="viewtele(element.idemployee)">
+                         TELECALLER'S LIST 
+                       </button> 
+                     </td>
+                 </ng-container> 
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+           </table>
+         </div>
+           <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <style>
+     table,th,td{
+       border:1px solid black;
+     }
+     mat-spinner{
+       margin: auto;
+     }
+   </style>
+   
+  

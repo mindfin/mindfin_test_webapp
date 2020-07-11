@@ -1,0 +1,253 @@
+<div class="row">
+    <div class="col-lg-12">
+
+
+
+        <div class="card">
+            <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm();refresh();">
+
+                <div class="card-header"><b>LOGIN DAILY ROUTINE</b> </div><br />
+
+                <form (ngSubmit)="addvalues();clearFilters();" #f="ngForm" novalidate>
+                    <h4 style="float:right;"></h4>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped" id="dynamic_field">
+                            <tr>
+                                <th>
+                                    <label for="companyname">Company Name</label>
+                                    <input type="text" class="form-control" name="companyname" [(ngModel)]="model.companyname" #period="ngModel" required />
+                                    <!-- <div *ngIf="f.submitted && companyname.invalid" class="invalid-feedback">
+                                    <div *ngIf="companyname.errors.required">company Case is Required</div>
+                                 </div> -->
+                                    <br>
+
+                                    <th>
+                                        <label><b>Bank Name</b></label><br>
+                                        <select class="form-control" name="bankname" [(ngModel)]="model.bankname" #bankname="ngModel">
+                              <option value="" selected>Select option</option>
+                              <option *ngFor="let item of fetchData" value="{{item.idbank}},{{item.bankname}}">
+                                 {{item.bankname}}
+                              </option>
+                           </select>
+                                    </th>
+
+                                    <th>
+                                        <th>
+                                            <label><b>Purpose of Visit</b></label><br>
+                                            <select class="form-control" name="pov" [(ngModel)]="model.pov" #bankname="ngModel">
+                                 <option value="" selected>Select option</option>
+                                 <option value="Frankling">Frankling</option>
+                                 <option value="Notary">Notary</option>
+                                 <option value="BSV(Bank Signature Verification)">BSV(Bank Signature Verification)</option>
+                                 <option value="Login">Login</option>
+                                 <option value="Kit Closing">Kit Closing</option>
+                                 <option value="Kit Receiving">Kit Receiving</option>
+                                 <option value="Invoice">Invoice</option>
+                                 <option value="Reject File Receiving">Reject File Receiving</option>
+                                 <option value="PSL Tagging">PSL Tagging</option>
+                                 <option value="Spot Activity">Spot Activity</option>
+                                 <option value="Other">Other</option>
+                              </select>
+                                        </th>
+
+                                        <th>
+                                            <th>
+                                                <label for="whosecase">Whose Case</label>
+                                                <select class="form-control" name="whosecase" [(ngModel)]="model.whosecase" #bankname="ngModel">
+                                                   <option value="" selected>Select option</option>
+                                                   <option *ngFor="let item1 of fetchData1" value="{{item1.Name}}">
+                                                      {{item1.Name}}
+                                                   </option>
+                                                </select>
+                                                <!-- <input type="text" class="form-control" name="whosecase" [(ngModel)]="model.whosecase" #whosecase="ngModel" required /> -->
+                                                <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                                    <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                                 </div> -->
+                                                <br>
+                                            </th>
+                                            <th>
+                                                <label for="handover">Handover To</label>
+                                                <input type="text" class="form-control" name="handover" [(ngModel)]="model.handover" #handover="ngModel" required />
+                                                <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                                       <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                                    </div> -->
+                                                <br>
+                                            </th>
+                                            <th>
+                                                <label for="timings">Time</label>
+                                                <input type="time" class="form-control" name="timings" [(ngModel)]="model.timings" #timings="ngModel" required />
+                                                <!-- <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                                       <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                                    </div> -->
+                                                <br>
+                                            </th>
+                                            <th>
+                                                <label><b>Status</b></label><br>
+                                                <input type="text" class="form-control" name="status" [(ngModel)]="model.status" #period="ngModel" required />
+                                                <br>
+                                            </th>
+                                            <th>
+                                                <label><b>Case Detail</b></label><br>
+                                                <input type="text" class="form-control" name="casedetail" [(ngModel)]="model.casedetail" #period="ngModel" required />
+                                                <br>
+                                            </th>
+                                            <th>
+
+
+                                                <label><b>Add</b></label><br>
+                                                <button type="submit" class="form-control">
+                              <i class="fa fa-plus"></i> </button>
+
+                                            </th>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>SL.NO</th>
+                                <th>
+                                    COMPANY NAME
+                                </th>
+                                <th>
+                                    BANK NAME
+                                </th>
+                                <th>
+                                    PURPOSE OF VISIT
+                                </th>
+                                <th>
+                                    WHOSE CASE
+                                </th>
+                                <th>
+                                    HANDOVER TO
+                                </th>
+                                <th>
+                                    TIMING
+                                </th>
+                                <th>
+                                    STATUS
+                                </th>
+                                <th>
+                                    CASE DETAIL
+                                </th>
+                                <th>
+                                    REMOVE
+                                </th>
+                            </thead>
+                            <tr *ngFor='let pro of tempval;let i=index'>
+                                <td>{{i+1}}</td>
+                                <td>
+                                    {{pro.companyname}}
+                                </td>
+                                <td>
+                                    {{pro.bankname}}
+                                </td>
+                                <td>
+                                    {{pro.pov}}
+                                </td>
+                                <td>
+                                    {{pro.whosecase}}
+                                </td>
+                                <td>
+                                    {{pro.handover}}
+                                </td>
+                                <td>
+                                    {{pro.timings}}
+                                </td>
+                                <td>
+                                    {{pro.status}}
+                                </td>
+                                <td>
+                                    {{pro.casedetail}}
+                                </td>
+                                <td>
+                                    <button (click)="removevalue(pro,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- </div></div></div> -->
+                <div class="card-footer">
+                    <button class="btn btn-success" [disabled]="!form.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+   <div class="col-md-12">
+      <div class="card">
+
+         <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
+            <div class="card-header">
+               <strong> EXECUTIVE DAILY ROUTINE</strong>
+            </div>
+
+            <div class="card-body">
+
+               <div class="row">
+                  <div class="col-md-6">
+                     <label for="companyname">COMPANY NAME</label>
+                     <input type="text" class="form-control" name="companyname" [(ngModel)]="model.companyname"
+                        #period="ngModel" required />
+                     <div *ngIf="f.submitted && companyname.invalid" class="invalid-feedback">
+                           <div *ngIf="companyname.errors.required">company Case is Required</div>
+                        </div>
+                     <br>
+                  </div>
+
+                  <div class="col-md-6">
+                     <label><b>BANK NAME</b></label><br>
+                     <select class="form-control" name="bankname" [(ngModel)]="model.bankname" #bankname="ngModel">
+                        <option value="" selected>Select option</option>
+                        <option *ngFor="let item of fetchData" value={{item.idbank}}>
+                           {{item.bankname}}
+                        </option>
+                     </select>
+                    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="whosecase">WHOSE CASE</label>
+                <input type="text" class="form-control" name="whosecase" [(ngModel)]="model.whosecase" #period="ngModel" required />
+                <div *ngIf="f.submitted && whosecase.invalid" class="invalid-feedback">
+                    <div *ngIf="whosecase.errors.required">Whose Case is Required</div>
+                </div>
+                <br>
+            </div>
+
+            <div class="col-md-6">
+                <label><b>STATUS</b></label><br>
+                <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
+                        <option value="" selected>Select option</option>
+                        <option value="customer appointment">CUSTMOER APPOINTMENT</option>
+                        <option value="document collection">DOCUMENT COLLECTION</option>
+                        <option value="document signing">DOCUMENT SIGNING</option>
+                        <option value="document SUBMIT">DOCUMENT SUBMIT</option>
+                        <option value="login">LOGIN</option>
+
+                     </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-footer">
+        <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i
+                     class="fa fa-dot-circle-o"></i> Save</button>
+    </div>
+    </form>
+</div>
+</div>
+</div> -->
+
+
+<!--/.col-->
+<!-- </div> -->
+<!--/.row-->

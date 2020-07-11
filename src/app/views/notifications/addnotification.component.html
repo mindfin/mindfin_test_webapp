@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- Nav tabs -->
+        <tabset>
+            <tab>
+                <ng-template tabHeading>General Notification</ng-template>
+                <form #form="ngForm" (ngSubmit)="generalNotification(model)">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label><b>Groups</b></label> <br>
+                                <input type="radio" value="All" name="group" [(ngModel)]="model.group" #group="ngModel"> All
+                                <input type="radio" value="EXECUTIVE" name="group" [(ngModel)]="model.group" #group="ngModel"> Executive Group
+                                <input type="radio" value="TELECALLER" name="group" [(ngModel)]="model.group" #group="ngModel"> Telecaller Group
+                                <input type="radio" value="BACKEND" name="group" [(ngModel)]="model.group" #group="ngModel"> Backend Group
+                                <input type="radio" value="ACCOUNTANT" name="group" [(ngModel)]="model.group" #group="ngModel"> Accounts Group
+                                <input type="radio" value="LOGIN" name="group" [(ngModel)]="model.group" #group="ngModel"> Login Group
+                                <input type="radio" value="DATAENTRY" name="group" [(ngModel)]="model.group" #group="ngModel"> Dataentry Group
+                            </div>
+                            <div class="col-md-12">
+                                <br>
+                                <input [(ngModel)]="model.notificationSubject" type="text" class="form-control" placeholder="Notification Header" name="notificationSubject" required #notificationSubject="ngModel">
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <label><b>Attach Image</b></label>
+                                <!-- <button id="button" class="btn btn-success" onclick="document.getElementById('file-input').click();"><i class="fa fa-paperclip"
+                                        aria-hidden="true"> Insert Image</i></button> -->
+                                <input class="form-control-file" type="file" name="notificationImg" [(ngModel)]="model.notificationImg" (change)="onFileSelect($event)" />
+
+                            </div>
+                            <div class="col-md-12">
+                                <br>
+                                <label><b>Notification</b></label>
+                                <textarea rows="10" class="form-control" [(ngModel)]="model.notification" class="form-control" name="notification" #notification="ngModel"></textarea>
+                            </div>
+
+                        </div>
+                        <br>
+                        <button class="btn btn-primary">Send</button>
+
+                    </div>
+                </form>
+            </tab>
+            <tab>
+                <ng-template tabHeading>Individual notification</ng-template>
+                <form #form="ngForm" (ngSubmit)="individualNotification(model1)">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label><b>Sender</b></label>
+                                <select class="form-control" name="group" required [(ngModel)]="model1.group" #group="ngModel">
+                                    <option *ngFor="let item of fetchData" value="{{item.idemployee}},{{item.name}}">
+                                        {{item.name}}</option>
+                                </select>
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <input [(ngModel)]="model1.notificationSubject" type="text" class="form-control" placeholder="Notification Header" name="notificationSubject" required #notificationSubject="ngModel">
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <label><b>Attach Image</b></label>
+                                <!-- <button id="button" class="btn btn-success" onclick="document.getElementById('file-input').click();"><i class="fa fa-paperclip"
+                                        aria-hidden="true"> Insert Image</i></button> -->
+                                <input class="form-control-file" type="file" name="notificationImg" [(ngModel)]="model1.notificationImg" (change)="onFileSelect($event)" />
+                            </div>
+                            <div class="col-md-12">
+                                <br>
+                                <label><b>Notification</b></label>
+                                <textarea rows="10" class="form-control" [(ngModel)]="model1.notification" class="form-control" name="notification" #notification="ngModel"></textarea>
+                            </div>
+
+                        </div>
+                        <br>
+                        <button class="btn btn-primary">Send</button>
+
+                    </div>
+                </form>
+
+            </tab>
+        </tabset>
+    </div>
+</div>

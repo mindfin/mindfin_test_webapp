@@ -1,0 +1,57 @@
+<h3 mat-dialog-title>OUT SOURCING PAYMENTS</h3>
+<div mat-dialog-content class="mat-typography">
+        <div class="card-body">
+
+                <div class="row">
+
+                <div class="col-md-6">
+                <label for="casename">CASE NAME {{data.name}}</label>
+                <input type="text" class="form-control" name="casename" [(ngModel)]="model.casename"/>          
+                </div>
+
+                       <div class="col-md-6">
+                        <label for="amount">AMOUNT</label>
+                        <input type="text" class="form-control" name="amount" [(ngModel)]="model.amount"/>          
+                        </div>
+                </div>
+<br/>
+                <div class="row">
+
+                        <div class="col-md-6">
+                        <label for="bankname">BANK NAME</label>
+                        <input type="text" class="form-control" name="bankname" [(ngModel)]="model.bankname"/>          
+                        </div>
+        
+                               <div class="col-md-6">
+                                <label for="accountno">ACCOUNT NUMBER</label>
+                                <input type="text" class="form-control" name="accountno" [(ngModel)]="model.accountno"/>          
+                                </div>
+                        </div>
+                        <br/>
+                  
+
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                             
+                                               <button class="btn btn-success" 
+                                                (click)="savechanges(model);refresh()"  
+                                                >SAVE</button>
+                                                </div>
+                                             
+                                                </div>
+</div>
+
+  
+  
+    
+
+<style>
+.table {
+flex: 5 1 auto;
+padding: 6.25rem !important;
+font-size: medium !important;
+}
+table,th,td{
+border:1px solid black;
+}
+</style>

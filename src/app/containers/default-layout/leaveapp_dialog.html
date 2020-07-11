@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Leave Application</h1>
+<div mat-dialog-content class="mat-typography">
+
+    <div class="card">
+
+        <form (ngSubmit)="f.form.valid && onSubmit(data)" #f="ngForm" novalidate>
+
+            <div class="card-body">
+                <div class="col-md-12">
+                    <label>From And To<code>(*)</code></label>
+                    <br>
+                    <div class="col-sm-12 ">
+                        <input class="form-group" [(ngModel)]="data.from" name="from" type="text" placeholder="From(MM/DD/YYYY) - To(MM/DD/YYYY)" class="form-control" bsDaterangepicker required>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-12">
+                    <label>To</label>
+                    <br>
+                    <div class="col-sm-12 ">
+                        <input class="form-group" [(ngModel)]="data.to" name="to" type="text" placeholder="MM/DD/YYYY" class="form-control" bsDatepicker required>
+                    </div>
+                </div> -->
+                <div class="col-md-12">
+                    <label>Half Day</label>
+                    <input type="checkbox" name="half" [(ngModel)]="data.half" value="yes">
+                    <!-- <input type="radio" value="yes" name="half" [(ngModel)]="data.half">Yes
+                   <input type="radio" value="no" name="half" [(ngModel)]="data.half" checked>NO -->
+                </div>
+                <div class="col-md-12">
+                    <label>Reason<code>(*)</code></label>
+                    <textarea class="form-control" [(ngModel)]="data.reason" class="form-control" name="reason" required></textarea>
+                    <br>
+                </div>
+                <div center>
+                    <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Submit</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

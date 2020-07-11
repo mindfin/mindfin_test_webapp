@@ -1,0 +1,154 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form (ngSubmit)="checkcase(model);" #f="ngForm" novalidate>
+                <div class="card-header">
+                    <strong>CHECK CASE AND BANK</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- <label for="bankname">ENTER CUSTOMER'S MOBILE AADHAAAR OR PAN NUMBER</label> -->
+                            <input class="form-control" name="checkno" [(ngModel)]="model.checkno" required #checkno="ngModel" placeholder="Mobile or Aadhaar or Pan Number or Company Name">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary ">Check</button>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </form>
+            <div class="card-header">
+                <strong>CUSTOMER DETAILS</strong>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>CUSTOMER NAME</th>
+                            <td> {{fetchData.name}}</td>
+                            <th>COMPANY NAME</th>
+                            <td> {{fetchData.cname}}</td>
+                        </tr>
+                        <tr>
+                            <th> CONTACT NUMBER</th>
+                            <td> {{fetchData.mobile}}</td>
+                            <th>WHOSE CASE</th>
+                            <td> {{fetchData.whosecase}}</td>
+                        </tr>
+                        <tr>
+                            <th>EXECUTIVE</th>
+                            <td>{{fetchData.executivename}}</td>
+                            <th>AADHAR NO</th>
+                            <td> {{fetchData.aadharno}}</td>
+                        </tr>
+                        <tr>
+                            <th>PAN NO</th>
+                            <td> {{fetchData.panno}}</td>
+                            <th>LOAN STATUS</th>
+                            <td> {{fetchData.displaystatus_orgname}}</td>
+                        </tr>
+                        <tr>
+                            <th>COMPANY KYC</th>
+                            <td> {{fetchData.companykyc_orgname}}</td>
+                            <th>CUSTOMER KYC</th>
+                            <td> {{fetchData.customerkyc_orgname}}</td>
+                        </tr>
+                        <tr>
+                            <th>ITR</th>
+                            <td> {{fetchData.itr}}</td>
+                            <th>BANK STATEMENT</th>
+                            <td> {{fetchData.bankstatement_orgname}}</td>
+                        </tr>
+                        <tr>
+                            <th>GST RETURNS</th>
+                            <td> {{fetchData. gstandreturns_orgname}}</td>
+                            <th>LOAN SANCTION LETTER</th>
+                            <td> {{fetchData.loanstatemen_orgnamet}}</td>
+                        </tr>
+                        <tr>
+                            <th>APPLICATION DETAILS</th>
+                            <td> {{fetchData.applicationDetails_orgname}}</td>
+                            <th>COMMENTS</th>
+                            <td> {{fetchData.comment}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="editcustomer(fetchData.idcustomer)"> EDIT
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-header">
+                <strong>APPLIED BANK DETAILS</strong>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>APPLIED DATE</th>
+                                <th>BANK NAME</th>
+                                <th>BANK PERSON</th>
+                                <th>LOANTYPE</th>
+                                <th>AMOUNT</th>
+                                <th>PRODUCT</th>
+                                <th>STATUS</th>
+                                <th>COMMENTS</th>
+                                <th>EDIT STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let pro of fetchData1;let i=index'>
+                                <td>
+                                    {{i+1}}
+                                </td>
+                                <td>
+                                    {{pro.createddate | date:'dd/MM/yyyy'}}
+                                </td>
+                                <td>
+                                    {{pro.bankname}}
+                                </td>
+                                <td>
+                                    {{pro.vendor}}
+                                </td>
+                                <td>
+                                    {{pro.loantype}}
+                                </td>
+                                <td>
+                                    {{pro.amount}}
+                                </td>
+                                <td>
+                                    {{pro.product}}
+                                </td>
+                                <td>
+                                    {{pro.sstatus}}
+                                </td>
+                                <td>
+                                    {{pro.comment}}
+                                </td>
+                                <td colspan="4" class="text-center"> <button mat-raised-button color="warn" (click)="openDialog(pro)"> EDIT STATUS
+                            </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

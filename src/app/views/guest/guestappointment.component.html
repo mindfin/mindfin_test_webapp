@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header text-center">
+                <b> VISITORS INFORMATION FORM </b>
+            </div>
+            <div class="card-body">
+                <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><b>VISITOR NAME</b><code>(*)</code></label>
+                                <input [(ngModel)]="model.visitorName" type="text" class="form-control" name="visitorName" required #visitorName="ngModel">
+                                <div class="alert" *ngIf="visitorName.errors && (visitorName.dirty || visitorName.touched)">
+                                    <div [hidden]="!visitorName.errors.required">
+                                        Visitor Name is Required...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>EMAIL ID</b></label>
+                                <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="model.emailId" type="emailId" required class="form-control" name="emailId" #emailId="ngModel">
+                                <div class="alert" *ngIf="emailId.errors &&(emailId.dirty || emailId.touched)">
+                                    <div [hidden]="!emailId.errors?.pattern">
+                                        Please Enter Valid Email ID.
+                                    </div>
+                                </div>
+                                <div class="alert" *ngIf="emailId.errors &&(emailId.dirty || emailId.touched)">
+                                    <div [hidden]="!emailId.errors?.required">
+                                        Please Enter Valid Email ID.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b> GENDER</b><code>(*)</code></label><br>
+                                <input type="radio" value="male" name="gender" [(ngModel)]="model.gender" required #gender="ngModel"> MALE
+                                <input type="radio" value="female" name="gender" [(ngModel)]="model.gender" required #gender="ngModel"> FEMALE
+                                <div *ngIf="gender.errors &&(gender.dirty || gender.touched)">
+                                    <div class="alert" [hidden]="!gender.errors?.required">
+                                        Gender is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>MOBILE NUMBER</b><code>(*)</code></label>
+                                <input pattern="[0-9]{10}" minlength="10" maxlength="10" [(ngModel)]="model.mobileNumber" type="text" class="form-control" name="mobileNumber" required #mobileNumber="ngModel">
+                                <div *ngIf="mobileNumber.errors &&(mobileNumber.dirty || mobileNumber.touched)">
+                                    <div class="alert" [hidden]="!mobileNumber.errors?.pattern">
+                                        Invalid Mobile No.
+                                    </div>
+                                </div>
+                                <div *ngIf="mobileNumber.errors &&(mobileNumber.dirty || mobileNumber.touched)">
+                                    <div class="alert" [hidden]="!mobileNumber.errors?.required">
+                                        Mobile No Required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b> ALTERNATE MOBILE</b></label>
+                                <input pattern="[0-9]{10}" minlength="10" maxlength="10" [(ngModel)]="model.alternativeNumber" type="text" class="form-control" name="alternativeNumber" #alternativeNumber="ngModel">
+                                <div *ngIf="alternativeNumber.errors &&(alternativeNumber.dirty || alternativeNumber.touched)">
+                                    <div class="alert" [hidden]="!alternativeNumber.errors?.pattern">
+                                        Invalid Mobile No.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label><b>ORGANIZATION NAME</b><code>(*)</code></label><br>
+                                <input class="form-control" [(ngModel)]="model.organizationName" class="form-control" name="organizationName" required #organizationName="ngModel">
+                                <div class="alert" *ngIf="organizationName.errors && (organizationName.dirty || organizationName.touched)">
+                                    <div [hidden]="!organizationName.errors.required">
+                                        Organization Name is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>ADDRESS</b></label>
+                                <textarea class="form-control" [(ngModel)]="model.address" class="form-control" name="address" required #address="ngModel"></textarea>
+                                <div class="alert" *ngIf="address.errors && (address.dirty || address.touched)">
+                                    <div [hidden]="!address.errors.required">
+                                        Address is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>NO OF VISITORS </b><code>(*)</code></label><br>
+                                <input type="text" class="form-control" name="numberOfVisitors" [(ngModel)]="model.numberOfVisitors" required #numberOfVisitors="ngModel">
+                                <div class="alert" *ngIf="numberOfVisitors.errors && (numberOfVisitors.dirty || numberOfVisitors.touched)">
+                                    <div [hidden]="!numberOfVisitors.errors.required">
+                                        Number OF Visit is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>VISIT REASON</b><code>(*)</code></label><br>
+                                <textarea pattern=".{3,500}" class="form-control" [(ngModel)]="model.visitReason" class="form-control" name="visitReason" required #visitReason="ngModel"></textarea>
+                                <div class="alert" *ngIf="visitReason.errors && (visitReason.dirty || visitReason.touched)">
+                                    <div [hidden]="!visitReason.errors.required">
+                                        Visit Reason is required!
+                                    </div>
+                                </div>
+                                <div class="alert" *ngIf="visitReason.errors && (visitReason.dirty || visitReason.touched)">
+                                    <div [hidden]="!visitReason.errors.pattern">
+                                        Visit Reason Minimum 3, Max 500 characters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>REFERENCE NAME </b><code>( If Any )</code></label><br>
+                                <input type="text" style="padding-right: 95px;" class="form-control" name="referenceName" [(ngModel)]="model.referenceName" #referenceName="ngModel">
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>MEET WHOM</b><code>(*)</code></label><br>
+                                <select class="form-control" name="toMeetWhom" [(ngModel)]="model.toMeetWhom" required #toMeetWhom="ngModel">
+                                    <option *ngFor="let item of fetchData1" value="{{item.idemployee}},{{item.name}}">
+                                        {{item.name}}</option>
+                                </select>
+                                <div class="alert" *ngIf="toMeetWhom.errors && (toMeetWhom.dirty || toMeetWhom.touched)">
+                                    <div [hidden]="!toMeetWhom.errors.required">
+                                        Whom you meet is required!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label><b>APPOINTMENT EXIST'S</b><code>(*)</code></label><br>
+                                <input type="radio" value="Yes" name="existingAppointment" [(ngModel)]="model.existingAppointment" required #existingAppointment="ngModel"> YES
+                                <input type="radio" value="No" name="existingAppointment" [(ngModel)]="model.existingAppointment" required #existingAppointment="ngModel"> NO
+
+                                <div class="alert" *ngIf="existingAppointment.errors && (existingAppointment.dirty || existingAppointment.touched)">
+                                    <div [hidden]="!existingAppointment.errors.required">
+                                        Appointment is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>VISITORS PHOTO</b><code>(*)</code></label><br>
+                                <div class="p-1">
+                                    <video #video class="vid" autoplay></video>
+                                </div>
+                                <div class="pb-2">
+                                    <button class="btn btn-primary" (click)="capture()">Capture Image</button>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label><b>PHOTO PREVIEW</b></label><br>
+                                <div class="p-1">
+                                    <canvas #canvas class="vid"></canvas>
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <label><b>COMMENTS</b></label><br>
+                                <textarea class="form-control" [(ngModel)]="model.comment" class="form-control" name="comment" required #comment="ngModel"></textarea>
+                                <div class="alert" *ngIf="comment.errors && (comment.dirty || comment.touched)">
+                                    <div [hidden]="!comment.errors.required">
+                                        Comment is required!
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+<style>
+    .alert {
+        color: red;
+        padding: 0;
+    }
+    
+    .vid {
+        width: 100%;
+        height: 100%;
+    }
+</style>

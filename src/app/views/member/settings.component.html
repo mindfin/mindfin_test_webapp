@@ -1,0 +1,157 @@
+<div class="row">
+   
+    <div class="col-md-12">
+
+      <div class="card">
+            <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
+        <div class="card-header">
+          <strong>SETTINGS</strong>
+        </div>
+        <div class="card-body">
+            
+             
+             
+             <div class="row">
+              <div class="col-md-6">
+                  <label for="projectkey">Logo</label>
+                  <input type="file" class="form-control" name="image" [(ngModel)]="model.image"
+                   #image="ngModel" (change)="leftselect($event)" />
+                  <!-- <div *ngIf="f.submitted && image.invalid" class="invalid-feedback">
+                      <div *ngIf="image.errors.required">LOGO is required</div>
+                  </div><br> -->
+              </div>
+            <!-- </div>
+                <div class="row"> -->
+                <div class="col-md-6">
+              <label for="project_name">Email Username</label>
+              <input type="text" class="form-control" name="emailuser" [(ngModel)]="model.emailuser"
+               #emailuser="ngModel"  />
+              <!-- <div *ngIf="f.submitted && emailuser.invalid"  class="invalid-feedback">
+                  <div *ngIf="emailuser.errors.required">Email User is required</div>
+              </div><br> -->
+              </div>
+             </div> 
+
+             <div class="row">
+             <div class="col-md-6">
+              <label for="project_name">Email Password</label>
+              <input type="text" class="form-control" name="emailpassword" [(ngModel)]="model.emailpassword"
+               #emailpassword="ngModel"  />
+              <!-- <div *ngIf="f.submitted && emailpassword.invalid"  class="invalid-feedback">
+                  <div *ngIf="emailpassword.errors.required">Email Passwordis required</div>
+              </div><br> -->
+              </div>
+             <!-- </div>  -->
+
+             <!-- <div class="row">
+                <div class="col-md-8">
+                 <label for="project_name">Email Password</label>
+                 <input type="text" class="form-control" name="emailpassword" [(ngModel)]="model.emailpassword"
+                  #emailpassword="ngModel"  required/>
+                 <div *ngIf="f.submitted && emailpassword.invalid"  class="invalid-feedback">
+                     <div *ngIf="emailpassword.errors.required">Email Passwordis required</div>
+                 </div><br>
+                 </div>
+                </div>  -->
+   
+                <!-- <div class="row"> -->
+                    <div class="col-md-6">
+                     <label for="project_name">Host Mail</label>
+                     <input type="text" class="form-control" name="hostmail" [(ngModel)]="model.hostmail"
+                      #hostmail="ngModel"  />
+                     <!-- <div *ngIf="f.submitted && hostmail.invalid"  class="invalid-feedback">
+                         <div *ngIf="hostmail.errors.required">Email Passwordis required</div>
+                     </div><br> -->
+                     </div>
+                    </div> 
+
+                    <div class="row">
+                        <div class="col-md-6">
+                         <label for="project_name">Receipt Subject</label>
+                         <input type="text" class="form-control" name="subject" [(ngModel)]="model.subject"
+                          #subject="ngModel"  />
+                         <!-- <div *ngIf="f.submitted && subject.invalid"  class="invalid-feedback">
+                             <div *ngIf="subject.errors.required">Subject required</div>
+                         </div><br> -->
+                         </div>
+                        <!-- </div> 
+
+               <div class="row"> -->
+                <div class="col-md-6">
+                 <label for="mloginlink">Memberloginlink</label>
+                 <input type="text" class="form-control" name="mloginlink" [(ngModel)]="model.mloginlink"
+                  #mloginlink="ngModel"  />
+                 <!-- <div *ngIf="f.submitted && mloginlink.invalid"  class="invalid-feedback">
+                     <div *ngIf="mloginlink.errors.required">Email Passwordis required</div>
+                 </div><br> -->
+                 </div>
+                </div>  
+                <div class="row">
+                    <div class="col-md-6">
+                     <label for="fromemail1">From Email</label>
+                     <input type="text" class="form-control" name="fromemail1" [(ngModel)]="model.fromemail1"
+                      #fromemail1="ngModel"  />
+                  
+                     </div>
+                
+                        <div class="col-md-6">
+                         <label for="fromemail2">To Email</label>
+                         <input type="text" class="form-control" name="fromemail2" [(ngModel)]="model.fromemail2"
+                          #fromemail2="ngModel"  />
+                      
+                         </div>
+                        </div>  
+
+                        <div class="row">
+                            <div class="col-md-6">
+                             <label for="regards">Regards</label>
+                             <input type="text" class="form-control" name="regards" [(ngModel)]="model.regards"
+                              #regards="ngModel"  />
+                             </div>
+
+                             <div class="col-md-6">
+                                <label for="regards">Booking Subject</label>
+                                <input type="text" class="form-control" name="bsubject" [(ngModel)]="model.bsubject"
+                                 #bsubject="ngModel"  />
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                 <label for="regards">CC</label>
+                                 <input type="text" class="form-control" name="cc" [(ngModel)]="model.cc"
+                                  #cc="ngModel"  />
+                                 </div>
+                                 <div class="col-md-6">
+                                    <label for="regards">BCC</label>
+                                    <input type="text" class="form-control" name="bcc" [(ngModel)]="model.bcc"
+                                     #bcc="ngModel"  />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                     <label for="regards">ADDRESS</label>
+                                     <textarea class="form-control" name="address" [(ngModel)]="model.address"
+                                      #address="ngModel"  ></textarea>
+                                     </div>
+                                    
+                                    </div>
+
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
+        </div>
+    </form>
+      </div>
+    </div><!--/.col-->
+   
+  </div>
+  
+  <style>
+  .alert{
+    color:red;
+  }
+  </style>

@@ -1,0 +1,287 @@
+<div class="row user-left-part">
+    <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+        <img src="assets/images/mindfincover.jpg">
+    </div>
+    <div class="col-md-3 col-sm-12 col-xs-12 user-profil-part">
+        <div class="row ">
+            <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{fetchData.cimage}}" class="rounded-circle zoom">
+
+                <button id="button" *ngIf="fetchData.cimgUploadCount == 0" class="btn btn-success rounded-circle follow" onclick="document.getElementById('file-input').click();"><i class="fa fa-camera"
+                        aria-hidden="true"></i></button>
+                <input id="file-input" type="file" name="name" (change)="onFileSelect($event)" style="display: none;" />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-xs-8 col-sm-8 follow1 pull-left">
+                <h1 class="text-center">{{fetchData.name}}</h1>
+                <h5 class="text-center">{{fetchData.designation}}</h5>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-9 pull-right profile-right-section">
+        <div class="row">
+
+            <div class="col-md-11 mb-4">
+                <!-- Nav tabs -->
+                <tabset>
+                    <tab>
+                        <ng-template tabHeading><i class="icon-list"></i> Profile</ng-template>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label><b>Emp No :</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p>{{fetchData.empno}}</p>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label><b>Email :</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p>{{fetchData.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label><b>Mobile No :</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p>{{fetchData.mobile}}</p>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label><b>Alt Number :</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p>{{fetchData.altmobile}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label><b>DOB :</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p>{{fetchData.dob | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <label><b>Qualification :</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <p>{{fetchData.qualification}}</p>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab>
+                        <ng-template tabHeading><i class="fa fa-cloud-download"></i> Appointment Letter</ng-template>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label><b>Joining Date : </b></label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>{{fetchData.joiningdate | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <label><b>Branch :</b></label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>{{fetchData.branch}}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <label><b>Download :</b></label>
+                            </div>
+                            <div class="col-md-2">
+                                <a *ngIf="fetchData.downloadCount == 0 || fetchData.downloadCount > 0" class="btn btn-success" role="button" href="http://mindfin.oss-ap-south-1.aliyuncs.com/{{model.appointmentLetter}}" (click)="downloadCount(model)" title="Download"><i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </tab>
+                    <!-- <tab>
+                        <ng-template tabHeading><i class="fa fa-money"></i> Payslip</ng-template>
+                        <form class="container">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label><b>Select Month:</b></label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input [(ngModel)]="modelDate" autocomplete="off" class="form-control" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div>
+                                <div class="table-responsive" id="mytable">
+                                    <table style="border-collapse: collapse;border: 1px solid black;width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <td colspan="5" style="vertical-align : middle;text-align:center;"><b>Mind Fin Ser Pvt. Ltd.</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" style="vertical-align : middle;text-align:center;">No. 10, 1st Floor, Krishna Block, 1st Main Road, Seshadripuram, Bangalore- 560020</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" style="vertical-align : middle;text-align:center;"><b>Jan 2020 PaySlip</b></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Name</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Genrated Date</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Designation</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td rowspan="5" style="vertical-align : middle;text-align:center;border-collapse: collapse;border: 1px solid black;">
+                                                    <img id="img" src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" width="80%" />
+                                                </td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>UIN No</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Transcation Type</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Transcation No</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="vertical-align : middle;text-align:center;border-collapse: collapse;border: 1px solid black;"><b>Allowance</b></td>
+
+                                                <td colspan="2" style="vertical-align : middle;text-align:center;border-collapse: collapse;border: 1px solid black;"><b>Deduction</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Basic</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Provident Fund</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>HRA</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Profession Tax</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"><b>Conveyance</b></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                                <td style="border-collapse: collapse;border: 1px solid black;width: 20%;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr style="border-collapse: collapse;border: 1px solid black;">
+                                                <td style="vertical-align : middle;text-align:center;" colspan="3"><b>Incentive Allowance</b></td>
+                                                <td colspan="2" style="vertical-align : middle;text-align:center;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr style="border-collapse: collapse;border: 1px solid black;">
+                                                <td style="vertical-align : middle;text-align:center;" colspan="3"><b>Netpay</b></td>
+                                                <td colspan="2" style="vertical-align : middle;text-align:center;vertical-align : middle;text-align:center;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-collapse: collapse;border: 1px solid black;vertical-align : middle;text-align:center;" colspan="5" style="vertical-align : middle;text-align:center;border-collapse: collapse;border: 1px solid black;"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align : middle;text-align:center;" colspan="5" class="text-center"><b>This is computer generated payslip,no signature is required</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <br>
+                                <button type="button" style="margin:auto;display:block" printSectionId="mytable" ngxPrint class="btn btn-success"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                Print</button>
+                            </div>
+                        </form>
+                    </tab> -->
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f1f1f1;
+    }
+    
+    .border {
+        border-bottom: 1px solid #F1F1F1;
+        margin-bottom: 10px;
+    }
+    
+    .image-section {
+        padding: 0px;
+    }
+    
+    .image-section img {
+        width: 100%;
+        height: 250px;
+        position: relative;
+    }
+    
+    .user-image {
+        position: absolute;
+        margin-top: -30%;
+    }
+    
+    .user-left-part {
+        margin: 0px;
+    }
+    
+    .user-image img {
+        width: 150px;
+        height: 150px;
+        border-style: solid;
+        border-color: aquamarine;
+        border-radius: 50%;
+    }
+    
+    .user-image img .follow {
+        margin-left: 20px;
+    }
+    
+    .user-profil-part {
+        padding-bottom: 5px;
+        background-color: #FAFAFA;
+    }
+    
+    .follow1 {
+        margin-top: 80px;
+        margin-right: 60px;
+        margin-left: 60px;
+        margin-bottom: 0px;
+    }
+    
+    .follow1 h1 {
+        font-size: 25px;
+        margin: 0px;
+    }
+    
+    .follow1 h5 {
+        color: #0062cc;
+    }
+    
+    .profile-right-section {
+        padding: 20px 0px 10px 15px;
+        background-color: #FFFFFF;
+    }
+    
+    .zoom {
+        transition: transform .5s;
+        /* width: 200px; */
+    }
+    
+    .zoom:hover {
+        transform: scale(2);
+        z-index: 1;
+    }
+</style>

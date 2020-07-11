@@ -1,0 +1,181 @@
+<div class="animated fadeIn">
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card">
+
+             <div class="card-header">
+            <strong>MY PROFILE</strong>
+             </div><br>
+            
+             <form>
+                    <div class="card-body">
+            <div class="row">
+            <div class="col-sm-12">
+                <b>EMAIL   :</b>{{model.email}}
+            </div>
+            </div>    
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <b>PROJECT NAME  :</b>{{model.project_name}}
+                    </div>
+                    </div> 
+                </div>
+
+             <div class="card-body">
+                <div class="row">
+                       
+                   <div class="col-sm-12">
+                        <div class="card-header">
+                      <b >PERSONAL DETAILS</b>
+                   </div>
+                   </div>
+                </div>
+                <br>
+                <div class="row">
+                        <div class="col-sm-4">
+                            <b>MEMBER NAME   :</b>{{model.name}}
+                        </div>
+
+                        <div class="col-sm-4">
+                                <b>MOBILE   :</b>{{model.mobile}}
+                            </div>
+
+                            <div class="col-sm-4">
+                                    <b>DATE OF BIRTH  :</b>{{model.dob | date:'dd/MM/yyyy'}}
+                                </div>
+                        </div> <br>
+
+                        <div class="row">
+                                <div class="col-sm-4">
+                                    <b>LANDLINE   :</b>{{model.landline}}
+                                </div>
+    
+                                <div class="col-sm-4">
+                                        <b>ALTERNATE MOBILE NUMBER  :</b>{{model.altmob}}
+                                    </div>
+    
+                                    <div class="col-sm-4">
+                                            <b>FATHER/HUSBAND  :</b>{{model.fathus}}
+                                        </div>
+                                </div> <br>
+    
+                                <div class="row">
+                                        <div class="col-sm-4">
+                                            <b>RESIDENTIAL ADDRESS   :</b>{{model.address}}
+                                        </div>
+            
+                                        <div class="col-sm-4">
+                                                <b>PAN NUMBER   :</b>{{model.pan}}
+                                            </div>
+            
+                                            <div class="col-sm-4">
+                                                    <b> ACCOUNTNUMBER   :</b>{{model.accno}}
+                                                </div>
+                                        </div> <br>
+
+                                        <div class="row">
+                                                <div class="col-sm-4">
+                                                    <b>IFSC CODE   :</b>{{model.ifsc}}
+                                                </div>
+                    
+                                                <div class="col-sm-4">
+                                                        <b>BRANCH  :</b>{{model.branch}}
+                                                    </div>
+                    
+                                                    <!-- <div class="col-sm-4">
+                                                            <b></b>dklsjkljfklj
+                                                        </div> -->
+                                                </div> <br>
+                    
+                                                <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <b>COMPANY NAME   :</b>{{model.cname}}
+                                                        </div>
+                            
+                                                        <div class="col-sm-4">
+                                                                <b>DESIGNATION   :</b>{{model.designation}}
+                                                            </div>
+                            
+                                                            <div class="col-sm-4">
+                                                                    <b>COMPANY ADDRESS  :</b>{{model.caddress}}
+                                                                </div>
+                                                        </div> <br>
+
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card-header">
+    <b >NOMINEES PARTICULAR</b>
+    </div>
+    </div>
+    </div><br>
+
+
+    <div class="row">
+            <div class="col-sm-3">
+                <b>NAME   :</b>{{model.nname}}
+            </div>
+
+            <div class="col-sm-3">
+                    <b>AGE  :</b>{{model.age}}
+                </div>
+
+                <div class="col-sm-3">
+                        <b>RELATION  :</b>{{model.relation}}
+                    </div>
+
+                    <div class="col-sm-3">
+                            <b>ADDRESS  :</b>{{model.raddress}}
+                        </div>
+            </div> <br>
+
+
+                   <div class="row">
+                    <div class="col-sm-12">
+                    <div class="card-header">
+                    <b >DETAILS OF FAMILY MEMBERS</b>
+                    </div>
+                    </div>
+                    </div><br>
+                    <div class="row">
+                            <div class="col-sm-4">
+                                <b>NAME   :</b>{{model.membername1}}
+                            </div>
+
+                            <div class="col-sm-4">
+                                    <b>AGE  :</b>{{model.memberage1}}
+                                </div>
+
+                                <div class="col-sm-4">
+                                        <b>RELATIONSHIP  :</b>{{model.memberrelation1}}
+                                    </div>
+                            </div> <br>
+
+                            <div class="row">
+                                    <div class="col-sm-4">
+                                        <b>NAME   :</b>{{model.membername2}}
+                                    </div>
+        
+                                    <div class="col-sm-4">
+                                            <b>AGE   :</b>{{model.memberage2}}
+                                        </div>
+        
+                                        <div class="col-sm-4">
+                                                <b>RELATIONSHIP  :</b>{{model.memberrelation2}}
+                                            </div>
+                                    </div> <br>
+
+
+             </div>
+             </form>
+
+
+
+
+
+          </div>
+       </div>
+    </div>
+    <!--/.col-->
+ </div>
+ <!--/.row-->

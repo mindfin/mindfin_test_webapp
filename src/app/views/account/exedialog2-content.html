@@ -1,0 +1,73 @@
+<h3 mat-dialog-title>TRANSCATION DETAILS</h3>
+<div mat-dialog-content class="mat-typography">
+        <div class="card-body">
+                        <div class="table-responsive">
+                       
+                                        <table class="table">
+                                           <thead>
+                                              <tr>
+                                                  <!-- <th>CUSTOMER ID</th> -->
+                                                 <th>CASENAME</th>
+                                                 <th>BANK</th> 
+                                                 <th>AMOUNT</th>
+                                                 <th>DATE</th>
+                                                 <!-- <th>ADD PAYOUTS</th>
+                                                 <th>SAVE</th> -->
+                                                 <!-- <th>EMAIL</th>
+                                                 <th>LIST</th> -->
+                                                 <!-- <th>TOPUP SUCCESS</th> -->
+                     
+                                              </tr>
+                                           </thead>
+                                           <tbody> 
+                                            
+                                              <tr *ngFor='let pro of dd '>
+                                                                                 
+                                                     <td>
+                                                     {{pro.casename}}
+                                                     </td>
+                                                     <td>
+                                                     {{pro.bankname}}
+                                                     </td>
+                                                     <td>
+                                                      {{pro.aamount}}
+                                                     </td>
+                                                     <td>
+                                                         {{pro.createddate}}
+                                                     </td>
+                                                     <!-- <td>
+                                                                <input  class="form-control" name="payout"
+                                                                [(ngModel)]="pro.payout" />
+                                                               
+                                                                       
+                                                        </td> -->
+                                                <!-- <td>
+                                                <button   class="btn btn-primary"  
+                                                              
+                                         (click)="savepayout(pro)">
+                                                SAVE 
+                                                 </button>   
+                                                     </td> -->
+                                               
+                                                  
+                                                   </tr>
+                                             
+                                           </tbody>
+                                        </table>
+               
+</div>
+
+  
+  
+    
+
+<style>
+.table {
+flex: 5 1 auto;
+padding: 6.25rem !important;
+font-size: medium !important;
+}
+table,th,td{
+border:1px solid black;
+}
+</style>

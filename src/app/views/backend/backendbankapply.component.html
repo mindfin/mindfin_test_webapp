@@ -1,0 +1,163 @@
+<div class="row">
+   <div class="col-lg-12">
+
+
+
+      <div class="card">
+         <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm();refresh();">
+
+            <div class="card-header"><b>APPLY BANKS</b> </div><br />
+
+            <form (ngSubmit)="addvalues();clearFilters();" #f="ngForm" novalidate>
+               <h4 style="float:right;"></h4>
+               <div class="table-responsive">
+
+                  <table class="table table-striped" id="dynamic_field">
+                     <tr>
+                        <th>
+                           <label><b>BANK TYPE</b></label><br>
+                           <select style="padding-right: 95px;" class="form-control" name="idbank"
+                              [(ngModel)]="model.idbank" #idbank="ngModel">
+                              <option value="" selected>Select your option</option>
+                              <option *ngFor="let item of fetchData2"
+                                 value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
+                                 {{item.bankname}}
+                              </option>
+                           </select>
+                        </th>
+                        <th>
+                           <label><b>HANDLE BY</b></label><br>
+                           <select style="padding-right: 95px;" class="form-control" name="executiveid"
+                              [(ngModel)]="model.executiveid" #executiveid="ngModel">
+                              <option value="" selected>Select your option</option>
+                              <option *ngFor="let item of fetchData3" value="{{item.idemployee}},{{item.name}}">
+                                 {{item.name}}
+                              </option>
+                           </select>
+                        </th>
+                        <th>
+                           <label><b>LOAN TYPE</b></label><br>
+                           <select style="padding-right: 95px;" class="form-control" name="previousapplytype"
+                              [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel">
+                              <option value="" selected>Select your option</option>
+                              <option *ngFor="let item of fetchData4" value={{item.idloantype}},{{item.loantype}}>
+                                 {{item.loantype}}
+                              </option>
+                           </select>
+                        </th>
+                        <th>
+                           <label><b>AMOUNT</b></label><br>
+                           <input type="number" class="form-control" #amount="ngModel" placeholder="ENTER AMOUNT"
+                              name="amount" [(ngModel)]="model.amount"></th>
+
+                        <th>
+                        <th>
+                           <label><b>STATUS</b></label><br>
+                           <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
+                              <option value="" selected>Select option</option>
+                              <option value="ONLINE APPLICATION">ONLINE APPLICATION</option>
+                              <option value="DISPATCHED">DISPATCHED</option>
+                              <option value="LOGIN">LOGIN</option>
+                              <option value="LOGIN HOLD">LOGIN HOLD</option>
+                              <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
+                              <option value="PD">PD</option>
+                              <option value="PD PENDING">PD PENDING</option>
+                              <option value="POST PD PENDING">POST PD PENDING</option>
+                              <option value="APPROVED">APPROVED</option>
+                              <option value="REJECT">REJECT</option>
+                              <option value="DISBURSED">DISBURSED</option>
+                           </select>
+                        </th>
+
+
+                        <th>
+                           <label><b>PRODUCT</b></label><br>
+                           <select class="form-control" name="product" [(ngModel)]="model.product" #product="ngModel">
+                              <option value="" selected>Select option</option>
+                              <option value="NORMAL">NORMAL</option>
+                              <option value="BANKING">BANKING</option>
+                              <option value="ITR PROGRAM">ITR PROGRAM</option>
+                              <option value="SWIPPING">SWIPPING</option>
+                              <option value="GST RETURN">GST RETURN</option>
+
+                           </select>
+                        </th>
+                        <th>
+                           <label><b>ADD</b></label><br>
+                           <button type="submit" class="form-control">
+                              <i class="fa fa-plus"></i> </button>
+
+                        </th>
+                     </tr>
+                  </table>
+               </div>
+            </form>
+
+            <div class="card-body">
+               <div class="table-responsive">
+                  <table class="table">
+                     <thead class="text-primary">
+                        <th>SL.NO</th>
+                        <th>
+                           BANK NAME
+                        </th>
+                        <th>
+                           VENDOR
+                        </th>
+                        <th>
+                           HANDLE BY
+                        </th>
+                        <th>
+                           LOAN TYPE
+                        </th>
+                        <th>
+                           APPLIED AMOUNT
+                        </th>
+                        <th>
+                           STATUS
+                        </th>
+                        <th>
+                           PRODUCT
+                        </th>
+                        <th>
+                           REMOVE
+                        </th>
+                     </thead>
+                     <tr *ngFor='let pro of tempval;let i=index'>
+                        <td>{{i+1}}</td>
+                        <td>
+                           {{pro.bankname}}
+                        </td>
+                        <td>
+                           {{pro.vendor}}
+                        </td>
+                        <td>
+                           {{pro.executivename}}
+                        </td>
+                        <td>
+                           {{pro.previousapplytype}}
+                        </td>
+                        <td>
+                           {{pro.amount}}
+                        </td>
+                        <td>
+                           {{pro.status}}
+                        </td>
+                        <td>
+                           {{pro.product}}
+                        </td>
+                        <td>
+                           <button (click)="removevalue(pro,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <!-- </div></div></div> -->
+            <div class="card-footer">
+               <button class="btn btn-success" [disabled]="!form.valid">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

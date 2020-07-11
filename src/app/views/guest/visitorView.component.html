@@ -1,0 +1,75 @@
+<mat-spinner *ngIf="isLoading">
+</mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> NEW VISITOR FORM
+                    <button style="float:right" (click)="exportAsXLSX()">
+                        <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+                      </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                        </mat-form-field>
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+                            <ng-container matColumnDef="date">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">APPLIED DATE</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.createdDate | date:'dd/MM/yyyy'}}<br/>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">VISITOR NAME</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.visitorName}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="photo">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">Document Preview</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    <img src="{{element.visitorPhoto}}" height="80" width="80" />
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="meetwhom">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">TO WHOM MEET</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.toMeetWhom}} </td>
+
+                            </ng-container>
+                            <ng-container matColumnDef="visitReason">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">VISIT REASON</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.visitReason}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="noofvisitor">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">NO OF VISITOR</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element. numberOfVisitors}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="view">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">VIEW </th>
+                                <td *matCellDef="let element" style="text-align:center;"><button mat-raised-button color="primary" (click)="openDialog(element)">view</button></td>
+                            </ng-container>
+                            <ng-container matColumnDef="response">
+                                <th *matHeaderCellDef mat-sort-header style="text-align:center;">RESPONSE</th>
+                                <td *matCellDef="let element" style="text-align:center;"><button mat-raised-button color="warn" [disabled]="element.status==='1'" (click)="openResponseDialog(element)">RESPONSE</button></td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

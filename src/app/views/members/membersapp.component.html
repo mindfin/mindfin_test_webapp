@@ -1,0 +1,260 @@
+<style>
+    .btn_green {
+        background-color: rgb(9, 87, 9) !important;
+        padding: 8px 10px;
+        color: #ffff;
+        border-radius: 5px;
+    }
+    
+    .btn_red {
+        background-color: rgb(201, 14, 14) !important;
+        padding: 8px 10px;
+        color: #ffff;
+        border-radius: 5px;
+    }
+    
+    body {
+        color: #000000;
+        font-family: Sans-Serif;
+        padding: 30px;
+        background-color: #f6f6f6;
+    }
+    
+    .abc {
+        margin: 0rem !important;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000000;
+    }
+    
+    a:hover {
+        color: #222222
+    }
+    /* Dropdown */
+    
+    .dropdown {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .dd-button {
+        display: inline-block;
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: 10px 30px 10px 20px;
+        background-color: #ffffff;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    
+    .dd-button:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid black;
+    }
+    
+    .dd-button:hover {
+        background-color: #eeeeee;
+    }
+    
+    .dd-input {
+        display: none;
+    }
+    
+    .dd-menu {
+        position: absolute;
+        top: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0;
+        margin: 2px 0 0 0;
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        list-style-type: none;
+    }
+    
+    .dd-input+.dd-menu {
+        display: none;
+    }
+    
+    .dd-input:checked+.dd-menu {
+        display: block;
+    }
+    
+    .dd-menu li {
+        padding: 10px 20px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    
+    .dd-menu li:hover {
+        background-color: #f6f6f6;
+    }
+    
+    .dd-menu li a {
+        display: block;
+        margin: -10px -20px;
+        padding: 10px 20px;
+    }
+    
+    .dd-menu li.divider {
+        padding: 0;
+        border-bottom: 1px solid #cccccc;
+    }
+</style>
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> CUSTOMERS LIST
+                    <button style="float:right" (click)="exportAsXLSX()">
+            <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+          </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-3">
+                                <button mat-raised-button color="primary" matBadgeColor="red" (click)="coldCustomers()">
+                  LOS DATA
+                </button>
+                            </div>
+
+                            <div class="col-md-3">
+                                <button mat-raised-button color="accent" matBadgeColor="red" (click)="hotCustomers()">
+                  WEBSITE DATA
+                </button>
+                            </div>
+                            <!-- <div class="col-md-3">
+                                <button mat-raised-button color="warn" matBadgeColor="red">
+                  ANDROID DATA
+                </button>
+                            </div> -->
+                        </div>
+
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+                            <ng-container matColumnDef="date">
+                                <th *matHeaderCellDef mat-sort-header>APPLIED DATE</th>
+                                <td *matCellDef="let element" style="text-align:center;">{{element.applieddate | date:'dd/MM/yyyy'}}
+                                    <br />
+
+                                </td>
+                            </ng-container>
+                            <!-- <div *ngIf="element.opt >= 2"> -->
+                            <ng-container matColumnDef="aging">
+                                <th *matHeaderCellDef mat-sort-header>CREATED ON</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    <button *ngIf="element.opt >= 3" class="btn_red">
+                    {{element.opt}} Days
+                  </button>
+                                    <button *ngIf="element.opt == 0" class="btn_green">
+                    {{element.opt}} Days
+                  </button>
+                                    <button *ngIf="element.opt == 1 " class="btn_green">
+                    {{element.opt}} Days
+                  </button>
+                                    <button *ngIf="element.opt == 2 " class="btn_green">
+                    {{element.opt}} Days
+                  </button>
+                                </td>
+                            </ng-container>
+                            <!-- </div>  -->
+
+                            <ng-container matColumnDef="name">
+                                <th *matHeaderCellDef mat-sort-header>CUSTOMER NAME</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.name}}<br />
+
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="cname">
+                                <th *matHeaderCellDef mat-sort-header>COMPANY NAME</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.cname}}<br />
+
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="add">
+                                <th *matHeaderCellDef mat-sort-header>ADD BANK</th>
+                                <td *matCellDef="let element">
+                                    <button mat-raised-button color="primary" (click)="addbank(element.idcustomer)">
+                    ADD BANK
+                  </button>
+
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="Assign">
+                                <th *matHeaderCellDef mat-sort-header>VIEW BANK</th>
+                                <td *matCellDef="let element">
+                                    <button mat-raised-button color="primary" (click)="viewbank(element.idcustomer)">
+                    VIEW BANK
+                  </button>
+
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="addbank">
+                                <th *matHeaderCellDef mat-sort-header>EDIT</th>
+                                <td *matCellDef="let element">
+                                    <button mat-raised-button color="warn" (click)="editcustomer(element.idcustomer)">
+                    EDIT
+                  </button>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="Approval">
+                                <th *matHeaderCellDef mat-sort-header>VIEW</th>
+                                <td *matCellDef="let element">
+
+                                    <button mat-raised-button color="accent" (click)="openDialog(element)">
+                    VIEW
+                  </button>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="topup">
+                                <th *matHeaderCellDef mat-sort-header>NOTIFY</th>
+                                <td *matCellDef="let element">
+                                    <button mat-raised-button color="warn" (click)="topupcustomer(element)">TOPUP
+                        {{element.q}}                
+                   </button>
+                                </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

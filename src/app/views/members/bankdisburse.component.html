@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>ADD RE-PAYMENT PERIOD TO BANK </strong>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>BANK NAME</th>
+                                <th> LOAN TYPE</th>
+                                <th>AMOUNT</th>
+                                <th>STATUS</th>
+                                <th>DISBURSED AMOUNT</th>
+                                <th>PRODUCT</th>
+                                <th>ROI</th>
+                                <th>PF</th>
+                                <th>TENURE</th>
+                                <th>INSURANCE</th>
+                                <th>ADD</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor='let pro of fetchData'>
+
+                                <td>
+                                    {{pro.bankname}}
+                                </td>
+                                <td>
+                                    {{pro.loantype}}
+                                </td>
+                                <td>
+                                    {{pro.amount}}
+                                </td>
+                                <td>
+                                    {{pro.status}}
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="pro.disbusamount" name="disbusamount">
+                                </td>
+                                <td>
+                                    <!-- <label><b>PRODUCT</b></label><br> -->
+                                    <select class="form-control" name="product" [(ngModel)]="pro.product" #product="ngModel">
+                              <option value="" selected>Select option</option>
+                              <option value="NORMAL">NORMAL</option>
+                              <option value="BANKING">BANKING</option>
+                              <option value="ITR PROGRAM">ITR PROGRAM</option>
+                              <option value="SWIPPING">SWIPPING</option>
+                              <option value="GST RETURN">GST RETURN</option>
+
+                           </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="pro.roi" name="roi">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="pro.pf" name="pf">
+                                </td>
+
+                                <td>
+
+                                    <select class="form-control" name="idtopup" [(ngModel)]="pro.idtopup" (click)="getperiod(pro.idtopup)">
+                              <option value="" selected>Select your option</option>
+                              <option *ngFor="let item of fetchData2" value="{{item.idtopup}}">
+                                 {{item.period}}
+                              </option>
+                           </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="pro.insurance" name="insurance">
+                                </td>
+                                <td>
+                                    <button type="text" class="btn btn-success" (click)="onchange(pro);">APPROVE</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!-- </form> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

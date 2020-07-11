@@ -1,0 +1,186 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form (ngSubmit)="checkcase(model);" #f="ngForm" novalidate>
+                <div class="card-header">
+                    <strong>CHECK CASE AND BANK</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input class="form-control" name="checkno" [(ngModel)]="model.checkno" required #checkno="ngModel" placeholder="Mobile or Aadhaar or Pan Number or Company Name">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary ">Check</button>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </form>
+            <div class="card-header">
+                <strong>CUSTOMER DETAILS</strong>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table" *ngFor='let pro of fetchData'>
+                    <tbody>
+                        <tr>
+                            <th>CUSTOMER NAME</th>
+                            <td> {{pro.name}}</td>
+                            <th>COMPANY NAME</th>
+                            <td> {{pro.cname}}</td>
+                        </tr>
+                        <tr>
+                            <th> CONTACT NUMBER</th>
+                            <td> {{pro.mobile}}</td>
+                            <th>WHOSE CASE</th>
+                            <td> {{pro.whosecase}}</td>
+                        </tr>
+                        <tr>
+                            <th>EXECUTIVE</th>
+                            <td>{{pro.executivename}}</td>
+                            <th>AADHAR NO</th>
+                            <td> {{pro.aadharno}}</td>
+                        </tr>
+                        <tr>
+                            <th>PAN NO</th>
+                            <td> {{pro.panno}}</td>
+                            <th>LOAN STATUS</th>
+                            <td> {{pro.displaystatus}}</td>
+                        </tr>
+                        <tr>
+                            <th>COMPANY KYC</th>
+                            <td> {{pro.companykyc_orgname}}</td>
+                            <th>CUSTOMER KYC</th>
+                            <td> {{pro.customerkyc_orgname}}</td>
+                        </tr>
+                        <tr>
+                            <th>ITR</th>
+                            <td> {{pro.itr_orgname}}</td>
+                            <th>BANK STATEMENT</th>
+                            <td> {{pro.bankstatement_orgname}}</td>
+                        </tr>
+                        <tr>
+                            <th>GST RETURNS</th>
+                            <td> {{pro. gstandreturns_orgname}}</td>
+                            <th>LOAN SANCTION LETTER</th>
+                            <td> {{pro.loanstatement_orgname}}</td>
+                        </tr>
+                        <tr>
+                            <th>COMMENTS</th>
+                            <td> {{pro.comment}}</td>
+                            <th> View Bank</th>
+                            <th><button (click)="viewBank(pro.idcustomer)" class="btn btn-primary ">Check Bank</button></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="card-body">
+                <table class="table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Company Name</th>
+                            <th>Mobile No</th>
+                            <th>Whose Case</th>
+                            <th>Executive </th>
+                            <th>Aadhaar No</th>
+                            <th>Pan No</th>
+                            <th>Loan Status</th>
+                            <th>Company KYC</th>
+                            <th>Customer KYC</th>
+                            <th>ITR</th>
+                            <th>Bank Statement</th>
+                            <th>Gst Returns</th>
+                            <th>Loan Sanction Letter</th>
+                            <th>Comments</th>
+                            <th>View Bank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData'>
+                            <td> {{pro.name}}</td>
+                            <td> {{pro.cname}}</td>
+                            <td> {{pro.mobile}}</td>
+                            <td> {{pro.whosecase}}</td>
+                            <td>{{pro.executivename}}</td>
+                            <td> {{pro.aadharno}}</td>
+                            <td> {{pro.panno}}</td>
+                            <td> {{pro.displaystatus}}</td>
+                            <td> {{pro.companykyc_orgname}}</td>
+                            <td> {{pro.customerkyc_orgname}}</td>
+                            <td> {{pro.itr_orgname}}</td>
+                            <td> {{pro.bankstatement_orgname}}</td>
+                            <td> {{pro. gstandreturns_orgname}}</td>
+                            <td> {{pro.loanstatement_orgname}}</td>
+                            <td> {{pro.comment}}</td>
+                            <td><button (click)="viewBank(pro.idcustomer)" class="btn btn-primary ">Check Bank</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+
+            <div class="card-header">
+                <strong>APPLIED BANK DETAILS</strong>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>APPLIED DATE</th>
+                            <th>BANK NAME</th>
+                            <th>BANK PERSON</th>
+                            <th>LOANTYPE</th>
+                            <th>AMOUNT</th>
+                            <th>PRODUCT</th>
+                            <th>STATUS</th>
+                            <th>COMMENTS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData1;let i=index'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{pro.createddate | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td>
+                                {{pro.bankname}}
+                            </td>
+                            <td>
+                                {{pro.vendor}}
+                            </td>
+                            <td>
+                                {{pro.loantype}}
+                            </td>
+                            <td>
+                                {{pro.amount}}
+                            </td>
+                            <td>
+                                {{pro.product}}
+                            </td>
+                            <td>
+                                {{pro.sstatus}}
+                            </td>
+                            <td>
+                                {{pro.comment}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

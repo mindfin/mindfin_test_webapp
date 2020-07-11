@@ -1,0 +1,36 @@
+
+   <div class="row">
+    <div class="col-md-6">
+       <div class="card">
+
+          <form (ngSubmit)="f.form.valid && onSubmit();" #f="ngForm" novalidate>
+          <div class="card-header">
+             <strong>TRACK STATUS</strong>
+          </div>
+
+          <div class="card-body">
+
+             <div class="row">
+                <div class="col-md-8">
+                   <label for="bankname">ENTER CUSTOMER'S REGISTER ID</label>
+                   <input type="text" class="form-control" name="bankname" [(ngModel)]="model.bankname"
+                   #bankname="ngModel"    />
+                  
+                 
+                </div>
+             </div>
+
+             <div class="card-footer">
+                <button type="submit" class="btn btn-success " [disabled]="!f.form.valid "><i class="fa fa-dot-circle-o"></i> Save</button>
+             </div>
+
+            </div>
+
+             </form>
+          </div>
+        </div>
+        
+       </div>
+       <!--/.col-->
+    <!-- </div> -->
+    <!--/.row-->

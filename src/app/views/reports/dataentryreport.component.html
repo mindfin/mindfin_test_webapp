@@ -1,0 +1,156 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i>DATAENTRY DAILY ROUTINE LIST
+                    <button style="float:right" (click)="exportAsXLSX()">
+            <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+          </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="card-body">
+
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <mat-form-field>
+                                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input class="form-group" [bsConfig]="{ isAnimated: true }" [(ngModel)]="model.startdate" name="startdate" type="text" placeholder="From (MM/DD/YYYY) - To(MM/DD/YYYY)" class="form-control" bsDaterangepicker>
+                                    </div>
+                                    <!-- <div class="col-lg-3">
+                                        <input class="form-group" [(ngModel)]="model.enddate" name="enddate" type="text" placeholder="To (MM/DD/YYYY)" class="form-control" bsDatepicker>
+                                    </div> -->
+                                    <div class="col-lg-3">
+                                        <button class="btn btn-primary" (click)="getreport(model)">Get Report</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+
+
+                            <ng-container matColumnDef="date">
+                                <th *matHeaderCellDef mat-sort-header>CREATED DATE</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    {{element.applieddate | date:'dd/MM/yyyy'}}<br />
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="edate">
+                                <th *matHeaderCellDef mat-sort-header>EDITED DATE</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    {{element.editdate | date:'dd/MM/yyyy'}}<br />
+
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="cname">
+                                <th *matHeaderCellDef mat-sort-header>COMPANY NAME</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.cname}}<br />
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="name">
+                                <th *matHeaderCellDef mat-sort-header>CUSTOMER NAME</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.custname}}<br />
+
+                                </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="mobile">
+                                <th *matHeaderCellDef mat-sort-header>MOBILE NUMBER</th>
+                                <td *matCellDef="let element"> {{element.mobile}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="email">
+                                <th *matHeaderCellDef mat-sort-header>EMAIL</th>
+                                <td *matCellDef="let element"> {{element.email}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="caddress">
+                                <th *matHeaderCellDef mat-sort-header>COMPANY ADDRESS</th>
+                                <td *matCellDef="let element"> {{element.caddress}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="executive">
+                                <th *matHeaderCellDef mat-sort-header>EXECUTIVE NAME</th>
+                                <td *matCellDef="let element"> {{element.aexecutivename}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="subvendor">
+                                <th *matHeaderCellDef mat-sort-header>SUBVENDOR NAME</th>
+                                <td *matCellDef="let element"> {{element.subvendor}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="bank">
+                                <th *matHeaderCellDef mat-sort-header>BANK NAME</th>
+                                <td *matCellDef="let element"> {{element.bankname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="bankvendor">
+                                <th *matHeaderCellDef mat-sort-header>BANK VENDOR</th>
+                                <td *matCellDef="let element"> {{element.bankvendor}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="displaystatus">
+                                <th *matHeaderCellDef mat-sort-header>APPLIED AMOUNT</th>
+                                <td *matCellDef="let element"> {{element.bamount}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                                <th *matHeaderCellDef mat-sort-header>BANK STATUS</th>
+                                <td *matCellDef="let element"> {{element.bstatus}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="disbuersdate">
+                                <th *matHeaderCellDef mat-sort-header>STATUS DATE</th>
+                                <td *matCellDef="let element"> {{element.screateddate | date:'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="amount">
+                                <th *matHeaderCellDef mat-sort-header>DISBUERS AMOUNT</th>
+                                <td *matCellDef="let element"> {{element.disbusamount}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="roi">
+                                <th *matHeaderCellDef mat-sort-header>RATE OF INTREST</th>
+                                <td *matCellDef="let element"> {{element.roi}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="pf">
+                                <th *matHeaderCellDef mat-sort-header>PROCESSING FEE</th>
+                                <td *matCellDef="let element"> {{element.pf}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="insurance">
+                                <th *matHeaderCellDef mat-sort-header>INSURANCE</th>
+                                <td *matCellDef="let element"> {{element.insurance}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="rejectreason">
+                                <th *matHeaderCellDef mat-sort-header>BANK REJECT REASON</th>
+                                <td *matCellDef="let element"> {{element.brejectreason}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="editby">
+                                <th *matHeaderCellDef mat-sort-header>DATA ENTERED BY</th>
+                                <td *matCellDef="let element"> {{element.editorname}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

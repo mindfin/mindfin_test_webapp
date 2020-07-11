@@ -1,0 +1,91 @@
+<h1 mat-dialog-title>EMPLOYEE'S DETAILS</h1>
+<div mat-dialog-content class="mat-typography">
+
+
+    <table class="table">
+        <!-- <thead>
+        </thead> -->
+        <tbody>
+
+
+            <tr>
+                <th>EMPLOYEE NAME</th>
+                <td> {{data.element.name}}</td>
+
+                <th> EMPLOYEE NUMBER</th>
+                <td> {{data.element.mobile}}</td>
+            </tr>
+
+            <tr>
+                <th>EMPLOYEE EMAIL</th>
+                <td> {{data.element.email}}</td>
+
+                <th>DOB</th>
+                <td> {{data.element.dob| date:'dd/MM/yyyy'}}</td>
+            </tr>
+
+
+            <tr>
+                <th>ADDRESS</th>
+                <td> {{data.element.address}}</td>
+
+                <th> ALTERNATE NUMBER</th>
+                <td> {{data.element.altmobile}}</td>
+            </tr>
+
+
+
+            <tr>
+                <th>QUALIFICATION</th>
+                <td> {{data.element.qualification}}</td>
+
+                <th>USER TYPE</th>
+                <td> {{data.element.user}}</td>
+            </tr>
+
+
+            <tr>
+                <th>ACCOUNT NO</th>
+                <td> {{data.element.accno}}</td>
+                <th> CUSTOMER IMAGE</th>
+                <td> <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{data.element.cimage}}" height="50" width="50" />
+                </td>
+
+            </tr>
+            <tr>
+
+                <th>PAN IMAGE</th>
+                <td> <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{data.element.pimage}}" height="50" width="50" />
+                </td>
+                <th>AADHAR IMAGE</th>
+                <td> <img src="http://mindfin.oss-ap-south-1.aliyuncs.com/{{data.element.aimage}}" height="50" width="50" /></td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+<style>
+    /* element.style {
+text-align: -webkit-center;
+} */
+    
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

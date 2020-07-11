@@ -1,0 +1,113 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i>BACKEND OPERATOR REPORT
+                    <button style="float:right" (click)="exportAsXLSX()">
+            <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+          </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <mat-form-field>
+                                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input class="form-group" [(ngModel)]="model.startdate" name="startdate" type="text" placeholder="From (MM/DD/YYYY) - To(MM/DD/YYYY)" class="form-control" bsDaterangepicker [bsConfig]="{ isAnimated: true }">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button class="btn btn-primary" (click)="getreport(model)">Get Report</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+                            <ng-container matColumnDef="date">
+                                <th *matHeaderCellDef mat-sort-header>CREATED DATE</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    {{element.applieddate | date:'dd/MM/yyyy'}}<br />
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="cname">
+                                <th *matHeaderCellDef mat-sort-header>COMPANY NAME</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.cname}}<br />
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th *matHeaderCellDef mat-sort-header>CUSTOMER NAME</th>
+                                <td *matCellDef="let element"> {{element.name}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="whosecase">
+                                <th *matHeaderCellDef mat-sort-header>WHOSE CASE</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.whosecase}}<br />
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="executive">
+                                <th *matHeaderCellDef mat-sort-header>EXECUTIVE NAME</th>
+                                <td *matCellDef="let element"> {{element.executivename}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="bank">
+                                <th *matHeaderCellDef mat-sort-header>COMPANY KYC</th>
+                                <td *matCellDef="let element"> {{element.companykyc_orgname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="amount">
+                                <th *matHeaderCellDef mat-sort-header>CUSTOMER KYC</th>
+                                <td *matCellDef="let element"> {{element.customerkyc_orgname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="product">
+                                <th *matHeaderCellDef mat-sort-header>BANK STATEMENT</th>
+                                <td *matCellDef="let element"> {{element.bankstatement_orgname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="gst">
+                                <th *matHeaderCellDef mat-sort-header>GST RETURN</th>
+                                <td *matCellDef="let element"> {{element.gstandreturns_orgname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="itr">
+                                <th *matHeaderCellDef mat-sort-header>ITR</th>
+                                <td *matCellDef="let element"> {{element.itr_orgname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="sanction">
+                                <th *matHeaderCellDef mat-sort-header>SANCTION LETTER</th>
+                                <td *matCellDef="let element"> {{element.loanstatement_orgname}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                                <th *matHeaderCellDef mat-sort-header>STATUS</th>
+                                <td *matCellDef="let element"> {{element.status}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="update">
+                                <th *matHeaderCellDef mat-sort-header>COMMENTS</th>
+                                <td *matCellDef="let element"> {{element.comment}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="createdby">
+                                <th *matHeaderCellDef mat-sort-header>CREATED BY</th>
+                                <td *matCellDef="let element"> {{element.createdbyname}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

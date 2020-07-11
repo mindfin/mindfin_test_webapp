@@ -1,0 +1,68 @@
+<mat-spinner *ngIf="isLoading">
+</mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Direct Appointment Status
+                    <button style="float:right" (click)="exportAsXLSX()">
+                        <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+                      </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                        </mat-form-field>
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+                            <ng-container matColumnDef="name">
+                                <th *matHeaderCellDef mat-sort-header>Applied Date</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.appliedDate | date:'dd/MM/yyyy'}}<br/>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="mobile">
+                                <th *matHeaderCellDef mat-sort-header>Reason</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.reason}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <th *matHeaderCellDef mat-sort-header>Employee Name</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.empName}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="type">
+                                <th *matHeaderCellDef mat-sort-header>Applied Type</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    <div *ngIf="element.type==='Late In' ; else Opened; ">
+                                        <img src="/assets/images/in.png " height="40px " width="40px "> Late In
+                                    </div>
+                                    <ng-template #Opened>
+                                        <div *ngIf="element.type==='Early Go' ; else Approved; ">
+                                            <img src="/assets/images/out.png " height="40px " width="40px "> Early Go
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #Approved>
+                                        -----
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

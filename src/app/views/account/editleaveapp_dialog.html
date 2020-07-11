@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Approve/Reject Leave Application</h1>
+<div mat-dialog-content class="mat-typography">
+
+    <div class="card">
+
+        <form (ngSubmit)="f.form.valid && onSubmit(data)" #f="ngForm" novalidate>
+
+            <div class="card-body">
+                <div class="col-sm-12">
+                    <label>Status<code>(*)</code></label>
+                    <br>
+                    <select class="form-control" name="status" required [(ngModel)]="data.element.status">
+                        <option value="" selected>Select option</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Reject">Reject</option>
+                   </select>
+                </div>
+                <br>
+                <div class="col-sm-12">
+                    <label><b>Comments<code>(*)</code></b></label>
+                    <textarea class="form-control" required [(ngModel)]="data.element.response " name="reason"></textarea>
+                    <br>
+                </div>
+
+                <br>
+                <div center>
+                    <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Submit</button>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>

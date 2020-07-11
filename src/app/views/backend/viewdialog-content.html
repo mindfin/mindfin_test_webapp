@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>CUSTOMERS DOCUMENT DETAILS</h1>
+<div mat-dialog-content class="mat-typography">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>COMPANY KYC</th>
+                <td>
+                    <p>{{data.element.companykyc_orgname}}</p>
+            </tr>
+            <tr>
+                <th> CUSTOMER KYC</th>
+                <td>
+
+                    <p>{{data.element.customerkyc_orgname}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th>ITR</th>
+                <td>
+                    <p>{{data.element.itr_orgname}}</p>
+            </tr>
+            <tr>
+                <th>BANK STATEMENT</th>
+                <td>
+                    <p>{{data.element.bankstatement_orgname}}</p>
+            </tr>
+            <tr>
+                <th>GST RETURNS</th>
+                <td>
+                    <p>{{data.element.gstandreturns_orgname}}</p>
+            </tr>
+            <tr>
+                <th>LOAN STATEMENT</th>
+                <td>
+                    <p>{{data.element.loanstatement_orgname}}</p>
+            </tr>
+            <tr>
+                <th>APPLICATION DETAILS</th>
+                <td>
+                    <p>{{data.element.applicationDetails_orgname}}</p>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<style>
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

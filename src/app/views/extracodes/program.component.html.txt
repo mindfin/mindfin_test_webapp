@@ -1,0 +1,68 @@
+
+   <div class="row">
+    <div class="col-md-6">
+       <div class="card">
+
+          <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
+          <div class="card-header">
+             <strong> ADD PROGRAM </strong>
+          </div>
+
+          <div class="card-body">
+
+             <div class="row">
+                <div class="col-md-8">
+                   <label for="programname">PROGRAM NAME</label>
+                   <input type="text" class="form-control" name="programname" [(ngModel)]="model.programname"
+                   #programname="ngModel"    required/>
+                   <div *ngIf="f.submitted && programname.invalid"  class="invalid-feedback">
+                      <div *ngIf="programname.errors.required">Program is required</div>
+                   </div>
+                   <br>
+                </div>
+             </div>
+
+             <div class="card-footer">
+                <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
+             </div>
+
+            </div>
+
+             </form>
+          </div>
+        </div>
+          <div class="col-lg-6">
+             <div class="card">
+                <div class="card-header">
+                   <strong>PROGRAM LIST</strong> 
+                </div>
+                <div class="card-body">
+                   <div class="table-responsive">
+                      <table class="table">
+                         <thead>
+                            <tr>
+                               <th>PROGRAM NAME</th>
+                               <th>EDIT</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr *ngFor='let pro of fetchData'>
+                               <td>
+                            
+                                  {{pro.programname}}
+                               </td>
+                         
+                               <td>
+                                  <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!--/.col-->
+    <!-- </div> -->
+    <!--/.row-->

@@ -1,0 +1,57 @@
+
+<div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Personal Information
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th>Customer Name : </th>
+                  <td> {{fetchdata.name}}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Mobile : </th>
+                  <td> {{fetchdata.mobile}}</td>
+                </tr>
+                <tr>
+                  <th>Email : </th>
+                  <td> {{fetchdata.email}}  </td>
+                </tr>
+                <tr>
+                  <th> Loan Purpose :</th>
+                  <td> {{fetchdata.loanpurpose}}</td>
+                </tr>
+                <tr>
+                  <th>Applyed Type :</th>
+                  <td>  {{fetchdata.applytype.loantype}}</td>
+                </tr>
+               
+                <!-- <tr>
+                  <th> Project Amount Paid : </th>
+                  <td>  {{fetchdata.totalamount}}</td>
+                </tr> -->
+              </tbody> 
+            
+            </table>
+       
+      </div>
+    </div>
+  </div>
+  
+  <style>
+  
+  
+  
+  .card-body {
+    flex: 4 1 auto;
+    font-size: medium !important;
+  }
+  table,th,td{
+  border:1px solid black;
+  }
+    </style>
+  

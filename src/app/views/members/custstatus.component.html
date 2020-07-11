@@ -1,0 +1,69 @@
+<!-- <div class="col-lg-6"> -->
+<div class="card">
+   <div class="card-header">
+      <strong>APPLIED BANK LIST</strong>
+   </div>
+   <div class="card-body">
+      <div class="table-responsive">
+
+         <table class="table">
+            <thead>
+               <tr>
+                  <th>BANK NAME</th>
+
+                  <th> AMOUNT</th>
+                  <th> VENDOR</th>
+                  <th>EXECUTIVE</th>
+                  <th>LOAN TYPE</th>
+                  <th>PRODUCT</th>
+                  <th>STATUS</th>
+                  <th>COMMENTS</th>
+                  <th>ADD TENURE</th>
+                  <th>REJECT</th>
+               </tr>
+            </thead>
+            <tbody>
+
+               <tr *ngFor='let pro of fetchData1'>
+
+                  <td>
+                     {{pro.bankname}}
+                  </td>
+
+                  <td>
+                     {{pro.amount}}
+                  </td>
+                  <td>
+                     {{pro.bankvendor}}
+                  </td>
+                  <td>
+                     {{pro.executivename}}
+                  </td>
+                  <td>
+                     {{pro.loantype}}
+                  </td>
+                  <td>
+                     {{pro.product}}
+                  </td>
+                  <td>
+                     {{pro.sstatus}}
+                  </td>
+                  <td>
+                     {{pro.comment}}
+                  </td>
+                  <!-- <hidden>{{pro.addbankid}}</hidden> -->
+                  <td>
+                     <button type="submit" class="btn btn-primary"[disabled]="pro.sstatus != 'DISBURSED'  " (click)="addtenure(pro.idapplybank)">ADD TENURE</button>
+                  </td>
+                  <td>
+                     <button type="submit" class="btn btn-danger" (click)="openDialog(pro)">REJECT</button>
+                  </td>
+               </tr>
+
+            </tbody>
+         </table>
+         <!-- </form> -->
+      </div>
+   </div>
+</div>
+<!-- </div> -->
