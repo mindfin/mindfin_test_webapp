@@ -37,9 +37,10 @@ const aliOssStorage = MAO({
         region: 'oss-ap-south-1',
         accessKeyId: 'LTAI4GGoAKC67ZwLrJZ2jgeD',
         accessKeySecret: 'JNF52oPMNo2dQ23Ce7PFX9QTMhebxO',
-        bucket: 'mindfin'
+        bucket: 'minfin-files',
     }
 });
+
 //mindfin-images
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -72,6 +73,7 @@ const upload = multer({
         fileSize: 150 * 1024 * 1024
     },
     fileFilter: fileFilter,
+    filename: filename,
 });
 router.get('/piechart', function(req, res) {
     knex.select('usertype.user')
@@ -4864,7 +4866,7 @@ router.post('/assignexe', function(req, res) {
                                                                                         <tbody>
                                                                                             <tr style="border-collapse:collapse;">
                                                                                                 <td align="center" style="padding:0;Margin:0;">
-                                                                                                    <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:underline;color:#CCCCCC;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="Smart home logo" title="Smart home logo" width="109" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
+                                                                                                    <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:underline;color:#CCCCCC;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="Smart home logo" title="Smart home logo" width="109" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
@@ -5015,7 +5017,7 @@ router.post('/assignexe', function(req, res) {
                                                                                         <tbody>
                                                                                             <tr style="border-collapse:collapse;">
                                                                                                 <td class="es-m-p0l" align="left" style="padding:0;Margin:0;padding-bottom:10px;">
-                                                                                                    <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:13px;text-decoration:underline;color:#333333;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="" width="103" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
+                                                                                                    <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:13px;text-decoration:underline;color:#333333;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="" width="103" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
@@ -5536,7 +5538,7 @@ router.post('/addemployee', (req, res) => {
                                                                     <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                         <tr style="border-collapse:collapse;">
                                                                             <td align="center" style="padding:0;Margin:0;">
-                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:none;color:#1376C8;"><img class="adapt-img" src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
+                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:none;color:#1376C8;"><img class="adapt-img" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
                                                                                         width="100"></a>
                                                                             </td>
                                                                         </tr>
@@ -5561,7 +5563,7 @@ router.post('/addemployee', (req, res) => {
                                                                 <td width="620" valign="top" align="center" style="padding:0;Margin:0;">
                                                                     <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-position:left top;" width="100%" cellspacing="0" cellpadding="0">
                                                                         <tr style="border-collapse:collapse;">
-                                                                            <td align="center" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/login.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
+                                                                            <td align="center" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/login.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
                                                                                     width="175"></td>
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
@@ -6118,7 +6120,7 @@ router.post('/suggbox', function(req, res) {
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
                                                                             <td class="es-m-txt-l" align="left" style="padding:0;Margin:0;padding-bottom:10px;">
-                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:11px;text-decoration:underline;color:#333333;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="137"></a>
+                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:11px;text-decoration:underline;color:#333333;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="137"></a>
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
@@ -6324,7 +6326,7 @@ router.post('/leaveapp', function(req, res) {
                                                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                                                         <!--<![endif]-->
                                                         <div align="center" class="img-container center" style="padding-right: 0px;padding-left: 0px;">
-                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center" src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 248px; display: block;"
+                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 248px; display: block;"
                                                                 title="Image" width="248" />
                                                             <!--[if mso]></td></tr></table><![endif]-->
                                                         </div>
@@ -6925,7 +6927,7 @@ router.post('/conves', function(req, res) {
                                                         <!--<![endif]-->
                                                         <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
                                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]-->
-                                                            <a href="https://mindfin.co.in" style="outline:none" tabindex="-1" target="_blank"> <img align="center" alt="Logo" border="0" class="center fixedwidth" src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; width: 100%; max-width: 180px; display: block;"
+                                                            <a href="https://mindfin.co.in" style="outline:none" tabindex="-1" target="_blank"> <img align="center" alt="Logo" border="0" class="center fixedwidth" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; width: 100%; max-width: 180px; display: block;"
                                                                     title="Logo" width="180" /></a>
                                                             <!--[if mso]></td></tr></table><![endif]-->
                                                         </div>
@@ -7053,7 +7055,7 @@ router.post('/conves', function(req, res) {
                                                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                                                         <!--<![endif]-->
                                                         <div align="center" class="button-container" style="padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://bank.mindfin.co.in" style="height:27pt; width:266.25pt; v-text-anchor:middle;" arcsize="0%" stroke="false" fillcolor="#ffde79"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#000000; font-family:Arial, sans-serif; font-size:18px"><![endif]--><a href="https://bank.mindfin.co.in" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #000000; background-color: #ffde79; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width: auto; width: auto; border-top: 1px solid #ffde79; border-right: 1px solid #ffde79; border-bottom: 1px solid #ffde79; border-left: 1px solid #ffde79; padding-top: 0px; padding-bottom: 0px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;"
+                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://test.mindfin.co.in" style="height:27pt; width:266.25pt; v-text-anchor:middle;" arcsize="0%" stroke="false" fillcolor="#ffde79"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#000000; font-family:Arial, sans-serif; font-size:18px"><![endif]--><a href="http://test.mindfin.co.in" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #000000; background-color: #ffde79; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width: auto; width: auto; border-top: 1px solid #ffde79; border-right: 1px solid #ffde79; border-bottom: 1px solid #ffde79; border-left: 1px solid #ffde79; padding-top: 0px; padding-bottom: 0px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;"
                                                                 target="_blank"><span style="padding-left:50px;padding-right:50px;font-size:18px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><span data-mce-style="font-size: 18px; line-height: 36px;" style="font-size: 18px; line-height: 36px;"><strong>Approve or Reject</strong></span></span></span></a>
                                                             <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                                         </div>
@@ -7648,12 +7650,12 @@ router.post('/webleadopenstatus', function(req, res) {
 });
 // router.post('/downloadall', function(req, res) {
 //     var zip = new JSZip();
-//     zip.file("http://mindfin.oss-ap-south-1.aliyuncs.com/" + req.body.companykyc);
-//     zip.file("http://mindfin.oss-ap-south-1.aliyuncs.com/" + req.body.customerkyc);
-//     zip.file("http://mindfin.oss-ap-south-1.aliyuncs.com/" + req.body.bankstatement);
-//     zip.file("http://mindfin.oss-ap-south-1.aliyuncs.com/" + req.body.itr);
-//     zip.file("http://mindfin.oss-ap-south-1.aliyuncs.com/" + req.body.gstandreturns);
-//     zip.file("http://mindfin.oss-ap-south-1.aliyuncs.com/" + req.body.loanstatement);
+//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.companykyc);
+//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.customerkyc);
+//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.bankstatement);
+//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.itr);
+//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.gstandreturns);
+//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.loanstatement);
 
 //     zip.generateAsync({ type: 'nodebuffer', mimeType: "application/zip" })
 //         .then(function(content) {
@@ -7944,7 +7946,7 @@ router.post('/earlygo', function(req, res) {
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
                                                                             <td class="es-m-txt-l" align="left" style="padding:0;Margin:0;padding-bottom:10px;">
-                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:11px;text-decoration:underline;color:#333333;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="137"></a>
+                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:11px;text-decoration:underline;color:#333333;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="137"></a>
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
@@ -9367,7 +9369,7 @@ router.post('/notify', function(req, res) {
                                                                 <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                     <tbody><tr style="border-collapse:collapse;">
                                                                         <td align="center" style="padding:0;Margin:0;">
-                                                                            <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:underline;color:#CCCCCC;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="Smart home logo" title="Smart home logo" width="109" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" height="46"></a>
+                                                                            <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:underline;color:#CCCCCC;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="Smart home logo" title="Smart home logo" width="109" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" height="46"></a>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody></table>
@@ -9490,7 +9492,7 @@ router.post('/notify', function(req, res) {
                                                                 <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                     <tbody><tr style="border-collapse:collapse;">
                                                                         <td class="es-m-p0l" align="left" style="padding:0;Margin:0;padding-bottom:10px;">
-                                                                            <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:13px;text-decoration:underline;color:#333333;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="" width="103" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" height="43"></a>
+                                                                            <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:13px;text-decoration:underline;color:#333333;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="" width="103" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" height="43"></a>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody></table>
@@ -9875,7 +9877,7 @@ router.post('/removeCase', function(req, res) {
                                                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                                         <tr style="border-collapse:collapse;">
                                                                                             <td align="center" style="padding:0;Margin:0;">
-                                                                                                <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:underline;color:#CCCCCC;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="Smart home logo" title="Smart home logo" width="109" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
+                                                                                                <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:underline;color:#CCCCCC;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt="Smart home logo" title="Smart home logo" width="109" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -9998,7 +10000,7 @@ router.post('/removeCase', function(req, res) {
                                                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                                         <tr style="border-collapse:collapse;">
                                                                                             <td class="es-m-p0l" align="left" style="padding:0;Margin:0;padding-bottom:10px;">
-                                                                                                <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:13px;text-decoration:underline;color:#333333;"><img src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" alt width="103" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
+                                                                                                <a href="https://mindfin.co.in" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:13px;text-decoration:underline;color:#333333;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt width="103" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></a>
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -11024,7 +11026,7 @@ router.post('/addvisitor', function(req, res) {
                                             <!--<![endif]-->
                                             <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
                                                 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]-->
-                                                <a href="https://mindfin.co.in/" style="outline:none" tabindex="-1" target="_blank"> <img align="center" alt="Logo" border="0" class="center fixedwidth" src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; width: 100%; max-width: 224px; display: block;"
+                                                <a href="https://mindfin.co.in/" style="outline:none" tabindex="-1" target="_blank"> <img align="center" alt="Logo" border="0" class="center fixedwidth" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; width: 100%; max-width: 224px; display: block;"
                                                         title="Logo" width="224" /></a>
                                                 <!--[if mso]></td></tr></table><![endif]-->
                                             </div>
@@ -11125,7 +11127,7 @@ router.post('/addvisitor', function(req, res) {
                                             <!--<![endif]-->
                                             <div class="mobile_hide">
 <div align="right" class="img-container right autowidth" style="padding-right: 0px;padding-left: 0px;">
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="right"><![endif]--><img align="right" alt="Image" border="0" class="right autowidth" src="https://mindfinfiles.blob.core.windows.net/images/featured-image.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 254px; float: none; display: block;" title="Image" width="254"/>
+<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="right"><![endif]--><img align="right" alt="Image" border="0" class="right autowidth" src="http://midnfin-images.oss-ap-south-1.aliyuncs.com/featured-image.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 254px; float: none; display: block;" title="Image" width="254"/>
 <!--[if mso]></td></tr></table><![endif]-->
 </div>
 </div>
@@ -11225,7 +11227,7 @@ router.post('/addvisitor', function(req, res) {
                                         <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                                             <!--<![endif]-->
                                             <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center autowidth" src="https://mindfinfiles.blob.core.windows.net/images/image-01_14.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 320px; display: block;"
+                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center autowidth" src="http://midnfin-images.oss-ap-south-1.aliyuncs.com/image-01_14.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 320px; display: block;"
                                                     title="Image" width="320" />
                                                 <!--[if mso]></td></tr></table><![endif]-->
                                             </div>
@@ -11249,7 +11251,7 @@ router.post('/addvisitor', function(req, res) {
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
                                             <div align="center" class="button-container" style="padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 0px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://bank.mindfin.co.in" style="height:30.75pt; width:130.5pt; v-text-anchor:middle;" arcsize="10%" stroke="false" fillcolor="#80c1d8"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a href="https://bank.mindfin.co.in" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #80c1d8; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width: auto; width: auto; border-top: 1px solid #80c1d8; border-right: 1px solid #80c1d8; border-bottom: 1px solid #80c1d8; border-left: 1px solid #80c1d8; padding-top: 5px; padding-bottom: 5px; font-family: Poppins, Arial, Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;"
+                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 0px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://test.mindfin.co.in" style="height:30.75pt; width:130.5pt; v-text-anchor:middle;" arcsize="10%" stroke="false" fillcolor="#80c1d8"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a href="http://test.mindfin.co.in" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #80c1d8; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width: auto; width: auto; border-top: 1px solid #80c1d8; border-right: 1px solid #80c1d8; border-bottom: 1px solid #80c1d8; border-left: 1px solid #80c1d8; padding-top: 5px; padding-bottom: 5px; font-family: Poppins, Arial, Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;"
                                                     target="_blank"><span style="padding-left:25px;padding-right:25px;font-size:16px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;">Schedule</span></span></a>
                                                 <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                             </div>
@@ -11625,7 +11627,7 @@ router.post('/respondVisitor', function(req, res) {
                                                         </div>
                                                         <!--[if mso]></td></tr></table><![endif]-->
                                                         <div align="left" class="img-container left fixedwidth" style="padding-right: 0px;padding-left: 0px;">
-                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="left"><![endif]--><img alt="Alternate text" border="0" class="left fixedwidth" src="http://mindfin.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 150px; display: block;"
+                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="left"><![endif]--><img alt="Alternate text" border="0" class="left fixedwidth" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 150px; display: block;"
                                                                 title="Alternate text" width="150" />
                                                             <!--[if mso]></td></tr></table><![endif]-->
                                                         </div>
@@ -11642,7 +11644,7 @@ router.post('/respondVisitor', function(req, res) {
                                                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:10px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                                                         <!--<![endif]-->
                                                         <div align="right" class="img-container right autowidth" style="padding-right: 0px;padding-left: 0px;">
-                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="right"><![endif]--><img align="right" alt="Image" border="0" class="right autowidth" src="https://mindfinfiles.blob.core.windows.net/images/featured-image.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 254px; float: none; display: block;"
+                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="right"><![endif]--><img align="right" alt="Image" border="0" class="right autowidth" src="http://midnfin-images.oss-ap-south-1.aliyuncs.com/featured-image.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 254px; float: none; display: block;"
                                                                 title="Image" width="254" />
                                                             <!--[if mso]></td></tr></table><![endif]-->
                                                         </div>

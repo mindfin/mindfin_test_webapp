@@ -24,7 +24,7 @@ export class GuestAppointmentComponent implements OnInit{
     videoHeight = 0;
     constraints = {
         video: {
-            facingMode: "environment",
+            facingMode: "user",
             width: { ideal: 4096 },
             height: { ideal: 2160 }
         }
