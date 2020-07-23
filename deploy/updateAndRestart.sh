@@ -33,4 +33,4 @@ npm install
 
 echo "pm2 start"
 #Restart the node server
-pm2 -- start --name mindfin_test
+pm2 start mindfin_test
