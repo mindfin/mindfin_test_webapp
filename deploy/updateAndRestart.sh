@@ -21,7 +21,7 @@ git clone git@gitlab.com:mindfin1/mindfin_test_webapp.git ~/mindfin/mindfin_test
 
 # stop the previous pm2
 echo "pm2 stop mindfin-webapp"
-pm2 stop mindfin_test
+/home/anantaloop/.nvm/versions/node/v10.12.0/bin/pm2 stop mindfin_test
 
 echo "changeing to mindfin"
 cd ~/mindfin/mindfin_test_webapp
@@ -33,4 +33,4 @@ npm install
 
 echo "pm2 start"
 #Restart the node server
-pm2 -- start --name mindfin_test
+/home/anantaloop/.nvm/versions/node/v10.12.0/bin/pm2 -- start --name mindfin_test
