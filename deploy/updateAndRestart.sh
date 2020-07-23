@@ -3,7 +3,7 @@
 # any future command that fails will exit the script
 set -e
 
-
+export PATH=$PATH:/home/anantaloop/.nvm/versions/node/v10.12.0/bin/
 echo "remove repo"
 # Delete the old repo
 rm -rf ~/mindfin/mindfin_test_webapp
@@ -21,7 +21,7 @@ git clone git@gitlab.com:mindfin1/mindfin_test_webapp.git ~/mindfin/mindfin_test
 
 # stop the previous pm2
 echo "pm2 stop mindfin-webapp"
-/home/anantaloop/.nvm/versions/node/v10.12.0/bin/pm2 stop mindfin_test
+pm2 stop mindfin_test
 
 echo "changeing to mindfin"
 cd ~/mindfin/mindfin_test_webapp
@@ -33,4 +33,4 @@ npm install
 
 echo "pm2 start"
 #Restart the node server
-/home/anantaloop/.nvm/versions/node/v10.12.0/bin/npm start
+pm2 -- start --name mindfin_test
