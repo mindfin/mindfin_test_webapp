@@ -33,4 +33,4 @@ npm install
 
 echo "pm2 start"
 #Restart the node server
-/home/anantaloop/.nvm/versions/node/v10.12.0/bin/pm2 -- start --name mindfin_test
+/home/anantaloop/.nvm/versions/node/v10.12.0/bin/npm start
