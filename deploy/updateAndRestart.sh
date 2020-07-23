@@ -10,7 +10,7 @@ rm -rf ~/mindfin/mindfin_test_webapp
 
 echo "clone repo"
 # clone the repo again
-git clone git@gitlab.com:mindfin1/mindfin.git ~/mindfin/
+git clone git@gitlab.com:mindfin1/mindfin_test_webapp.git ~/mindfin/mindfin_test_webapp
 
 
 
@@ -33,4 +33,4 @@ npm install
 
 echo "pm2 start"
 #Restart the node server
-pm2 start mindfin_test
+pm2 -- start --name 
