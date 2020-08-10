@@ -5,7 +5,7 @@
             <div class="card-body text-success ">
                 <h5 class="card-title">{{item.notificationSubject}}</h5>
                 <p class="card-text">{{item.notification}}</p>
-                <img *ngIf="item.notificationImg != undefined" alt="notificationImg" class="zoom" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{item.notificationImg}}" />
+                <img *ngIf="item.notificationImg != undefined" alt="notificationImg" class="zoom" src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{item.notificationImg}}" />
                 <br>
                 <br>
                 <div class="row">
@@ -64,9 +64,9 @@
             </div>
             <div class="scrollbar " id="style-4">
                 <div *ngFor="let item of fetchData | filter:searchText">
-                    <a (click)="getnotification(item.senderNotificationID) ">
+                    <a (click)="getnotification(item.senderID) ">
                         <div class="friend-drawer friend-drawer--onhover ">
-                            <img class="profile-image " src="http://minfin-files.oss-ap-south-1.aliyuncs.com/admin.png  " alt=" ">
+                            <img class="profile-image " src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/admin.png  " alt=" ">
                             <div class="text ">
                                 <h6>{{item.senderName}}</h6>
                                 <p class="text-muted ">{{item.notificationSubject}}</p>
@@ -88,31 +88,31 @@
         <div class="col-md-9 " *ngIf="fetchData1 != undefined">
             <div class="settings-tray">
                 <div class="friend-drawer no-gutters friend-drawer--grey ">
-                    <img class="profile-image " src="http://minfin-files.oss-ap-south-1.aliyuncs.com/admin.png  " alt=" ">
+                    <img class="profile-image " src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/admin.png" alt=" ">
                     <div class="text ">
                         <h6>{{fetchData1[0].senderName}}</h6>
                     </div>
                 </div>
             </div>
             <div class="chat-panel scrollbar" id="style-4">
-                <!-- {{fetchData1[0].createdDate | date:'dd/MM/yyyy'}} -->
+                <!-- {{item.createdDate | date:'dd/MM/yyyy'}} -->
                 <div class="row no-gutters ">
-                    <div>
+                    <div *ngFor="let item of fetchData1">
                         <div class="chat-bubble chat-bubble--left text-center ">
-                            {{fetchData1[0].notification}}
+                            {{item.notification}}
 
                             <br>
-                            <img *ngIf="fetchData1[0].notificationImg != undefined" alt="notificationImg" class="zoom" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData1[0].notificationImg}}" width="200px" />
-                            <a *ngIf="fetchData1[0].notificationImg != undefined" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData1[0].notificationImg}}" role="button" title="Download">Download</a>
+                            <img *ngIf="item.notificationImg != undefined" alt="notificationImg" class="zoom" src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{item.notificationImg}}" width="200px" />
+                            <a *ngIf="item.notificationImg != undefined" class="nav-link badge-danger" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{item.notificationImg}}" role="button" title="Download">Download</a>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a class="btn" role="button " style="cursor: pointer;" title="Sent date and Delete Notification" (click)="openDeleteDialog(fetchData1[0].senderNotificationID)">
-                                        <h6 class="card-text text-success"><i class="fa fa-clock-o"></i> {{fetchData1[0].createdDate | date:'dd/MM/yyyy'}}</h6>
+                                    <a class="btn" role="button " style="cursor: pointer;" title="Sent date and Delete Notification" (click)="openDeleteDialog(item.senderNotificationID)">
+                                        <h6 class="card-text text-success"><i class="fa fa-clock-o"></i> {{item.createdDate | date:'dd/MM/yyyy'}}</h6>
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn" role="button " style="cursor: pointer;" title="Seen By" (click)="openSeenByDialog(fetchData1[0].senderNotificationID)">
-                                        <h6 class="card-text text-success"><i class="fa fa-check"></i> {{fetchData1[0].senderStatus}}</h6>
+                                    <a class="btn" role="button " style="cursor: pointer;" title="Seen By" (click)="openSeenByDialog(item.senderNotificationID)">
+                                        <h6 class="card-text text-success"><i class="fa fa-check"></i> {{item.senderStatus}}</h6>
                                     </a>
                                 </div>
                             </div>

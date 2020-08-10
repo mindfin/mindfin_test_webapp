@@ -64,6 +64,7 @@ this.fetchData1 = res;
      this.bname = bagColor;
   }
   addtenure(element){
+    
     console.log("hii")
     this.service.viewbankk(element);
     }

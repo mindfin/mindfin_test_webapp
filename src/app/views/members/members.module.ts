@@ -30,7 +30,7 @@ import { NgModule } from '@angular/core';
 import { CustStatusComponent, RejectBankDialogContent } from './custstatus.component';
 import { ViewCustomerComponent } from './viewcustomer.component';
 import { BankRejectComponent } from './bankreject.component';
-import { CheckCaseDownloadComponent } from './checkcasewithdownload.component';
+import { CheckCaseDownloadComponent, ShareFileDialog } from './checkcasewithdownload.component';
 import { AdminCheckCaseComponent } from './admincheckcase.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
@@ -42,16 +42,16 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CommonModule,MembersRoutingModule,ChartsModule,FormsModule,ReactiveFormsModule,BsDropdownModule,
     MatNativeDateModule,MatInputModule,MatDatepickerModule,MatFormFieldModule,MatBadgeModule,
     MatButtonModule,MatButtonToggleModule,CdkTableModule,MatPaginatorModule,MatSortModule,MatProgressSpinnerModule,
-    MatTableModule,ModalModule.forRoot(),BsDatepickerModule.forRoot()
+    MatTableModule,ModalModule.forRoot(),BsDatepickerModule.forRoot(),MatDialogModule
   ],
   declarations: [MembersappComponent,DialogContent,TopuplistComponent,TopupnotifyComponent,SuccesstopuplistComponent,
     EditcustomersComponent, BankdisburseComponent,TopuplistComponent,RejectBankDialogContent,CustStatusComponent
-    ,ViewCustomerComponent,BankRejectComponent,AdminCheckCaseComponent,CheckCaseDownloadComponent
+    ,ViewCustomerComponent,BankRejectComponent,AdminCheckCaseComponent,CheckCaseDownloadComponent,ShareFileDialog
     // BankRejectComponent,ApprovalDialogContent,CompletlistComponent,MembersComponent,RejectBankDialogContent,
     // BankapplyComponent,ViewcustomerComponent,BusinesslistComponent,ViewbankComponent,ApprovalComponent,
     // PdlistComponent,RejectDialogContent,ViewmemberComponent,MemberlistComponent,DisburstdialogContent,DisbustedComponent,
   ],
-  entryComponents: [DialogContent,RejectBankDialogContent
+  entryComponents: [DialogContent,RejectBankDialogContent,ShareFileDialog
     // MembersComponent,RejectBankDialogContent,RejectDialogContentApprovalDialogContent,DisbustedComponent,DisburstdialogContent
     ,
   ],

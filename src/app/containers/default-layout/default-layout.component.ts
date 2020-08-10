@@ -14,6 +14,7 @@ import { navItems8 } from '../../_nav8';
 import { navItems9 } from '../../_nav9';
 import { navItems10 } from '../../_nav10';
 import { MAT_DIALOG_DATA, MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
+import { navItems11 } from '../../_nav11';
 
 class FileSnippet {
   static readonly IMAGE_SIZE = { width: 950, height: 720 };
@@ -31,6 +32,7 @@ class FileSnippet {
 export class DefaultLayoutComponent {
   public abc = localStorage.getItem('role');
   public isadmin = localStorage.getItem('desc');
+  public teamHead=localStorage.getItem('teamHead')
   public navItems = navItems;
   public navItems1 = navItems1;
   public navItems2 = navItems2;
@@ -42,6 +44,7 @@ export class DefaultLayoutComponent {
   public navItems8 = navItems8;
   public navItems9 = navItems9;
   public navItems10 = navItems10;
+  public navItems11 = navItems11;
 
   public sidebarMinimized = true;
   private changes: MutationObserver;

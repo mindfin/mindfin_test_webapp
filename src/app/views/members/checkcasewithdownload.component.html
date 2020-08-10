@@ -69,8 +69,9 @@
                         <tr>
                             <th>COMMENTS</th>
                             <td> {{fetchData.comment}}</td>
-                            <th class="badge-danger"> File Not Available</th>
-                            <th class="badge-success">Available</th>
+                            <th> Share Case</th>
+                            <th class="badge-success"><a class="nav-link badge-success" (click)="share(fetchData)" role="button">Share Case </a>
+                            </th>
                         </tr>
                     </tbody>
                 </table>
@@ -91,32 +92,32 @@
                     </tr>
                     <tr>
                         <td>
-                            <a *ngIf="fetchData.companykyc ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.companykyc}}" role="button" title="COMPANY KYC">Company KYC </a>
-                            <a *ngIf="fetchData.companykyc !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.companykyc}}" role="button" title="COMPANY KYC">Company KYC </a>
+                            <a *ngIf="fetchData.companykyc ==='admin.png'" class="nav-link badge-danger" role="button" title="COMPANY KYC">Download Not Available </a>
+                            <a *ngIf="fetchData.companykyc !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.companykyc}}" role="button" title="COMPANY KYC">Company KYC </a>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.customerkyc ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.customerkyc}}" role="button" title="CUSTOMER KYC">Customer KYC </a>
-                            <a *ngIf="fetchData.customerkyc !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.customerkyc}}" role="button" title="CUSTOMER KYC">Customer KYC </a>
+                            <a *ngIf="fetchData.customerkyc ==='admin.png'" class="nav-link badge-danger" role="button" title="CUSTOMER KYC">Download Not Available</a>
+                            <a *ngIf="fetchData.customerkyc !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.customerkyc}}" role="button" title="CUSTOMER KYC">Customer KYC </a>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.bankstatement ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.bankstatement}}" role="button" title="BANK STATEMENT">Bank Statement </a>
-                            <a *ngIf="fetchData.bankstatement !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.bankstatement}}" role="button" title="BANK STATEMENT">Bank Statement </a>
+                            <a *ngIf="fetchData.bankstatement ==='admin.png'" class="nav-link badge-danger" role="button" title="BANK STATEMENT">Download Not Available</a>
+                            <a *ngIf="fetchData.bankstatement !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.bankstatement}}" role="button" title="BANK STATEMENT">Bank Statement </a>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.itr ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.itr}}" role="button" title="IT RETURNS">IT Returns </a>
-                            <a *ngIf="fetchData.itr !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.itr}}" role="button" title="IT RETURNS">IT Returns </a>
+                            <a *ngIf="fetchData.itr ==='admin.png'" class="nav-link badge-danger" role="button" title="IT RETURNS">Download Not Available</a>
+                            <a *ngIf="fetchData.itr !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.itr}}" role="button" title="IT RETURNS">IT Returns </a>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.gstandreturns ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.gstandreturns}}" role="button" title="GST RETURNS">GST Returns </a>
-                            <a *ngIf="fetchData.gstandreturns !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.gstandreturns}}" role="button" title="GST RETURNS">GST Returns </a>
+                            <a *ngIf="fetchData.gstandreturns ==='admin.png'" class="nav-link badge-danger" role="button" title="GST RETURNS">Download Not Available </a>
+                            <a *ngIf="fetchData.gstandreturns !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.gstandreturns}}" role="button" title="GST RETURNS">GST Returns </a>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.loanstatement ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.loanstatement}}" role="button" title="LOAN SANCTION LETTER">Loan Sanction Letter</a>
-                            <a *ngIf="fetchData.loanstatement !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.loanstatement}}" role="button" title="LOAN SANCTION LETTER">Loan Sanction Letter</a>
+                            <a *ngIf="fetchData.loanstatement ==='admin.png'" class="nav-link badge-danger" role="button" title="LOAN SANCTION LETTER">Download Not Available</a>
+                            <a *ngIf="fetchData.loanstatement !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.loanstatement}}" role="button" title="LOAN SANCTION LETTER">Loan Sanction Letter</a>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.applicationDetails ==='admin.png'" class="nav-link badge-danger" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.applicationDetails}}" role="button" title="CUSTOMER APPLICATION DETAILS">Customer Application Details</a>
-                            <a *ngIf="fetchData.applicationDetails !=='admin.png'" class="nav-link badge-success" href="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.applicationDetails}}" role="button" title="CUSTOMER APPLICATION DETAILS">Customer Application Details</a>
+                            <a *ngIf="fetchData.applicationDetails ==='admin.png'" class="nav-link badge-danger" role="button" title="CUSTOMER APPLICATION DETAILS">Download Not Available</a>
+                            <a *ngIf="fetchData.applicationDetails !=='admin.png'" class="nav-link badge-success" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.applicationDetails}}" role="button" title="CUSTOMER APPLICATION DETAILS">Customer Application Details</a>
                         </td>
                     </tr>
                 </table>

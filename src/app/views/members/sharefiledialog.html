@@ -1,0 +1,188 @@
+<h1 mat-dialog-title>
+    Share File</h1>
+<!-- <div class="modal-dialog modal-dialog-scrollable" role="document"> -->
+<mat-dialog-content class="mat-typography">
+    <div class="card">
+
+        <!-- <form (ngSubmit)="f.form.valid && onSubmit(data)" name="myform" #f="ngForm" novalidate>
+
+            <div class="card-body">
+                <div class="table-modelponsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>BANK NAME</th>
+                                <th>DISBURSED AMOUNT</th>
+                                <th>PRODUCT</th>
+                                <th>ROI</th>
+                                <th>PF</th>
+                                <th>TENURE</th>
+                                <th>INSURANCE</th>
+                                <th>ADD</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    {{data.bankname}}
+                                </td>
+
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="data.disbusamount" name="disbusamount">
+                                </td>
+                                <td>
+                                    <select class="form-control" name="product" [(ngModel)]="data.product" #product="ngModel">
+                              <option value="" selected>Select option</option>
+                              <option value="NORMAL">NORMAL</option>
+                              <option value="BANKING">BANKING</option>
+                              <option value="ITR PROGRAM">ITR PROGRAM</option>
+                              <option value="SWIPPING">SWIPPING</option>
+                              <option value="GST RETURN">GST RETURN</option>
+
+                           </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="data.roi" name="roi">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="data.pf" name="pf">
+                                </td>
+
+                                <td>
+
+                                    <select class="form-control" name="idtopup" [(ngModel)]="data.idtopup" (click)="getperiod(data.idtopup)">
+                              <option value="" selected>Select your option</option>
+                              <option *ngFor="let item of fetchData2" value="{{item.idtopup}}">
+                                 {{item.period}}
+                              </option>
+                           </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" [(ngModel)]="data.insurance" name="insurance">
+                                </td>
+                                <td>
+                                    <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">SAVE</button>
+                                      </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form> -->
+        <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm()">
+
+            <div class="card-header"><b>{{data.element.cname}}</b> </div><br />
+
+            <form (ngSubmit)="addvalues()" #f="ngForm" novalidate>
+                <h4 style="float:right;"></h4>
+                <div class="table-responsive">
+
+                    <table class="table table-striped" id="dynamic_field">
+                        <tr>
+                            <th>
+                                <label><b>Requested Employee Name</b></label><br>
+                                <select class="form-control" name="employeename" [(ngModel)]="data.element.employeename" #employeename="ngModel">
+                                 <option value="" selected>Select option</option>
+                                 <option *ngFor="let item of fetchData" value="{{item.idemployee}},{{item.name}},{{item.email}}">{{item.name}}</option>
+                                </select>
+                            </th>
+                            <th>
+                                <label><b>Comment</b></label><br>
+                                <textarea class="form-control" [(ngModel)]="data.element.comment" class="form-control" name="comment" #comment="ngModel"></textarea>
+                            </th>
+                            <th>
+                                <label for="Filename">Files</label>
+                                <select class="form-control" name="Filename" [(ngModel)]="data.element.Filename" #Filename="ngModel">
+                                    <option value="" selected>Select option</option>
+                                    <option *ngIf="data.element.customerkyc !=='admin.png'"value="{{data.element.customerkyc}},Customer Kyc" selected>Customer Kyc</option>
+                                    <option *ngIf="data.element.companykyc !=='admin.png'"value="{{data.element.companykyc}},Company Kyc" selected>Company Kyc</option>
+                                    <option *ngIf="data.element.bankstatement !=='admin.png'"value="{{data.element.bankstatement}},Bank Statement" selected>Bank Statement</option>
+                                    <option *ngIf="data.element.itr !=='admin.png'"value="{{data.element.itr}},ITR" selected>ITR</option>
+                                    <option *ngIf="data.element.gstandreturns !=='admin.png'"value="{{data.element.gstandreturns}},GST Returns" selected>GST Returns</option>
+                                    <option *ngIf="data.element.loanstatement !=='admin.png'"value="{{data.element.loanstatement}},Loan Sanction Letter" selected>Loan Sanction Letter</option>
+                                    <option *ngIf="data.element.applicationDetails !=='admin.png'"value="{{data.element.applicationDetails}},Application Details" selected>Application Details</option>
+                                </select>
+                            </th>
+                            <th>
+                                <label><b>ADD</b></label><br>
+                                <button type="submit" class="form-control"><i class="fa fa-plus"></i> </button>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-primary">
+                            <th>SL.NO</th>
+                            <th>
+                                Requested Employee Name
+                            </th>
+                            <th>
+                                comment
+                            </th>
+                            <th>
+                                File Name
+                            </th>
+                            <th>
+                                OSS File Name
+                            </th>
+                            <th>
+                                REMOVE
+                            </th>
+                        </thead>
+                        <tr *ngFor='let pro of tempval;let i=index'>
+                            <td>{{i+1}}</td>
+                            <td>
+                                {{pro.requesteraName}}
+                            </td>
+                            <td>
+                                {{pro.comment}}
+                            </td>
+                            <td>
+                                {{pro.OSSName}}
+                            </td>
+
+                            <td>
+                                {{pro.fileName}}
+                            </td>
+                            <td>
+                                <button (click)="removevalue(pro,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-success" [disabled]="!form.valid">Submit</button>
+            </div>
+        </form>
+
+    </div>
+
+</mat-dialog-content>
+<!-- </div> -->
+
+
+
+
+
+<style>
+    .table {
+        flex: 5 1 auto;
+        padding: 6.25rem !important;
+        font-size: medium !important;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>

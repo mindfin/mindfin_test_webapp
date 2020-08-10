@@ -23,6 +23,7 @@ import { SuperAdminTeledataNotOpenedlistComponent } from './superadminteledatano
 import { SuperAdminTeledataNoFollowUplistComponent } from './superadminteledatanofollowuplist.component';
 import { SuperAdminTeledatalistComponent } from './superadminteledatalist.component';
 import { BackendRoutineComponent } from './backendroutine.component';
+import { TeleRoutineComponent } from './teleroutine.component';
 
 
 
@@ -172,6 +173,15 @@ const routes: Routes = [
         data:{
           title:'Backend Routine'
         }
+        
+      },
+      {
+        path: 'teleroutine',
+        component:TeleRoutineComponent,
+        data:{
+          title:'Backend Routine'
+        }
+        
       },
 
     ];

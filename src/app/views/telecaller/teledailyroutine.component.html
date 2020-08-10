@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header text-center"><b>TELE DAILY ROUTINE</b> </div><br />
+            <form (ngSubmit)="addvalues(model)" #f="ngForm" novalidate>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="dynamic_field">
+                        <tr>
+                            <th>
+                                <label for="NOC"><b>No Of Calls</b></label>
+                                <input type="number" class="form-control" name="NOC" [(ngModel)]="model.NOC" #NOC="ngModel" required />
+                                <br>
+                            </th>
+                            <th>
+                                <label><b>No Of Followup's</b></label>
+                                <input type="number" class="form-control" name="NOF" [(ngModel)]="model.NOF" #NOF="ngModel" required />
+                            </th>
+                            <th>
+                                <label for="NOLG"><b>No Of Lead Generated</b></label>
+                                <input type="number" class="form-control" name="NOLG" [(ngModel)]="model.NOLG" #NOLG="ngModel" required />
+                            </th>
+                            <th>
+                                <label><b>COMMENTS</b></label><br>
+                                <textarea class="form-control" [(ngModel)]="model.comment" class="form-control" name="comment" #comment="ngModel"></textarea>
+                            </th>
+                            <th>
+                                <label><b>ADD</b></label><br>
+                                <button type="submit" class="form-control">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <div class="card-header">
+                <strong>Reasons list</strong>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>Date</th>
+                            <th>No Of Calls</th>
+                            <th>No of Followup's</th>
+                            <th>No of Lead</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let pro of fetchData;let i=index'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{pro.createddate | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td>
+                                {{pro.noOfCalls}}
+                            </td>
+                            <td>
+                                {{pro.noOfFollowUp}}
+                            </td>
+                            <td>
+                                {{pro.noOfLeadGenrated}}
+                            </td>
+                            <td>
+                                {{pro.comment}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="list-group-item text-center list-group-item-divider ">
+                    <a class="btn badge-info " [routerLink]="[ '/telcaller/teledailyroutineview'] "><i class="fa fa-eye "></i>
+                            &nbsp;View All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

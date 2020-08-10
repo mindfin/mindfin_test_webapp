@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 })
 
 export class MemberService {
-  commonurl = 'http://test.mindfin.co.in';
+  commonurl = 'https://test.mindfin.co.in';
   constructor(private http: HttpClient, private router: Router) { }
   login(loginvalue) {
     console.log(loginvalue);

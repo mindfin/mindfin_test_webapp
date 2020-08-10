@@ -46,7 +46,7 @@
                             <th>PAN NO</th>
                             <td> {{fetchData.panno}}</td>
                             <th>LOAN STATUS</th>
-                            <td> {{fetchData.displaystatus_orgname}}</td>
+                            <td> {{fetchData.displaystatus}}</td>
                         </tr>
                         <tr>
                             <th>COMPANY KYC</th>
@@ -73,9 +73,12 @@
                             <td> {{fetchData.comment}}</td>
                         </tr>
                         <tr>
-                            <td colspan="4" class="text-center"> <a mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" target="_blank" (click)="editcustomer(fetchData.idcustomer)"> EDIT
-                            </a>
+                            <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="editcustomer(fetchData.idcustomer)"> EDIT CUSTOMER
+                                </button>
                             </td>
+                            <!-- <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="addbank(fetchData.idcustomer)"> ADD BANK
+                            </button>
+                            </td> -->
                         </tr>
                     </tbody>
                 </table>
@@ -149,6 +152,7 @@
                                 <th>STATUS</th>
                                 <th>COMMENTS</th>
                                 <th>EDIT STATUS</th>
+                                <th>ADD TENURE</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -180,12 +184,16 @@
                                 <td>
                                     {{pro.comment}}
                                 </td>
-                                <td colspan="4" class="text-center"> <button mat-raised-button color="warn" (click)="openDialog(pro)"> EDIT STATUS
+                                <td class="text-center"> <button mat-raised-button color="warn" [disabled]="pro.sstatus==='DISBURSED'" (click)="openDialog(pro)"> EDIT STATUS
                             </button>
                                 </td>
-                            </tr>
+                                <td class="text-center"> <button mat-raised-button class="btn btn-success" [disabled]="pro.sstatus!=='DISBURSED'" (click)="addtenure(pro.idapplybank)"> ADD TENURE
+                                </button>
+                                </td>
+
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

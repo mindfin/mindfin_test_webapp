@@ -12,6 +12,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { Dashboard3Component } from './dashboard3.component';
 import { Dashboard4Component } from './dashboard4.component';
 import { Dashboard6Component } from './dashboard6.component';
+import { Dashboard5Component } from './dashboard5.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { Dashboard6Component } from './dashboard6.component';
     ButtonsModule.forRoot()
   ],
   declarations: [ DashboardComponent,Dashboard1Component,Dashboard2Component,
-    Dashboard3Component,Dashboard4Component,Dashboard6Component]
+    Dashboard3Component,Dashboard4Component,Dashboard6Component,Dashboard5Component]
 })
 export class DashboardModule { }

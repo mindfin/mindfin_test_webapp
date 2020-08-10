@@ -23,7 +23,7 @@ import { TabHeadingDirective } from 'ngx-bootstrap/tabs';
 })
 
 export class CommonService {
-  commonurl = 'http://test.mindfin.co.in';
+  commonurl = 'https://test.mindfin.co.in';
   idleState = 'Not started.';
   timedOut = false;
   lastPing?: Date = null;
@@ -95,6 +95,8 @@ export class CommonService {
         localStorage.setItem('id', res[0]['idemployee']);
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('branch', res[0]['branch']);
+        localStorage.setItem('email', res[0]['email']);
+
 
         localStorage.setItem('role', 'SUPERADMIN');
         this.router.navigate(['/dashboard']);
@@ -106,6 +108,8 @@ export class CommonService {
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'ADMIN');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/notification/profilesettings']);
       }
       else if (res[0].user == 'EXECUTIVE' && res[0].designation == 'Admin') {
@@ -115,6 +119,8 @@ export class CommonService {
         localStorage.setItem('desc', res[0]['designation']);
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'EXECUTIVE');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/notification/profilesettings']);
       }
       else if (res[0].user == 'EXECUTIVE' && res[0].designation != 'Admin') {
@@ -124,14 +130,30 @@ export class CommonService {
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'EXECUTIVE');
         localStorage.setItem('desc', res[0]['designation']);
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/dashboard/executive']);
       }
-      else if (res[0].user == 'BACKEND') {
+      else if ((res[0].user == 'BACKEND') && (res[0].teamHead == 'true')) {
         console.log('back')
         localStorage.setItem('id', res[0]['idemployee']);
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'BACKEND');
+        localStorage.setItem('teamHead', res[0]['teamHead']);
+        localStorage.setItem('email', res[0]['email']);
+
+        this.router.navigate(['/dashboard/backendTeamHead']);
+      } 
+       else if ((res[0].user == 'BACKEND') &&(res[0].teamHead != 'true')) {
+        console.log('back')
+        localStorage.setItem('id', res[0]['idemployee']);
+        localStorage.setItem('empname', res[0]['name']);
+        localStorage.setItem('branch', res[0]['branch']);
+        localStorage.setItem('role', 'BACKEND');
+        localStorage.setItem('teamHead', 'false');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/dashboard/backend']);
       }
       else if (res[0].user == 'DATAENTRY') {
@@ -140,6 +162,8 @@ export class CommonService {
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'DATA ENTRY');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/dashboard/dataentry']);
       }
       else if (res[0].user == 'TELECALLER') {
@@ -148,6 +172,8 @@ export class CommonService {
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'TELECALLER');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/dashboard/telecaller']);
       }
       else if (res[0].user == 'GUEST') {
@@ -155,6 +181,8 @@ export class CommonService {
         localStorage.setItem('id', res[0]['idemployee']);
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('role', 'GUEST');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/guest/home']);
       }
       else if (res[0].user == 'LOGIN') {
@@ -164,6 +192,8 @@ export class CommonService {
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('desc', res[0]['designation']);
         localStorage.setItem('role', 'LOGIN');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/dashboard/login']);
       }
       else if (res[0].user == 'ACCOUNTANT') {
@@ -172,6 +202,8 @@ export class CommonService {
         localStorage.setItem('empname', res[0]['name']);
         localStorage.setItem('branch', res[0]['branch']);
         localStorage.setItem('role', 'ACCOUNTANT');
+        localStorage.setItem('email', res[0]['email']);
+
         this.router.navigate(['/notification/profilesettings']);
       }
       else if (res[0].user == 'SUB VENDOR') {
@@ -3609,5 +3641,84 @@ getallexecutivelist() {
 
   const uri = this.commonurl+'/callapi/getallexecutivelist/';
   return this.http.get(uri);
+}
+request(value){
+  console.log(value)
+  return this.http.post(this.commonurl+'/callapi/request', value);
+}
+shareFile(value){
+  console.log(value)
+  return this.http.post(this.commonurl+'/callapi/shareFile', value);
+}
+addteleroutine(obj) {
+  console.log(obj);
+  const uri = this.commonurl+'/callapi/addteleroutine';
+  return this.http.post(uri, obj)
+ 
+}
+getTopRoutine(postsPerPage: number, currentPage: number,empid: number) {
+
+  const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
+  const uri = this.commonurl+'/callapi/getTopRoutine/' + queryParams;
+  return this.http.get(uri);
+}
+
+viewTeleroutine(postsPerPage: number, currentPage: number, id) {
+  const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
+  this.http
+    .get<{ message: string; posts: any; maxPosts: number }>(
+      this.commonurl+'/callapi/viewTeleroutine' + queryParams
+    )
+    .pipe(
+      map(postData => {
+        //console.log('');
+        return {
+          posts: postData.posts,
+
+          maxPosts: postData.maxPosts
+        };
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
+      this.postsUpdated.next({
+        posts: [...this.posts],
+        postCount: transformedPostData.maxPosts
+      });
+    });
+}
+
+
+viewTeleroutineDetails() {
+  return this.postsUpdated.asObservable();
+}
+getTeleroutinelist(postsPerPage: number, currentPage: number, sdate, edate) {
+  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+  this.http
+    .get<{ message: string; posts: any; maxPosts: number }>(
+      this.commonurl+'/callapi/getTeleroutinelist' + queryParams
+    )
+    .pipe(
+      map(postData => {
+        //console.log('');
+        return {
+          posts: postData.posts,
+
+          maxPosts: postData.maxPosts
+        };
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
+      this.postsUpdated.next({
+        posts: [...this.posts],
+        postCount: transformedPostData.maxPosts
+      });
+    });
+}
+
+
+getTeleroutinelistDetails() {
+  return this.postsUpdated.asObservable();
 }
 }

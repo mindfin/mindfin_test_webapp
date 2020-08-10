@@ -90,8 +90,7 @@ export class DailyRoutineComponent implements OnInit {
     console.log(pro);
     this.model = pro;
   }
-  removevalue(pro,index)
-{
+  removevalue(pro,index){
   console.log(index);
   this.array.splice(index,1);
 

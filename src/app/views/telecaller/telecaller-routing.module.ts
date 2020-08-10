@@ -8,6 +8,8 @@ import { TeledatalistComponent } from './teledatalist.component';
 import { TeleDisbursdatalistComponent } from './teledisbuseddatalist.component';
 import { TeleRejectdatalistComponent } from './telerejectdatalist.component';
 import { TeleApproveddatalistComponent } from './teleapproveddatalist.component';
+import { TeleDailyRoutineComponent } from './teledailyroutine.component';
+import { TeleDailyRoutineviewComponent } from './televiewdailyroutine.component';
 
 
 
@@ -50,6 +52,22 @@ const routes: Routes = [
     ,
     data:{
       title:' Enquiry Reject Data List'
+    }
+  },
+  {
+    path:'teledailyroutine',
+    component:  TeleDailyRoutineComponent
+    ,
+    data:{
+      title:' Tele Daily Routine'
+    }
+  },
+  {
+    path:'teledailyroutineview',
+    component:  TeleDailyRoutineviewComponent
+    ,
+    data:{
+      title:'Tele Daily Routine View'
     }
   },
 ];

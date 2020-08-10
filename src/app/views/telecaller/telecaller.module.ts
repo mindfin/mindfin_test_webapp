@@ -12,6 +12,8 @@ import { TeledatalistComponent } from './teledatalist.component';
 import { TeleDisbursdatalistComponent } from './teledisbuseddatalist.component';
 import { TeleApproveddatalistComponent } from './teleapproveddatalist.component';
 import { TeleRejectdatalistComponent } from './telerejectdatalist.component';
+import { TeleDailyRoutineComponent } from './teledailyroutine.component';
+import { TeleDailyRoutineviewComponent } from './televiewdailyroutine.component';
 
 
 
@@ -47,7 +49,7 @@ import { TeleRejectdatalistComponent } from './telerejectdatalist.component';
     ModalModule.forRoot()
   ],
   declarations: [TeledataComponent,TeledatalistComponent,TeleDisbursdatalistComponent,TeleApproveddatalistComponent,
-    TeleRejectdatalistComponent],
+    TeleRejectdatalistComponent,TeleDailyRoutineComponent,TeleDailyRoutineviewComponent],
   entryComponents: [
   ]
 })

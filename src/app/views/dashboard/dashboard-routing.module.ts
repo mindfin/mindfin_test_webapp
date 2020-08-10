@@ -8,6 +8,7 @@ import { Dashboard2Component } from './dashboard2.component';
 import { Dashboard3Component } from './dashboard3.component';
 import { Dashboard4Component } from './dashboard4.component';
 import { Dashboard6Component } from './dashboard6.component';
+import { Dashboard5Component } from './dashboard5.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,13 @@ const routes: Routes = [
   {
     path: 'backend',
     component: Dashboard6Component,
+    data: {
+      title: 'Backend Entry Dashboard'
+    }
+  },
+  {
+    path: 'backendTeamHead',
+    component: Dashboard5Component,
     data: {
       title: 'Backend Entry Dashboard'
     }

@@ -1,0 +1,97 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="animated fadeIn" [hidden]="isLoading">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i>TELE DAILY ROUTINE LIST
+                    <button style="float:right" (click)="exportAsXLSX()">
+            <i class="fa fa-file-excel-o" style="font-size:30px;color:blue"></i>
+          </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="card-body">
+
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <mat-form-field>
+                                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input class="form-group" [bsConfig]="{ isAnimated: true }" [(ngModel)]="model.startdate" name="startdate" type="text" placeholder="From (MM/DD/YYYY) - To(MM/DD/YYYY)" class="form-control" bsDaterangepicker>
+                                    </div>
+                                    <!-- <div class="col-lg-3">
+                                        <input class="form-group" [(ngModel)]="model.enddate" name="enddate" type="text" placeholder="To (MM/DD/YYYY)" class="form-control" bsDatepicker>
+                                    </div> -->
+                                    <div class="col-lg-3">
+                                        <button class="btn btn-primary" (click)="getreport(model)">Get Report</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <table mat-table #table [dataSource]="dataSource" class="table table-striped responsive" matSort>
+
+
+                            <ng-container matColumnDef="date">
+                                <th *matHeaderCellDef mat-sort-header>CREATED DATE</th>
+                                <td *matCellDef="let element" style="text-align:center;">
+                                    {{element.dcreateddate | date:'dd/MM/yyyy'}}<br />
+
+                                </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="company">
+                                <th *matHeaderCellDef mat-sort-header>NO OF CALLS</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.noOfCalls}}<br />
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="bank">
+                                <th *matHeaderCellDef mat-sort-header>NO OF FOLLOWUP'S</th>
+                                <td *matCellDef="let element" style="text-align:center;"> {{element.noOfFollowUp}}<br />
+
+                                </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="whosecase">
+                                <th *matHeaderCellDef mat-sort-header>NO OF LEADS</th>
+                                <td *matCellDef="let element"> {{element.noOfLeadGenrated}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="comment">
+                                <th *matHeaderCellDef mat-sort-header>COMMENTS</th>
+                                <td *matCellDef="let element"> {{element.comment}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="edit">
+                                <th *matHeaderCellDef mat-sort-header>EMPLOYEE NAME</th>
+                                <td *matCellDef="let element"> {{element.empname}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    mat-spinner {
+        margin: auto;
+    }
+</style>

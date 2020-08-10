@@ -6350,7 +6350,7 @@ router.post('/addemployee', (req, res) => {
                                                                     <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                         <tr style="border-collapse:collapse;">
                                                                             <td align="center" style="padding:0;Margin:0;">
-                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:none;color:#1376C8;"><img class="adapt-img" src="http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
+                                                                                <a target="_blank" href="https://mindfin.co.in" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:14px;text-decoration:none;color:#1376C8;"><img class="adapt-img" src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
                                                                                         width="100"></a>
                                                                             </td>
                                                                         </tr>
@@ -6375,7 +6375,7 @@ router.post('/addemployee', (req, res) => {
                                                                 <td width="620" valign="top" align="center" style="padding:0;Margin:0;">
                                                                     <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-position:left top;" width="100%" cellspacing="0" cellpadding="0">
                                                                         <tr style="border-collapse:collapse;">
-                                                                            <td align="center" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px;"><img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/login.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
+                                                                            <td align="center" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px;"><img src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/login.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
                                                                                     width="175"></td>
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
@@ -6417,7 +6417,7 @@ router.post('/addemployee', (req, res) => {
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="border-collapse:collapse;">
-                                                                            <td class="es-m-txt-c" align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px;"><span class="es-button-border" style="border-style:solid;border-color:#3D5CA3;background:#FFFFFF;border-width:1px;display:inline-block;border-radius:10px;width:auto;"><a href="http://test.mindfin.co.in/#/login" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;color:#3D5CA3;border-style:solid;border-color:#FFFFFF;border-width:15px 20px 15px 20px;display:inline-block;background:#FFFFFF;border-radius:10px;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center;border-left-width:20px;border-right-width:20px;">Login </a></span></td>
+                                                                            <td class="es-m-txt-c" align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px;"><span class="es-button-border" style="border-style:solid;border-color:#3D5CA3;background:#FFFFFF;border-width:1px;display:inline-block;border-radius:10px;width:auto;"><a href="https://test.mindfin.co.in/#/login" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;color:#3D5CA3;border-style:solid;border-color:#FFFFFF;border-width:15px 20px 15px 20px;display:inline-block;background:#FFFFFF;border-radius:10px;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center;border-left-width:20px;border-right-width:20px;">Login </a></span></td>
                                                                         </tr>
                                                                     </table>
                                                                 </td>
@@ -6595,7 +6595,7 @@ router.post('/addemployee', (req, res) => {
                                                                     <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                                         <tr style="border-collapse:collapse;">
                                                                             <td align="center" style="padding:0;Margin:0;">
-                                                                                <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:12px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:12px;color:#666666;">This login password&nbsp; was sent&nbsp;from <a href="http://test.mindfin.co.in/#/login" target="_blank">bank.mindfin.co.in </a></p>
+                                                                                <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:12px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:12px;color:#666666;">This login password&nbsp; was sent&nbsp;from <a href="https://test.mindfin.co.in/#/login" target="_blank">bank.mindfin.co.in </a></p>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -7237,12 +7237,12 @@ router.post('/webleadopenstatus', function(req, res) {
 });
 // router.post('/downloadall', function(req, res) {
 //     var zip = new JSZip();
-//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.companykyc);
-//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.customerkyc);
-//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.bankstatement);
-//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.itr);
-//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.gstandreturns);
-//     zip.file("http://minfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.loanstatement);
+//     zip.file("https://mindfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.companykyc);
+//     zip.file("https://mindfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.customerkyc);
+//     zip.file("https://mindfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.bankstatement);
+//     zip.file("https://mindfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.itr);
+//     zip.file("https://mindfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.gstandreturns);
+//     zip.file("https://mindfin-files.oss-ap-south-1.aliyuncs.com/" + req.body.loanstatement);
 
 //     zip.generateAsync({ type: 'nodebuffer', mimeType: "application/zip" })
 //         .then(function(content) {

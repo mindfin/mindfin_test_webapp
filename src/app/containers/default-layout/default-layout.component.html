@@ -232,14 +232,14 @@
         </li>
         <li class="nav-item dropdown " dropdown placement="bottom right ">
             <a class="nav-link " title="{{fetchData.name}} " data-toggle="dropdown " href="# " role="button " aria-haspopup="true " aria-expanded="false " dropdownToggle (click)="false ">
-                <img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.cimage}} " class="myimg " height="50px " width="50px " /><span class="nav-item mycss d-md-down-none card-text text-info"><b>{{fetchData.name}}</b></span>
+                <img src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.cimage}} " class="myimg " height="50px " width="50px " /><span class="nav-item mycss d-md-down-none card-text text-info"><b>{{fetchData.name}}</b></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right " *dropdownMenu aria-labelledby="simple-dropdown ">
                 <div class="dropdown-header text-center "><strong>Settings</strong></div>
-                <a class="dropdown-item " style="cursor: pointer;" (click)="convens() "><img src="/assets/images/Bill.png " class="myimg " alt="emp " height="30px " width="30px "> Conveniences
+                <a *ngIf="abc!=='GUEST' " class="dropdown-item " style="cursor: pointer;" (click)="convens() "><img src="/assets/images/Bill.png " class="myimg " alt="emp " height="30px " width="30px "> Conveniences
                 </a>
                 <a class="dropdown-item " style="cursor: pointer;" (click)="sugbox() "><img src="/assets/images/suggestionbox.png " class="myimg " alt="emp " height="30px " width="30px "> Suggestion Box</a>
-                <a class="dropdown-item " style="cursor: pointer;" (click)="leaveapp() "><img src="/assets/images/leave.png " class="myimg " alt="emp " height="30px " width="30px "> Leave Application
+                <a *ngIf="abc!=='GUEST' " class="dropdown-item " style="cursor: pointer;" (click)="leaveapp() "><img src="/assets/images/leave.png " class="myimg " alt="emp " height="30px " width="30px "> Leave Application
                 </a>
                 <a class="dropdown-item " style="cursor: pointer;" (click)="logout() "><img src="/assets/images/logout.png " class="myimg " alt="emp " height="30px " width="30px "> Logout
                 </a>
@@ -283,8 +283,13 @@
         </app-sidebar-nav>
         <app-sidebar-minimizer></app-sidebar-minimizer>
     </app-sidebar>
-    <app-sidebar [fixed]="true " [display]=" 'lg' " *ngIf="abc==='BACKEND' ">
+    <app-sidebar [fixed]="true " [display]=" 'lg' " *ngIf="abc==='BACKEND' && teamHead!=='true' ">
         <app-sidebar-nav [navItems]="navItems7 " [perfectScrollbar] [disabled]="sidebarMinimized " style="background:url( 'assets/images/123.jpg')!important;background-repeat: no-repeat!important;background-size:cover!important; ">
+        </app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <app-sidebar [fixed]="true " [display]=" 'lg' " *ngIf="abc==='BACKEND' && teamHead==='true'  ">
+        <app-sidebar-nav [navItems]="navItems11 " [perfectScrollbar] [disabled]="sidebarMinimized " style="background:url( 'assets/images/123.jpg')!important;background-repeat: no-repeat!important;background-size:cover!important; ">
         </app-sidebar-nav>
         <app-sidebar-minimizer></app-sidebar-minimizer>
     </app-sidebar>
@@ -324,7 +329,7 @@
                 <div class="p-3 list-group-item list-group-item-divider font-weight-bold text-center ">
                     <a class="card-text text-info" style="cursor: pointer; text-decoration: none" role="button " title="Profile Setting" [routerLink]="[ '/notification/profilesettings'] ">
                         <div class="float-left ">
-                            <img src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.cimage}} " alt="profile Setting " height="30px " width="30px ">
+                            <img src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{fetchData.cimage}} " alt="profile Setting " height="30px " width="30px ">
                         </div>
                         Profile Setting
                     </a>
@@ -434,14 +439,14 @@
 
                         <div class="list-group-item list-group-item-accent-info list-group-item-divider " *ngIf="pro1.status==='Pending' ; else Opened; ">
                             <div class="avatar float-right ">
-                                <img class="img-avatar " src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
+                                <img class="img-avatar " src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
                             </div>
                             <div><strong>{{pro1.categories}}</strong></div>
                         </div>
                         <ng-template #Opened>
                             <div class="list-group-item list-group-item-accent-warning list-group-item-divider " *ngIf="pro1.status==='Opened' ; else Approved; ">
                                 <div class="avatar float-right ">
-                                    <img class="img-avatar " src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
+                                    <img class="img-avatar " src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
                                 </div>
                                 <div><strong>{{pro1.categories}}</strong></div>
                             </div>
@@ -449,7 +454,7 @@
                         <ng-template #Approved>
                             <div class="list-group-item list-group-item-accent-success list-group-item-divider " *ngIf="pro1.status==='Approved' ; else Reject; ">
                                 <div class="avatar float-right ">
-                                    <img class="img-avatar " src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
+                                    <img class="img-avatar " src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
                                 </div>
                                 <div><strong>{{pro1.categories}}</strong></div>
                             </div>
@@ -457,7 +462,7 @@
                         <ng-template #Reject>
                             <div class="list-group-item list-group-item-accent-danger list-group-item-divider " *ngIf="pro1.status==='Reject' ">
                                 <div class="avatar float-right ">
-                                    <img class="img-avatar " src="http://minfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
+                                    <img class="img-avatar " src="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{pro1.conImg}} " alt="Convenienceimg ">
                                 </div>
                                 <div><strong>{{pro1.categories}}</strong></div>
                             </div>

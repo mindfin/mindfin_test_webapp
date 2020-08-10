@@ -5,16 +5,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SuperadminService } from '../../superadmin.service';
 import { CommonService } from '../../common.service';
 import { MatDialogConfig, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { EditDialogContent1 } from './checkcase.component';
 
 
 export interface User {
   name: string;
 }
 @Component({
-  templateUrl: './checkcase.component.html',
+  templateUrl: './teamHeadcheckcase.component.html',
 })
 
-export class CheckCaseComponent {
+export class TeamHeadCheckCaseComponent {
   myControl = new FormControl();
   val: any = [];
   selectedFile: File = null;
@@ -27,14 +28,18 @@ export class CheckCaseComponent {
   array1: any = [];
 custid:any;
 reqfile:any;
-fetchData4:any;
+
   constructor(private service: SuperadminService, private router: Router, private commonservice: CommonService,private dialog: MatDialog) { }
 
   model: any = {};
+  // model1: any = {};
   fetchData:any;
   fetchData1:any;
-
-
+  fetchData2:any;
+  fetchData3:any;
+  fetchData4:any;
+display:any;
+  
   ngOnInit() {
     this.commonservice.getemailSettings().subscribe(res=>{
       console.log(res);
@@ -48,23 +53,6 @@ fetchData4:any;
   }
   refresh() {
     window.location.reload();
-  }
-  request(file,data){ 
-    console.log(file)
-    if(file == null || file == undefined || file == 0){
-    this.reqfile="All File"
-    }
-    else{
-      this.reqfile=file;
-    }
-  var name = localStorage.getItem("empname");
-  var email = localStorage.getItem("email");
-  var  value = { File: this.reqfile,Data:data, empname: name, email: email,emails:this.fetchData4};
-  this.commonservice.request(value)
-    .subscribe(res => {
-      alert(this.reqfile+" Download request sent successfully");
-    })
-  
   }
   checkcase(obj) {
   
@@ -106,34 +94,80 @@ fetchData4:any;
     console.log(dialogConfig );
     
     }
+    addtenure(element){
+    var result:any;
+      console.log("hii")
+      this.commonservice.getviewbanklistt(element).subscribe(res=>{
+        console.log(res);
+        // this.fetchData2 = res;
+     
+      // result=this.fetchData2;
+      console.log(res)
+      this.model=res[0];
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = this.model;
+      this.dialog.open(AddTenureDialogContent,dialogConfig
+        
+    );
+    console.log(dialogConfig );
+  });
+    
+    
+    }
+    request(file,data){ 
+      console.log(file)
+      if(file == null || file == undefined || file == 0){
+      this.reqfile="All File"
+      }
+      else{
+        this.reqfile=file;
+      }
+    var name = localStorage.getItem("empname");
+    var email = localStorage.getItem("email");
+    var  value = { File: this.reqfile,Data:data, empname: name, email: email,emails:this.fetchData4};
+    this.commonservice.request(value)
+      .subscribe(res => {
+        alert(this.reqfile+" Download request sent successfully");
+      })
+    
+    }
+      
 }
+
 @Component({
   selector: 'dialog-content-example-dialog',
-  templateUrl: 'editstatusdialog-contentnew.html',
+  templateUrl: 'addtenuredialog.html',
 })
 
-export class EditDialogContent1{ 
+export class AddTenureDialogContent{ 
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
   private commonservice: CommonService ,private route: ActivatedRoute, private router: Router,
-  public dialogRef: MatDialogRef<EditDialogContent1>) {}
-element:any;
-empid;
-empname;
-value;
-
-onSubmit(obj,obj1){
-  this.empid = localStorage.getItem("id");
-  this.empname = localStorage.getItem("empname");
-   console.log(obj);
-   console.log(obj1);
-   this.value = {obj:obj,empid:this.empid,empname:this.empname}
-  this.commonservice.editstatus(this.value)
-  .subscribe(res => {
-    alert("Bank Updated Successfully");
+  public dialogRef: MatDialogRef<AddTenureDialogContent>) {}
+  element:any;
+  empid;
+  empname;
+  value;
+  period:any;
+  fetchData2:any;
+  ngOnInit() {
+  this.commonservice.getPeriod().subscribe(res=>{
+    console.log(res);
+    this.fetchData2 = res;
+  });  
+}
+getperiod(obj){
+  this.period=obj;
+console.log(obj);
+}
+onSubmit(obj){
+  var obj2={obj:obj,period:this.period}
+  console.log(obj2)
+  this.commonservice.addPeriod(obj2).subscribe(res=>{
+    alert("Tenure Added Successfully");
   this.dialogRef.close();
-  })
+    })
  }
  refresh(): void {
   window.location.reload();

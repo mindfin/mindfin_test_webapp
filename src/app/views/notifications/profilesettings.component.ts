@@ -133,7 +133,7 @@ export class ProfileSettingComponent implements OnInit {
 //     doc.setFontSize(12);
 //     doc.setTextColor(0);
 //     doc.setFontStyle('bold');
-//     // var base64Img = "http://minfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg";
+//     // var base64Img = "https://mindfin-files.oss-ap-south-1.aliyuncs.com/logo.jpg";
 //     // doc.addImage(base64Img, 'JPEG', 10, 10, 10, 10);
 //     doc.text("This is computer generated payslip,no signature is required \n", 250, 500);
 //     doc.text("In Words \n", 250, 250);

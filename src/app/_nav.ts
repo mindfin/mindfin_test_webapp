@@ -256,6 +256,11 @@ export const navItems = [
             name: 'Backend Routine',
             url: '/reports/backendroutine',
             icon: 'icon-docs',
+          },
+          {
+            name: 'Tele Routine',
+            url: '/reports/teleroutine',
+            icon: 'icon-docs',
           }
         ]
 

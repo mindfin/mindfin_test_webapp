@@ -24,6 +24,16 @@ export const navItems2 = [
 
   },
   {
+    name: 'Daily Routine',
+    url: '/telcaller/teledailyroutine',
+    icon: 'cui-calendar',
+  },
+  {
+    name: 'View Routine',
+    url: '/telcaller/teledailyroutineview',
+    icon: 'fa fa-eye'
+  },
+  {
     name: 'Change Password',
     url: '/member/changepwd',
     icon: 'icon-settings'

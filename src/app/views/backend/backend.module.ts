@@ -18,6 +18,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BackendDailyRoutineComponent } from './backenddailyroutine.component';
 import { BackendDailyRoutineviewComponent } from './backendviewdailyroutine.component';
 import { BackendDailyRoutineEditComponent } from './backenddailyroutineedit.component';
+import { TeamHeadCheckCaseComponent, AddTenureDialogContent } from './teamHeadcheckcase.component';
 @NgModule({
   imports: [
     FormsModule,
@@ -46,10 +47,11 @@ import { BackendDailyRoutineEditComponent } from './backenddailyroutineedit.comp
   declarations: [ BackendComponent,BackendViewComponent,ViewDialogContent,ViewDialogContent1,
     BackendBankapplyComponent, ViewBankStatusComponent,StatusComponent,EditBackendComponent
     ,CheckCaseComponent,EditDialogContent1,BackendDailyRoutineComponent,
-    BackendDailyRoutineviewComponent,BackendDailyRoutineEditComponent
+    BackendDailyRoutineviewComponent,BackendDailyRoutineEditComponent,TeamHeadCheckCaseComponent,
+    AddTenureDialogContent
 
   ],
-  entryComponents: [ViewDialogContent,ViewDialogContent1,EditDialogContent1
+  entryComponents: [ViewDialogContent,ViewDialogContent1,EditDialogContent1,AddTenureDialogContent
   ]
 })
 export class BackendModule { }
