@@ -4,7 +4,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
-import {MatDatepickerModule, MatNativeDateModule, MatInputModule,MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule, MatProgressSpinnerModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatDialogModule} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule, MatInputModule,
+  MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule,
+   MatProgressSpinnerModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule,
+    MatDialogModule,MatIconModule} from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { GuestRoutingModule } from './guest-routing.module';
@@ -41,7 +44,8 @@ import { VisitorViewComponent, ViewVisitorDialogContent, VisitorResponseDialogCo
     MatTableModule,
     MatDialogModule,
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatIconModule
 
   ],
   declarations: [GuestHomeComponent,GuestAppointmentComponent,VisitorViewComponent,ViewVisitorDialogContent,

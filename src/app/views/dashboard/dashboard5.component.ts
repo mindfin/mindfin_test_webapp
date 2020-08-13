@@ -16,6 +16,8 @@ export class Dashboard5Component implements OnInit {
   fetchData1:any;
   fetchData2:any;
   fetchData3:any;
+  fetchData4:any;
+  fetchData5:any;
   teleid:any;
 
  constructor( private route: ActivatedRoute
@@ -24,22 +26,63 @@ export class Dashboard5Component implements OnInit {
   ngOnInit() {
     this.teleid = localStorage.getItem("id");
 
-    this.service.enquirycount(this.teleid).subscribe(res=>{
-        console.log(res); 
-        this.fetchData = res;
-    });
-    this.service.enquiryapprovecount(this.teleid).subscribe(res=>{
-      console.log(res);
-      this.fetchData1 = res;
-  });
-  this.service.enquirydisbursecount(this.teleid).subscribe(res=>{
+  //   this.service.enqcount().subscribe(res=>{
+  //     console.log(res);
+  //     this.fetchData1 = res;
+  // });
+
+  this.service.casepd().subscribe(res => {
     console.log(res);
     this.fetchData2 = res;
-});
-this.service.enquiryrejectcount(this.teleid).subscribe(res=>{
+  });
+  this.service.caseapproval().subscribe(res => {
+    console.log(res);
+    this.fetchData3 = res;
+  });
+  this.service.casereject().subscribe(res => {
+    console.log(res);
+    this.fetchData4 = res;
+  });
+  this.service.casedisburse().subscribe(res => {
+    console.log(res);
+    this.fetchData5 = res;
+  });
+// this.service.rejectcount().subscribe(res=>{
+//   console.log(res);
+//   this.fetchData6 = res;
+// });
+this.service.dataentrypiechart().subscribe(res=>{
   console.log(res);
-  this.fetchData3 = res;
-});
+  this.fetchData = res;
 
+  for(var i=0;i<this.fetchData.length;i++){
+    this.data.push({
+      "y":this.fetchData[i].total,
+    "name":this.fetchData[i].status
+    })
+  }
+  console.log(this.data);
+  let chart = new Canvasjs.Chart("chartContainer1", {
+    theme: "light2",
+  animationEnabled: true,
+  exportEnabled: true,
+    title:{
+      text: "DataEntry List"
+    },
+    data: [{
+      type: "pie",
+      showInLegend: true,
+      toolTipContent: "<b>{name}</b>: {y}",
+      indexLabel: "{name}",
+      dataPoints: this.data
+   
+    }
+  ]
+
+  });
+
+  chart.render();
+
+});
 }
 }

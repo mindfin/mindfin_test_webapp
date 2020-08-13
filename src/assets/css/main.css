@@ -17,6 +17,31 @@
     background: linear-gradient(to bottom, #5db3d3 0%, #c6f3ef 100%)!important;
 }
 
+.close-button {
+    float: right;
+    top: -24px;
+    right: -24px;
+}
+
+.close-icon {
+    transition: 1s ease-in-out;
+}
+
+.close-icon:hover {
+    transform: rotate(180deg);
+}
+
+ ::ng-deep .icon-outside .close-button {
+    float: right;
+    width: 50px;
+    top: -52px;
+    right: -52px;
+}
+
+ ::ng-deep .icon-outside .mat-dialog-container {
+    overflow: unset
+}
+
 
 /* 
 .sidebar {

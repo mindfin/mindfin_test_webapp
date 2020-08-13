@@ -133,10 +133,10 @@ export class BackendBankapplyComponent implements OnInit {
       empid: this.empid,
       createdbyname: this.empname,
     }
-    this.service.backendbankinsert(this.vvv);
-    //   .subscribe(res=>{
-    //    window.location.reload();
-    //  })
+    this.service.backendbankinsert(this.vvv).subscribe(res=>{
+      alert("Bank Added Successfully")
+      this.ngOnInit();
+     })
   }
 
 }

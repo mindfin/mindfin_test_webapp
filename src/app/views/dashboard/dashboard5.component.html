@@ -28,8 +28,8 @@
                         <button type="button" class="btn btn-transparent p-0 float-right">
                             <img src="/assets/images/download.png " class="Status " height="40px " width="40px " />
                         </button>
-                        <div class="text-value">{{fetchData}}</div>
-                        <div><b>Download Count</b></div>
+                        <div class="text-value">{{fetchData2}}</div>
+                        <div><b>Login Count</b></div>
                     </div>
                     <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
                         <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels" [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend" [chartType]="lineChart2Type"></canvas>
@@ -44,7 +44,7 @@
                         <button type="button" class="btn btn-transparent p-0 float-right">
                             <img src="/assets/images/approved.png " class="Status " height="40px " width="40px " />
                         </button>
-                        <div class="text-value">{{fetchData1}}</div>
+                        <div class="text-value">{{fetchData3}}</div>
                         <div><b>Approved Count</b></div>
                     </div>
                     <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -60,7 +60,7 @@
                         <button type="button" class="btn btn-transparent p-0 float-right">
                             <img src="/assets/images/disbursed.png " class="Status " height="40px " width="40px " />
                         </button>
-                        <div class="text-value">{{fetchData2}}</div>
+                        <div class="text-value">{{fetchData5}}</div>
                         <div><b>Disbursed Count</b></div>
                     </div>
                     <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -76,7 +76,7 @@
                         <button type="button" class="btn btn-transparent p-0 float-right">
                             <img src="/assets/images/rejected.png " class="Status " height="40px " width="40px " />
                         </button>
-                        <div class="text-value">{{fetchData3}}</div>
+                        <div class="text-value">{{fetchData4}}</div>
                         <div><b>Reject Count</b></div>
                     </div>
                     <!-- <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -86,4 +86,18 @@
             </a>
         </div>
     </div>
+
 </div>
+<style>
+    @media(max-width:600px) {
+        .extra-height.chart-wrapper {
+            height: 90px !important;
+        }
+    }
+    
+    @media(min-width:601px) {
+        .extra-height.chart-wrapper {
+            height: 60px !important;
+        }
+    }
+</style>

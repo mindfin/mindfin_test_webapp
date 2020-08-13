@@ -27,12 +27,10 @@ this.exeid=localStorage.getItem("id");
         console.log(res);
         this.fetchData1 = res;
     });
-    this.exeid=localStorage.getItem("id");
     this.service.casecount(this.exeid).subscribe(res=>{
         console.log(res);
         this.fetchData2 = res;
     });
-    this.exeid=localStorage.getItem("id");
     this.service.topupcount(this.exeid).subscribe(res=>{
         console.log(res);
         this.fetchData3 = res;

@@ -7,7 +7,10 @@ import {BackendRoutingModule } from './backend-routing.module';
 import { CommonModule } from '@angular/common';
 import { BackendComponent } from './backend.component';
 import { BackendViewComponent, ViewDialogContent } from './backendview.component';
-import {MatDatepickerModule, MatNativeDateModule, MatInputModule,MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule, MatProgressSpinnerModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatDialogModule} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule, MatInputModule,
+  MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule, 
+  MatProgressSpinnerModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule,
+   MatDialogModule, MatIconModule} from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { BackendBankapplyComponent } from './backendbankapply.component';
 import { ViewBankStatusComponent, ViewDialogContent1 } from './viewbankstatus.component';
@@ -41,7 +44,8 @@ import { TeamHeadCheckCaseComponent, AddTenureDialogContent } from './teamHeadch
     MatTableModule,
     MatDialogModule,
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatIconModule
 
   ],
   declarations: [ BackendComponent,BackendViewComponent,ViewDialogContent,ViewDialogContent1,

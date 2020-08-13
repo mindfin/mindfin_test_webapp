@@ -19,7 +19,10 @@ model: any = {};
 
 
   onSubmit(){
-    this.service.bankinsert(this.model);
+    this.service.bankinsert(this.model).subscribe(res=>{
+      console.log(res);
+      this.ngOnInit()
+    });;
    }
 
   ngOnInit() {

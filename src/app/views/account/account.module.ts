@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule, MatNativeDateModule, MatInputModule,MatFormFieldModule, 
         MatPaginatorModule, MatSortModule, MatTableModule, MatProgressSpinnerModule,
-        MatBadgeModule, MatButtonModule, MatButtonToggleModule} from '@angular/material';
+        MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatDialogModule, MatIconModule} from '@angular/material';
 import { AccountRoutingModule } from './account-routing.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -44,7 +44,8 @@ import { EmployeeEarlygolistComponent } from './empviewearlygo.component';
     MatProgressSpinnerModule,
     MatTableModule,
     ModalModule.forRoot(),
-    
+    MatIconModule,
+    MatDialogModule
     // NotifierModule.withConfig(customNotifierOptions)
             
   ],

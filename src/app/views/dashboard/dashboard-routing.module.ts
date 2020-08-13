@@ -59,7 +59,7 @@ const routes: Routes = [
     path: 'backendTeamHead',
     component: Dashboard5Component,
     data: {
-      title: 'Backend Entry Dashboard'
+      title: 'Backend Team Head Dashboard'
     }
   }
 ];

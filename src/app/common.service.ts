@@ -16,7 +16,7 @@ import { Keepalive } from '@ng-idle/keepalive';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 import { TabHeadingDirective } from 'ngx-bootstrap/tabs';
- 
+
 
 @Injectable({
   providedIn: 'root'
@@ -65,24 +65,24 @@ export class CommonService {
 
 
   logininsert(obj) {
-    const uri = this.commonurl+'/callapi/logininsert';
+    const uri = this.commonurl + '/callapi/logininsert';
     return this.http.post(uri, obj)
       .subscribe(res => {
       });
   }
   getMacAddress() {
-    const uri = this.commonurl+'/callapi/getMacAddress';
-    return this.http.get(uri) 
+    const uri = this.commonurl + '/callapi/getMacAddress';
+    return this.http.get(uri)
   }
   getAllMacAddress() {
-    const uri = this.commonurl+'/callapi/getAllMacAddress';
-    return this.http.get(uri) 
+    const uri = this.commonurl + '/callapi/getAllMacAddress';
+    return this.http.get(uri)
   }
   //login select
 
   login(loginvalue) {
     // console.log(loginvalue);
-    const uri = this.commonurl+'/callapi/adminlogin/';
+    const uri = this.commonurl + '/callapi/adminlogin/';
     this.http.post(uri, loginvalue).subscribe(res => {
       console.log(res);
       // console.log(res[0].user);
@@ -144,8 +144,8 @@ export class CommonService {
         localStorage.setItem('email', res[0]['email']);
 
         this.router.navigate(['/dashboard/backendTeamHead']);
-      } 
-       else if ((res[0].user == 'BACKEND') &&(res[0].teamHead != 'true')) {
+      }
+      else if ((res[0].user == 'BACKEND') && (res[0].teamHead != 'true')) {
         console.log('back')
         localStorage.setItem('id', res[0]['idemployee']);
         localStorage.setItem('empname', res[0]['name']);
@@ -225,17 +225,17 @@ export class CommonService {
         localStorage.setItem('custname', res[0]['name']);
         localStorage.setItem('role', 'CUSTOMER');
         this.router.navigate(['/member/customerprofile']);
-       
+
       }
     });
   }
- 
+
 
 
 
   getadminlist() {
 
-    const uri = this.commonurl+'/callapi/getadminlist/';
+    const uri = this.commonurl + '/callapi/getadminlist/';
     return this.http.get(uri);
   }
 
@@ -243,34 +243,34 @@ export class CommonService {
   //pie chart in gettotalbooking
 
   totalmember() {
-    const uri = this.commonurl+'/callapi/gettotalbooking';
+    const uri = this.commonurl + '/callapi/gettotalbooking';
     return this.http.get(uri);
   }
 
   //total project
 
   employeecount() {
-    const uri = this.commonurl+'/callapi/employeecount';
+    const uri = this.commonurl + '/callapi/employeecount';
     return this.http.get(uri);
   }
 
 
   membercount() {
-    const uri = this.commonurl+'/callapi/membercount';
+    const uri = this.commonurl + '/callapi/membercount';
     return this.http.get(uri);
   }
   piechart() {
-    const uri = this.commonurl+'/callapi/piechart';
+    const uri = this.commonurl + '/callapi/piechart';
     return this.http.get(uri);
   }
 
   pendingcount() {
-    const uri = this.commonurl+'/callapi/pendingcount';
+    const uri = this.commonurl + '/callapi/pendingcount';
     return this.http.get(uri);
   }
 
   rejectcount() {
-    const uri = this.commonurl+'/callapi/rejectcount';
+    const uri = this.commonurl + '/callapi/rejectcount';
     return this.http.get(uri);
   }
 
@@ -278,7 +278,7 @@ export class CommonService {
 
   customeradd(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/customeradd';
+    const uri = this.commonurl + '/callapi/customeradd';
     return this.http.post(uri, fd)
 
   }
@@ -287,41 +287,40 @@ export class CommonService {
 
   loaninsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/loaninsert';
+    const uri = this.commonurl + '/callapi/loaninsert';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
   }
 
   getloanlist() {
-    const uri = this.commonurl+'/callapi/getloanlist/';
+    const uri = this.commonurl + '/callapi/getloanlist/';
     return this.http.get(uri);
   }
 
 
   getexecutivelist() {
 
-    const uri = this.commonurl+'/callapi/getexecutivelist/';
+    const uri = this.commonurl + '/callapi/getexecutivelist/';
     return this.http.get(uri);
   }
- 
+
 
   bankinsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/bankinsert';
-    this.http.post(uri, obj).subscribe(res => {
-    })
+    const uri = this.commonurl + '/callapi/bankinsert';
+    return this.http.post(uri, obj);
   }
 
   getbanklist() {
 
-    const uri = this.commonurl+'/callapi/getbanklist/';
+    const uri = this.commonurl + '/callapi/getbanklist/';
     return this.http.get(uri);
   }
 
   getnames(obj) {
     console.log(obj)
-    const uri = this.commonurl+'/callapi/getnames/';
+    const uri = this.commonurl + '/callapi/getnames/';
     return this.http.post(uri, obj);
   }
   // checkcurrentpwd(obj){
@@ -334,7 +333,7 @@ export class CommonService {
 
   approvecustomer(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/approvecustomer';
+    const uri = this.commonurl + '/callapi/approvecustomer';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
@@ -342,7 +341,7 @@ export class CommonService {
 
   approve(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/approve';
+    const uri = this.commonurl + '/callapi/approve';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
@@ -350,7 +349,7 @@ export class CommonService {
 
   pdapprove(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/pdapprove';
+    const uri = this.commonurl + '/callapi/pdapprove';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
@@ -358,7 +357,7 @@ export class CommonService {
 
   loginapprove(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/loginapprove';
+    const uri = this.commonurl + '/callapi/loginapprove';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
@@ -368,7 +367,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/approvedlist' + queryParams
+        this.commonurl + '/callapi/approvedlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -404,7 +403,7 @@ export class CommonService {
   rejectcustomer(obj, obj1) {
     console.log(obj);
     const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/rejectcustomer' + queryParams;
+    const uri = this.commonurl + '/callapi/rejectcustomer' + queryParams;
     this.http.get(uri).subscribe(res => {
 
     })
@@ -412,41 +411,41 @@ export class CommonService {
   rejectbank(obj, obj1) {
     console.log(obj);
     const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/rejectbank' + queryParams;
+    const uri = this.commonurl + '/callapi/rejectbank' + queryParams;
     this.http.get(uri).subscribe(res => {
 
     })
   }
   employeeadd(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/addemployee';
+    const uri = this.commonurl + '/callapi/addemployee';
     return this.http.post(uri, fd)
 
   }
 
   userinsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/userinsert';
+    const uri = this.commonurl + '/callapi/userinsert';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
   }
 
   getuserlist() {
-    const uri = this.commonurl+'/callapi/getuserlist/';
+    const uri = this.commonurl + '/callapi/getuserlist/';
     return this.http.get(uri);
   }
 
   employeetypeinsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/employeetypeinsert';
+    const uri = this.commonurl + '/callapi/employeetypeinsert';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
   }
 
   getemployeetypelist() {
-    const uri = this.commonurl+'/callapi/getemployeetypelist/';
+    const uri = this.commonurl + '/callapi/getemployeetypelist/';
     return this.http.get(uri);
   }
 
@@ -456,7 +455,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getemployeelist' + queryParams
+        this.commonurl + '/callapi/getemployeelist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -488,14 +487,14 @@ export class CommonService {
 
   editemp(id) {
 
-    const uri = this.commonurl+'/callapi/editemp/' + id;
+    const uri = this.commonurl + '/callapi/editemp/' + id;
     return this.http.get(uri);
   }
 
 
   editemployee(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/editemployee/';
+    const uri = this.commonurl + '/callapi/editemployee/';
     this.http.post(uri, fd).subscribe(res => {
       console.log(res);
     });
@@ -504,7 +503,7 @@ export class CommonService {
 
   memlogin(loginvalue) {
     console.log(loginvalue);
-    const uri = this.commonurl+'/callapi/memberlogin/';
+    const uri = this.commonurl + '/callapi/memberlogin/';
     // return this.http.post(uri,obj);
     this.http.post(uri, loginvalue).subscribe(res => {
       console.log(res);
@@ -522,13 +521,13 @@ export class CommonService {
 
   homememberlist(memberid) {
     console.log(memberid);
-    const uri = this.commonurl+'/callapi/homememberlist/' + memberid;
+    const uri = this.commonurl + '/callapi/homememberlist/' + memberid;
     return this.http.get(uri);
   }
 
   memberviewdetails(memberid) {
     console.log(memberid);
-    const uri = this.commonurl+'/callapi/memberviewdetails/' + memberid;
+    const uri = this.commonurl + '/callapi/memberviewdetails/' + memberid;
     return this.http.get(uri);
   }
 
@@ -536,7 +535,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getexecutiveelist' + queryParams
+        this.commonurl + '/callapi/getexecutiveelist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -556,43 +555,6 @@ export class CommonService {
         });
       });
   }
-
-  viewcustomerid(postsPerPage: number, currentPage: number, idvalue: String) {
-   
-    const queryParams = `/${postsPerPage}/${currentPage}/${idvalue}`;
-    console.log(queryParams);
-    this.http
-      .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/viewcustomerid' + queryParams
-      )
-      .pipe(
-        map(postData => {
-          //console.log('');
-          return {
-            posts: postData.posts,
-            maxPosts: postData.maxPosts
-          };
-        })
-      )
-      .subscribe(transformedPostData => {
-        this.posts = transformedPostData.posts;
-        this.postsUpdated.next({
-          posts: [...this.posts],
-          postCount: transformedPostData.maxPosts
-        });
-      });
-  }
-
-
-
-
-  viewcustomeridDetails() {
-    return this.postsUpdated.asObservable();
-  }
-
-
-
-
   getexecutiveDetails() {
     return this.postsUpdated.asObservable();
   }
@@ -617,11 +579,7 @@ export class CommonService {
     // this.router.navigate(['/members/bankapply/' +id]);
 
   }
-  // viewcustomerid(id){
-  // console.log(id);
-  // const uri=this.commonurl+'/callapi/viewcustomerid/' + id;
-  //  return this.http.get(uri);
-  // }
+
 
 
 
@@ -634,34 +592,32 @@ export class CommonService {
 
   editcust(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/editcust/' + id;
+    const uri = this.commonurl + '/callapi/editcust/' + id;
     return this.http.get(uri);
   }
 
   getextradetails(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/getextradetails/' + id;
+    const uri = this.commonurl + '/callapi/getextradetails/' + id;
     return this.http.get(uri);
   }
   customerupdate(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/customerupdate/';
+    const uri = this.commonurl + '/callapi/customerupdate/';
     return this.http.post(uri, fd);
 
   }
 
   getaging(date) {
     console.log(date)
-    const uri = this.commonurl+'/callapi/getaging/ ' + date;
+    const uri = this.commonurl + '/callapi/getaging/ ' + date;
     return this.http.get(uri);
   }
 
   deleteemp(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/deleteemp/ ';
-    return this.http.post(uri, obj).subscribe(res => {
-      //console.log('');
-    })
+    const uri = this.commonurl + '/callapi/deleteemp/ ';
+    return this.http.post(uri, obj);
   }
   addbank(id) {
     console.log(id);
@@ -696,7 +652,7 @@ export class CommonService {
 
   applybank(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/applybank/';
+    const uri = this.commonurl + '/callapi/applybank/';
     this.http.post(uri, obj).subscribe(res => {
       console.log(res);
     })
@@ -705,7 +661,7 @@ export class CommonService {
 
   trackcheck(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/checktrack/' + id;
+    const uri = this.commonurl + '/callapi/checktrack/' + id;
     return this.http.get(uri, id)
     //  .subscribe(res=>{
     //   console.log(res);
@@ -719,7 +675,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/hotCustomers' + queryParams
+        this.commonurl + '/callapi/hotCustomers' + queryParams
       )
       .pipe(
         map(postData => {
@@ -746,14 +702,14 @@ export class CommonService {
 
   businesslistinsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/businesslistinsert';
+    const uri = this.commonurl + '/callapi/businesslistinsert';
     this.http.post(uri, obj).subscribe(res => {
     })
   }
 
 
   onChange(obj) {
-    const uri = this.commonurl+'/callapi/onChange';
+    const uri = this.commonurl + '/callapi/onChange';
     return this.http.post(uri, obj);
   }
 
@@ -764,47 +720,47 @@ export class CommonService {
   // }
 
   getbusinesslist() {
-    const uri = this.commonurl+'/callapi/getbusinesslist/';
+    const uri = this.commonurl + '/callapi/getbusinesslist/';
     return this.http.get(uri);
   }
   getApprovedBankList(id) {
-    const uri = this.commonurl+'/callapi/getApprovedBankList/' + id;
+    const uri = this.commonurl + '/callapi/getApprovedBankList/' + id;
     return this.http.get(uri);
   }
 
   getApprovedBankListt(id) {
-    const uri = this.commonurl+'/callapi/getApprovedBankListt/' + id;
+    const uri = this.commonurl + '/callapi/getApprovedBankListt/' + id;
     return this.http.get(uri, id);
   }
   getRejectBankListt(id) {
-    const uri = this.commonurl+'/callapi/getRejectBankListt/' + id;
+    const uri = this.commonurl + '/callapi/getRejectBankListt/' + id;
     return this.http.get(uri, id);
   }
   getviewbanklist(id) {
-    const uri = this.commonurl+'/callapi/getviewbanklist/' + id;
+    const uri = this.commonurl + '/callapi/getviewbanklist/' + id;
     return this.http.get(uri);
   }
 
   getviewbanklistt(id) {
-    const uri = this.commonurl+'/callapi/getviewbanklistt/' + id;
+    const uri = this.commonurl + '/callapi/getviewbanklistt/' + id;
     return this.http.get(uri);
   }
 
   getViewPrevBankList(id) {
-    const uri = this.commonurl+'/callapi/getViewPrevBankList/' + id;
+    const uri = this.commonurl + '/callapi/getViewPrevBankList/' + id;
     return this.http.get(uri);
   }
 
   addenquiry(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/addenquiry';
+    const uri = this.commonurl + '/callapi/addenquiry';
     return this.http.post(uri, obj)
   }
   getEnquirylist(postsPerPage: number, currentPage: number, id) {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getenquirylist' + queryParams
+        this.commonurl + '/callapi/getenquirylist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -832,7 +788,7 @@ export class CommonService {
 
 
   enquirycount(id) {
-    const uri = this.commonurl+'/callapi/enquirycount/' + id;
+    const uri = this.commonurl + '/callapi/enquirycount/' + id;
     return this.http.get(uri);
   }
 
@@ -843,7 +799,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getPdlist' + queryParams
+        this.commonurl + '/callapi/getPdlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -871,7 +827,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getApprovallist' + queryParams
+        this.commonurl + '/callapi/getApprovallist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -899,7 +855,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getDisburstlist' + queryParams
+        this.commonurl + '/callapi/getDisburstlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -923,45 +879,45 @@ export class CommonService {
   }
 
   dataentrycount() {
-    const uri = this.commonurl+'/callapi/dataentrycount/';
+    const uri = this.commonurl + '/callapi/dataentrycount/';
     return this.http.get(uri);
   }
 
 
   pdcount() {
-    const uri = this.commonurl+'/callapi/pdcount/';
+    const uri = this.commonurl + '/callapi/pdcount/';
     return this.http.get(uri);
   }
 
   approvecount() {
-    const uri = this.commonurl+'/callapi/approvcount/';
+    const uri = this.commonurl + '/callapi/approvcount/';
     return this.http.get(uri);
   }
 
   disbursecount() {
-    const uri = this.commonurl+'/callapi/disbursecount/';
+    const uri = this.commonurl + '/callapi/disbursecount/';
     return this.http.get(uri);
   }
 
   enqcount() {
-    const uri = this.commonurl+'/callapi/enqcount/';
+    const uri = this.commonurl + '/callapi/enqcount/';
     return this.http.get(uri);
   }
   bankapply(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/bankapply';
+    const uri = this.commonurl + '/callapi/bankapply';
     this.http.post(uri, obj).subscribe(res => {
     })
   }
 
   singleCustomer(id) {
-    const uri = this.commonurl+'/callapi/singleCustomer/' + id;
+    const uri = this.commonurl + '/callapi/singleCustomer/' + id;
     return this.http.get(uri, id);
   }
 
   gettopuplist(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/gettopuplist/' + id;
+    const uri = this.commonurl + '/callapi/gettopuplist/' + id;
     return this.http.get(uri, id);
   }
 
@@ -974,39 +930,39 @@ export class CommonService {
     this.router.navigate(['/members/topupnotifylist/' + id]);
   }
   getPeriod() {
-    const uri = this.commonurl+'/callapi/getPeriod';
+    const uri = this.commonurl + '/callapi/getPeriod';
     return this.http.get(uri);
     // .subscribe(res=>{
     // })
   }
   checkcurrent(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/checkcurrent/' + id;
+    const uri = this.commonurl + '/callapi/checkcurrent/' + id;
     return this.http.get(uri, id);
   }
 
   addPeriod(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/addPeriod';
+    const uri = this.commonurl + '/callapi/addPeriod';
     return this.http.post(uri, obj)
   }
 
   getperiodlist() {
 
-    const uri = this.commonurl+'/callapi/getperiodlist/';
+    const uri = this.commonurl + '/callapi/getperiodlist/';
     return this.http.get(uri);
   }
 
   addtopup(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/addtopup';
+    const uri = this.commonurl + '/callapi/addtopup';
     return this.http.post(uri, obj);
   }
   getrejectlist(postsPerPage: number, currentPage: number) {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/rejectlist' + queryParams
+        this.commonurl + '/callapi/rejectlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1033,7 +989,7 @@ export class CommonService {
 
   settings(values) {
     console.log(values);
-    const uri = this.commonurl+'/callapi/settings';
+    const uri = this.commonurl + '/callapi/settings';
 
     this.http.post(uri, values).subscribe(res => {
       console.log(res);
@@ -1041,7 +997,7 @@ export class CommonService {
     });
   }
   settingslist() {
-    const uri = this.commonurl+'/callapi/settinglist';
+    const uri = this.commonurl + '/callapi/settinglist';
     return this.http.get(uri);
   }
 
@@ -1049,7 +1005,7 @@ export class CommonService {
 
   programinsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/programinsert';
+    const uri = this.commonurl + '/callapi/programinsert';
     this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
@@ -1057,7 +1013,7 @@ export class CommonService {
 
   getprogramlist() {
 
-    const uri = this.commonurl+'/callapi/getprogramlist/';
+    const uri = this.commonurl + '/callapi/getprogramlist/';
     return this.http.get(uri);
   }
 
@@ -1089,17 +1045,17 @@ export class CommonService {
   // }
   gettopupnotifylist(obj) {
     // console.log(id);
-    const uri = this.commonurl+'/callapi/gettopupnotifylist/' + obj;
+    const uri = this.commonurl + '/callapi/gettopupnotifylist/' + obj;
     return this.http.get(uri);
   }
 
   getexecutivetopuplist(id) {
-    const uri = this.commonurl+'/callapi/getexecutivetopuplist/' + id;
+    const uri = this.commonurl + '/callapi/getexecutivetopuplist/' + id;
     return this.http.get(uri, id)
   }
 
   topUpSucess(obj) {
-    const uri = this.commonurl+'/callapi/topUpSucess';
+    const uri = this.commonurl + '/callapi/topUpSucess';
     return this.http.post(uri, obj);
   }
   // getsuccesstopuplist(){
@@ -1107,7 +1063,7 @@ export class CommonService {
   //   return this.http.get(uri)
   // }
   getSubVendor() {
-    const uri = this.commonurl+'/callapi/getSubVendor';
+    const uri = this.commonurl + '/callapi/getSubVendor';
     return this.http.get(uri)
   }
   CustomerList(id) {
@@ -1118,41 +1074,41 @@ export class CommonService {
   }
   getSubvendorCustomerList(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/customerList/' + id;
+    const uri = this.commonurl + '/callapi/customerList/' + id;
     return this.http.get(uri);
   }
 
   savePayout(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/savePayout';
+    const uri = this.commonurl + '/callapi/savePayout';
     return this.http.post(uri, obj);
   }
   addPayOut(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/addPayOut';
+    const uri = this.commonurl + '/callapi/addPayOut';
     return this.http.post(uri, obj);
   }
   getDisburseCustomerList() {
-    const uri = this.commonurl+'/callapi/getDisburseCustomerList';
+    const uri = this.commonurl + '/callapi/getDisburseCustomerList';
     return this.http.get(uri);
   }
   checknumber(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/checknumber';
+    const uri = this.commonurl + '/callapi/checknumber';
     return this.http.post(uri, obj);
   }
   getvendornames() {
-    const uri = this.commonurl+'/callapi/getvendornames';
+    const uri = this.commonurl + '/callapi/getvendornames';
     return this.http.get(uri);
   }
   gettranscationdata(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/gettranscationdata/' + id;
+    const uri = this.commonurl + '/callapi/gettranscationdata/' + id;
     return this.http.get(uri);
   }
 
   getApproveBankList(id) {
-    const uri = this.commonurl+'/callapi/getApproveBankList/' + id;
+    const uri = this.commonurl + '/callapi/getApproveBankList/' + id;
     return this.http.get(uri);
   }
 
@@ -1164,31 +1120,31 @@ export class CommonService {
   }
   reloanapply(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/reloanapply';
+    const uri = this.commonurl + '/callapi/reloanapply';
     return this.http.post(uri, fd);
 
   }
   bulkSms(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/bulkSms';
+    const uri = this.commonurl + '/callapi/bulkSms';
     return this.http.post(uri, obj);
   }
 
   getDetails(obj) {
-    const uri = this.commonurl+'/callapi/getDetails';
+    const uri = this.commonurl + '/callapi/getDetails';
     return this.http.post(uri, obj);
   }
 
   getPreviousBankDetails(obj) {
-    const uri = this.commonurl+'/callapi/getPreviousBankDetails';
+    const uri = this.commonurl + '/callapi/getPreviousBankDetails';
     return this.http.post(uri, obj);
   }
   getApprovedBankDetails(obj) {
-    const uri = this.commonurl+'/callapi/getApprovedBankDetails';
+    const uri = this.commonurl + '/callapi/getApprovedBankDetails';
     return this.http.post(uri, obj);
   }
   accountdetails(obj) {
-    const uri = this.commonurl+'/callapi/accountdetails';
+    const uri = this.commonurl + '/callapi/accountdetails';
     return this.http.post(uri, obj);
   }
 
@@ -1198,7 +1154,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getsuccesstopuplist' + queryParams
+        this.commonurl + '/callapi/getsuccesstopuplist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1222,27 +1178,27 @@ export class CommonService {
   }
   checkaadharnumber(obj) {
     // console.log(obj);
-    const uri = this.commonurl+'/callapi/checkaadharnumber';
+    const uri = this.commonurl + '/callapi/checkaadharnumber';
     return this.http.post(uri, obj);
   }
   checkpannumber(obj) {
     // console.log(obj);
-    const uri = this.commonurl+'/callapi/checkpannumber';
+    const uri = this.commonurl + '/callapi/checkpannumber';
     return this.http.post(uri, obj);
   }
   checkdlnumber(obj) {
     // console.log(obj);
-    const uri = this.commonurl+'/callapi/checkdlnumber';
+    const uri = this.commonurl + '/callapi/checkdlnumber';
     return this.http.post(uri, obj);
   }
   checkvoternumber(obj) {
     // console.log(obj);
-    const uri = this.commonurl+'/callapi/checkvoternumber';
+    const uri = this.commonurl + '/callapi/checkvoternumber';
     return this.http.post(uri, obj);
   }
   getemployeename(id) {
     console.log(id);
-    const url = this.commonurl+'/callapi/getemployeename/' + id;
+    const url = this.commonurl + '/callapi/getemployeename/' + id;
     return this.http.get(url);
   }
 
@@ -1252,12 +1208,12 @@ export class CommonService {
   // }
   getCompanyname() {
     var empid = localStorage.getItem('id');
-    const uri = this.commonurl+'/callapi/getCompanyname/' + empid;
+    const uri = this.commonurl + '/callapi/getCompanyname/' + empid;
     return this.http.get(uri);
 
   }
   getbankname() {
-    const uri = this.commonurl+'/callapi/getbankname';
+    const uri = this.commonurl + '/callapi/getbankname';
     return this.http.get(uri);
 
   }
@@ -1273,18 +1229,18 @@ export class CommonService {
   }
   editdataa(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/editdataa/' + id;
+    const uri = this.commonurl + '/callapi/editdataa/' + id;
     return this.http.get(uri);
   }
 
   updateenquiry(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/updateenquiry';
+    const uri = this.commonurl + '/callapi/updateenquiry';
     this.http.post(uri, obj).subscribe(res => {
     })
   }
   enquirycount1() {
-    const uri = this.commonurl+'/callapi/enquirycount1';
+    const uri = this.commonurl + '/callapi/enquirycount1';
     return this.http.get(uri);
   }
   // viewroutine(obj) {
@@ -1297,7 +1253,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirylistexe' + queryParams
+        this.commonurl + '/callapi/getEnquirylistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1323,7 +1279,7 @@ export class CommonService {
     return this.postsUpdated.asObservable();
   }
   enquirycount2(obj) {
-    const uri = this.commonurl+'/callapi/enquirycount2/' + obj;
+    const uri = this.commonurl + '/callapi/enquirycount2/' + obj;
     return this.http.get(uri);
   }
 
@@ -1331,7 +1287,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/viewroutine' + queryParams
+        this.commonurl + '/callapi/viewroutine' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1362,23 +1318,23 @@ export class CommonService {
   }
   editdata1(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/editdata1/' + id;
+    const uri = this.commonurl + '/callapi/editdata1/' + id;
     return this.http.get(uri);
   }
   editroutine(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/editroutine';
+    const uri = this.commonurl + '/callapi/editroutine';
     return this.http.post(uri, obj);
   }
   dataentrypiechart() {
-    const uri = this.commonurl+'/callapi/dataentrypiechart';
+    const uri = this.commonurl + '/callapi/dataentrypiechart';
     return this.http.get(uri);
   }
   getbankrejectlist(postsPerPage: number, currentPage: number, id: number) {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getbankrejectlist' + queryParams
+        this.commonurl + '/callapi/getbankrejectlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1404,29 +1360,29 @@ export class CommonService {
   approvalmember(obj, obj1) {
     console.log(obj);
     const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/approvalmember' + queryParams;
+    const uri = this.commonurl + '/callapi/approvalmember' + queryParams;
     this.http.get(uri).subscribe(res => {
 
     })
   }
   casecount(obj) {
-    const uri = this.commonurl+'/callapi/casecount/' + obj;
+    const uri = this.commonurl + '/callapi/casecount/' + obj;
     return this.http.get(uri);
   }
   topupcount(obj) {
-    const uri = this.commonurl+'/callapi/topupcount/' + obj;
+    const uri = this.commonurl + '/callapi/topupcount/' + obj;
     return this.http.get(uri);
   }
   custdocument(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/custdocument';
+    const uri = this.commonurl + '/callapi/custdocument';
     return this.http.post(uri, fd)
   }
   getdocument(postsPerPage: number, currentPage: number) {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getdocument' + queryParams
+        this.commonurl + '/callapi/getdocument' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1454,7 +1410,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getdocument3' + queryParams
+        this.commonurl + '/callapi/getdocument3' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1494,27 +1450,25 @@ export class CommonService {
   }
   backendeditemp(id) {
 
-    const uri = this.commonurl+'/callapi/backendedit/' + id;
+    const uri = this.commonurl + '/callapi/backendedit/' + id;
     return this.http.get(uri);
   }
   editcustdoc(fd) {
     console.log(fd);
-    const uri = this.commonurl+'/callapi/editcustdoc';
+    const uri = this.commonurl + '/callapi/editcustdoc';
     return this.http.post(uri, fd)
   }
 
   backendbankinsert(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/backendbankinsert';
-    this.http.post(uri, obj).subscribe(res => {
-      console.log(res);
-    })
+    const uri = this.commonurl + '/callapi/backendbankinsert';
+    return this.http.post(uri, obj);
   }
   getdocument1(postsPerPage: number, currentPage: number, obj) {
     const queryParams = `/${postsPerPage}/${currentPage}/${obj}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getdocument1' + queryParams
+        this.commonurl + '/callapi/getdocument1' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1539,21 +1493,21 @@ export class CommonService {
     return this.postsUpdated.asObservable();
   }
   getbackendviewbanklist(id) {
-    const uri = this.commonurl+'/callapi/getbackendviewbanklist/' + id;
+    const uri = this.commonurl + '/callapi/getbackendviewbanklist/' + id;
     return this.http.get(uri);
   }
   editstatus(obj) {
     console.log(obj);
     // const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/editstatus';
+    const uri = this.commonurl + '/callapi/editstatus';
     return this.http.post(uri, obj);
   }
   addroutine(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/addroutine';
+    const uri = this.commonurl + '/callapi/addroutine';
     this.http.post(uri, obj).subscribe(res => {
       console.log(res);
-    }) 
+    })
   }
   loginviewbank(id) {
     console.log(id);
@@ -1562,13 +1516,13 @@ export class CommonService {
   }
   getloginexecutivelist() {
 
-    const uri = this.commonurl+'/callapi/getloginexecutivelist/';
+    const uri = this.commonurl + '/callapi/getloginexecutivelist/';
     return this.http.get(uri);
   }
   sentlogexe(obj, obj1, obj2) {
     console.log(obj);
     const queryParams = `/${obj1}/${obj2}`;
-    const uri = this.commonurl+'/callapi/sentlogexe' + queryParams;
+    const uri = this.commonurl + '/callapi/sentlogexe' + queryParams;
     return this.http.post(uri, obj);
   }
   sentlogexeedit(id) {
@@ -1577,7 +1531,7 @@ export class CommonService {
   }
   sentexelogedit1(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/sentexelogedit1/' + id;
+    const uri = this.commonurl + '/callapi/sentexelogedit1/' + id;
     return this.http.get(uri);
   }
 
@@ -1585,7 +1539,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${obj}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getloginlist' + queryParams
+        this.commonurl + '/callapi/getloginlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1611,7 +1565,7 @@ export class CommonService {
   }
   addloginroutine(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/addloginroutine';
+    const uri = this.commonurl + '/callapi/addloginroutine';
     this.http.post(uri, obj).subscribe(res => {
       console.log(res);
     })
@@ -1622,7 +1576,7 @@ export class CommonService {
   }
   editloginroutine(obj, empid) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/editloginroutine/' + empid;
+    const uri = this.commonurl + '/callapi/editloginroutine/' + empid;
     return this.http.post(uri, obj);
   }
   viewtele(id) {
@@ -1631,7 +1585,7 @@ export class CommonService {
   }
   checkcustomer(obj) {
     // console.log(obj);
-    const uri = this.commonurl+'/callapi/checkcustomer';
+    const uri = this.commonurl + '/callapi/checkcustomer';
     return this.http.post(uri, obj).subscribe(res => {
       console.log(res);
       // console.log(res[0].user);
@@ -1648,14 +1602,14 @@ export class CommonService {
   }
   logincount(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/logincount/' + obj;
+    const uri = this.commonurl + '/callapi/logincount/' + obj;
     return this.http.get(uri);
   }
   completlist(postsPerPage: number, currentPage: number) {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/completlist' + queryParams
+        this.commonurl + '/callapi/completlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1688,7 +1642,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getDataEnquirylist' + queryParams
+        this.commonurl + '/callapi/getDataEnquirylist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1717,7 +1671,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getBackendlist' + queryParams
+        this.commonurl + '/callapi/getBackendlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1746,7 +1700,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getLoginreportlist' + queryParams
+        this.commonurl + '/callapi/getLoginreportlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1775,7 +1729,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getLoginroutinelist' + queryParams
+        this.commonurl + '/callapi/getLoginroutinelist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1804,7 +1758,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getExecutiveroutinelist' + queryParams
+        this.commonurl + '/callapi/getExecutiveroutinelist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1833,7 +1787,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getDataentryReportlist' + queryParams
+        this.commonurl + '/callapi/getDataentryReportlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1864,7 +1818,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${exeid}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/geEnquiryDatalist' + queryParams
+        this.commonurl + '/callapi/geEnquiryDatalist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1891,44 +1845,44 @@ export class CommonService {
   }
 
   casedoccount() {
-    const uri = this.commonurl+'/callapi/casedoccount';
+    const uri = this.commonurl + '/callapi/casedoccount';
     return this.http.get(uri);
   }
 
   caselogin() {
-    const uri = this.commonurl+'/callapi/caselogin';
+    const uri = this.commonurl + '/callapi/caselogin';
     return this.http.get(uri);
   }
 
   casepd() {
-    const uri = this.commonurl+'/callapi/casepd';
+    const uri = this.commonurl + '/callapi/casepd';
     return this.http.get(uri);
   }
 
   caseapproval() {
-    const uri = this.commonurl+'/callapi/caseapproval';
+    const uri = this.commonurl + '/callapi/caseapproval';
     return this.http.get(uri);
   }
 
   casereject() {
-    const uri = this.commonurl+'/callapi/casereject';
+    const uri = this.commonurl + '/callapi/casereject';
     return this.http.get(uri);
   }
 
   casedisburse() {
-    const uri = this.commonurl+'/callapi/casedisburse';
+    const uri = this.commonurl + '/callapi/casedisburse';
     return this.http.get(uri);
   }
 
   casewip() {
-    const uri = this.commonurl+'/callapi/casewip';
+    const uri = this.commonurl + '/callapi/casewip';
     return this.http.get(uri);
   }
   getdocument2(postsPerPage: number, currentPage: number, sdate, obj) {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${obj}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getdocument2' + queryParams
+        this.commonurl + '/callapi/getdocument2' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1956,7 +1910,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${obj}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getloginlist1' + queryParams
+        this.commonurl + '/callapi/getloginlist1' + queryParams
       )
       .pipe(
         map(postData => {
@@ -1982,7 +1936,7 @@ export class CommonService {
   }
   checkcase(obj) {
 
-    const uri = this.commonurl+'/callapi/checkcase';
+    const uri = this.commonurl + '/callapi/checkcase';
     return this.http.post(uri, obj)
 
   }
@@ -1991,7 +1945,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getdocument4' + queryParams
+        this.commonurl + '/callapi/getdocument4' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2019,7 +1973,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getdocument5' + queryParams
+        this.commonurl + '/callapi/getdocument5' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2050,30 +2004,30 @@ export class CommonService {
   }
   editcocust(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/editcocust';
+    const uri = this.commonurl + '/callapi/editcocust';
     return this.http.post(uri, obj);
   }
   getcocustomer(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/getcocustomer/' + id;
+    const uri = this.commonurl + '/callapi/getcocustomer/' + id;
     return this.http.get(uri);
 
   }
   getadminexecutivelist() {
 
-    const uri = this.commonurl+'/callapi/getadminexecutivelist/';
+    const uri = this.commonurl + '/callapi/getadminexecutivelist/';
     return this.http.get(uri);
   }
   getteamhead() {
 
-    const uri = this.commonurl+'/callapi/getteamhead/';
+    const uri = this.commonurl + '/callapi/getteamhead/';
     return this.http.get(uri);
   }
   getEnquirylistexe1(postsPerPage: number, currentPage: number, id) {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirylistexe1' + queryParams
+        this.commonurl + '/callapi/getEnquirylistexe1' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2102,7 +2056,7 @@ export class CommonService {
   }
   teleeditDataa(id) {
     console.log(id);
-    const uri = this.commonurl+'/callapi/teleeditData/' + id;
+    const uri = this.commonurl + '/callapi/teleeditData/' + id;
     return this.http.get(uri);
   }
   getDataEnquirylist1(postsPerPage: number, currentPage: number, sdate, edate, exeid) {
@@ -2111,7 +2065,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}/${exeid}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getDataEnquirylist1' + queryParams
+        this.commonurl + '/callapi/getDataEnquirylist1' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2139,7 +2093,7 @@ export class CommonService {
   assignexe(obj) {
     console.log(obj);
     // const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/assignexe';
+    const uri = this.commonurl + '/callapi/assignexe';
     return this.http.post(uri, obj)
   }
 
@@ -2147,7 +2101,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getContactformlist' + queryParams
+        this.commonurl + '/callapi/getContactformlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2177,7 +2131,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getcareerformlist' + queryParams
+        this.commonurl + '/callapi/getcareerformlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2206,7 +2160,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getCallbackformlist' + queryParams
+        this.commonurl + '/callapi/getCallbackformlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2234,23 +2188,23 @@ export class CommonService {
 
   public uploadImage(file) {
     console.log(file)
-    return this.http.post(this.commonurl+'/callapi/image-upload', file);
+    return this.http.post(this.commonurl + '/callapi/image-upload', file);
   }
   public suggbox(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/suggbox', value);
+    return this.http.post(this.commonurl + '/callapi/suggbox', value);
   }
   public leaveapp(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/leaveapp', value);
+    return this.http.post(this.commonurl + '/callapi/leaveapp', value);
   }
   public conves(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/conves', value);
+    return this.http.post(this.commonurl + '/callapi/conves', value);
   }
   activeemp(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/activeemp/ ';
+    const uri = this.commonurl + '/callapi/activeemp/ ';
     return this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
@@ -2260,7 +2214,7 @@ export class CommonService {
     const queryParams = '/${postsPerPage}/${currentPage}';
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getinactiveemployeelist' + queryParams
+        this.commonurl + '/callapi/getinactiveemployeelist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2289,28 +2243,28 @@ export class CommonService {
 
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
     console.log(queryParams);
-    const uri = this.commonurl+'/callapi/gettopleave' + queryParams;
+    const uri = this.commonurl + '/callapi/gettopleave' + queryParams;
     return this.http.get(uri);
   }
   gettopconven(postsPerPage: number, currentPage: number, empid: number) {
 
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
     console.log(queryParams);
-    const uri = this.commonurl+'/callapi/gettopconven' + queryParams;
+    const uri = this.commonurl + '/callapi/gettopconven' + queryParams;
     return this.http.get(uri);
   }
   gettopsug(postsPerPage: number, currentPage: number, empid: number) {
 
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
     console.log(queryParams);
-    const uri = this.commonurl+'/callapi/gettopsug' + queryParams;
+    const uri = this.commonurl + '/callapi/gettopsug' + queryParams;
     return this.http.get(uri);
   }
   getconven(postsPerPage: number, currentPage: number, empid: number) {
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getconven' + queryParams
+        this.commonurl + '/callapi/getconven' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2336,7 +2290,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getleavapp' + queryParams
+        this.commonurl + '/callapi/getleavapp' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2362,7 +2316,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getsug' + queryParams
+        this.commonurl + '/callapi/getsug' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2385,15 +2339,15 @@ export class CommonService {
     return this.postsUpdated.asObservable();
   }
   getsugpending() {
-    const uri = this.commonurl+'/callapi/getsugpending';
+    const uri = this.commonurl + '/callapi/getsugpending';
     return this.http.get(uri);
   }
   getconvpending() {
-    const uri = this.commonurl+'/callapi/getconvpending';
+    const uri = this.commonurl + '/callapi/getconvpending';
     return this.http.get(uri);
   }
   getleaveapp() {
-    const uri = this.commonurl+'/callapi/getleaveapp';
+    const uri = this.commonurl + '/callapi/getleaveapp';
     return this.http.get(uri);
   }
 
@@ -2401,7 +2355,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getallconven' + queryParams
+        this.commonurl + '/callapi/getallconven' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2427,7 +2381,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getallleavapp' + queryParams
+        this.commonurl + '/callapi/getallleavapp' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2453,7 +2407,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getallsug' + queryParams
+        this.commonurl + '/callapi/getallsug' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2477,34 +2431,34 @@ export class CommonService {
   }
   public editconves(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/editconves', value);
+    return this.http.post(this.commonurl + '/callapi/editconves', value);
   }
   public editleavapp(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/editleavapp', value);
+    return this.http.post(this.commonurl + '/callapi/editleavapp', value);
   }
   public editsug(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/editsug', value);
+    return this.http.post(this.commonurl + '/callapi/editsug', value);
   }
   public conveopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/conveopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/conveopenstatus', value);
   }
   public leavappeopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/leavappeopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/leavappeopenstatus', value);
   }
   public sugopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/sugopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/sugopenstatus', value);
   }
   public getpasswords() {
-    const uri = this.commonurl+'/callapi/getpasswords';
+    const uri = this.commonurl + '/callapi/getpasswords';
     return this.http.get(uri);
   }
   getwhosecase() {
-    const uri = this.commonurl+'/callapi/getwhosecase';
+    const uri = this.commonurl + '/callapi/getwhosecase';
     return this.http.get(uri);
 
   }
@@ -2512,7 +2466,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getBackendCustomerlist' + queryParams
+        this.commonurl + '/callapi/getBackendCustomerlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2541,7 +2495,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getBackendBanklist' + queryParams
+        this.commonurl + '/callapi/getBackendBanklist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2570,7 +2524,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getWebsiteLead' + queryParams
+        this.commonurl + '/callapi/getWebsiteLead' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2597,47 +2551,47 @@ export class CommonService {
   }
   savecomment(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/savecomment ';
+    const uri = this.commonurl + '/callapi/savecomment ';
     return this.http.post(uri, obj)
   }
   getweblead() {
-    const uri = this.commonurl+'/callapi/getweblead';
+    const uri = this.commonurl + '/callapi/getweblead';
     return this.http.get(uri);
   }
   public webleadopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/webleadopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/webleadopenstatus', value);
   }
   downloadall(obj) {
     console.log(obj);
-    const uri = this.commonurl+'/callapi/downloadall/ ';
+    const uri = this.commonurl + '/callapi/downloadall/ ';
     return this.http.post(uri, obj).subscribe(res => {
       //console.log('');
     })
   }
   public earlygo(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/earlygo', value);
+    return this.http.post(this.commonurl + '/callapi/earlygo', value);
   }
-  getEarlygo(postsPerPage: number, currentPage: number,empid: number) {
+  getEarlygo(postsPerPage: number, currentPage: number, empid: number) {
 
     const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
-    const uri = this.commonurl+'/callapi/getEarlygo/' + queryParams;
+    const uri = this.commonurl + '/callapi/getEarlygo/' + queryParams;
     return this.http.get(uri);
   }
   getearlygocount() {
-    const uri = this.commonurl+'/callapi/getearlygocount';
+    const uri = this.commonurl + '/callapi/getearlygocount';
     return this.http.get(uri);
   }
   public earlygoopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/earlygoopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/earlygoopenstatus', value);
   }
   getallearlygo(postsPerPage: number, currentPage: number) {
     const queryParams = `/${postsPerPage}/${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getallearlygo' + queryParams
+        this.commonurl + '/callapi/getallearlygo' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2660,90 +2614,90 @@ export class CommonService {
     return this.postsUpdated.asObservable();
   }
   getadminnewtelcount() {
-    const uri = this.commonurl+'/callapi/getnewtelcount';
+    const uri = this.commonurl + '/callapi/getnewtelcount';
     return this.http.get(uri);
   }
   getnewtelcount(value) {
-    const uri = this.commonurl+'/callapi/getnewtelcount1';
-    return this.http.post(uri,value);
+    const uri = this.commonurl + '/callapi/getnewtelcount1';
+    return this.http.post(uri, value);
   }
   getnewappocount(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/getnewappocount';
+    const uri = this.commonurl + '/callapi/getnewappocount';
     return this.http.post(uri, value);
   }
   public teldataopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/teldataopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/teldataopenstatus', value);
   }
   public appointmentopenstatus(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/appointmentopenstatus', value);
+    return this.http.post(this.commonurl + '/callapi/appointmentopenstatus', value);
   }
   downloadCount(value) {
-    const uri = this.commonurl+'/callapi/downloadCount';
+    const uri = this.commonurl + '/callapi/downloadCount';
     return this.http.post(uri, value);
   }
   cimageUpload(value) {
-    const uri = this.commonurl+'/callapi/cimageUpload';
+    const uri = this.commonurl + '/callapi/cimageUpload';
     return this.http.post(uri, value);
   }
   getemployee() {
-    const uri = this.commonurl+'/callapi/getemployee/';
+    const uri = this.commonurl + '/callapi/getemployee/';
     return this.http.get(uri);
   }
   individualNotification(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/individualNotification', value);
+    return this.http.post(this.commonurl + '/callapi/individualNotification', value);
   }
 
 
   getteleemp() {
-    const uri = this.commonurl+'/callapi/getteleemp/';
+    const uri = this.commonurl + '/callapi/getteleemp/';
     return this.http.get(uri);
   }
   getbackendemp() {
-    const uri = this.commonurl+'/callapi/getbackendemp/';
+    const uri = this.commonurl + '/callapi/getbackendemp/';
     return this.http.get(uri);
   }
   getaccemp() {
-    const uri = this.commonurl+'/callapi/getaccemp/';
+    const uri = this.commonurl + '/callapi/getaccemp/';
     return this.http.get(uri);
   }
 
   getdataentrtemp() {
-    const uri = this.commonurl+'/callapi/getdataentrtemp/';
+    const uri = this.commonurl + '/callapi/getdataentrtemp/';
     return this.http.get(uri);
   }
   generalNotification(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/generalNotification', value);
+    return this.http.post(this.commonurl + '/callapi/generalNotification', value);
   }
   getGroupNotification() {
-    const uri = this.commonurl+'/callapi/getGroupNotification/';
+    const uri = this.commonurl + '/callapi/getGroupNotification/';
     return this.http.get(uri);
-  }
+  } 
   getEmployeeNotification(value) {
-    const uri = this.commonurl+'/callapi/getEmployeeNotification/' + value;
+    const uri = this.commonurl + '/callapi/getEmployeeNotification/' + value;
     return this.http.get(uri);
   }
   getnewnotification(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/getnewnotification';
+    const uri = this.commonurl + '/callapi/getnewnotification';
     return this.http.post(uri, value);
   }
   opennotification(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/opennotification';
+    const uri = this.commonurl + '/callapi/opennotification';
     return this.http.post(uri, value);
   }
   deleteNotification(value) {
     console.log(value);
-    return this.http.post(this.commonurl+'/callapi/deleteNotification', value);
+    return this.http.post(this.commonurl + '/callapi/deleteNotification', value);
   }
   getSeenBy(value) {
     console.log(value)
-    const uri = this.commonurl+'/callapi/getSeenBy/' + value;
+    const uri = this.commonurl + '/callapi/getSeenBy/' + value;
     return this.http.get(uri);
   }
   openSeenByDialog(id) {
@@ -2752,63 +2706,63 @@ export class CommonService {
   }
   gettodolist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/gettodolist';
+    const uri = this.commonurl + '/callapi/gettodolist';
     return this.http.post(uri, value);
   }
 
-  addToDo(value){
+  addToDo(value) {
     console.log(value)
-    const uri=this.commonurl+'/callapi/addToDo';
-    return this.http.post(uri,value);
-  }
-  getToDo(value){
-    console.log(value);
-    const uri = this.commonurl+'/callapi/gettodo';
+    const uri = this.commonurl + '/callapi/addToDo';
     return this.http.post(uri, value);
   }
-  closetodo(value){
+  getToDo(value) {
+    console.log(value);
+    const uri = this.commonurl + '/callapi/gettodo';
+    return this.http.post(uri, value);
+  }
+  closetodo(value) {
     console.log(value)
-    const uri = this.commonurl+'/callapi/closetodo/' + value;
+    const uri = this.commonurl + '/callapi/closetodo/' + value;
     return this.http.get(uri);
-    
+
   }
   public getemailSettings() {
-    const uri = this.commonurl+'/callapi/getemailSettings';
+    const uri = this.commonurl + '/callapi/getemailSettings';
     return this.http.get(uri);
   }
-  addEvent(value){
+  addEvent(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/addEvent';
+    const uri = this.commonurl + '/callapi/addEvent';
     return this.http.post(uri, value);
   }
-  getEvent(){
-      const uri = this.commonurl+'/callapi/getEvent';
-  const res= this.http.get(uri);
-   console.log(res);
+  getEvent() {
+    const uri = this.commonurl + '/callapi/getEvent';
+    const res = this.http.get(uri);
+    console.log(res);
     return res;
   }
-  deleteEvent(value){
+  deleteEvent(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/deleteEvent';
+    const uri = this.commonurl + '/callapi/deleteEvent';
     return this.http.post(uri, value);
   }
   enquiryapprovecount(id) {
-    const uri = this.commonurl+'/callapi/enquiryapprovecount/' + id;
+    const uri = this.commonurl + '/callapi/enquiryapprovecount/' + id;
     return this.http.get(uri);
   }
   enquirydisbursecount(id) {
-    const uri = this.commonurl+'/callapi/enquirydisbursecount/' + id;
+    const uri = this.commonurl + '/callapi/enquirydisbursecount/' + id;
     return this.http.get(uri);
   }
   enquiryrejectcount(id) {
-    const uri = this.commonurl+'/callapi/enquiryrejectcount/' + id;
+    const uri = this.commonurl + '/callapi/enquiryrejectcount/' + id;
     return this.http.get(uri);
   }
   getEnquiryDisburslistDetails(postsPerPage: number, currentPage: number, id) {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryDisburslistDetailsDetails' + queryParams
+        this.commonurl + '/callapi/getEnquiryDisburslistDetailsDetails' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2835,7 +2789,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryApprovedlist' + queryParams
+        this.commonurl + '/callapi/getEnquiryApprovedlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2862,7 +2816,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryRejectlist' + queryParams
+        this.commonurl + '/callapi/getEnquiryRejectlist' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2887,42 +2841,42 @@ export class CommonService {
   }
   notopenedlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/notopenedlist';
+    const uri = this.commonurl + '/callapi/notopenedlist';
     return this.http.post(uri, value);
   }
   filepickedlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/filepickedlist';
+    const uri = this.commonurl + '/callapi/filepickedlist';
     return this.http.post(uri, value);
   }
   contactedlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/contactedlist';
+    const uri = this.commonurl + '/callapi/contactedlist';
     return this.http.post(uri, value);
   }
   loginlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/loginlist';
+    const uri = this.commonurl + '/callapi/loginlist';
     return this.http.post(uri, value);
   }
   wiplist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/wiplist';
+    const uri = this.commonurl + '/callapi/wiplist';
     return this.http.post(uri, value);
   }
   approvedlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/approvedlist';
+    const uri = this.commonurl + '/callapi/approvedlist';
     return this.http.post(uri, value);
   }
   disbursedlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/disbursedlist';
+    const uri = this.commonurl + '/callapi/disbursedlist';
     return this.http.post(uri, value);
   }
   rejectlist(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/rejectlist';
+    const uri = this.commonurl + '/callapi/rejectlist';
     return this.http.post(uri, value);
   }
 
@@ -2930,7 +2884,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryApprovelistexe' + queryParams
+        this.commonurl + '/callapi/getEnquiryApprovelistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2958,7 +2912,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirycontactedlistexe' + queryParams
+        this.commonurl + '/callapi/getEnquirycontactedlistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -2985,7 +2939,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirydisburselistexe' + queryParams
+        this.commonurl + '/callapi/getEnquirydisburselistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3012,7 +2966,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryfilepicklistexe' + queryParams
+        this.commonurl + '/callapi/getEnquiryfilepicklistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3039,7 +2993,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryloginlistexe' + queryParams
+        this.commonurl + '/callapi/getEnquiryloginlistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3066,7 +3020,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirynotopenlistexe' + queryParams
+        this.commonurl + '/callapi/getEnquirynotopenlistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3093,7 +3047,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquiryrejectlistexe' + queryParams
+        this.commonurl + '/callapi/getEnquiryrejectlistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3120,7 +3074,7 @@ export class CommonService {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirywiplistexe' + queryParams
+        this.commonurl + '/callapi/getEnquirywiplistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3146,25 +3100,25 @@ export class CommonService {
   notify(obj) {
     console.log(obj);
     // const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/notify';
+    const uri = this.commonurl + '/callapi/notify';
     return this.http.post(uri, obj)
   }
   removeCase(obj) {
     console.log(obj);
     // const queryParams = `/${obj}/${obj1}`;
-    const uri = this.commonurl+'/callapi/removeCase';
+    const uri = this.commonurl + '/callapi/removeCase';
     return this.http.post(uri, obj)
   }
   nofallowup(value) {
     console.log(value);
-    const uri = this.commonurl+'/callapi/nofallowup';
+    const uri = this.commonurl + '/callapi/nofallowup';
     return this.http.post(uri, value);
   }
   getEnquirynofollowuplistexe(postsPerPage: number, currentPage: number, id) {
     const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        this.commonurl+'/callapi/getEnquirynofollowuplistexe' + queryParams
+        this.commonurl + '/callapi/getEnquirynofollowuplistexe' + queryParams
       )
       .pipe(
         map(postData => {
@@ -3187,538 +3141,562 @@ export class CommonService {
   getEnquirynofollowuplistexeDetails() {
     return this.postsUpdated.asObservable();
   }
-  mappedgetEvent(){
-    const uri = this.commonurl+'/callapi/mappedgetEvent';
-const res= this.http.get(uri);
- console.log(res);
-  return res;
-}
-mappedgetEventDetails() {
-  return this.postsUpdated.asObservable();
-}
-getEarlyGoStatus(obj) {
-  console.log(obj);
-  const uri = this.commonurl+'/callapi/getEarlyGoStatus';
-  return this.http.post(uri, obj);
+  mappedgetEvent() {
+    const uri = this.commonurl + '/callapi/mappedgetEvent';
+    const res = this.http.get(uri);
+    console.log(res);
+    return res;
+  }
+  mappedgetEventDetails() {
+    return this.postsUpdated.asObservable();
+  }
+  getEarlyGoStatus(obj) {
+    console.log(obj);
+    const uri = this.commonurl + '/callapi/getEarlyGoStatus';
+    return this.http.post(uri, obj);
 
-}
-getLateInStatus(obj) {
-  console.log(obj);
-  const uri = this.commonurl+'/callapi/getLateInStatus';
-  return this.http.post(uri, obj);
+  }
+  getLateInStatus(obj) {
+    console.log(obj);
+    const uri = this.commonurl + '/callapi/getLateInStatus';
+    return this.http.post(uri, obj);
 
-}
-adminnotopenedlist() {
-  const uri = this.commonurl+'/callapi/adminnotopenedlist';
-  return this.http.get(uri);
-}
-adminfilepickedlist() {
-  const uri = this.commonurl+'/callapi/adminfilepickedlist';
-  return this.http.get(uri, );
-}
-admincontactedlist() {
-  const uri = this.commonurl+'/callapi/admincontactedlist';
-  return this.http.get(uri);
-}
-adminloginlist() {
-  const uri = this.commonurl+'/callapi/adminloginlist';
-  return this.http.get(uri);
-}
-adminwiplist() {
-  const uri = this.commonurl+'/callapi/adminwiplist';
-  return this.http.get(uri);
-}
-adminapprovedlist() {
-  const uri = this.commonurl+'/callapi/adminapprovedlist';
-  return this.http.get(uri);
-}
-adminnofallowup() {
-  const uri = this.commonurl+'/callapi/adminnofallowup';
-  return this.http.get(uri);
-}
-empgetallearlygo(postsPerPage: number, currentPage: number,id:number) {
-  const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/empgetallearlygo' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        return {
-          posts: postData.posts,
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+  }
+  adminnotopenedlist() {
+    const uri = this.commonurl + '/callapi/adminnotopenedlist';
+    return this.http.get(uri);
+  }
+  adminfilepickedlist() {
+    const uri = this.commonurl + '/callapi/adminfilepickedlist';
+    return this.http.get(uri,);
+  }
+  admincontactedlist() {
+    const uri = this.commonurl + '/callapi/admincontactedlist';
+    return this.http.get(uri);
+  }
+  adminloginlist() {
+    const uri = this.commonurl + '/callapi/adminloginlist';
+    return this.http.get(uri);
+  }
+  adminwiplist() {
+    const uri = this.commonurl + '/callapi/adminwiplist';
+    return this.http.get(uri);
+  }
+  adminapprovedlist() {
+    const uri = this.commonurl + '/callapi/adminapprovedlist';
+    return this.http.get(uri);
+  }
+  adminnofallowup() {
+    const uri = this.commonurl + '/callapi/adminnofallowup';
+    return this.http.get(uri);
+  }
+  empgetallearlygo(postsPerPage: number, currentPage: number, id: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/empgetallearlygo' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          return {
+            posts: postData.posts,
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
+  }
 
-empgetallearlygoDetails() {
-  return this.postsUpdated.asObservable();
-}
+  empgetallearlygoDetails() {
+    return this.postsUpdated.asObservable();
+  }
 
-getEnquiryApprovelistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquiryApprovelistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  getEnquiryApprovelistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquiryApprovelistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquiryApprovelistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
+  }
+  getEnquiryApprovelistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
 
-getEnquirycontactedlistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquirycontactedlistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  getEnquirycontactedlistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquirycontactedlistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquirycontactedlistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquirydisburselistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquirydisburselistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquirycontactedlistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquirydisburselistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquirydisburselistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquirydisburselistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquiryfilepicklistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquiryfilepicklistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquirydisburselistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquiryfilepicklistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquiryfilepicklistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquiryfilepicklistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquiryloginlistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquiryloginlistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquiryfilepicklistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquiryloginlistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquiryloginlistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquiryloginlistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquirynotopenlistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquirynotopenlistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquiryloginlistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquirynotopenlistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquirynotopenlistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquirynotopenlistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquiryrejectlistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquiryrejectlistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquirynotopenlistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquiryrejectlistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquiryrejectlistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquiryrejectlistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquirywiplistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquirywiplistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquiryrejectlistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquirywiplistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquirywiplistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquirywiplistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getEnquirynofollowuplistexe1(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getEnquirynofollowuplistexe1' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquirywiplistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getEnquirynofollowuplistexe1(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getEnquirynofollowuplistexe1' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
-getEnquirynofollowuplistexeDetails1() {
-  return this.postsUpdated.asObservable();
-}
-getadminEnquirylist(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getadminEnquirylist' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+  }
+  getEnquirynofollowuplistexeDetails1() {
+    return this.postsUpdated.asObservable();
+  }
+  getadminEnquirylist(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getadminEnquirylist' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
+  }
 
 
-getadminEnquirylistDetails() {
-  return this.postsUpdated.asObservable();
-}
-getNotificationById(value) {
-  console.log(value)
-  const uri = this.commonurl+'/callapi/getNotificationById';
-  return this.http.post(uri,value);
-}
-getAllNotificationById(value) {
-  console.log(value)
-  const uri = this.commonurl+'/callapi/getAllNotificationById/'+value;
-  return this.http.get(uri);
-}
-gettodo1(value){
-  const uri=this.commonurl+'/callapi/gettodo1/'+value;
-  return this.http.get(uri);
-}
-addvisitor(obj) {
-  console.log(obj);
-  const uri = this.commonurl+'/callapi/addvisitor';
-  return this.http.post(uri, obj)
-}
-getvisitorcount() {
-  const uri = this.commonurl+'/callapi/getvisitorcount';
-  return this.http.get(uri);
-}
-getAllVisitors(postsPerPage: number, currentPage: number) {
-  const queryParams = `/${postsPerPage}/${currentPage}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getAllVisitors' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        return {
-          posts: postData.posts,
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+  getadminEnquirylistDetails() {
+    return this.postsUpdated.asObservable();
+  }
+  getNotificationById(value) {
+    console.log(value)
+    const uri = this.commonurl + '/callapi/getNotificationById';
+    return this.http.post(uri, value);
+  }
+  getAllNotificationById(value) {
+    console.log(value)
+    const uri = this.commonurl + '/callapi/getAllNotificationById/' + value;
+    return this.http.get(uri);
+  }
+  gettodo1(value) {
+    const uri = this.commonurl + '/callapi/gettodo1/' + value;
+    return this.http.get(uri);
+  }
+  addvisitor(obj) {
+    console.log(obj);
+    const uri = this.commonurl + '/callapi/addvisitor';
+    return this.http.post(uri, obj)
+  }
+  getvisitorcount() {
+    const uri = this.commonurl + '/callapi/getvisitorcount';
+    return this.http.get(uri);
+  }
+  getAllVisitors(postsPerPage: number, currentPage: number) {
+    const queryParams = `/${postsPerPage}/${currentPage}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getAllVisitors' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          return {
+            posts: postData.posts,
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
+  }
 
-getAllVisitorsDetails() {
-  return this.postsUpdated.asObservable();
-}
-respondVisitor(value){
-  console.log(value);
-    return this.http.post(this.commonurl+'/callapi/respondVisitor', value);
-}
-public visitoropenstatus(value) {
-  console.log(value);
-  return this.http.post(this.commonurl+'/callapi/visitoropenstatus', value);
-}
-editBackend(id) {
-  console.log(id);
-  this.router.navigate(['/backend/editroutine/' + id]);
-}
+  getAllVisitorsDetails() {
+    return this.postsUpdated.asObservable();
+  }
+  respondVisitor(value) {
+    console.log(value);
+    return this.http.post(this.commonurl + '/callapi/respondVisitor', value);
+  }
+  public visitoropenstatus(value) {
+    console.log(value);
+    return this.http.post(this.commonurl + '/callapi/visitoropenstatus', value);
+  }
+  editBackend(id) {
+    console.log(id);
+    this.router.navigate(['/backend/editroutine/' + id]);
+  }
 
-getexecutivelistWithBranch(value) {
+  getexecutivelistWithBranch(value) {
 
-  const uri = this.commonurl+'/callapi/getexecutivelistWithBranch/'+value;
-  return this.http.get(uri);
-}
-getheadofficeEmployee() {
+    const uri = this.commonurl + '/callapi/getexecutivelistWithBranch/' + value;
+    return this.http.get(uri);
+  }
+  getheadofficeEmployee() {
 
-  const uri = this.commonurl+'/callapi/getheadofficeEmployee/';
-  return this.http.get(uri);
-}
-getBackendroutinelist(postsPerPage: number, currentPage: number, sdate, edate) {
-  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getBackendroutinelist' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+    const uri = this.commonurl + '/callapi/getheadofficeEmployee/';
+    return this.http.get(uri);
+  }
+  getBackendroutinelist(postsPerPage: number, currentPage: number, sdate, edate) {
+    const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getBackendroutinelist' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
+  }
 
 
-getBackendroutinelistDetails() {
-  return this.postsUpdated.asObservable();
-}
-getallexecutivelist() {
+  getBackendroutinelistDetails() {
+    return this.postsUpdated.asObservable();
+  }
+  getallexecutivelist() {
 
-  const uri = this.commonurl+'/callapi/getallexecutivelist/';
-  return this.http.get(uri);
-}
-request(value){
-  console.log(value)
-  return this.http.post(this.commonurl+'/callapi/request', value);
-}
-shareFile(value){
-  console.log(value)
-  return this.http.post(this.commonurl+'/callapi/shareFile', value);
-}
-addteleroutine(obj) {
-  console.log(obj);
-  const uri = this.commonurl+'/callapi/addteleroutine';
-  return this.http.post(uri, obj)
- 
-}
-getTopRoutine(postsPerPage: number, currentPage: number,empid: number) {
+    const uri = this.commonurl + '/callapi/getallexecutivelist/';
+    return this.http.get(uri);
+  }
+  request(value) {
+    console.log(value)
+    return this.http.post(this.commonurl + '/callapi/request', value);
+  }
+  shareFile(value) {
+    console.log(value)
+    return this.http.post(this.commonurl + '/callapi/shareFile', value);
+  }
+  addteleroutine(obj) {
+    console.log(obj);
+    const uri = this.commonurl + '/callapi/addteleroutine';
+    return this.http.post(uri, obj)
 
-  const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
-  const uri = this.commonurl+'/callapi/getTopRoutine/' + queryParams;
-  return this.http.get(uri);
-}
+  }
+  getTopRoutine(postsPerPage: number, currentPage: number, empid: number) {
 
-viewTeleroutine(postsPerPage: number, currentPage: number, id) {
-  const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/viewTeleroutine' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
+    const queryParams = `/${postsPerPage}/${currentPage}/${empid}`;
+    const uri = this.commonurl + '/callapi/getTopRoutine/' + queryParams;
+    return this.http.get(uri);
+  }
 
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+  viewTeleroutine(postsPerPage: number, currentPage: number, id) {
+    const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/viewTeleroutine' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
+
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
+  }
+  viewTeleroutineDetails() {
+    return this.postsUpdated.asObservable();
+  }
+  getTeleroutinelist(postsPerPage: number, currentPage: number, sdate, edate) {
+    const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/getTeleroutinelist' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-
-viewTeleroutineDetails() {
-  return this.postsUpdated.asObservable();
-}
-getTeleroutinelist(postsPerPage: number, currentPage: number, sdate, edate) {
-  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
-  this.http
-    .get<{ message: string; posts: any; maxPosts: number }>(
-      this.commonurl+'/callapi/getTeleroutinelist' + queryParams
-    )
-    .pipe(
-      map(postData => {
-        //console.log('');
-        return {
-          posts: postData.posts,
-
-          maxPosts: postData.maxPosts
-        };
-      })
-    )
-    .subscribe(transformedPostData => {
-      this.posts = transformedPostData.posts;
-      this.postsUpdated.next({
-        posts: [...this.posts],
-        postCount: transformedPostData.maxPosts
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
       });
-    });
-}
+  }
+  getTeleroutinelistDetails() {
+    return this.postsUpdated.asObservable();
+  }
 
+  viewcustomerid(postsPerPage: number, currentPage: number, id) {
+    const queryParams = `/${postsPerPage}/${currentPage}/${id}`;
+    this.http
+      .get<{ message: string; posts: any; maxPosts: number }>(
+        this.commonurl + '/callapi/viewcustomerid' + queryParams
+      )
+      .pipe(
+        map(postData => {
+          //console.log('');
+          return {
+            posts: postData.posts,
 
-getTeleroutinelistDetails() {
-  return this.postsUpdated.asObservable();
-}
+            maxPosts: postData.maxPosts
+          };
+        })
+      )
+      .subscribe(transformedPostData => {
+        this.posts = transformedPostData.posts;
+        this.postsUpdated.next({
+          posts: [...this.posts],
+          postCount: transformedPostData.maxPosts
+        });
+      });
+  }
+  viewcustomeridDetails() {
+    return this.postsUpdated.asObservable();
+  }
 }

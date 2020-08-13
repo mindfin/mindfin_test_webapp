@@ -64,7 +64,7 @@
                             <th>GST RETURNS</th>
                             <td> {{fetchData. gstandreturns_orgname}}</td>
                             <th>LOAN SANCTION LETTER</th>
-                            <td> {{fetchData.loanstatemen_orgnamet}}</td>
+                            <td> {{fetchData.loanstatement_orgname}}</td>
                         </tr>
                         <tr>
                             <th>APPLICATION DETAILS</th>
@@ -73,66 +73,250 @@
                             <td> {{fetchData.comment}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="editcustomer(fetchData.idcustomer)"> EDIT CUSTOMER
+                            <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="editcustomer(fetchData.idcustomer)">
+                                    EDIT CUSTOMER
                                 </button>
                             </td>
-                            <!-- <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="addbank(fetchData.idcustomer)"> ADD BANK
-                            </button>
-                            </td> -->
+                            <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="addbankshow()"> ADD BANK
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <div *ngIf="addBankCustId === 'true'; else blank; ">
+                <div class="card-header">
+                    <strong>ADD BANK </strong>
+                </div>
+                <div class="card-body">
+                    <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm()">
+                        <form (ngSubmit)="addvalues();" #f="ngForm" novalidate>
+                            <h4 style="float:right;"></h4>
+                            <div class="table-responsive">
+
+                                <table class="table table-striped" id="dynamic_field">
+                                    <tr>
+                                        <th>
+                                            <label><b>BANK TYPE</b></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" name="idbank" [(ngModel)]="model.idbank" #idbank="ngModel">
+                                                <option value="" selected>Select your option</option>
+                                                <option *ngFor="let item of fetchData6"
+                                                    value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
+                                                    {{item.bankname}}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>HANDLE BY</b></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" name="executiveid" [(ngModel)]="model.executiveid" #executiveid="ngModel">
+                                                <option value="" selected>Select your option</option>
+                                                <option *ngFor="let item of fetchData7"
+                                                    value="{{item.idemployee}},{{item.name}}">
+                                                    {{item.name}}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>LOAN TYPE</b></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" name="previousapplytype" [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel">
+                                                <option value="" selected>Select your option</option>
+                                                <option *ngFor="let item of fetchData5"
+                                                    value={{item.idloantype}},{{item.loantype}}>
+                                                    {{item.loantype}}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>AMOUNT</b></label><br>
+                                            <input type="number" class="form-control" #amount="ngModel" placeholder="ENTER AMOUNT" name="amount" [(ngModel)]="model.amount">
+                                        </th>
+                                        <th>
+                                            <label><b>STATUS</b></label><br>
+                                            <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
+                                                <option value="" selected>Select option</option>
+                                                <option value="ONLINE APPLICATION">ONLINE APPLICATION</option>
+                                                <option value="DISPATCHED">DISPATCHED</option>
+                                                <option value="LOGIN">LOGIN</option>
+                                                <option value="LOGIN HOLD">LOGIN HOLD</option>
+                                                <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
+                                                <option value="PD">PD</option>
+                                                <option value="PD PENDING">PD PENDING</option>
+                                                <option value="POST PD PENDING">POST PD PENDING</option>
+                                                <option value="APPROVED">APPROVED</option>
+                                                <option value="REJECT">REJECT</option>
+                                                <option value="DISBURSED">DISBURSED</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>PRODUCT</b></label><br>
+                                            <select class="form-control" name="product" [(ngModel)]="model.product" #product="ngModel">
+                                                <option value="" selected>Select option</option>
+                                                <option value="NORMAL">NORMAL</option>
+                                                <option value="BANKING">BANKING</option>
+                                                <option value="ITR PROGRAM">ITR PROGRAM</option>
+                                                <option value="SWIPPING">SWIPPING</option>
+                                                <option value="GST RETURN">GST RETURN</option>
+
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>ADD</b></label><br>
+                                            <button type="submit" class="form-control">
+                                                <i class="fa fa-plus"></i> </button>
+
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>SL.NO</th>
+                                        <th>
+                                            BANK NAME
+                                        </th>
+                                        <th>
+                                            VENDOR
+                                        </th>
+                                        <th>
+                                            HANDLE BY
+                                        </th>
+                                        <th>
+                                            LOAN TYPE
+                                        </th>
+                                        <th>
+                                            APPLIED AMOUNT
+                                        </th>
+                                        <th>
+                                            STATUS
+                                        </th>
+                                        <th>
+                                            PRODUCT
+                                        </th>
+                                        <th>
+                                            REMOVE
+                                        </th>
+                                    </thead>
+                                    <tr *ngFor='let pro of tempval;let i=index'>
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            {{pro.bankname}}
+                                        </td>
+                                        <td>
+                                            {{pro.vendor}}
+                                        </td>
+                                        <td>
+                                            {{pro.executivename}}
+                                        </td>
+                                        <td>
+                                            {{pro.previousapplytype}}
+                                        </td>
+                                        <td>
+                                            {{pro.amount}}
+                                        </td>
+                                        <td>
+                                            {{pro.status}}
+                                        </td>
+                                        <td>
+                                            {{pro.product}}
+                                        </td>
+                                        <td>
+                                            <button (click)="removevalue(pro,i)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- </div></div></div> -->
+                        <div class="card-footer">
+                            <button class="btn btn-success" [disabled]="!form.valid">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <ng-template #blank>
+
+            </ng-template>
             <div class="card-header">
                 <strong>Request File Download </strong>
             </div>
             <div class="card-body">
                 <table class="table=responsive">
                     <tr>
-                        <th>COMPANY KYC</th>
-                        <th>CUSTOMER KYC</th>
-                        <th>BANK STATEMENT</th>
-                        <th>IT RETURNS</th>
-                        <th>GST RETURNS</th>
-                        <th>LOAN SANCTION LETTER</th>
-                        <th>APPLICATION DETAILS</th>
-                        <th>ALL FILES</th>
+                        <th class="text-center">COMPANY KYC</th>
+                        <th class="text-center">CUSTOMER KYC</th>
+                        <th class="text-center">BANK STATEMENT</th>
+                        <th class="text-center">IT RETURNS</th>
+                        <th class="text-center">GST RETURNS</th>
+                        <th class="text-center">LOAN SANCTION LETTER</th>
+                        <th class="text-center">APPLICATION DETAILS</th>
+                        <th class="text-center">ALL FILES</th>
                     </tr>
                     <tr>
                         <td>
-                            <a *ngIf="fetchData.companykyc ==='admin.png'" class="nav-link badge-danger" role="button" title="COMPANY KYC">Company KYC </a>
-                            <a *ngIf="fetchData.companykyc !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.companykyc_orgname,fetchData)" role="button" title="COMPANY KYC">Company KYC </a>
+                            <a *ngIf="fetchData.companykyc === null || fetchData.companykyc === undefined || fetchData.companykyc ==='admin.png'; else comno; " class="nav-link badge-danger" role="button" title="COMPANY KYC NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <ng-template #comno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.companykyc_orgname,fetchData)" role="button" title="COMPANY KYC">REQUEST AVAILABLE </a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.customerkyc ==='admin.png'" class="nav-link badge-danger" role="button" title="CUSTOMER KYC">Customer KYC </a>
-                            <a *ngIf="fetchData.customerkyc !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.customerkyc_orgname,fetchData)" role="button" title="CUSTOMER KYC">Customer KYC </a>
+                            <a *ngIf="fetchData.customerkyc ===null || fetchData.customerkyc === undefined || fetchData.customerkyc ==='admin.png'; else cusno; " class="nav-link badge-danger" role="button" title="CUSTOMER KYC NOT AVAILABLE ">NOT AVAILABLE</a>
+                            <ng-template #cusno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.customerkyc_orgname,fetchData)" role="button" title="CUSTOMER KYC">REQUEST AVAILABLE </a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.bankstatement ==='admin.png'" class="nav-link badge-danger" role="button" title="BANK STATEMENT">Bank Statement </a>
-                            <a *ngIf="fetchData.bankstatement !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.bankstatement_orgname,fetchData)" role="button" title="BANK STATEMENT">Bank Statement </a>
+                            <a *ngIf="fetchData.bankstatement === null || fetchData.bankstatement === undefined || fetchData.bankstatement ==='admin.png'; else bstno; " class="nav-link badge-danger" role="button" title="BANK STATEMENT NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <ng-template #bstno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.bankstatement_orgname,fetchData)" role="button" title="BANK STATEMENT">REQUEST AVAILABLE </a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.itr ==='admin.png'" class="nav-link badge-danger" role="button" title="IT RETURNS">IT Returns </a>
-                            <a *ngIf="fetchData.itr !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.itr_orgname,fetchData)" role="button" title="IT RETURNS">IT Returns </a>
+                            <a *ngIf="fetchData.itr === null || fetchData.itr === undefined || fetchData.itr ==='admin.png'; else itrno; " class="nav-link badge-danger" role="button" title="IT RETURNS NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <ng-template #itrno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.itr_orgname,fetchData)" role="button" title="IT RETURNS">REQUEST AVAILABLE</a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.gstandreturns ==='admin.png'" class="nav-link badge-danger" role="button" title="GST RETURNS">GST Returns </a>
-                            <a *ngIf="fetchData.gstandreturns !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.gstandreturns_orgname,fetchData)" role="button" title="GST RETURNS">GST Returns </a>
+                            <a *ngIf="fetchData.gstandreturns ===null || fetchData.gstandreturns === undefined || fetchData.gstandreturns ==='admin.png'; else gstno; " class="nav-link badge-danger" role="button" title="GST RETURNS NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <ng-template #gstno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.gstandreturns_orgname,fetchData)" role="button" title="GST RETURNS">REQUEST AVAILABLE </a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.loanstatement ==='admin.png'" class="nav-link badge-danger" role="button" title="LOAN SANCTION LETTER">Loan Sanction Letter</a>
-                            <a *ngIf="fetchData.loanstatement !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.loanstatement_orgname,fetchData)" role="button" title="LOAN SANCTION LETTER">Loan Sanction Letter</a>
+                            <a *ngIf="fetchData.loanstatement ===null || fetchData.loanstatement === undefined || fetchData.loanstatement ==='admin.png'; else loanno; " class="nav-link badge-danger" role="button" title="LOAN SANCTION LETTER NOT AVAILABLE ">NOT AVAILABLE
+                                Letter</a>
+                            <ng-template #loanno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.loanstatement_orgname,fetchData)" role="button" title="LOAN SANCTION LETTER">REQUEST AVAILABLE</a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.applicationDetails ==='admin.png'" class="nav-link badge-danger" role="button" title="CUSTOMER DETAILS">Customer Details</a>
-                            <a *ngIf="fetchData.applicationDetails !=='admin.png'" class="nav-link badge-success" (click)="request(fetchData.applicationDetails_orgname,fetchData)" role="button" title="CUSTOMER  DETAILS">Customer Details</a>
+                            <a *ngIf="fetchData.applicationDetails ===null || fetchData.applicationDetails === undefined || fetchData.applicationDetails ==='admin.png'; else appno; " class="nav-link badge-danger" role="button" title="CUSTOMER DETAILS NOT AVAILABLE ">NOT AVAILABLE</a>
+                            <ng-template #appno>
+                                <a class="nav-link badge-success" (click)="request(fetchData.applicationDetails_orgname,fetchData)" role="button" title="CUSTOMER  DETAILS">REQUEST AVAILABLE </a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.name !==''" class="nav-link badge-success" (click)="request(AllFiles,fetchData)" role="button" title="All Files">All Files</a>
+                            <a *ngIf="(fetchData.companykyc === null || fetchData.companykyc === undefined || fetchData.companykyc ==='admin.png')
+                            || (fetchData.customerkyc ===null || fetchData.customerkyc === undefined || fetchData.customerkyc ==='admin.png') 
+                            || (fetchData.bankstatement ===null || fetchData.bankstatement === undefined || fetchData.bankstatement ==='admin.png')
+                            || (fetchData.itr ===null || fetchData.itr === undefined || fetchData.itr ==='admin.png')
+                            || (fetchData.gstandreturns ===null || fetchData.gstandreturns === undefined || fetchData.gstandreturns ==='admin.png')
+                            || (fetchData.loanstatement ===null || fetchData.loanstatement === undefined || fetchData.loanstatement ==='admin.png')
+                            || (fetchData.applicationDetails ===null || fetchData.applicationDetails === undefined || fetchData.applicationDetails ==='admin.png');
+                             else noallfile; " class="nav-link badge-danger" role="button" title="All File NOT AVAILABLE">NOT AVAILABLE</a>
+                            <ng-template #noallfile>
+                                <a class="nav-link badge-success" (click)="request(AllFiles,fetchData)" role="button" title="All Files">All Files</a>
+                            </ng-template>
                         </td>
                     </tr>
                 </table>
             </div>
+
             <div class="card-header">
                 <strong>APPLIED BANK DETAILS</strong>
             </div>
@@ -142,17 +326,18 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Sl.No</th>
-                                <th>APPLIED DATE</th>
-                                <th>BANK NAME</th>
-                                <th>BANK PERSON</th>
-                                <th>LOANTYPE</th>
-                                <th>AMOUNT</th>
-                                <th>PRODUCT</th>
-                                <th>STATUS</th>
-                                <th>COMMENTS</th>
-                                <th>EDIT STATUS</th>
-                                <th>ADD TENURE</th>
+                                <th class="text-center">Sl.No</th>
+                                <th class="text-center">APPLIED DATE</th>
+                                <Th class="text-center">HANDLE BY EXECUTIVE</Th>
+                                <th class="text-center">BANK NAME</th>
+                                <th class="text-center">BANK PERSON</th>
+                                <th class="text-center">LOANTYPE</th>
+                                <th class="text-center">AMOUNT</th>
+                                <th class="text-center">PRODUCT</th>
+                                <th class="text-center">STATUS</th>
+                                <th class="text-center">COMMENTS</th>
+                                <th class="text-center">EDIT STATUS</th>
+                                <th class="text-center">ADD DISBURSEMENT DETAILS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,6 +347,9 @@
                                 </td>
                                 <td>
                                     {{pro.createddate | date:'dd/MM/yyyy'}}
+                                </td>
+                                <td>
+                                    {{pro.executivename}}
                                 </td>
                                 <td>
                                     {{pro.bankname}}
@@ -185,10 +373,10 @@
                                     {{pro.comment}}
                                 </td>
                                 <td class="text-center"> <button mat-raised-button color="warn" [disabled]="pro.sstatus==='DISBURSED'" (click)="openDialog(pro)"> EDIT STATUS
-                            </button>
+                                    </button>
                                 </td>
-                                <td class="text-center"> <button mat-raised-button class="btn btn-success" [disabled]="pro.sstatus!=='DISBURSED'" (click)="addtenure(pro.idapplybank)"> ADD TENURE
-                                </button>
+                                <td class="text-center"> <button mat-raised-button class="btn btn-success" [disabled]="pro.sstatus!=='DISBURSED'" (click)="addtenure(pro.idapplybank)"> ADD
+                                    </button>
                                 </td>
 
                         </tbody>

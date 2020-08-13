@@ -1,69 +1,72 @@
+<button class="close-button" [mat-dialog-close]="true">
+   <mat-icon class="close-icon" color="warn"><i class="fa fa-times" aria-hidden="true"></i></mat-icon>
+</button>
 <h3 mat-dialog-title>OUT SOURCING PAYMENTS</h3>
 <div mat-dialog-content class="mat-typography">
-        <div class="card-body">
-                        <div class="table-responsive">
-                       
-                                        <table class="table">
-                                           <thead>
-                                              <tr>
-                                                  <!-- <th>CUSTOMER ID</th> -->
-                                                 <th>BANK</th>
-                                                 <th>LOANTYPE</th> 
-                                                 <th>AMOUNT</th>
-                                                 <th>ADD PAYOUTS</th>
-                                                 <th>SAVE</th>
-                                                 <!-- <th>EMAIL</th>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <!-- <th>CUSTOMER ID</th> -->
+                        <th>BANK</th>
+                        <th>LOANTYPE</th>
+                        <th>AMOUNT</th>
+                        <th>ADD PAYOUTS</th>
+                        <th>SAVE</th>
+                        <!-- <th>EMAIL</th>
                                                  <th>LIST</th> -->
-                                                 <!-- <th>TOPUP SUCCESS</th> -->
-                     
-                                              </tr>
-                                           </thead>
-                                           <tbody>
-                                            
-                                              <tr *ngFor='let pro of dd'>
-                                                                                 
-                                                     <td>
-                                                     {{pro.bankname}}
-                                                     </td>
-                                                     <td>
-                                                     {{pro.loantype}}
-                                                     </td>
-                                                     <td>
-                                                      {{pro.amount}}
-                                                     </td>
-                                                     <td>
-                                                                <input  class="form-control" name="payout"
-                                                                [(ngModel)]="pro.payout" />
-                                                               
-                                                                       
-                                                        </td>
-                                                <td>
-                                                <button   class="btn btn-primary"  
-                                                              
-                                         (click)="savepayout(pro)">
+                        <!-- <th>TOPUP SUCCESS</th> -->
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor='let pro of dd'>
+
+                        <td>
+                            {{pro.bankname}}
+                        </td>
+                        <td>
+                            {{pro.loantype}}
+                        </td>
+                        <td>
+                            {{pro.amount}}
+                        </td>
+                        <td>
+                            <input class="form-control" name="payout" [(ngModel)]="pro.payout" />
+
+
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" (click)="savepayout(pro)">
                                                 SAVE 
-                                                 </button>   
-                                                     </td>
-                                               
-                                                  
-                                                   </tr>
-                                             
-                                           </tbody>
-                                        </table>
-               
-</div>
+                                                 </button>
+                        </td>
 
-  
-  
-    
 
-<style>
-.table {
-flex: 5 1 auto;
-padding: 6.25rem !important;
-font-size: medium !important;
-}
-table,th,td{
-border:1px solid black;
-}
-</style>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+
+        <style>
+            .table {
+                flex: 5 1 auto;
+                padding: 6.25rem !important;
+                font-size: medium !important;
+            }
+            
+            table,
+            th,
+            td {
+                border: 1px solid black;
+            }
+        </style>

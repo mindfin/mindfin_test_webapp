@@ -60,8 +60,6 @@ this.commonservice
   this.dataSource.sort = this.sort;
 console.log(this.dataSource.sort);
 });
-
-  
   }
   applyFilter(filterValue: string) {
     console.log(filterValue);
@@ -119,7 +117,9 @@ refresh(): void {
 
 deleteemp(element){
 console.log(element);
-this.commonservice.deleteemp(element);
+this.commonservice.deleteemp(element).subscribe(res => {
+  this.ngOnInit();
+});
 
 }
 

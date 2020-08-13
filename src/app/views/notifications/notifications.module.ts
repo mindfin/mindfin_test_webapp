@@ -5,7 +5,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NotificationsRoutingModule } from './notifications-routing.module';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatInputModule, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, 
+  MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatPaginatorModule, MatSortModule,
+   MatProgressSpinnerModule, MatDialogModule, MatIconModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ProfileSettingComponent } from './profilesettings.component';
@@ -56,7 +58,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     }),
     NgbModalModule,
     DemoUtilsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,MatDialogModule, MatIconModule
   ],
   declarations: [ProfileSettingComponent,AddNotificationComponent,AssignToDoComponent,ViewNotificationComponent,
     EmpNotificationComponent,DeleteNotificationDialogContent,SeenByComponent,CreateToDoDialogContent,

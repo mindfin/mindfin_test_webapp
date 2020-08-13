@@ -19,6 +19,7 @@ var defaultImg = 'admin.png';
 var JSZip = require("jszip");
 var FileSaver = require('file-saver');
 var macaddress = require('macaddress');
+var momentTz = require('moment-timezone');
 
 const MAO = require('multer-aliyun-oss');
 
@@ -97,9 +98,10 @@ router.get('/piechart', function(req, res) {
 // new apis to mindfin//
 router.post('/bankinsert', (req, res) => {
     const nowdate1 = format.asString('yyyy-MM-dd', new Date());
-    var date = moment.utc().format('YYYY-MM-DD HH:mm:ss');
-    var localTime = moment.utc(date).toDate();
-    localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+    var date = momentTz.tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+    console.log(date);
+    // var localTime = moment.utc(date).toDate();
+    // localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
     //console.log("moment: " + localTime);
     if (req.body.idbank != null) {
         knex('bank')
@@ -107,7 +109,7 @@ router.post('/bankinsert', (req, res) => {
             .update({
                 bankname: req.body.bankname,
                 bankvendor: req.body.bankvendor,
-                updateddate: localTime
+                updateddate: date
             })
             .then(function(result) {
                 res.json('Bank Updated Successfully');
@@ -119,7 +121,7 @@ router.post('/bankinsert', (req, res) => {
                 bankname: req.body.bankname,
                 status: "active",
                 bankvendor: req.body.bankvendor,
-                createddate: moment().format(nowdate1)
+                createddate: date
             })
             .then(function(result) {
                 res.json('Bank Added Successfully');
@@ -10234,45 +10236,8 @@ router.post('/getLateInStatus', (req, res, next) => {
         });
 });
 
-router.get('/casecount/:obj', (req, res) => {
-    knex.select()
-        .from('applybank')
-        .where('executiveid', req.params.obj)
-        .groupBy('idcustomer')
-        .then(function(result) {
-            res.json(result.length);
-        })
-});
-router.get('/viewcustomerid/:pagesize/:page/:id', (req, res, next) => {
-    //console.log(req.params);
-    const pageSize = req.params.pagesize;
-    const currentPage = req.params.page;
-    const skip = (pageSize * (currentPage - 1));
-    var subquery = knex.select().from('applybank').max('applybank.idapplybank').groupBy('applybank.idcustomer')
-    knex.select()
-        .from('customer')
-        .join('applybank', 'customer.idcustomer', 'applybank.idcustomer')
-        .where('applybank.executiveid', req.params.id)
-        .whereIn('applybank.idapplybank', subquery)
-        .orderBy('applybank.idapplybank', 'desc')
-        .limit(pageSize).offset(skip)
-        .then(function(result) {
-            knex.select()
-                .from('customer')
-                .join('applybank', 'customer.idcustomer', 'applybank.idcustomer')
-                .where('applybank.executiveid', req.params.id)
-                .whereIn('applybank.idapplybank', subquery)
-                .groupBy('applybank.idcustomer')
-                .orderBy('applybank.idapplybank', 'desc')
-                .then(function(re) {
-                    res.status(200).json({
-                        message: "Memberlists fetched",
-                        posts: result,
-                        maxPosts: re.length
-                    });
-                })
-        })
-});
+
+
 router.get('/adminnotopenedlist', (req, res) => {
     knex.select()
         .from('enquirydata')
@@ -11859,8 +11824,8 @@ router.post('/request', function(req, res) {
     knex('sendernotifications')
         .insert({
             createdDate: localTime,
-            senderID: '1',
-            senderName: 'Admin',
+            senderID: req.body.empname,
+            senderName: req.body.empid,
             notification: req.body.empname + " Requesting " + req.body.Data.cname + "," + req.body.File + "   Use Download Document under Customer to Share File,           Keywords to search case: Company Name: " + req.body.Data.cname + ", Mobile No: " + req.body.Data.mobile + ", Aadhar or pan: " + req.body.Data.aadharno + "/" + req.body.Data.panno,
             notificationSubject: "Requesting File to download",
             notificationImg: undefined,
@@ -12801,4 +12766,50 @@ router.get('/getTeleroutinelist/:pagesize/:page/:sdate/:edate', (req, res, next)
                 })
         })
 });
-module.exports = router;
+router.get('/viewcustomerid/:pagesize/:page/:id', (req, res, next) => {
+    //console.log(req.params);
+    const pageSize = req.params.pagesize;
+    const currentPage = req.params.page;
+    const skip = (pageSize * (currentPage - 1));
+    var subquery = knex.select().from('applybank').max('applybank.idapplybank').groupBy('applybank.idcustomer')
+    knex.select('customer.*', 'applybank.*')
+        .from('customer')
+        .join('applybank', 'customer.idcustomer', 'applybank.idcustomer')
+        .where('applybank.executiveid', req.params.id)
+        .whereIn('applybank.idapplybank', subquery)
+        .orderBy('applybank.idapplybank', 'desc')
+        .limit(pageSize).offset(skip)
+        .then(function(result) {
+            console.log("Customer Count = " + result.length)
+            knex.select()
+                .from('customer')
+                .join('applybank', 'customer.idcustomer', 'applybank.idcustomer')
+                .where('applybank.executiveid', req.params.id)
+                .whereIn('applybank.idapplybank', subquery)
+                .orderBy('customer.idcustomer', 'desc')
+                .then(function(re) {
+                    res.json({
+                        message: "Memberlists fetched",
+                        posts: result,
+                        maxPosts: re.length
+                    });
+                })
+        })
+});
+router.get('/casecount/:obj', (req, res) => {
+    console.log(req.params.obj)
+    var subquery = knex.select().from('applybank').max('applybank.idapplybank').groupBy('applybank.idcustomer')
+    knex.select('customer.*', 'applybank.*')
+        .from('customer')
+        .join('applybank', 'customer.idcustomer', 'applybank.idcustomer')
+        .where('applybank.executiveid', req.params.obj)
+        .whereIn('applybank.idapplybank', subquery)
+        .orderBy('applybank.idapplybank', 'desc')
+        .then(function(result) {
+            // console.log(result);
+            console.log(result.length);
+
+            res.json(result.length);
+        })
+});
+module.exports = router

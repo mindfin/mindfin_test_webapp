@@ -1,5 +1,11 @@
-<h1 mat-dialog-title>
-    ADD RE-PAYMENT PERIOD TO BANK</h1>
+<button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn"><i class="fa fa-times" aria-hidden="true"></i></mat-icon>
+</button>
+<div mat-dialog-title>
+    <h1>DISBURSEMENT DETAILS</h1>
+
+</div>
+
 <div mat-dialog-content class="mat-typography">
     <div class="card">
 
@@ -35,14 +41,14 @@
                                 <td>
                                     <!-- <label><b>PRODUCT</b></label><br> -->
                                     <select class="form-control" name="product" [(ngModel)]="data.product" #product="ngModel">
-                              <option value="" selected>Select option</option>
-                              <option value="NORMAL">NORMAL</option>
-                              <option value="BANKING">BANKING</option>
-                              <option value="ITR PROGRAM">ITR PROGRAM</option>
-                              <option value="SWIPPING">SWIPPING</option>
-                              <option value="GST RETURN">GST RETURN</option>
+                                        <option value="" selected>Select option</option>
+                                        <option value="NORMAL">NORMAL</option>
+                                        <option value="BANKING">BANKING</option>
+                                        <option value="ITR PROGRAM">ITR PROGRAM</option>
+                                        <option value="SWIPPING">SWIPPING</option>
+                                        <option value="GST RETURN">GST RETURN</option>
 
-                           </select>
+                                    </select>
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" [(ngModel)]="data.roi" name="roi">
@@ -54,11 +60,11 @@
                                 <td>
 
                                     <select class="form-control" name="idtopup" [(ngModel)]="data.idtopup" (click)="getperiod(data.idtopup)">
-                              <option value="" selected>Select your option</option>
-                              <option *ngFor="let item of fetchData2" value="{{item.idtopup}}">
-                                 {{item.period}}
-                              </option>
-                           </select>
+                                        <option value="" selected>Select your option</option>
+                                        <option *ngFor="let item of fetchData2" value="{{item.idtopup}}">
+                                            {{item.period}}
+                                        </option>
+                                    </select>
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" [(ngModel)]="data.insurance" name="insurance">

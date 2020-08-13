@@ -54,6 +54,9 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
 import { SuperadminService } from './superadmin.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material';
+
 @NgModule({
   imports: [
     HttpClientModule,
@@ -85,7 +88,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     MomentModule,
     BrowserAnimationsModule,
     NgIdleKeepaliveModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatIconModule,
+    MatDialogModule
   
 
   ],

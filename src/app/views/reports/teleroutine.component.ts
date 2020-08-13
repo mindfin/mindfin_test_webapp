@@ -90,14 +90,13 @@ export class TeleRoutineComponent {
     console.log(this.samples);
     let come = this.samples;
     var a;
-    const fileName = "Backend Executive Routine";
+    const fileName = "Tele Routine";
     for (let i = 0; i < come.length; i++) {
       this.array.push({
         "Created Date": this.samples[i].dcreateddate,
-        "Company Name": this.samples[i].companyname,
-        "Whose Case": this.samples[i].whosecase,
-        "Bank Name": this.samples[i].bankname,
-        "Status": this.samples[i].dstatus,
+        "No Of Calls": this.samples[i].noOfCalls,
+        "No Of Followup's": this.samples[i].noOfFollowUp,
+        "No of Leads": this.samples[i].noOfLeadGenrated,
         "Comments": this.samples[i].comment,
         "Employee Name": this.samples[i].empname,
         "Branch": this.samples[i].branch,

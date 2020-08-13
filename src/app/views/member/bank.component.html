@@ -1,84 +1,81 @@
-
-   <div class="row">
+<div class="row">
     <div class="col-md-6">
-       <div class="card">
+        <div class="card">
 
-          <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
-          <div class="card-header">
-             <strong> ADD BANK </strong>
-          </div>
-
-          <div class="card-body">
-
-             <div class="row">
-                <div class="col-md-8">
-                   <label for="bankname">BANK</label>
-                   <input type="text" class="form-control" name="bankname" [(ngModel)]="model.bankname"
-                   #bankname="ngModel"    required/>
-                   <div *ngIf="f.submitted && bankname.invalid"  class="invalid-feedback">
-                      <div *ngIf="bankname.errors.required">Bankname is required</div>
-                   </div>
-                   <br>
-                </div>
-             </div>
-
-             <div class="row">
-               <div class="col-md-8">
-                  <label for="bankvendor">BANK VENDOR NAME</label>
-                  <input type="text" class="form-control" name="bankvendor" [(ngModel)]="model.bankvendor"
-                  #bankvendor="ngModel"    required/>
-                  <div *ngIf="f.submitted && bankvendor.invalid"  class="invalid-feedback">
-                     <div *ngIf="bankvendor.errors.required">Bankname is required</div>
-                  </div>
-                  <br>
-               </div>
-            </div>
-
-             <div class="card-footer">
-                <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
-             </div>
-
-            </div>
-
-             </form>
-          </div>
-        </div>
-          <div class="col-lg-6">
-             <div class="card">
+            <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="card-header">
-                   <strong>BANK LIST</strong> 
+                    <strong> ADD BANK </strong>
                 </div>
+
                 <div class="card-body">
-                   <div class="table-responsive">
-                      <table class="table">
-                         <thead>
-                            <tr>
-                               <th>BANK NAME</th>
-                               <th>VENDOR</th>
-                               <th>EDIT</th>
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr *ngFor='let pro of fetchData'>
-                               <td>
-                            
-                                  {{pro.bankname}}
-                               </td>
-                               <td>
-                            
-                                 {{pro.bankvendor}}
-                              </td>
-                               <td>
-                                  <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
-                               </td>
-                            </tr>
-                         </tbody>
-                      </table>
-                   </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="bankname">BANK</label>
+                            <input type="text" class="form-control" name="bankname" [(ngModel)]="model.bankname" #bankname="ngModel" required/>
+                            <div *ngIf="f.submitted && bankname.invalid" class="invalid-feedback">
+                                <div *ngIf="bankname.errors.required">Bankname is required</div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="bankvendor">BANK VENDOR NAME</label>
+                            <input type="text" class="form-control" name="bankvendor" [(ngModel)]="model.bankvendor" #bankvendor="ngModel" required/>
+                            <div *ngIf="f.submitted && bankvendor.invalid" class="invalid-feedback">
+                                <div *ngIf="bankvendor.errors.required">Bankname is required</div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
+                    </div>
+
                 </div>
-             </div>
-          </div>
-       </div>
-       <!--/.col-->
-    <!-- </div> -->
-    <!--/.row-->
+
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>BANK LIST</strong>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>BANK NAME</th>
+                                <th>VENDOR</th>
+                                <th>EDIT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let pro of fetchData'>
+                                <td>
+
+                                    {{pro.bankname}}
+                                </td>
+                                <td>
+
+                                    {{pro.bankvendor}}
+                                </td>
+                                <td>
+                                    <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/.col-->
+<!-- </div> -->
+<!--/.row-->

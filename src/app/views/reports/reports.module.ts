@@ -4,7 +4,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
-import {MatDatepickerModule, MatNativeDateModule, MatInputModule,MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule, MatProgressSpinnerModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatDialogModule} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule, MatInputModule,
+  MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule,
+   MatProgressSpinnerModule, MatBadgeModule, MatButtonModule,
+    MatButtonToggleModule, MatDialogModule,MatIconModule} from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ReportsRoutingModule } from './reports-routing.module';
 import { LoginReportComponent } from './loginreport.component';
@@ -29,7 +32,6 @@ import { SuperAdminTeledataNotOpenedlistComponent, AssignDialogContent7 } from '
 import { SuperAdminTeledataRejectlistComponent, AssignDialogContent8 } from './superadminteledatarejectlist.component';
 import { BackendRoutineComponent } from './backendroutine.component';
 import { TeleRoutineComponent } from './teleroutine.component';
-
 
 
 
@@ -59,7 +61,7 @@ import { TeleRoutineComponent } from './teleroutine.component';
     MatTableModule,
     MatDialogModule,
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(), MatIconModule
 
   ],
   declarations: [LoginReportComponent,BackendReportComponent,DataentryReportComponent

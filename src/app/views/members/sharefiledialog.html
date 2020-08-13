@@ -1,3 +1,6 @@
+<button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn"><i class="fa fa-times" aria-hidden="true"></i></mat-icon>
+</button>
 <h1 mat-dialog-title>
     Share File</h1>
 <!-- <div class="modal-dialog modal-dialog-scrollable" role="document"> -->
@@ -146,11 +149,11 @@
                                 {{pro.comment}}
                             </td>
                             <td>
-                                {{pro.OSSName}}
+                                {{pro.fileName}}
                             </td>
 
                             <td>
-                                {{pro.fileName}}
+                                {{pro.OSSName}}
                             </td>
                             <td>
                                 <button (click)="removevalue(pro,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -168,11 +171,6 @@
 
 </mat-dialog-content>
 <!-- </div> -->
-
-
-
-
-
 <style>
     .table {
         flex: 5 1 auto;
