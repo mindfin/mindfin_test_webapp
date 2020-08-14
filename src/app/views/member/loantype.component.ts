@@ -19,7 +19,16 @@ model: any = {};
 
 
   onSubmit(){
-    this.service.loaninsert(this.model);
+    this.service.loaninsert(this.model).subscribe(res=>{
+      // console.log(res);
+      if(this.model.idloantype!==null){ alert("Loan Type Updated Successfully")}
+     
+      else{alert("Loan Type Added Successfully")}
+      
+      this.ngOnInit();
+      this.model.loantype = '';
+    this.model.code = '';
+    });
    }
 
   ngOnInit() {

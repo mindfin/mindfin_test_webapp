@@ -51,38 +51,6 @@ export class Dashboard5Component implements OnInit {
 //   console.log(res);
 //   this.fetchData6 = res;
 // });
-this.service.dataentrypiechart().subscribe(res=>{
-  console.log(res);
-  this.fetchData = res;
 
-  for(var i=0;i<this.fetchData.length;i++){
-    this.data.push({
-      "y":this.fetchData[i].total,
-    "name":this.fetchData[i].status
-    })
-  }
-  console.log(this.data);
-  let chart = new Canvasjs.Chart("chartContainer1", {
-    theme: "light2",
-  animationEnabled: true,
-  exportEnabled: true,
-    title:{
-      text: "DataEntry List"
-    },
-    data: [{
-      type: "pie",
-      showInLegend: true,
-      toolTipContent: "<b>{name}</b>: {y}",
-      indexLabel: "{name}",
-      dataPoints: this.data
-   
-    }
-  ]
-
-  });
-
-  chart.render();
-
-});
 }
 }

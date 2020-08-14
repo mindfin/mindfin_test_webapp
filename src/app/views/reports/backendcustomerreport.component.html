@@ -53,6 +53,18 @@
                                 <th *matHeaderCellDef mat-sort-header>EXECUTIVE NAME</th>
                                 <td *matCellDef="let element"> {{element.executivename}} </td>
                             </ng-container>
+                            <ng-container matColumnDef="loantype">
+                                <th *matHeaderCellDef mat-sort-header>LOAN TYPE</th>
+                                <td *matCellDef="let element"> {{element.applytype}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="loancat">
+                                <th *matHeaderCellDef mat-sort-header>LOAN CATEGORY</th>
+                                <td *matCellDef="let element"> {{element.loanCategory}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="subloan">
+                                <th *matHeaderCellDef mat-sort-header>SUB LOAN CATEGORY</th>
+                                <td *matCellDef="let element"> {{element.subLoanCategory}} </td>
+                            </ng-container>
                             <ng-container matColumnDef="bank">
                                 <th *matHeaderCellDef mat-sort-header>COMPANY KYC</th>
                                 <td *matCellDef="let element"> {{element.companykyc_orgname}} </td>

@@ -80,7 +80,7 @@
                             </div> -->
                             <div class="col-sm-6">
                                 <label><b>LOAN TYPE</b><code>(*)</code></label><br>
-                                <select class="form-control" name="applytype" [(ngModel)]="model.applytype" required #applytype="ngModel" (change)="onChange(model.applytype)">
+                                <select class="form-control" name="applytype" [(ngModel)]="model.applytype" required #applytype="ngModel">
                                     <option value="0">Select</option>
                                     <option *ngFor="let item of fetchDataa" [value]="item.idloantype">{{item.loantype}}</option>
                                    

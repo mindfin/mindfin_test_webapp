@@ -18,7 +18,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 })
 export class BackendCustomerReportComponent {
 
-  displayedColumns: string[] = ['date', 'cname', 'name', 'whosecase', 'executive', 'bank', 'amount', 'product','gst','itr','sanction', 'status', 'update','createdby'];
+  displayedColumns: string[] = ['date', 'cname', 'name', 'whosecase', 'executive','loantype','loancat','subloan', 'bank', 'amount', 'product','gst','itr','sanction', 'status', 'update','createdby'];
   samples: any;
   dataSource;
 
@@ -105,6 +105,9 @@ export class BackendCustomerReportComponent {
         "Customer Name":this.samples[i].name,
         "Whose Case": this.samples[i].whosecase,
         "Excecutive Name": this.samples[i].executivename,
+        "Loan Type": this.samples[i].applytype,
+        "Loan Catgory": this.samples[i].loanCategory,
+        "Loan Sub Catgory": this.samples[i].subLoanCategory,
         "Company KYC": this.samples[i].companykyc_orgname,
         "Customer KYC": this.samples[i].customerkyc_orgname,
         "Bank Statement": this.samples[i].bankstatement_orgname,

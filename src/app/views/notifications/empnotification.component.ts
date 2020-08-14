@@ -31,11 +31,15 @@ export class EmpNotificationComponent implements OnInit {
     this.empname = localStorage.getItem("empname");
 this.value={empid:this.empid}
     this.commonservice.opennotification(this.value).subscribe(res => {
+      this.getEmployeeNotification()
+     
+    });
+  }
+  getEmployeeNotification(){
+    this.commonservice.getEmployeeNotification(this.empid).subscribe(res => {
+      console.log(res);
+      this.fetchData = res;
       this.defaultlayout.ngOnInit();
-      this.commonservice.getEmployeeNotification(this.empid).subscribe(res => {
-        console.log(res);
-        this.fetchData = res;
-      });
     });
   }
 getnotification(senderid){

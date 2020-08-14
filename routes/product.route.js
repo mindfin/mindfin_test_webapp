@@ -8203,7 +8203,7 @@ router.post('/individualNotification', (req, res) => {
             const ids = id.toString();
             knex('receivernotification')
                 .insert({
-                    senderNotificationID: ids,
+                    IDsenderNotification: ids,
                     receiverID: req.body.abc[0],
                     receiverName: req.body.abc[1],
                     receiverStatus: 'received',
@@ -8292,7 +8292,7 @@ router.post('/generalNotification', (req, res) => {
                     var empname = config[j].name
                     knex('receivernotification')
                         .insert({
-                            senderNotificationID: ids,
+                            IDsenderNotification: ids,
                             receiverID: empid,
                             receiverName: empname,
                             receiverStatus: 'received',
@@ -8308,37 +8308,36 @@ router.get('/getGroupNotification', (req, res) => {
     var subquery = knex.select().from('sendernotifications').max('sendernotifications.senderNotificationID').groupBy('sendernotifications.senderID')
     knex.select('sendernotifications.*')
         .from('sendernotifications')
-        .where('sendernotifications.senderStatus ', 'sent')
         .whereIn('sendernotifications.senderNotificationID', subquery)
         .orderBy('sendernotifications.senderNotificationID', 'desc')
         .then(function(result) {
-            ////console.log(result);
+            console.log(result.length);
             res.json(result);
         })
 });
 router.get('/getEmployeeNotification/:id', (req, res) => {
     var subquery = knex.select().from('sendernotifications').max('sendernotifications.senderNotificationID').groupBy('sendernotifications.senderID')
-    knex.select('sendernotifications.*', 'receivernotification.*')
-        .from('sendernotifications', 'receivernotification.*')
-        .join('receivernotification', 'receivernotification.senderNotificationID', 'sendernotifications.senderNotificationID')
-        .where('sendernotifications.senderStatus ', 'sent')
-        .where('receivernotification.receiverStatus ', 'seen')
+    knex.select('sendernotifications.*')
+        .from('sendernotifications')
+        .join('receivernotification', 'receivernotification.IDsenderNotification', 'sendernotifications.senderNotificationID')
         .where('receivernotification.receiverID', req.params.id)
         .whereIn('sendernotifications.senderNotificationID', subquery)
         .orderBy('sendernotifications.senderNotificationID', 'desc')
         .then(function(result) {
-            ////console.log(result);
+            console.log(result.length);
             res.json(result);
         })
 });
 router.post('/getnewnotification', (req, res) => {
     knex.select('sendernotifications.*', 'receivernotification.*')
         .from('sendernotifications', 'receivernotification')
-        .join('receivernotification', 'receivernotification.senderNotificationID', 'sendernotifications.senderNotificationID')
+        .join('receivernotification', 'receivernotification.IDsenderNotification', 'sendernotifications.senderNotificationID')
         .where('sendernotifications.senderStatus ', 'sent')
         .where('receivernotification.receiverStatus ', 'received')
         .where('receivernotification.receiverID', req.body.empid)
         .then(function(result) {
+            console.log(result.length);
+
             res.json(result.length);
         })
 });
@@ -8372,7 +8371,7 @@ router.post('/deleteNotification', function(req, res) {
 router.get('/getSeenBy/:id', (req, res) => {
     knex.select('receivernotification.*')
         .from('receivernotification')
-        .where('receivernotification.senderNotificationID ', req.params.id)
+        .where('receivernotification.IDsenderNotification ', req.params.id)
         .orderBy('receivernotification.receiverNotficationID', 'desc')
         .then(function(result) {
             res.json(result);
@@ -9126,7 +9125,7 @@ router.post('/notify', function(req, res) {
                     senderID: req.body.value.adminid,
                     senderName: req.body.value.adminname,
                     notification: "I hereby would like to inform you that the case:" + req.body.value.name + "still in the status of" + req.body.value.status + "If failed to update the case will be removed from your enquiry list.",
-                    notificationSubject: "Case Reminder",
+                    notificationSubject: "CasRemindere ",
                     notificationImg: undefined,
                     notificationImg_org: undefined,
                     senderStatus: 'sent',
@@ -9135,7 +9134,7 @@ router.post('/notify', function(req, res) {
                     const ids = id.toString();
                     knex('receivernotification')
                         .insert({
-                            senderNotificationID: ids,
+                            IDsenderNotification: ids,
                             receiverID: req.body.value.executiveid,
                             receiverName: req.body.value.executivename,
                             receiverStatus: 'received',
@@ -9641,7 +9640,7 @@ router.post('/removeCase', function(req, res) {
                     const ids = id.toString();
                     knex('receivernotification')
                         .insert({
-                            senderNotificationID: ids,
+                            IDsenderNotification: ids,
                             receiverID: req.body.value.executiveid,
                             receiverName: req.body.value.executivename,
                             receiverStatus: 'received',
@@ -10793,8 +10792,8 @@ router.get('/getadminEnquirylist/:pagesize/:page', (req, res, next) => {
 });
 router.post('/getNotificationById', (req, res) => {
     knex.select('sendernotifications.*', 'receivernotification.*')
-        .from('sendernotifications', 'receivernotification.*')
-        .join('receivernotification', 'receivernotification.senderNotificationID', 'sendernotifications.senderNotificationID')
+        .from('sendernotifications', 'receivernotification')
+        .join('receivernotification', 'receivernotification.IDsenderNotification', 'sendernotifications.senderNotificationID')
         .where('sendernotifications.senderStatus ', 'sent')
         .where('receivernotification.receiverStatus ', 'seen')
         .where('receivernotification.receiverID', req.body.empid)
@@ -11824,10 +11823,10 @@ router.post('/request', function(req, res) {
     knex('sendernotifications')
         .insert({
             createdDate: localTime,
-            senderID: req.body.empname,
-            senderName: req.body.empid,
+            senderID: req.body.empid,
+            senderName: req.body.empname,
             notification: req.body.empname + " Requesting " + req.body.Data.cname + "," + req.body.File + "   Use Download Document under Customer to Share File,           Keywords to search case: Company Name: " + req.body.Data.cname + ", Mobile No: " + req.body.Data.mobile + ", Aadhar or pan: " + req.body.Data.aadharno + "/" + req.body.Data.panno,
-            notificationSubject: "Requesting File to download",
+            notificationSubject: "Requesting File to Download",
             notificationImg: undefined,
             notificationImg_org: undefined,
             senderStatus: 'sent',
@@ -11836,7 +11835,7 @@ router.post('/request', function(req, res) {
             const ids = id.toString();
             knex('receivernotification')
                 .insert({
-                    senderNotificationID: ids,
+                    IDsenderNotification: ids,
                     receiverID: "43",
                     receiverName: "Vikas",
                     receiverStatus: 'received',
@@ -12277,7 +12276,7 @@ router.post('/shareFile', function(req, res) {
                 const ids = id.toString();
                 knex('receivernotification')
                     .insert({
-                        senderNotificationID: ids,
+                        IDsenderNotification: ids,
                         receiverID: requesterid,
                         receiverName: requesteraName,
                         receiverStatus: 'received',

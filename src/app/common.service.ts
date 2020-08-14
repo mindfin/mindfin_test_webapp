@@ -288,9 +288,7 @@ export class CommonService {
   loaninsert(obj) {
     console.log(obj);
     const uri = this.commonurl + '/callapi/loaninsert';
-    this.http.post(uri, obj).subscribe(res => {
-      //console.log('');
-    })
+    return this.http.post(uri, obj)
   }
 
   getloanlist() {

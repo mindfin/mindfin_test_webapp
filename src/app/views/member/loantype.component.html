@@ -1,92 +1,89 @@
-
-   <div class="row">
+<div class="row">
     <div class="col-md-6">
-       <div class="card">
+        <div class="card">
 
-          <form (ngSubmit)="f.form.valid && onSubmit();refresh();" #f="ngForm" novalidate>
-          <div class="card-header">
-             <strong> ADD LOAN TYPE </strong>
-          </div>
-
-          <div class="card-body">
-
-             <div class="row">
-                <div class="col-md-8">
-                   <label for="loantype">LOAN TYPE</label>
-                   <input type="text" class="form-control" name="loantype" [(ngModel)]="model.loantype"
-                   #loantype="ngModel"    required/>
-                   <div *ngIf="f.submitted && loantype.invalid"  class="invalid-feedback">
-                      <div *ngIf="loantype.errors.required">Loantype is required</div>
-                   </div>
-                   <br>
-                </div>
-             </div>
-
-             <div class="row">
-             <div class="col-md-8">
-               <label for="code">LOAN TYPE CODE</label>
-               <input type="text" class="form-control" name="code" [(ngModel)]="model.code"
-               #code="ngModel"    required/>
-               <div *ngIf="f.submitted && code.invalid"  class="invalid-feedback">
-                  <div *ngIf="code.errors.required">Code is required</div>
-               </div>
-               <br>
-            </div>
-             </div>
-            
-             <div class="card-footer">
-                <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
-             </div>
-
-            </div>
-
-             </form>
-          </div>
-        </div>
-          <div class="col-lg-6">
-             <div class="card">
+            <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="card-header">
-                   <strong>LOAN TYPE LIST</strong> 
+                    <strong> ADD LOAN TYPE </strong>
                 </div>
+
                 <div class="card-body">
-                   <div class="table-responsive">
-                      <table class="table">
-                         <thead>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="loantype">LOAN TYPE</label>
+                            <input type="text" class="form-control" name="loantype" [(ngModel)]="model.loantype" #loantype="ngModel" required/>
+                            <div *ngIf="f.submitted && loantype.invalid" class="invalid-feedback">
+                                <div *ngIf="loantype.errors.required">Loantype is required</div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="code">LOAN TYPE CODE</label>
+                            <input type="text" class="form-control" name="code" [(ngModel)]="model.code" #code="ngModel" required/>
+                            <div *ngIf="f.submitted && code.invalid" class="invalid-feedback">
+                                <div *ngIf="code.errors.required">Code is required</div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success " [disabled]="!f.form.valid || model.status===true"><i class="fa fa-dot-circle-o"></i> Save</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>LOAN TYPE LIST</strong>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                               <th>LOAN TYPE</th>
-                               <th>CODE</th>
-                               <!-- <th>PHONE</th> -->
-                               <!-- <th>EMAIL</th>
+                                <th>LOAN TYPE</th>
+                                <th>CODE</th>
+                                <!-- <th>PHONE</th> -->
+                                <!-- <th>EMAIL</th>
                                <th>ROLE</th>-->
-                               <th>EDIT</th>
+                                <th>EDIT</th>
                             </tr>
-                         </thead>
-                         <tbody>
+                        </thead>
+                        <tbody>
                             <tr *ngFor='let pro of fetchData'>
-                               <td>
-                                  <!-- {{i+1}} -->
-                                  {{pro.loantype}}
-                               </td>
-                               <td>
-                                  {{pro.code}}
-                                  </td>
-                               <!-- <td>
+                                <td>
+                                    <!-- {{i+1}} -->
+                                    {{pro.loantype}}
+                                </td>
+                                <td>
+                                    {{pro.code}}
+                                </td>
+                                <!-- <td>
                                   {{pro.email}}
                                </td>
                                <td>
                                   {{pro.role}}
                                </td> -->
-                               <td>
-                                  <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
-                               </td>
+                                <td>
+                                    <button (click)="editproject(pro)" class="btn btn-primary">Edit</button>
+                                </td>
                             </tr>
-                         </tbody>
-                      </table>
-                   </div>
+                        </tbody>
+                    </table>
                 </div>
-             </div>
-          </div>
-       </div>
-       <!--/.col-->
-    <!-- </div> -->
-    <!--/.row-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--/.col-->
+<!-- </div> -->
+<!--/.row-->
