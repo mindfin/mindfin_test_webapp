@@ -28,6 +28,8 @@ export class LoginDailyRoutineComponent implements OnInit {
     this.model.status = '';
     this.model.timings='';
     this.model.handover='';
+    this.model.casedetail='';
+    
   }
   addvalues() {
     console.log(this.model.idbank);
@@ -58,10 +60,10 @@ export class LoginDailyRoutineComponent implements OnInit {
       arr: this.array,
       idvalue: this.idvalue
     }
-    this.service.addloginroutine(this.vvv);
-    //   .subscribe(res=>{
-    //    window.location.reload();
-    //  })
+    this.service.addloginroutine(this.vvv)
+      .subscribe(res=>{alert("Daily Routine Added Successfully")
+      this.router.navigate(['/loginoperation/logindailyview']);
+     })
   }
 
   // onSubmit() {

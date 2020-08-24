@@ -21,7 +21,11 @@ import { BankRejectComponent } from './bankreject.component';
 import { CheckCaseDownloadComponent, ShareFileDialog } from './checkcasewithdownload.component';
 import { AdminCheckCaseComponent } from './admincheckcase.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { DataEnterCheckCaseComponent } from './dataentrycheckcase.component';
+import { BankApprovedListComponent } from './bankapprovedlist.component';
+import { BankRejectListComponent } from './bankrejectlist.component';
+import { BankDisbursedListComponent } from './bankdisbursedlist.component';
+import { BankLoginListComponent } from './bankloginlist.component';
 
 
 @NgModule({
@@ -33,7 +37,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   ],
   declarations: [MembersappComponent,DialogContent,TopuplistComponent,TopupnotifyComponent,SuccesstopuplistComponent,
     EditcustomersComponent, BankdisburseComponent,TopuplistComponent,RejectBankDialogContent,CustStatusComponent
-    ,ViewCustomerComponent,BankRejectComponent,AdminCheckCaseComponent,CheckCaseDownloadComponent,ShareFileDialog
+    ,ViewCustomerComponent,BankRejectComponent,AdminCheckCaseComponent,CheckCaseDownloadComponent,ShareFileDialog,
+    DataEnterCheckCaseComponent,BankApprovedListComponent,BankRejectListComponent,BankDisbursedListComponent,BankLoginListComponent
     // BankRejectComponent,ApprovalDialogContent,CompletlistComponent,MembersComponent,RejectBankDialogContent,
     // BankapplyComponent,ViewcustomerComponent,BusinesslistComponent,ViewbankComponent,ApprovalComponent,
     // PdlistComponent,RejectDialogContent,ViewmemberComponent,MemberlistComponent,DisburstdialogContent,DisbustedComponent,

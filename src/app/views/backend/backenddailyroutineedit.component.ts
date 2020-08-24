@@ -27,6 +27,7 @@ model: any = {};
     
     .subscribe(res=>{
         console.log(res);
+        alert("Daily Routine Updated Successfully")
         this.router.navigate(["/backend/dailyroutineview"]);
     })
    }

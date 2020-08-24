@@ -80,6 +80,16 @@ export class ProfileSettingComponent implements OnInit {
     });
 
   }
+  onSubmit(value){
+    this.empid = localStorage.getItem("id");
+    this.empname = localStorage.getItem("empname");
+    this.value1 = { value: value, empid: this.empid, empname: this.empname }
+    this.commonservice.editEmp(this.value1)
+      .subscribe(res => {
+        alert("Profile Updated Successfully")
+        this.ngOnInit();
+      })
+  }
   downloadCount(value) {
     this.commonservice.downloadCount(value).subscribe(res => {
       console.log(res);

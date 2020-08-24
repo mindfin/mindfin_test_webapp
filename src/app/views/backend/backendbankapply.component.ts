@@ -26,7 +26,9 @@ export class BackendBankapplyComponent implements OnInit {
   fetchData1: any;
   fetchData3: any;
   fetchData4: any;
+  fetchData5: any;
   empname: any;
+  loantype:any;
 
   onSubmit() {
     this.service.bankinsert(this.model);
@@ -66,8 +68,17 @@ export class BackendBankapplyComponent implements OnInit {
     //     }
     //   }
     // });
+    this.service.getcarbrandlist().subscribe(res=>{
+      console.log(res);
+      this.fetchData5 = res;
+    });
   }
-
+  onChange3(event){
+    
+    var def = this.model.previousapplytype.split(",", 2);
+    console.log(event);
+   this.loantype= def[0]
+  }
   refresh(): void {
     window.location.reload();
   }
@@ -78,6 +89,8 @@ export class BackendBankapplyComponent implements OnInit {
     this.model.product = '';
     this.model.executiveid = '';
     this.model.previousapplytype = '';
+    this.model.carBrand = '';
+    this.model.carModel = '';
   }
   toggleEditable(event) {
     console.log(event.target.checked);
@@ -105,6 +118,8 @@ export class BackendBankapplyComponent implements OnInit {
       bankname: abc[1],
       bankid: abc[0],
       vendor: abc[2],
+      carBrand:this.model.carBrand,
+      carModel:this.model.carModel,
       status: this.model.status,
       product: this.model.product,
       executiveid: abc1[0],
@@ -135,7 +150,7 @@ export class BackendBankapplyComponent implements OnInit {
     }
     this.service.backendbankinsert(this.vvv).subscribe(res=>{
       alert("Bank Added Successfully")
-      this.ngOnInit();
+      this.router.navigate(["/members/viewcustomer"]);
      })
   }
 

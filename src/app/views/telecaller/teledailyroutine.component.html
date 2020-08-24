@@ -21,11 +21,11 @@
                             </th>
                             <th>
                                 <label><b>COMMENTS</b></label><br>
-                                <textarea class="form-control" [(ngModel)]="model.comment" class="form-control" name="comment" #comment="ngModel"></textarea>
+                                <textarea class="form-control" [(ngModel)]="model.comment" class="form-control" required name="comment" #comment="ngModel"></textarea>
                             </th>
                             <th>
                                 <label><b>ADD</b></label><br>
-                                <button type="submit" class="form-control">
+                                <button [disabled]="NOC.errors?.required || NOF.errors?.required || NOLG.errors?.required || comment.errors?.required" type="submit" class="form-control btn btn-success">
                                         <i class="fa fa-plus"></i>
                                     </button>
                             </th>

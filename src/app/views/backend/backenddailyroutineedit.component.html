@@ -31,7 +31,8 @@
                             <label for="whosecase">WHOSE CASE</label>
                             <select class="form-control" name="whosecase" [(ngModel)]="model.whosecase" #bankname="ngModel">
                         <option value="" selected>Select option</option>
-                        <option *ngFor="let item1 of fetchData1" value="{{item1.Name}}">
+                        <option value="IN OFFICE" >IN OFFICE</option>
+ <option *ngFor="let item1 of fetchData1" value="{{item1.Name}}">
                            {{item1.Name}}
                         </option>
                      </select>
@@ -47,6 +48,7 @@
                             <label><b>STATUS</b></label><br>
                             <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
                                 <option value="" selected>Select option</option>
+                                <option value="IN OFFICE" >IN OFFICE</option>
                                 <option value="CASE FOLLOW UP">CASE FOLLOW UP</option>
                                 <option value="PENDING'S CLEARING">PENDING'S CLEARING</option>
                                 <option value="PENDING RAISED">PENDING RAISED</option>

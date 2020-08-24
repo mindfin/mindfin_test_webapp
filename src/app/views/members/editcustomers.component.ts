@@ -73,6 +73,7 @@ imageURL$: string;
 myfields: any = [];
 value1: any;
 abc: any;
+designation:any;
 // options: User[] = this.val;
 // filteredOptions: Observable<User[]>;
 
@@ -121,7 +122,10 @@ ngOnInit() {
   });
 
 }
-
+onChange3(event){
+  console.log(event);
+ this.designation= event
+}
 onChange(event){
   console.log(event);
  this.loantype= event

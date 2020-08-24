@@ -25,6 +25,7 @@ export class BackendComponent implements OnInit {
   fetchData2: any;
   fetchData3: any;
   fetchData4: any;
+  fetchData5: any;
   model: any = {};
   myControl = new FormControl();
   val: any = [];
@@ -68,6 +69,7 @@ export class BackendComponent implements OnInit {
   loancatg:any;
   sourcetype:any;
   branch:any;
+  designation:any;
   ngOnInit() {
     this.empid = localStorage.getItem("id");
     this.empname = localStorage.getItem("empname");
@@ -82,7 +84,10 @@ export class BackendComponent implements OnInit {
         }
       }
     });
-    
+    this.commonservice.getnatureofbusinesslist().subscribe(res=>{
+      console.log(res);
+      this.fetchData5 = res;
+    });
     this.commonservice.getloanlist().subscribe(res=>{
       console.log(res);
       this.fetchData2 = res;
@@ -131,6 +136,10 @@ export class BackendComponent implements OnInit {
    onChange2(event){
     console.log(event);
    this.sourcetype= event
+  }
+  onChange3(event){
+    console.log(event);
+   this.designation= event
   }
   pan_validate(value){
     console.log(value)

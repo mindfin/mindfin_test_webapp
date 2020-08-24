@@ -25,11 +25,13 @@ import { EmployeeComponent } from './employee.component';
 import { ContactComponent } from './contact.component';
 import { CareerComponent } from './career.component';
 import { CallbackComponent } from './callback.component';
+import { NatureOfBusinessComponent } from './natureofbusiness.component';
 import { DeletedEmployeelistComponent } from './deletedemployeelist.component';
 import { IndiConveniencslistComponent } from './viewindiconve.component';
 import { IndiLeaveApplistComponent } from './viewindileaveapp.component';
 import { IndiSuggestionlistComponent } from './viewindisugge.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CarBrandComponent } from './carbrand.component';
 
 @NgModule({
   imports: [CommonModule,FormsModule,ReactiveFormsModule,MatNativeDateModule,MatInputModule,
@@ -43,7 +45,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     LoantypeComponent,BankComponent,UserComponent,SettingsComponent,BulksmsComponent,ViewdetailsComponent,
     EmpdialogContent,ChecktrackComponent,TrackComponent,EmployeeComponent,CareerComponent,ContactComponent,CallbackComponent,
     DeletedEmployeelistComponent,IndiConveniencslistComponent,IndiLeaveApplistComponent,IndiSuggestionlistComponent
- ],
+    ,NatureOfBusinessComponent,CarBrandComponent],
   entryComponents: [EmployeelistComponent,EmpdialogContent,DeletedEmployeelistComponent
   ],
 })

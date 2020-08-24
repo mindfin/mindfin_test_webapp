@@ -14,7 +14,7 @@ export const navItems3 = [
     // },
     {
       name: 'Check Customer',
-      url: '/backend/checkcase',
+      url: '/members/datacheckcase',
       icon: 'icon-user-following'
     },
     

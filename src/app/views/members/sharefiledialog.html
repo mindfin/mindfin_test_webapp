@@ -88,18 +88,18 @@
                         <tr>
                             <th>
                                 <label><b>Requested Employee Name</b></label><br>
-                                <select class="form-control" name="employeename" [(ngModel)]="data.element.employeename" #employeename="ngModel">
+                                <select class="form-control" name="employeename" [(ngModel)]="data.element.employeename" required #employeename="ngModel">
                                  <option value="" selected>Select option</option>
                                  <option *ngFor="let item of fetchData" value="{{item.idemployee}},{{item.name}},{{item.email}}">{{item.name}}</option>
                                 </select>
                             </th>
                             <th>
                                 <label><b>Comment</b></label><br>
-                                <textarea class="form-control" [(ngModel)]="data.element.comment" class="form-control" name="comment" #comment="ngModel"></textarea>
+                                <textarea class="form-control" [(ngModel)]="data.element.comment" class="form-control" name="comment" required #comment="ngModel"></textarea>
                             </th>
                             <th>
                                 <label for="Filename">Files</label>
-                                <select class="form-control" name="Filename" [(ngModel)]="data.element.Filename" #Filename="ngModel">
+                                <select class="form-control" name="Filename" [(ngModel)]="data.element.Filename" required #Filename="ngModel">
                                     <option value="" selected>Select option</option>
                                     <option *ngIf="data.element.customerkyc !=='admin.png'"value="{{data.element.customerkyc}},Customer Kyc" selected>Customer Kyc</option>
                                     <option *ngIf="data.element.companykyc !=='admin.png'"value="{{data.element.companykyc}},Company Kyc" selected>Company Kyc</option>
@@ -112,7 +112,8 @@
                             </th>
                             <th>
                                 <label><b>ADD</b></label><br>
-                                <button type="submit" class="form-control"><i class="fa fa-plus"></i> </button>
+                                <button [disabled]="employeename.errors?.required || comment.errors?.required || Filename.errors?.required " type="submit" class="form-control btn btn-success">
+                                    <i class="fa fa-plus"></i> </button>
                             </th>
                         </tr>
                     </table>
@@ -163,7 +164,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-success" [disabled]="!form.valid">Submit</button>
+                <button class="btn btn-success" [disabled]="tempval === null || tempval === undefined || tempval === 0 || tempval === ''">Submit</button>
             </div>
         </form>
 

@@ -97,8 +97,8 @@
                                 <table class="table table-striped" id="dynamic_field">
                                     <tr>
                                         <th>
-                                            <label><b>BANK TYPE</b></label><br>
-                                            <select style="padding-right: 95px;" class="form-control" name="idbank" [(ngModel)]="model.idbank" #idbank="ngModel">
+                                            <label><b>BANK</b><code>(*)</code></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" required name="idbank" [(ngModel)]="model.idbank" #idbank="ngModel">
                                                 <option value="" selected>Select your option</option>
                                                 <option *ngFor="let item of fetchData6"
                                                     value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
@@ -107,8 +107,8 @@
                                             </select>
                                         </th>
                                         <th>
-                                            <label><b>HANDLE BY</b></label><br>
-                                            <select style="padding-right: 95px;" class="form-control" name="executiveid" [(ngModel)]="model.executiveid" #executiveid="ngModel">
+                                            <label><b>HANDLE BY</b><code>(*)</code></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" required name="executiveid" [(ngModel)]="model.executiveid" #executiveid="ngModel">
                                                 <option value="" selected>Select your option</option>
                                                 <option *ngFor="let item of fetchData7"
                                                     value="{{item.idemployee}},{{item.name}}">
@@ -117,8 +117,8 @@
                                             </select>
                                         </th>
                                         <th>
-                                            <label><b>LOAN TYPE</b></label><br>
-                                            <select style="padding-right: 95px;" class="form-control" name="previousapplytype" [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel">
+                                            <label><b>LOAN TYPE</b><code>(*)</code></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" required name="previousapplytype" [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel">
                                                 <option value="" selected>Select your option</option>
                                                 <option *ngFor="let item of fetchData5"
                                                     value={{item.idloantype}},{{item.loantype}}>
@@ -127,12 +127,12 @@
                                             </select>
                                         </th>
                                         <th>
-                                            <label><b>AMOUNT</b></label><br>
+                                            <label><b>AMOUNT</b><code>(*)</code></label><br>
                                             <input type="number" class="form-control" #amount="ngModel" placeholder="ENTER AMOUNT" name="amount" [(ngModel)]="model.amount">
                                         </th>
                                         <th>
-                                            <label><b>STATUS</b></label><br>
-                                            <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
+                                            <label><b>STATUS</b><code>(*)</code></label><br>
+                                            <select class="form-control" name="status" [(ngModel)]="model.status" required #status="ngModel">
                                                 <option value="" selected>Select option</option>
                                                 <option value="ONLINE APPLICATION">ONLINE APPLICATION</option>
                                                 <option value="DISPATCHED">DISPATCHED</option>
@@ -148,8 +148,8 @@
                                             </select>
                                         </th>
                                         <th>
-                                            <label><b>PRODUCT</b></label><br>
-                                            <select class="form-control" name="product" [(ngModel)]="model.product" #product="ngModel">
+                                            <label><b>PRODUCT</b><code>(*)</code></label><br>
+                                            <select class="form-control" name="product" [(ngModel)]="model.product" required #product="ngModel">
                                                 <option value="" selected>Select option</option>
                                                 <option value="NORMAL">NORMAL</option>
                                                 <option value="BANKING">BANKING</option>
@@ -161,7 +161,7 @@
                                         </th>
                                         <th>
                                             <label><b>ADD</b></label><br>
-                                            <button type="submit" class="form-control">
+                                            <button [disabled]="idbank.errors?.required || executiveid.errors?.required || previousapplytype.errors?.required || amount.errors?.required || status.errors?.required || product.errors?.required" type="submit" class="form-control btn btn-success">
                                                 <i class="fa fa-plus"></i> </button>
 
                                         </th>
@@ -233,7 +233,7 @@
                         </div>
                         <!-- </div></div></div> -->
                         <div class="card-footer">
-                            <button class="btn btn-success" [disabled]="!form.valid">Submit</button>
+                            <button class="form-control btn btn-success" [disabled]="tempval === null || tempval === undefined || tempval === 0 || tempval === ''">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -258,46 +258,46 @@
                     </tr>
                     <tr>
                         <td>
-                            <a *ngIf="fetchData.companykyc === null || fetchData.companykyc === undefined || fetchData.companykyc ==='admin.png'; else comno; " class="nav-link badge-danger" role="button" title="COMPANY KYC NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <a *ngIf="fetchData.companykyc === null || fetchData.companykyc === undefined || fetchData.companykyc ==='admin.png'; else comno; " class="nav-link badge-danger" role="button" title="COMPANY KYC FILE NOT AVAILABLE ">FILE NOT AVAILABLE </a>
                             <ng-template #comno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.companykyc_orgname,fetchData)" role="button" title="COMPANY KYC">REQUEST AVAILABLE </a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.companykyc_orgname,fetchData)" role="button" title="COMPANY KYC">FILE AVAILABLE </a>
                             </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.customerkyc ===null || fetchData.customerkyc === undefined || fetchData.customerkyc ==='admin.png'; else cusno; " class="nav-link badge-danger" role="button" title="CUSTOMER KYC NOT AVAILABLE ">NOT AVAILABLE</a>
+                            <a *ngIf="fetchData.customerkyc ===null || fetchData.customerkyc === undefined || fetchData.customerkyc ==='admin.png'; else cusno; " class="nav-link badge-danger" role="button" title="CUSTOMER KYC FILE NOT AVAILABLE ">FILE NOT AVAILABLE</a>
                             <ng-template #cusno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.customerkyc_orgname,fetchData)" role="button" title="CUSTOMER KYC">REQUEST AVAILABLE </a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.customerkyc_orgname,fetchData)" role="button" title="CUSTOMER KYC">FILE AVAILABLE </a>
                             </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.bankstatement === null || fetchData.bankstatement === undefined || fetchData.bankstatement ==='admin.png'; else bstno; " class="nav-link badge-danger" role="button" title="BANK STATEMENT NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <a *ngIf="fetchData.bankstatement === null || fetchData.bankstatement === undefined || fetchData.bankstatement ==='admin.png'; else bstno; " class="nav-link badge-danger" role="button" title="BANK STATEMENT FILE NOT AVAILABLE ">FILE NOT AVAILABLE </a>
                             <ng-template #bstno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.bankstatement_orgname,fetchData)" role="button" title="BANK STATEMENT">REQUEST AVAILABLE </a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.bankstatement_orgname,fetchData)" role="button" title="BANK STATEMENT">FILE AVAILABLE </a>
                             </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.itr === null || fetchData.itr === undefined || fetchData.itr ==='admin.png'; else itrno; " class="nav-link badge-danger" role="button" title="IT RETURNS NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <a *ngIf="fetchData.itr === null || fetchData.itr === undefined || fetchData.itr ==='admin.png'; else itrno; " class="nav-link badge-danger" role="button" title="IT RETURNS FILE NOT AVAILABLE ">FILE NOT AVAILABLE </a>
                             <ng-template #itrno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.itr_orgname,fetchData)" role="button" title="IT RETURNS">REQUEST AVAILABLE</a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.itr_orgname,fetchData)" role="button" title="IT RETURNS">FILE AVAILABLE</a>
                             </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.gstandreturns ===null || fetchData.gstandreturns === undefined || fetchData.gstandreturns ==='admin.png'; else gstno; " class="nav-link badge-danger" role="button" title="GST RETURNS NOT AVAILABLE ">NOT AVAILABLE </a>
+                            <a *ngIf="fetchData.gstandreturns ===null || fetchData.gstandreturns === undefined || fetchData.gstandreturns ==='admin.png'; else gstno; " class="nav-link badge-danger" role="button" title="GST RETURNS FILE NOT AVAILABLE ">FILE NOT AVAILABLE </a>
                             <ng-template #gstno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.gstandreturns_orgname,fetchData)" role="button" title="GST RETURNS">REQUEST AVAILABLE </a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.gstandreturns_orgname,fetchData)" role="button" title="GST RETURNS">FILE AVAILABLE </a>
                             </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.loanstatement ===null || fetchData.loanstatement === undefined || fetchData.loanstatement ==='admin.png'; else loanno; " class="nav-link badge-danger" role="button" title="LOAN SANCTION LETTER NOT AVAILABLE ">NOT AVAILABLE
+                            <a *ngIf="fetchData.loanstatement ===null || fetchData.loanstatement === undefined || fetchData.loanstatement ==='admin.png'; else loanno; " class="nav-link badge-danger" role="button" title="LOAN SANCTION LETTER FILE NOT AVAILABLE ">FILE NOT AVAILABLE
                                 Letter</a>
                             <ng-template #loanno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.loanstatement_orgname,fetchData)" role="button" title="LOAN SANCTION LETTER">REQUEST AVAILABLE</a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.loanstatement_orgname,fetchData)" role="button" title="LOAN SANCTION LETTER">FILE AVAILABLE</a>
                             </ng-template>
                         </td>
                         <td>
-                            <a *ngIf="fetchData.applicationDetails ===null || fetchData.applicationDetails === undefined || fetchData.applicationDetails ==='admin.png'; else appno; " class="nav-link badge-danger" role="button" title="CUSTOMER DETAILS NOT AVAILABLE ">NOT AVAILABLE</a>
+                            <a *ngIf="fetchData.applicationDetails ===null || fetchData.applicationDetails === undefined || fetchData.applicationDetails ==='admin.png'; else appno; " class="nav-link badge-danger" role="button" title="CUSTOMER DETAILS FILE NOT AVAILABLE ">FILE NOT AVAILABLE</a>
                             <ng-template #appno>
-                                <a class="nav-link badge-success" (click)="request(fetchData.applicationDetails_orgname,fetchData)" role="button" title="CUSTOMER  DETAILS">REQUEST AVAILABLE </a>
+                                <a class="nav-link badge-success" (click)="FILE(fetchData.applicationDetails_orgname,fetchData)" role="button" title="CUSTOMER  DETAILS">FILE AVAILABLE </a>
                             </ng-template>
                         </td>
                         <td>
@@ -308,9 +308,9 @@
                             || (fetchData.gstandreturns ===null || fetchData.gstandreturns === undefined || fetchData.gstandreturns ==='admin.png')
                             || (fetchData.loanstatement ===null || fetchData.loanstatement === undefined || fetchData.loanstatement ==='admin.png')
                             || (fetchData.applicationDetails ===null || fetchData.applicationDetails === undefined || fetchData.applicationDetails ==='admin.png');
-                             else noallfile; " class="nav-link badge-danger" role="button" title="All File NOT AVAILABLE">NOT AVAILABLE</a>
+                             else noallfile; " class="nav-link badge-danger" role="button" title="All File FILE NOT AVAILABLE">FILE NOT AVAILABLE</a>
                             <ng-template #noallfile>
-                                <a class="nav-link badge-success" (click)="request(AllFiles,fetchData)" role="button" title="All Files">All Files</a>
+                                <a class="nav-link badge-success" (click)="FILE(AllFiles,fetchData)" role="button" title="All Files">File AVAILABLE</a>
                             </ng-template>
                         </td>
                     </tr>

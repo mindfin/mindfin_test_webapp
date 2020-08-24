@@ -76,12 +76,14 @@ export class TeamHeadCheckCaseComponent {
 
     // var idno=obj.idno;
     this.commonservice.checkcase(obj).subscribe(res => {
-      console.log(res);
+      console.log(res); 
       if (res == null || res == undefined || res == 0) {
         if (isNumeric(value)) {
           alert("Sorry ! " + value + " this Customer details are not found. Try Other Option to check customer exist or not.")
+         
         }
         else { alert("Sorry ! " + value + " Customer details are not found. Try Other Option to check customer exist or not.") }
+       
       }
       else {
         this.custid = res[0].idcustomer;

@@ -24,7 +24,12 @@ import { CustStatusComponent } from './custstatus.component';
 import { ViewCustomerComponent } from './viewcustomer.component';
 import { BankRejectComponent } from './bankreject.component';
 import { CheckCaseDownloadComponent } from './checkcasewithdownload.component';
+import { DataEnterCheckCaseComponent } from './dataentrycheckcase.component';
 import { AdminCheckCaseComponent } from './admincheckcase.component';
+import { BankApprovedListComponent } from './bankapprovedlist.component';
+import { BankRejectListComponent } from './bankrejectlist.component';
+import { BankDisbursedListComponent } from './bankdisbursedlist.component';
+import { BankLoginListComponent } from './bankloginlist.component';
 const routes: Routes = [
   {
     
@@ -104,27 +109,34 @@ const routes: Routes = [
           title: 'Download'
         }
       },
-      // {
-      //   path:'businesslist',
-      //   component:BusinesslistComponent,
-      //   data:{
-      //     title:' Add Employeetype'
-      //   }
-      // },
-      // {
-      //   path:'viewbank/:id',
-      //   component:ViewbankComponent,
-      //   data:{
-      //     title:' View Banklist'
-      //   }
-      // },
-      // {
-      //   path:'pdlist',
-      //   component:PdlistComponent,
-      //   data:{
-      //     title:'PD List'
-      //   }
-      // },
+      {
+        path:'rejectlist',
+        component:BankRejectListComponent,
+        data:{
+          title:'Reject List'
+        }
+      },
+      {
+        path:'disbursedlist',
+        component:BankDisbursedListComponent,
+        data:{
+          title:'Disbursed List'
+        }
+      },
+      {
+        path:'loginlist',
+        component:BankLoginListComponent,
+        data:{
+          title:'Login List'
+        }
+      },
+       {
+        path:'approvedlist',
+        component:BankApprovedListComponent,
+        data:{
+          title:'Apprived List'
+        }
+      },
       // {
       //   path:'approve',
       //   component:ApprovalComponent,
@@ -173,6 +185,14 @@ const routes: Routes = [
         component:BankRejectComponent,
         data:{
           title:'Bank List'
+        }
+      },
+
+      {
+        path: 'datacheckcase',
+        component: DataEnterCheckCaseComponent,
+        data: {
+          title: 'Check Case'
         }
       },
       // {

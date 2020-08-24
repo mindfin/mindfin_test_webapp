@@ -13,7 +13,7 @@ export const navItems = [
     children: [
       {
         name: 'Check Customer',
-        url: '/backend/teamcheckcase',
+        url: '/members/checkcase',
         icon: 'fa fa-user-plus'
       },
       {
@@ -183,6 +183,11 @@ export const navItems = [
         icon: 'icon-home'
       },
       {
+        name: 'Add Nature of Business',
+        url: '/member/natureofbusiness',
+        icon: 'icon-home'
+      },
+      {
         name: 'Loan Type',
         url: '/member/loantype',
         icon: 'icon-docs'
@@ -202,6 +207,11 @@ export const navItems = [
         name: 'Add Tenure',
         url: '/member/addperiod',
         icon: 'icon-user'
+      },
+      {
+        name: 'Add Car',
+        url: '/member/carbrand',
+        icon: 'fa fa-car'
       },
       {
         name: 'Change Password',

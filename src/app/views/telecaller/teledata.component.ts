@@ -81,7 +81,8 @@ export class TeledataComponent {
 
     this.commonservice.addenquiry(this.value1).subscribe(res => {
       console.log(res);
-      this.clearFilters()
+      alert("Lead Added Successfully")
+      this.clearFilters();
     })
 
   }

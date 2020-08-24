@@ -16,35 +16,35 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     data: {
-      title: 'Dashboard v2.0'
+      title: 'Dashboard'
     }
   },
   {
     path: 'telecaller',
     component: Dashboard1Component,
     data: {
-      title: 'Telecaller Dashboard v2.0'
+      title: 'Telecaller Dashboard'
     }
   },
   {
     path: 'dataentry',
     component: Dashboard2Component,
     data: {
-      title: 'Data Entry Dashboard'
+      title: 'DataEntry Dashboard'
     }
   },
   {
     path: 'login',
     component: Dashboard3Component,
     data: {
-      title: 'Login Entry Dashboard'
+      title: 'Login Dashboard'
     }
   },
   {
     path: 'executive',
     component: Dashboard4Component,
     data: {
-      title: 'Executive Entry Dashboard'
+      title: 'Executive Dashboard'
     }
   },
   
@@ -52,7 +52,7 @@ const routes: Routes = [
     path: 'backend',
     component: Dashboard6Component,
     data: {
-      title: 'Backend Entry Dashboard'
+      title: 'Backend Dashboard'
     }
   },
   {

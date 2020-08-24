@@ -96,12 +96,62 @@
                                 <label><b>Download :</b></label>
                             </div>
                             <div class="col-md-2">
-                                <a *ngIf="fetchData.downloadCount == 0 || fetchData.downloadCount > 0" class="btn btn-success" role="button" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{model.appointmentLetter}}" (click)="downloadCount(model)" title="Download"><i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                <a *ngIf="fetchData.downloadCount == 0 || fetchData.downloadCount > 0" class="btn btn-success" role="button" href="https://mindfin-files.oss-ap-south-1.aliyuncs.com/{{model.appointmentLetter}}" (click)="downloadCount(model)" title="Download"><i class="fa fa-cloud-download"
+                                        aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
 
                     </tab>
+                    <tab>
+
+                        <ng-template tabHeading><i class="fa fa-pencil-square-o"></i> Edit</ng-template>
+                        <form (ngSubmit)="onSubmit(fetchData)" #f="ngForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label><b>Name :</b></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="fetchData.name" type="text" name="name" value={{fetchData.name}} />
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label><b>Mobile Number :</b></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="fetchData.mobile" type="text" name="mobile" value={{fetchData.mobile}} />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label><b>Alt Number :</b></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="fetchData.altmobile" type="text" name="altmobile" value={{fetchData.altmobile}} />
+                                </div>
+                                <div class="col-md-2">
+                                    <label><b>Qualification :</b></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="fetchData.qualification" type="text" name="qualification" value={{fetchData.qualification}} />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label><b>Email :</b></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="fetchData.email" type="text" name="email" value={{fetchData.email}} />
+                                </div>
+
+                            </div>
+                            <div center>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </form>
+                    </tab>
+
                     <!-- <tab>
                         <ng-template tabHeading><i class="fa fa-money"></i> Payslip</ng-template>
                         <form class="container">

@@ -25,7 +25,9 @@ import { CallbackComponent } from './callback.component';
 import { DeletedEmployeelistComponent } from './deletedemployeelist.component';
 import { IndiConveniencslistComponent } from './viewindiconve.component';
 import { IndiLeaveApplistComponent } from './viewindileaveapp.component';
+import { NatureOfBusinessComponent } from './natureofbusiness.component';
 import { IndiSuggestionlistComponent } from './viewindisugge.component';
+import { CarBrandComponent } from './carbrand.component';
 const routes: Routes = [
   {
     path: '',
@@ -101,6 +103,13 @@ const routes: Routes = [
         }
       },
       {
+        path:'natureofbusiness',
+        component:NatureOfBusinessComponent,
+        data:{
+          title:'Add Nature of Business'
+        }
+      },
+      {
         path:'bank',
         component:BankComponent,
         data:{
@@ -126,6 +135,14 @@ const routes: Routes = [
         component:EmpPasswordComponent,
         data:{
           title:' Employee Password'
+        }
+      },
+      
+      {
+        path:'carbrand',
+        component:CarBrandComponent,
+        data:{
+          title:'Car Brand'
         }
       },
       {

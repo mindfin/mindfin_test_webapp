@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
+                            <!-- <label for="bankname">ENTER CUSTOMER'S MOBILE AADHAAAR OR PAN NUMBER</label> -->
                             <input class="form-control" name="checkno" [(ngModel)]="model.checkno" required #checkno="ngModel" placeholder="Mobile or Aadhaar or Pan Number or Company Name">
                         </div>
                         <div class="col-md-4">
@@ -20,155 +21,294 @@
             <div class="card-header">
                 <strong>CUSTOMER DETAILS</strong>
             </div>
-            <div class="card-body table-responsive">
-                <table class="table" *ngFor='let pro of fetchData'>
+            <div class="card-body">
+                <table class="table">
                     <tbody>
                         <tr>
                             <th>CUSTOMER NAME</th>
-                            <td> {{pro.name}}</td>
+                            <td> {{fetchData.name}}</td>
                             <th>COMPANY NAME</th>
-                            <td> {{pro.cname}}</td>
+                            <td> {{fetchData.cname}}</td>
                         </tr>
                         <tr>
                             <th> CONTACT NUMBER</th>
-                            <td> {{pro.mobile}}</td>
+                            <td> {{fetchData.mobile}}</td>
                             <th>WHOSE CASE</th>
-                            <td> {{pro.whosecase}}</td>
+                            <td> {{fetchData.whosecase}}</td>
                         </tr>
                         <tr>
                             <th>EXECUTIVE</th>
-                            <td>{{pro.executivename}}</td>
+                            <td>{{fetchData.executivename}}</td>
                             <th>AADHAR NO</th>
-                            <td> {{pro.aadharno}}</td>
+                            <td> {{fetchData.aadharno}}</td>
                         </tr>
                         <tr>
                             <th>PAN NO</th>
-                            <td> {{pro.panno}}</td>
+                            <td> {{fetchData.panno}}</td>
                             <th>LOAN STATUS</th>
-                            <td> {{pro.displaystatus}}</td>
+                            <td> {{fetchData.displaystatus}}</td>
                         </tr>
                         <tr>
                             <th>COMPANY KYC</th>
-                            <td> {{pro.companykyc_orgname}}</td>
+                            <td> {{fetchData.companykyc_orgname}}</td>
                             <th>CUSTOMER KYC</th>
-                            <td> {{pro.customerkyc_orgname}}</td>
+                            <td> {{fetchData.customerkyc_orgname}}</td>
                         </tr>
                         <tr>
                             <th>ITR</th>
-                            <td> {{pro.itr_orgname}}</td>
+                            <td> {{fetchData.itr}}</td>
                             <th>BANK STATEMENT</th>
-                            <td> {{pro.bankstatement_orgname}}</td>
+                            <td> {{fetchData.bankstatement_orgname}}</td>
                         </tr>
                         <tr>
                             <th>GST RETURNS</th>
-                            <td> {{pro. gstandreturns_orgname}}</td>
+                            <td> {{fetchData. gstandreturns_orgname}}</td>
                             <th>LOAN SANCTION LETTER</th>
-                            <td> {{pro.loanstatement_orgname}}</td>
+                            <td> {{fetchData.loanstatement_orgname}}</td>
                         </tr>
                         <tr>
+                            <th>APPLICATION DETAILS</th>
+                            <td> {{fetchData.applicationDetails_orgname}}</td>
                             <th>COMMENTS</th>
-                            <td> {{pro.comment}}</td>
-                            <th> View Bank</th>
-                            <th><button (click)="viewBank(pro.idcustomer)" class="btn btn-primary ">Check Bank</button></th>
+                            <td> {{fetchData.comment}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="editcustomer(fetchData.idcustomer)">
+                                    EDIT CUSTOMER
+                                </button>
+                            </td>
+                            <td colspan="2" class="text-center"> <button mat-raised-button color="warn" [disabled]="fetchData.idcustomer===''" (click)="addbankshow()"> ADD BANK
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="card-body">
-                <table class="table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Company Name</th>
-                            <th>Mobile No</th>
-                            <th>Whose Case</th>
-                            <th>Executive </th>
-                            <th>Aadhaar No</th>
-                            <th>Pan No</th>
-                            <th>Loan Status</th>
-                            <th>Company KYC</th>
-                            <th>Customer KYC</th>
-                            <th>ITR</th>
-                            <th>Bank Statement</th>
-                            <th>Gst Returns</th>
-                            <th>Loan Sanction Letter</th>
-                            <th>Comments</th>
-                            <th>View Bank</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor='let pro of fetchData'>
-                            <td> {{pro.name}}</td>
-                            <td> {{pro.cname}}</td>
-                            <td> {{pro.mobile}}</td>
-                            <td> {{pro.whosecase}}</td>
-                            <td>{{pro.executivename}}</td>
-                            <td> {{pro.aadharno}}</td>
-                            <td> {{pro.panno}}</td>
-                            <td> {{pro.displaystatus}}</td>
-                            <td> {{pro.companykyc_orgname}}</td>
-                            <td> {{pro.customerkyc_orgname}}</td>
-                            <td> {{pro.itr_orgname}}</td>
-                            <td> {{pro.bankstatement_orgname}}</td>
-                            <td> {{pro. gstandreturns_orgname}}</td>
-                            <td> {{pro.loanstatement_orgname}}</td>
-                            <td> {{pro.comment}}</td>
-                            <td><button (click)="viewBank(pro.idcustomer)" class="btn btn-primary ">Check Bank</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> -->
+            <div *ngIf="addBankCustId === 'true'; else blank; ">
+                <div class="card-header">
+                    <strong>ADD BANK </strong>
+                </div>
+                <div class="card-body">
+                    <form class="form-horizontal" #form="ngForm" (ngSubmit)="submitForm()">
+                        <form (ngSubmit)="addvalues();" #f="ngForm" novalidate>
+                            <h4 style="float:right;"></h4>
+                            <div class="table-responsive">
+
+                                <table class="table table-striped" id="dynamic_field">
+                                    <tr>
+                                        <th>
+                                            <label><b>BANK</b><code>(*)</code></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" required name="idbank" [(ngModel)]="model.idbank" #idbank="ngModel">
+                                                <option value="" selected>Select your option</option>
+                                                <option *ngFor="let item of fetchData6"
+                                                    value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
+                                                    {{item.bankname}}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>HANDLE BY</b><code>(*)</code></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" required name="executiveid" [(ngModel)]="model.executiveid" #executiveid="ngModel">
+                                                <option value="" selected>Select your option</option>
+                                                <option *ngFor="let item of fetchData7"
+                                                    value="{{item.idemployee}},{{item.name}}">
+                                                    {{item.name}}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>LOAN TYPE</b><code>(*)</code></label><br>
+                                            <select style="padding-right: 95px;" class="form-control" required name="previousapplytype" [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel">
+                                                <option value="" selected>Select your option</option>
+                                                <option *ngFor="let item of fetchData5"
+                                                    value={{item.idloantype}},{{item.loantype}}>
+                                                    {{item.loantype}}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>AMOUNT</b><code>(*)</code></label><br>
+                                            <input type="number" class="form-control" #amount="ngModel" placeholder="ENTER AMOUNT" name="amount" [(ngModel)]="model.amount">
+                                        </th>
+                                        <th>
+                                            <label><b>STATUS</b><code>(*)</code></label><br>
+                                            <select class="form-control" name="status" [(ngModel)]="model.status" required #status="ngModel">
+                                                <option value="" selected>Select option</option>
+                                                <option value="ONLINE APPLICATION">ONLINE APPLICATION</option>
+                                                <option value="DISPATCHED">DISPATCHED</option>
+                                                <option value="LOGIN">LOGIN</option>
+                                                <option value="LOGIN HOLD">LOGIN HOLD</option>
+                                                <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
+                                                <option value="PD">PD</option>
+                                                <option value="PD PENDING">PD PENDING</option>
+                                                <option value="POST PD PENDING">POST PD PENDING</option>
+                                                <option value="APPROVED">APPROVED</option>
+                                                <option value="REJECT">REJECT</option>
+                                                <option value="DISBURSED">DISBURSED</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>PRODUCT</b><code>(*)</code></label><br>
+                                            <select class="form-control" name="product" [(ngModel)]="model.product" required #product="ngModel">
+                                                <option value="" selected>Select option</option>
+                                                <option value="NORMAL">NORMAL</option>
+                                                <option value="BANKING">BANKING</option>
+                                                <option value="ITR PROGRAM">ITR PROGRAM</option>
+                                                <option value="SWIPPING">SWIPPING</option>
+                                                <option value="GST RETURN">GST RETURN</option>
+
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <label><b>ADD</b></label><br>
+                                            <button [disabled]="idbank.errors?.required || executiveid.errors?.required || previousapplytype.errors?.required || amount.errors?.required || status.errors?.required || product.errors?.required" type="submit" class="form-control btn btn-success">
+                                                <i class="fa fa-plus"></i> </button>
+
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>SL.NO</th>
+                                        <th>
+                                            BANK NAME
+                                        </th>
+                                        <th>
+                                            VENDOR
+                                        </th>
+                                        <th>
+                                            HANDLE BY
+                                        </th>
+                                        <th>
+                                            LOAN TYPE
+                                        </th>
+                                        <th>
+                                            APPLIED AMOUNT
+                                        </th>
+                                        <th>
+                                            STATUS
+                                        </th>
+                                        <th>
+                                            PRODUCT
+                                        </th>
+                                        <th>
+                                            REMOVE
+                                        </th>
+                                    </thead>
+                                    <tr *ngFor='let pro of tempval;let i=index'>
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            {{pro.bankname}}
+                                        </td>
+                                        <td>
+                                            {{pro.vendor}}
+                                        </td>
+                                        <td>
+                                            {{pro.executivename}}
+                                        </td>
+                                        <td>
+                                            {{pro.previousapplytype}}
+                                        </td>
+                                        <td>
+                                            {{pro.amount}}
+                                        </td>
+                                        <td>
+                                            {{pro.status}}
+                                        </td>
+                                        <td>
+                                            {{pro.product}}
+                                        </td>
+                                        <td>
+                                            <button (click)="removevalue(pro,i)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- </div></div></div> -->
+                        <div class="card-footer">
+                            <button class="form-control btn btn-success" [disabled]="tempval === null || tempval === undefined || tempval === 0 || tempval === ''">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <ng-template #blank>
+
+            </ng-template>
+
 
             <div class="card-header">
                 <strong>APPLIED BANK DETAILS</strong>
             </div>
-            <div class="card-body table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Sl.No</th>
-                            <th>APPLIED DATE</th>
-                            <th>BANK NAME</th>
-                            <th>BANK PERSON</th>
-                            <th>LOANTYPE</th>
-                            <th>AMOUNT</th>
-                            <th>PRODUCT</th>
-                            <th>STATUS</th>
-                            <th>COMMENTS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor='let pro of fetchData1;let i=index'>
-                            <td>
-                                {{i+1}}
-                            </td>
-                            <td>
-                                {{pro.createddate | date:'dd/MM/yyyy'}}
-                            </td>
-                            <td>
-                                {{pro.bankname}}
-                            </td>
-                            <td>
-                                {{pro.vendor}}
-                            </td>
-                            <td>
-                                {{pro.loantype}}
-                            </td>
-                            <td>
-                                {{pro.amount}}
-                            </td>
-                            <td>
-                                {{pro.product}}
-                            </td>
-                            <td>
-                                {{pro.sstatus}}
-                            </td>
-                            <td>
-                                {{pro.comment}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Sl.No</th>
+                                <th class="text-center">APPLIED DATE</th>
+                                <Th class="text-center">HANDLE BY EXECUTIVE</Th>
+                                <th class="text-center">BANK NAME</th>
+                                <th class="text-center">BANK PERSON</th>
+                                <th class="text-center">LOANTYPE</th>
+                                <th class="text-center">AMOUNT</th>
+                                <th class="text-center">PRODUCT</th>
+                                <th class="text-center">STATUS</th>
+                                <th class="text-center">COMMENTS</th>
+                                <th class="text-center">EDIT STATUS</th>
+                                <th class="text-center">ADD DISBURSEMENT DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let pro of fetchData1;let i=index'>
+                                <td>
+                                    {{i+1}}
+                                </td>
+                                <td>
+                                    {{pro.createddate | date:'dd/MM/yyyy'}}
+                                </td>
+                                <td>
+                                    {{pro.executivename}}
+                                </td>
+                                <td>
+                                    {{pro.bankname}}
+                                </td>
+                                <td>
+                                    {{pro.vendor}}
+                                </td>
+                                <td>
+                                    {{pro.loantype}}
+                                </td>
+                                <td>
+                                    {{pro.amount}}
+                                </td>
+                                <td>
+                                    {{pro.product}}
+                                </td>
+                                <td>
+                                    {{pro.sstatus}}
+                                </td>
+                                <td>
+                                    {{pro.comment}}
+                                </td>
+                                <td class="text-center"> <button mat-raised-button color="warn" [disabled]="pro.sstatus==='DISBURSED'" (click)="openDialog(pro)"> EDIT STATUS
+                                    </button>
+                                </td>
+                                <td class="text-center"> <button mat-raised-button class="btn btn-success" [disabled]="pro.sstatus!=='DISBURSED'" (click)="addtenure(pro.idapplybank)"> ADD
+                                    </button>
+                                </td>
+
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
         </div>
     </div>

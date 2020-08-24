@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SuperadminService } from '../../superadmin.service';
 import { CommonService } from '../../common.service';
 import { MatDialogConfig, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { EditDialogContent1 } from '../backend/checkcase.component';
 
 import { isNumeric } from 'rxjs/util/isNumeric';
 
@@ -12,10 +13,10 @@ export interface User {
   name: string;
 }
 @Component({
-  templateUrl: './checkcase.component.html',
+  templateUrl: './dataentrycheckcase.component.html',
 })
 
-export class CheckCaseComponent {
+export class DataEnterCheckCaseComponent {
   myControl = new FormControl();
   val: any = [];
   selectedFile: File = null;
@@ -68,19 +69,22 @@ fetchData4:any;
   
   }
   checkcase(obj) {
-    var value = obj.checkno
   
     console.log(obj);
+    var value = obj.checkno
+
     // var idno=obj.idno;
     this.commonservice.checkcase(obj).subscribe(res => {
       console.log(res);
       if (res == null || res == undefined || res == 0) {
         if (isNumeric(value)) {
           alert("Sorry ! " + value + " this Customer details are not found. Try Other Option to check customer exist or not.")
-         
+          this.fetchData=''
         }
         else { alert("Sorry ! " + value + " Customer details are not found. Try Other Option to check customer exist or not.") }
-        }
+        this.fetchData=''
+     
+    }
       else{
         this.custid = res[0].idcustomer;
         this.fetchData=res[0]; 
@@ -112,36 +116,4 @@ fetchData4:any;
     console.log(dialogConfig );
     
     }
-}
-@Component({
-  selector: 'dialog-content-example-dialog',
-  templateUrl: 'editstatusdialog-contentnew.html',
-})
-
-export class EditDialogContent1{ 
-
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any,
-  private commonservice: CommonService ,private route: ActivatedRoute, private router: Router,
-  public dialogRef: MatDialogRef<EditDialogContent1>) {}
-element:any;
-empid;
-empname;
-value;
-
-onSubmit(obj,obj1){
-  this.empid = localStorage.getItem("id");
-  this.empname = localStorage.getItem("empname");
-   console.log(obj);
-   console.log(obj1);
-   this.value = {obj:obj,empid:this.empid,empname:this.empname}
-  this.commonservice.editstatus(this.value)
-  .subscribe(res => {
-    alert("Bank Updated Successfully");
-  this.dialogRef.close();
-  })
- }
- refresh(): void {
-  window.location.reload();
-}
 }

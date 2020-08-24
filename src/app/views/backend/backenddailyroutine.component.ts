@@ -26,6 +26,7 @@ export class BackendDailyRoutineComponent implements OnInit {
     this.model.bankname = '';
     this.model.whosecase = '';
     this.model.status = '';
+    this.model.comment = '';
   }
   addvalues() {
     console.log(this.model.idbank);
@@ -53,11 +54,11 @@ export class BackendDailyRoutineComponent implements OnInit {
       arr: this.array,
       idvalue: this.idvalue
     }
-    this.service.addroutine(this.vvv);
-    //   .subscribe(res=>{
-    //    window.location.reload();
-    //  })
-  }
+    this.service.addroutine(this.vvv).subscribe(res=>{
+      alert("Daily Routine Added Successfully")
+      this.router.navigate(['/backend/dailyroutineview']);
+  })
+}
 
   // onSubmit() {
   //   console.log(this.model);

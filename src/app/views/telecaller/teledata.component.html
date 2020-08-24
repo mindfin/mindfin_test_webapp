@@ -210,8 +210,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <label><b>Own House</b><code>(*)</code></label><br>
-                                <input type="radio" value="Is There" name="ohp" [(ngModel)]="model.ownHouse" required #ownHouse="ngModel"> Is There
-                                <input type="radio" value="Is Not There" name="ohp" [(ngModel)]="model.ownHouse" required #ownHouse="ngModel"> Is Not There
+                                <input type="radio" value="Is There" name="ohp" [(ngModel)]="model.ownHouse" required #ownHouse="ngModel"> AVAILABLE
+                                <input type="radio" value="Is Not There" name="ohp" [(ngModel)]="model.ownHouse" required #ownHouse="ngModel"> NOT AVAILABLE
                                 <div class="alert" *ngIf="ownHouse.errors && (ownHouse.dirty || ownHouse.touched)">
                                     <div [hidden]="!ownHouse.errors.required">
                                         Select Is required
@@ -250,7 +250,6 @@
                                     <option value="REQUIRED">REQUIRED</option>
                                     <option value="NOT REQUIRED">NOT REQUIRED</option>
                                     <option value="LATER">LATER</option>
-                                    <option value="REJECTED">REJECTED</option>
                                 </select>
                                 <div class="alert" *ngIf="status.errors && (status.dirty || status.touched)">
                                     <div [hidden]="!status.errors.required">

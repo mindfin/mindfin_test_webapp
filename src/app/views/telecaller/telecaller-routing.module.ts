@@ -29,21 +29,21 @@ const routes: Routes = [
     path:'teledatalist',
     component:TeledatalistComponent,
     data:{
-      title:' Enquiry Data List'
+      title:' Enquiry Lead List'
     }
   },
   {
     path:'teledisbursdatalist',
     component:TeleDisbursdatalistComponent,
     data:{
-      title:' Enquiry Disbursed Data List'
+      title:' Enquiry Disbursed Lead List'
     }
   },
   {
     path:'teleapprovedatalist',
     component:TeleApproveddatalistComponent,
     data:{
-      title:' Enquiry Approved Data List'
+      title:' Enquiry Approved Lead List'
     }
   },
   {
@@ -51,7 +51,7 @@ const routes: Routes = [
     component:  TeleRejectdatalistComponent
     ,
     data:{
-      title:' Enquiry Reject Data List'
+      title:' Enquiry Reject Lead List'
     }
   },
   {

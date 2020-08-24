@@ -1049,6 +1049,8 @@ router.post('/customerupdate', (req, res) => {
             editby: req.body.value.empid,
             editorname: req.body.value.empname,
             updateddate: nowdate2,
+            updateddate: nowdate2,
+            ventage: req.body.value.ventage,
         })
         .then(function() {
             // console.log("conf", config);
@@ -2903,6 +2905,7 @@ router.post('/addroutine', (req, res) => {
                 comment: comment
             }).then(function(result) {
                 //console.log(result);
+                res.json(result)
             })
     }
 });
@@ -3312,6 +3315,7 @@ router.post('/custdocument', (req, res) => {
             status: status,
             createdby: req.body.empid,
             comment: req.body.value.comment,
+            ventage: req.body.value.ventage,
             createdbyname: req.body.empname,
         })
         // .returning('id')
@@ -3582,6 +3586,8 @@ router.post('/backendbankinsert', (req, res) => {
         var executiveid = vbs[j].executiveid
         var executivename = vbs[j].executivename
         var idloan = vbs[j].loanid
+        var carBrand = vbs[j].carBrand
+        var carModel = vbs[j].carModel
 
         knex('applybank')
             .insert({
@@ -3597,6 +3603,8 @@ router.post('/backendbankinsert', (req, res) => {
                 executivename: executivename,
                 createdbyname: req.body.createdbyname,
                 idloan: idloan,
+                carBrand: carBrand,
+                carModel: carModel
             })
             // .returning('id')
             .then(function(id) {
@@ -3831,7 +3839,7 @@ router.post('/addloginroutine', (req, res) => {
                 casedetail: casedetail,
                 poVisit: pov
             }).then(function(result) {
-                //console.log(result);
+                res.json('daily_routine update Successfully');
             })
     }
 });
@@ -12809,6 +12817,274 @@ router.get('/casecount/:obj', (req, res) => {
             console.log(result.length);
 
             res.json(result.length);
+        })
+});
+router.post('/editEmp', (req, res) => {
+    //console.log(req.body);
+    const nowdate = format.asString('yyyy-MM-dd', new Date());
+    knex('employee')
+        .where({ idemployee: req.body.value.idemployee })
+        .update({
+            name: req.body.value.name,
+            mobile: req.body.value.mobile,
+            altmobile: req.body.value.altmobile,
+            email: req.body.value.email,
+            qualification: req.body.value.qualification,
+            status: 'active',
+            updateddate: nowdate,
+        })
+        .then(function(result) {
+            ////console.log(result); 
+            res.json('Employee Updated Successfully');
+        })
+})
+
+router.get('/getcasedisburselist/:pagesize/:page/:sdate/:edate', (req, res, next) => {
+    const pageSize = req.params.pagesize;
+    const currentPage = req.params.page;
+    const skip = (pageSize * (currentPage - 1));
+    const sdate = format.asString('yyyy-MM-dd', new Date(req.params.sdate));
+    const edate = format.asString('yyyy-MM-dd', new Date(req.params.edate));
+    var subquery = knex.select().from('status').max('status.statusid').groupBy('status.addbankid');
+    knex.select('applybank.*', 'bank.bankname', 'customer.*', 'status.*', 'applybank.createdbyname as acreatedbyname',
+            'applybank.createddate as acreateddate', 'applybank.status as astatus', 'applybank.amount as aamount',
+            'applybank.executivename as aexecutivename', 'customer.executivename as cexecutivename', 'status.status as sstatus', 'status.createddate as screateddate')
+        .from('applybank', 'customer')
+        .join('bank', 'bank.idbank', 'applybank.idbank')
+        .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+        .join('status', 'status.addbankid', 'applybank.idapplybank')
+        .where('status.status', 'DISBURSED')
+        .whereIn('status.statusid', subquery)
+        .where('status.createddate', '>=', sdate)
+        .where('status.createddate', '<=', edate)
+        .orderBy('status.statusid', 'desc')
+
+    .limit(pageSize).offset(skip)
+        .then(function(result) {
+            knex.select()
+                .from('applybank', 'customer', 'status')
+                .join('bank', 'bank.idbank', 'applybank.idbank')
+                .join('status', 'status.addbankid', 'applybank.idapplybank')
+
+            .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+                .where('status.createddate', '>=', sdate)
+                .where('status.createddate', '<=', edate)
+
+            .where('status.status', 'DISBURSED')
+                .whereIn('status.statusid', subquery)
+                .orderBy('applybank.idapplybank', 'desc')
+                .then(function(re) {
+                    res.status(200).json({
+                        message: "Memberlists fetched",
+                        posts: result,
+                        maxPosts: re.length
+                    });
+                })
+        })
+});
+router.get('/getcaseapprovallist/:pagesize/:page/:sdate/:edate', (req, res, next) => {
+    const pageSize = req.params.pagesize;
+    const currentPage = req.params.page;
+    const skip = (pageSize * (currentPage - 1));
+    const sdate = format.asString('yyyy-MM-dd', new Date(req.params.sdate));
+    const edate = format.asString('yyyy-MM-dd', new Date(req.params.edate));
+    var subquery = knex.select().from('status').max('status.statusid').groupBy('status.addbankid');
+    knex.select('applybank.*', 'bank.bankname', 'customer.*', 'status.*', 'applybank.createdbyname as acreatedbyname',
+            'applybank.createddate as acreateddate', 'applybank.status as astatus', 'applybank.amount as aamount',
+            'applybank.executivename as aexecutivename', 'customer.executivename as cexecutivename', 'status.status as sstatus', 'status.createddate as screateddate')
+        .from('applybank', 'customer')
+        .join('bank', 'bank.idbank', 'applybank.idbank')
+        .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+        .join('status', 'status.addbankid', 'applybank.idapplybank')
+        .where('status.status', 'APPROVED')
+        .whereIn('status.statusid', subquery)
+        .where('status.createddate', '>=', sdate)
+        .where('status.createddate', '<=', edate)
+        .orderBy('status.statusid', 'desc')
+
+    .limit(pageSize).offset(skip)
+        .then(function(result) {
+            knex.select()
+                .from('applybank', 'customer', 'status')
+                .join('bank', 'bank.idbank', 'applybank.idbank')
+                .join('status', 'status.addbankid', 'applybank.idapplybank')
+
+            .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+                .where('status.createddate', '>=', sdate)
+                .where('status.createddate', '<=', edate)
+
+            .where('status.status', 'APPROVED')
+                .whereIn('status.statusid', subquery)
+                .orderBy('applybank.idapplybank', 'desc')
+                .then(function(re) {
+                    res.status(200).json({
+                        message: "Memberlists fetched",
+                        posts: result,
+                        maxPosts: re.length
+                    });
+                })
+        })
+});
+router.get('/getcaseloginlist/:pagesize/:page/:sdate/:edate', (req, res, next) => {
+    const pageSize = req.params.pagesize;
+    const currentPage = req.params.page;
+    const skip = (pageSize * (currentPage - 1));
+    const sdate = format.asString('yyyy-MM-dd', new Date(req.params.sdate));
+    const edate = format.asString('yyyy-MM-dd', new Date(req.params.edate));
+    var subquery = knex.select().from('status').max('status.statusid').groupBy('status.addbankid');
+    knex.select('applybank.*', 'bank.bankname', 'customer.*', 'status.*', 'applybank.createdbyname as acreatedbyname',
+            'applybank.createddate as acreateddate', 'applybank.status as astatus', 'applybank.amount as aamount',
+            'applybank.executivename as aexecutivename', 'customer.executivename as cexecutivename', 'status.status as sstatus', 'status.createddate as screateddate')
+        .from('applybank', 'customer')
+        .join('bank', 'bank.idbank', 'applybank.idbank')
+        .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+        .join('status', 'status.addbankid', 'applybank.idapplybank')
+        .where('status.status', 'LOGIN')
+        .whereIn('status.statusid', subquery)
+        .where('status.createddate', '>=', sdate)
+        .where('status.createddate', '<=', edate)
+        .orderBy('status.statusid', 'desc')
+
+    .limit(pageSize).offset(skip)
+        .then(function(result) {
+            knex.select()
+                .from('applybank', 'customer', 'status')
+                .join('bank', 'bank.idbank', 'applybank.idbank')
+                .join('status', 'status.addbankid', 'applybank.idapplybank')
+
+            .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+                .where('status.createddate', '>=', sdate)
+                .where('status.createddate', '<=', edate)
+
+            .where('status.status', 'LOGIN')
+                .whereIn('status.statusid', subquery)
+                .orderBy('applybank.idapplybank', 'desc')
+                .then(function(re) {
+                    res.status(200).json({
+                        message: "Memberlists fetched",
+                        posts: result,
+                        maxPosts: re.length
+                    });
+                })
+        })
+});
+router.get('/getcaserejectlist/:pagesize/:page/:sdate/:edate', (req, res, next) => {
+    const pageSize = req.params.pagesize;
+    const currentPage = req.params.page;
+    const skip = (pageSize * (currentPage - 1));
+    const sdate = format.asString('yyyy-MM-dd', new Date(req.params.sdate));
+    const edate = format.asString('yyyy-MM-dd', new Date(req.params.edate));
+    var subquery = knex.select().from('status').max('status.statusid').groupBy('status.addbankid');
+    knex.select('applybank.*', 'bank.bankname', 'customer.*', 'status.*', 'applybank.createdbyname as acreatedbyname',
+            'applybank.createddate as acreateddate', 'applybank.status as astatus', 'applybank.amount as aamount',
+            'applybank.executivename as aexecutivename', 'customer.executivename as cexecutivename', 'status.status as sstatus', 'status.createddate as screateddate')
+        .from('applybank', 'customer')
+        .join('bank', 'bank.idbank', 'applybank.idbank')
+        .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+        .join('status', 'status.addbankid', 'applybank.idapplybank')
+        .where('status.status', 'REJECT')
+        .whereIn('status.statusid', subquery)
+        .where('status.createddate', '>=', sdate)
+        .where('status.createddate', '<=', edate)
+        .orderBy('status.statusid', 'desc')
+
+    .limit(pageSize).offset(skip)
+        .then(function(result) {
+            knex.select()
+                .from('applybank', 'customer', 'status')
+                .join('bank', 'bank.idbank', 'applybank.idbank')
+                .join('status', 'status.addbankid', 'applybank.idapplybank')
+
+            .join('customer', 'customer.idcustomer', 'applybank.idcustomer')
+                .where('status.createddate', '>=', sdate)
+                .where('status.createddate', '<=', edate)
+
+            .where('status.status', 'REJECT')
+                .whereIn('status.statusid', subquery)
+                .orderBy('applybank.idapplybank', 'desc')
+                .then(function(re) {
+                    res.status(200).json({
+                        message: "Memberlists fetched",
+                        posts: result,
+                        maxPosts: re.length
+                    });
+                })
+        })
+});
+router.post('/natureofbusinessinsert', (req, res) => {
+    const nowdate1 = format.asString('yyyy-MM-dd', new Date());
+    var date = momentTz.tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+    console.log(date);
+    // var localTime = moment.utc(date).toDate();
+    // localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+    //console.log("moment: " + localTime);
+    if (req.body.idnatureofbusiness != null) {
+        knex('natureofbusiness')
+            .where({ idnatureofbusiness: req.body.idnatureofbusiness })
+            .update({
+                natureOfBusiness: req.body.natureOfBusiness,
+                updateddate: date
+            })
+            .then(function(result) {
+                res.json('natureofbusiness Updated Successfully');
+            })
+    } else {
+        knex('natureofbusiness')
+            .returning('id')
+            .insert({
+                natureOfBusiness: req.body.natureOfBusiness,
+                status: "active",
+                createddate: date
+            })
+            .then(function(result) {
+                res.json('Nature of Business Added Successfully');
+            })
+    }
+});
+router.get('/getnatureofbusinesslist', (req, res) => {
+    knex.select()
+        .from('natureofbusiness')
+        .then(function(result) {
+            res.json(result);
+        })
+});
+router.post('/carbrandinsert', (req, res) => {
+    const nowdate1 = format.asString('yyyy-MM-dd', new Date());
+    var date = momentTz.tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+    console.log(date);
+    console.log(req.body.carBrand);
+
+    // var localTime = moment.utc(date).toDate();
+    // localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+    //console.log("moment: " + localTime);
+    if (req.body.idCarBrand != null) {
+        knex('carbrand')
+            .where({ idCarBrand: req.body.idCarBrand })
+            .update({
+                carBrand: req.body.carBrand,
+                updateddate: date
+            })
+            .then(function(result) {
+                res.json('carbrand Updated Successfully');
+            })
+    } else {
+
+        knex('carbrand')
+            .insert({
+                carBrand: req.body.carBrand,
+                status: "active",
+                createddate: date
+            })
+            .then(function(result) {
+                res.json('Car Brand Added Successfully');
+            })
+    }
+});
+router.get('/getcarbrandlist', (req, res) => {
+    knex.select()
+        .from('carbrand')
+        .then(function(result) {
+            res.json(result);
         })
 });
 module.exports = router

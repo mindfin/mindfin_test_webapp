@@ -70,7 +70,7 @@
                             <th>COMMENTS</th>
                             <td> {{fetchData.comment}}</td>
                             <th> Share Case</th>
-                            <th class="badge-success"><a class="nav-link badge-success" (click)="share(fetchData)" role="button">Share Case </a>
+                            <th><a *ngIf="fetchData.idcustomer!==''" class="nav-link badge-success" (click)="share(fetchData)" role="button">Share Case </a>
                             </th>
                         </tr>
                     </tbody>

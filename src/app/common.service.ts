@@ -1503,9 +1503,7 @@ export class CommonService {
   addroutine(obj) {
     console.log(obj);
     const uri = this.commonurl + '/callapi/addroutine';
-    this.http.post(uri, obj).subscribe(res => {
-      console.log(res);
-    })
+    return this.http.post(uri, obj);
   }
   loginviewbank(id) {
     console.log(id);
@@ -1564,9 +1562,7 @@ export class CommonService {
   addloginroutine(obj) {
     console.log(obj);
     const uri = this.commonurl + '/callapi/addloginroutine';
-    this.http.post(uri, obj).subscribe(res => {
-      console.log(res);
-    })
+    return this.http.post(uri, obj)
   }
   logineditData(id) {
     console.log(id);
@@ -2513,9 +2509,7 @@ export class CommonService {
         });
       });
   }
-
-
-  getBackendBanklistDetails() {
+   getBackendBanklistDetails() {
     return this.postsUpdated.asObservable();
   }
   getWebsiteLead(postsPerPage: number, currentPage: number, sdate, edate) {
@@ -3697,4 +3691,139 @@ export class CommonService {
   viewcustomeridDetails() {
     return this.postsUpdated.asObservable();
   }
+  editEmp(value) {
+      console.log(value);
+      const uri = this.commonurl + '/callapi/editEmp/';
+      return this.http.post(uri, value)
+    }
+    getcasedisburselist(postsPerPage: number, currentPage: number, sdate, edate) {
+  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+  this.http
+    .get<{ message: string; posts: any; maxPosts: number }>(
+      this.commonurl + '/callapi/getcasedisburselist' + queryParams
+    )
+    .pipe(
+      map(postData => {
+        //console.log('');
+        return {
+          posts: postData.posts,
+
+          maxPosts: postData.maxPosts
+        };
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
+      this.postsUpdated.next({
+        posts: [...this.posts],
+        postCount: transformedPostData.maxPosts
+      });
+    });
+}
+getcasedisburselistDetails() {
+  return this.postsUpdated.asObservable();
+}
+getcaseapprovallist(postsPerPage: number, currentPage: number, sdate, edate) {
+  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+  this.http
+    .get<{ message: string; posts: any; maxPosts: number }>(
+      this.commonurl + '/callapi/getcaseapprovallist' + queryParams
+    )
+    .pipe(
+      map(postData => {
+        //console.log('');
+        return {
+          posts: postData.posts,
+
+          maxPosts: postData.maxPosts
+        };
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
+      this.postsUpdated.next({
+        posts: [...this.posts],
+        postCount: transformedPostData.maxPosts
+      });
+    });
+}
+getcaseapprovallistDetails() {
+  return this.postsUpdated.asObservable();
+}
+getcaseloginlist(postsPerPage: number, currentPage: number, sdate, edate) {
+  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+  this.http
+    .get<{ message: string; posts: any; maxPosts: number }>(
+      this.commonurl + '/callapi/getcaseloginlist' + queryParams
+    )
+    .pipe(
+      map(postData => {
+        //console.log('');
+        return {
+          posts: postData.posts,
+
+          maxPosts: postData.maxPosts
+        };
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
+      this.postsUpdated.next({
+        posts: [...this.posts],
+        postCount: transformedPostData.maxPosts
+      });
+    });
+}
+getcaseloginlistDetails() {
+  return this.postsUpdated.asObservable();
+}
+getcaserejectlist(postsPerPage: number, currentPage: number, sdate, edate) {
+  const queryParams = `/${postsPerPage}/${currentPage}/${sdate}/${edate}`;
+  this.http
+    .get<{ message: string; posts: any; maxPosts: number }>(
+      this.commonurl + '/callapi/getcaserejectlist' + queryParams
+    )
+    .pipe(
+      map(postData => {
+        //console.log('');
+        return {
+          posts: postData.posts,
+
+          maxPosts: postData.maxPosts
+        };
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
+      this.postsUpdated.next({
+        posts: [...this.posts],
+        postCount: transformedPostData.maxPosts
+      });
+    });
+}
+getcaserejectlistDetails() {
+  return this.postsUpdated.asObservable();
+}
+natureofbusinessinsert(obj) {
+  console.log(obj);
+  const uri = this.commonurl + '/callapi/natureofbusinessinsert';
+  return this.http.post(uri, obj);
+}
+
+getnatureofbusinesslist() {
+
+  const uri = this.commonurl + '/callapi/getnatureofbusinesslist/';
+  return this.http.get(uri);
+}
+carbrandinsert(obj) {
+  console.log(obj);
+  const uri = this.commonurl + '/callapi/carbrandinsert';
+  return this.http.post(uri, obj);
+}
+
+getcarbrandlist() {
+
+  const uri = this.commonurl + '/callapi/getcarbrandlist/';
+  return this.http.get(uri);
+}
 }

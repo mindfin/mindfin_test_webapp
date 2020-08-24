@@ -1,20 +1,20 @@
 <style>
-  @media(max-width:600px) {
-    .extra-height.chart-wrapper {
-      height: 90px !important;
+    @media(max-width:600px) {
+        .extra-height.chart-wrapper {
+            height: 90px !important;
+        }
     }
-  }
-
-  @media(min-width:601px) {
-    .extra-height.chart-wrapper {
-      height: 60px !important;
+    
+    @media(min-width:601px) {
+        .extra-height.chart-wrapper {
+            height: 60px !important;
+        }
     }
-  }
 </style>
 <div class="animated fadeIn">
-  <div class="row">
+    <div class="row">
 
-    <!-- <div class="col-sm-3 col-lg-2">
+        <!-- <div class="col-sm-3 col-lg-2">
       <a href="#/members/datatelelist">
         <div class="card text-white bg-box1">
           <div class="card-body pb-0">
@@ -34,28 +34,28 @@
       </a>
     </div> -->
 
-    <div class="col-sm-4 col-lg-3">
-      <a>
-        <div class="card text-white bg-box3">
-          <div class="card-body pb-0">
-            <div style="font-size: 22px;">LOGIN COUNT</div>
-          </div>
-          <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
-            <div class="row">
-              <div class="col-md-6">
-                <i class="fa fa-sign-in" aria-hidden="true" style="font-size:40px"></i>
-              </div>
-              <div class="col-md-6">
-                <h1>{{fetchData2}}</h1>
-              </div>
-            </div>
-          </div>
+        <div class="col-sm-4 col-lg-3">
+            <a href="#/members/loginlist">
+                <div class="card text-white bg-box3">
+                    <div class="card-body pb-0">
+                        <div style="font-size: 22px;">LOGIN COUNT</div>
+                    </div>
+                    <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-sign-in" aria-hidden="true" style="font-size:40px"></i>
+                            </div>
+                            <div class="col-md-6">
+                                <h1>{{fetchData2}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
 
-    <!--/.col-->
-    <!-- <div class="col-sm-4 col-lg-3">
+        <!--/.col-->
+        <!-- <div class="col-sm-4 col-lg-3">
       <a href="#/members/pdlist">
         <div class="card text-white bg-box4">
           <div class="card-body pb-0">
@@ -75,77 +75,77 @@
       </a>
     </div> -->
 
-    <div class="col-sm-4 col-lg-3">
-      <a>
-        <div class="card text-white bg-box4">
-          <div class="card-body pb-0">
-            <div style="font-size: 22px;">APPROVE COUNT </div>
-          </div>
-          <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
-            <div class="row">
-              <div class="col-md-6">
-                <i class="fa fa-check-square-o" aria-hidden="true" style="font-size:40px"></i>
-              </div>
-              <div class="col-md-6">
-                <h1>{{fetchData3}}</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-
-
-    <div class="col-sm-4 col-lg-3">
-      <a>
-        <div class="card text-white bg-box4">
-          <div class="card-body pb-0">
-            <div style="font-size: 22px;">DISBURSE COUNT </div>
-          </div>
-          <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
-            <div class="row">
-              <div class="col-md-6">
-                <i class="icon-user-following" aria-hidden="true" style="font-size:40px"></i>
-              </div>
-              <div class="col-md-6">
-                <h1>{{fetchData5}}</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-sm-4 col-lg-3">
-        <a>
-          <div class="card text-white bg-box4">
-            <div class="card-body pb-0">
-              <div style="font-size: 22px;">REJECT COUNT </div>
-            </div>
-            <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
-              <div class="row">
-                <div class="col-md-6">
-                  <i class="fa fa-user-times" aria-hidden="true" style="font-size:40px"></i>
+        <div class="col-sm-4 col-lg-3">
+            <a href="#/members/approvedlist">
+                <div class="card text-white bg-box4">
+                    <div class="card-body pb-0">
+                        <div style="font-size: 22px;">APPROVE COUNT </div>
+                    </div>
+                    <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-check-square-o" aria-hidden="true" style="font-size:40px"></i>
+                            </div>
+                            <div class="col-md-6">
+                                <h1>{{fetchData3}}</h1>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                  <h1>{{fetchData4}}</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-  
-
-
-
-  </div>
-  <div class="row">
-      <div class="col-lg-12 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div id="chartContainer1" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
-    
+            </a>
         </div>
-      </div>
+
+
+
+        <div class="col-sm-4 col-lg-3">
+            <a href="#/members/disbursedlist">
+                <div class="card text-white bg-box4">
+                    <div class="card-body pb-0">
+                        <div style="font-size: 22px;">DISBURSE COUNT </div>
+                    </div>
+                    <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="icon-user-following" aria-hidden="true" style="font-size:40px"></i>
+                            </div>
+                            <div class="col-md-6">
+                                <h1>{{fetchData5}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+            <a href="#/members/rejectlist">
+                <div class="card text-white bg-box4">
+                    <div class="card-body pb-0">
+                        <div style="font-size: 22px;">REJECT COUNT </div>
+                    </div>
+                    <div class="extra-height chart-wrapper mt-3 mx-3" style="height:60px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-user-times" aria-hidden="true" style="font-size:40px"></i>
+                            </div>
+                            <div class="col-md-6">
+                                <h1>{{fetchData4}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div id="chartContainer1" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+
+            </div>
+        </div>
     </div>
 </div>

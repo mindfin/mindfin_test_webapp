@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { SuperadminService } from '../../superadmin.service';
 import { CommonService } from '../../common.service';
+import { isNumeric } from 'rxjs/util/isNumeric';
 import { MatDialogConfig, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 
@@ -41,12 +42,24 @@ export class CheckCaseDownloadComponent {
     window.location.reload();
   }
   checkcase(obj) {
+    var value = obj.checkno
     console.log(obj);
     // var idno=obj.idno;
     this.commonservice.checkcase(obj).subscribe(res => {
+      console.log(res); 
+      if (res == null || res == undefined || res == 0) {
+        if (isNumeric(value)) {
+          alert("Sorry ! " + value + " this Customer details are not found. Try Other Option to check customer exist or not.")
+          this.fetchData=''
+        }
+        else { alert("Sorry ! " + value + " Customer details are not found. Try Other Option to check customer exist or not.") }
+        this.fetchData=''
+      }
+      else {
       console.log(res);
       this.custid = res[0].idcustomer;
       this.fetchData = res[0];
+      }
     })
     // this.commonservice.backendeditemp(this.custid).subscribe(res=>{
     //   console.log(res);
@@ -153,7 +166,7 @@ this.empname=localStorage.getItem("empname")
   emails:this.fetchData4
   }
   this.commonservice.shareFile(this.vvv).subscribe(res=>{
-        alert("File shared Successfully");
+        alert("File Shared Successfully");
       this.dialogRef.close();
         })
 }

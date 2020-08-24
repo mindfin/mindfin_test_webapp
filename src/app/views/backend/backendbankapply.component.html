@@ -1,3 +1,8 @@
+<style>
+    .padding {
+        margin: 5px;
+    }
+</style>
 <div class="row">
     <div class="col-lg-12">
 
@@ -9,84 +14,107 @@
                 <div class="card-header"><b>APPLY BANKS</b> </div><br />
 
                 <form (ngSubmit)="addvalues();clearFilters();" #f="ngForm" novalidate>
-                    <h4 style="float:right;"></h4>
-                    <div class="table-responsive">
+                    <div class="row padding">
+                        <div class="col-md-4">
+                            <label><b>BANK TYPE</b></label><br>
+                            <select style="padding-right: 95px;" class="form-control" name="idbank" [(ngModel)]="model.idbank" #idbank="ngModel">
+                                <option value="" selected>Select your option</option>
+                                <option *ngFor="let item of fetchData2"
+                                    value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
+                                    {{item.bankname}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label><b>HANDLE BY</b></label><br>
+                            <select style="padding-right: 95px;" class="form-control" name="executiveid" [(ngModel)]="model.executiveid" #executiveid="ngModel">
+                                <option value="" selected>Select your option</option>
+                                <option *ngFor="let item of fetchData3" value="{{item.idemployee}},{{item.name}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label><b>LOAN TYPE</b></label><br>
+                            <select style="padding-right: 95px;" class="form-control" name="previousapplytype" [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel" (change)="onChange3(model.previousapplytype)">
+                                <option value="" selected>Select your option</option>
+                                <option *ngFor="let item of fetchData4" value={{item.idloantype}},{{item.loantype}}>
+                                    {{item.loantype}}
+                                </option>
+                            </select>
+                        </div>
+                        <div hidden class="col-sm-4" *ngIf="loantype==='' || loantype==='1' || loantype==='2'|| loantype==='3' ; else car;">
+                            <label><b>BRAND</b></label><br>
+                            <select style="padding-right: 95px;" class="form-control" name="carBrand" [(ngModel)]="model.carBrand" #carBrand="ngModel">
+                                <option value="null" selected>Select your option</option>
+                                
+                            </select>
+                        </div>
+                        <div hidden class="col-md-4" *ngIf="loantype===''|| loantype==='1' || loantype==='2'|| loantype==='3'">
+                            <label><b>MODEL</b></label><br>
+                            <input type="text" class="form-control" #carModel="ngModel" name="carModel" value="null" [(ngModel)]="model.carModel">
 
-                        <table class="table table-striped" id="dynamic_field">
-                            <tr>
-                                <th>
-                                    <label><b>BANK TYPE</b></label><br>
-                                    <select style="padding-right: 95px;" class="form-control" name="idbank" [(ngModel)]="model.idbank" #idbank="ngModel">
-                              <option value="" selected>Select your option</option>
-                              <option *ngFor="let item of fetchData2"
-                                 value="{{item.idbank}},{{item.bankname}},{{item.bankvendor}}">
-                                 {{item.bankname}}
-                              </option>
-                           </select>
-                                </th>
-                                <th>
-                                    <label><b>HANDLE BY</b></label><br>
-                                    <select style="padding-right: 95px;" class="form-control" name="executiveid" [(ngModel)]="model.executiveid" #executiveid="ngModel">
-                              <option value="" selected>Select your option</option>
-                              <option *ngFor="let item of fetchData3" value="{{item.idemployee}},{{item.name}}">
-                                 {{item.name}}
-                              </option>
-                           </select>
-                                </th>
-                                <th>
-                                    <label><b>LOAN TYPE</b></label><br>
-                                    <select style="padding-right: 95px;" class="form-control" name="previousapplytype" [(ngModel)]="model.previousapplytype" #previousapplytype="ngModel">
-                              <option value="" selected>Select your option</option>
-                              <option *ngFor="let item of fetchData4" value={{item.idloantype}},{{item.loantype}}>
-                                 {{item.loantype}}
-                              </option>
-                           </select>
-                                </th>
-                                <th>
-                                    <label><b>AMOUNT</b></label><br>
-                                    <input type="number" class="form-control" #amount="ngModel" placeholder="ENTER AMOUNT" name="amount" [(ngModel)]="model.amount"></th>
+                        </div>
+                        <ng-template #car>
+                            <div class="col-md-4" *ngIf="loantype==='5'">
+                                <label><b>BRAND</b></label><br>
+                                <select style="padding-right: 95px;" class="form-control" name="carBrand" [(ngModel)]="model.carBrand" #carBrand="ngModel">
+                                <option value="" selected>Select your option</option>
+                                <option *ngFor="let item of fetchData5" [value]="item.carBrand">{{item.carBrand}}</option>
 
-                                <th>
-                                    <th>
-                                        <label><b>STATUS</b></label><br>
-                                        <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
-                              <option value="" selected>Select option</option>
-                              <option value="ONLINE APPLICATION">ONLINE APPLICATION</option>
-                              <option value="DISPATCHED">DISPATCHED</option>
-                              <option value="LOGIN">LOGIN</option>
-                              <option value="LOGIN HOLD">LOGIN HOLD</option>
-                              <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
-                              <option value="PD">PD</option>
-                              <option value="PD PENDING">PD PENDING</option>
-                              <option value="POST PD PENDING">POST PD PENDING</option>
-                              <option value="APPROVED">APPROVED</option>
-                              <option value="REJECT">REJECT</option>
-                              <option value="DISBURSED">DISBURSED</option>
-                           </select>
-                                    </th>
+                            </select>
+                            </div>
+                            <div class="col-md-4" *ngIf="loantype==='5'">
+                                <label><b>MODEL</b></label><br>
+                                <input type="text" class="form-control" #carModel="ngModel" name="carModel" [(ngModel)]="model.carModel">
+
+                            </div>
+                        </ng-template>
+                        <div class="col-md-4">
+                            <label><b>AMOUNT</b></label><br>
+                            <input type="number" class="form-control" #amount="ngModel" placeholder="ENTER AMOUNT" name="amount" [(ngModel)]="model.amount">
+
+                        </div>
+                        <div class="col-md-4">
+                            <label><b>STATUS</b></label><br>
+                            <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
+                                <option value="" selected>Select option</option>
+                                <option value="ONLINE APPLICATION">ONLINE APPLICATION</option>
+                                <option value="DISPATCHED">DISPATCHED</option>
+                                <option value="LOGIN">LOGIN</option>
+                                <option value="LOGIN HOLD">LOGIN HOLD</option>
+                                <option value="WORK IN PROGRESS">WORK IN PROGRESS</option>
+                                <option value="PD">PD</option>
+                                <option value="PD PENDING">PD PENDING</option>
+                                <option value="POST PD PENDING">POST PD PENDING</option>
+                                <option value="APPROVED">APPROVED</option>
+                                <option value="REJECT">REJECT</option>
+                                <option value="DISBURSED">DISBURSED</option>
+                            </select>
+                        </div>
 
 
-                                    <th>
-                                        <label><b>PRODUCT</b></label><br>
-                                        <select class="form-control" name="product" [(ngModel)]="model.product" #product="ngModel">
-                              <option value="" selected>Select option</option>
-                              <option value="NORMAL">NORMAL</option>
-                              <option value="BANKING">BANKING</option>
-                              <option value="ITR PROGRAM">ITR PROGRAM</option>
-                              <option value="SWIPPING">SWIPPING</option>
-                              <option value="GST RETURN">GST RETURN</option>
+                        <div class="col-md-4">
+                            <label><b>PRODUCT</b></label><br>
+                            <select class="form-control" name="product" [(ngModel)]="model.product" #product="ngModel">
+                                <option value="" selected>Select option</option>
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="BANKING">BANKING</option>
+                                <option value="ITR PROGRAM">ITR PROGRAM</option>
+                                <option value="SWIPPING">SWIPPING</option>
+                                <option value="GST RETURN">GST RETURN</option>
+                                <option value="MSME">MSME</option>
 
-                           </select>
-                                    </th>
-                                    <th>
-                                        <label><b>ADD</b></label><br>
-                                        <button type="submit" class="form-control">
-                              <i class="fa fa-plus"></i> </button>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label><b>ADD</b></label><br>
+                            <button type="submit" class="form-control">
+                                <i class="fa fa-plus"></i> </button>
 
-                                    </th>
-                            </tr>
-                        </table>
+                        </div>
                     </div>
+
                 </form>
 
                 <div class="card-body">
@@ -105,6 +133,12 @@
                                 </th>
                                 <th>
                                     LOAN TYPE
+                                </th>
+                                <th>
+                                    BRAND
+                                </th>
+                                <th>
+                                    MODEL
                                 </th>
                                 <th>
                                     APPLIED AMOUNT
@@ -134,6 +168,12 @@
                                     {{pro.previousapplytype}}
                                 </td>
                                 <td>
+                                    {{pro.carBrand}}
+                                </td>
+                                <td>
+                                    {{pro.carModel}}
+                                </td>
+                                <td>
                                     {{pro.amount}}
                                 </td>
                                 <td>
@@ -143,7 +183,8 @@
                                     {{pro.product}}
                                 </td>
                                 <td>
-                                    <button (click)="removevalue(pro,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button (click)="removevalue(pro,i)"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                         </table>
